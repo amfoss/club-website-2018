@@ -1,0 +1,27 @@
+# db
+
+db.sqlite3
+
+# pycharm
+
+.idea/
+
+# media files
+
+# django
+
+media/
+local_settings.py
+*.egg-info
+*.pot
+*.log
+
+# Python
+
+*.pyc
+*.py[co]
+.tox/
+__pycache__
+
+# Thumbnails
+._*
