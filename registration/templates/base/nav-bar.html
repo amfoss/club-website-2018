@@ -27,8 +27,11 @@
 
         <ul class="navbar-nav pull-right">
             {% if request.user.is_authenticated %}
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="">{{ request.user.username }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
             {% else %}
                 {%  ifequal signup True %}

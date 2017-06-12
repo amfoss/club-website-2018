@@ -7,48 +7,53 @@
 {% endblock %}
 
 {% block body %}
-<div class="site-wrapper">
+    <div class="site-wrapper">
 
-  <div class="site-wrapper-inner">
+        <div class="site-wrapper-inner">
 
-    <div class="cover-container">
+            <div class="cover-container">
 
-      <div class="masthead clearfix">
-        <div class="inner">
-          <h3 class="masthead-brand">FOSS@Amrita</h3>
-          <nav class="nav nav-masthead">
-            <a class="nav-link" href="#">Achievements</a>
-            <a class="nav-link" href="#">Contact</a>
-            <a class="nav-link" href="#">Login</a>
-          </nav>
+                <div class="masthead clearfix">
+                    <div class="inner">
+                        <h3 class="masthead-brand">FOSS@Amrita</h3>
+                        <nav class="nav nav-masthead">
+                            <a class="nav-link" href="#">Achievements</a>
+                            {% if request.user.is_authenticated %}
+                                <a class="nav-link" href="">{{ request.user.username }}</a>
+                                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                            {% else %}
+                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="inner cover">
+                    <h1 class="cover-heading">Your freedom begins here</h1>
+                    <p class="lead cover-content">FOSS@Amrita is one of the most active student communities at Amrita University. We
+                        encourage, support and mentor students to improve their technical and social skills.</p>
+                    <p class="lead cover-content">
+                        <a href="#" class="btn btn-lg btn-transparent btn-secondary">Learn more</a>
+                    </p>
+                </div>
+
+                <div class="mastfoot">
+                    <div class="inner cover-footer-text">
+                        <p>
+                            <a class="footer-icons" href=""><i class="fa fa-github-alt fa-2x"></i></a>
+                            <a class="footer-icons" href=""><i class="fa fa-facebook fa-2x"></i></a>
+                            <a class="footer-icons" href=""><i class="fa fa-twitter fa-2x"></i></a>
+                            <a class="footer-icons" href=""><i class="fa fa-linkedin fa-2x"></i></a>
+                            <a class="footer-icons" href=""><i class="fa fa-google-plus fa-2x"></i></a>
+                        </p>
+                        <p>Maintainded by <a href="">WebTeam</a> <a href="#">FOSS@Amrita</a>.</p>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-      </div>
-
-      <div class="inner cover">
-        <h1 class="cover-heading">Your freedom begins here</h1>
-        <p class="lead cover-content">FOSS@Amrita is one of the most active student communities at Amrita University. We
-            encourage, support and mentor students to improve their technical and social skills.</p>
-        <p class="lead cover-content">
-          <a href="#" class="btn btn-lg btn-transparent btn-secondary">Learn more</a>
-        </p>
-      </div>
-
-      <div class="mastfoot">
-        <div class="inner cover-footer-text">
-            <p>
-                <a class="footer-icons" href=""><i class="fa fa-github-alt fa-2x"></i></a>
-                <a class="footer-icons" href=""><i class="fa fa-facebook fa-2x"></i></a>
-                <a class="footer-icons" href=""><i class="fa fa-twitter fa-2x"></i></a>
-                <a class="footer-icons" href=""><i class="fa fa-linkedin fa-2x"></i></a>
-                <a class="footer-icons" href=""><i class="fa fa-google-plus fa-2x"></i></a>
-            </p>
-          <p>Maintainded by <a href="">WebTeam</a> <a href="#">FOSS@Amrita</a>.</p>
-        </div>
-      </div>
 
     </div>
-
-  </div>
-
-</div>
 {% endblock %}
