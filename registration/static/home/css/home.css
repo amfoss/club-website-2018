@@ -177,3 +177,22 @@ body {
     font-size: 3em;
     font-weight: 600;
 }
+
+.btn-transparent {
+    background: transparent;
+    color: white;
+}
+
+.footer-icons {
+    margin: 0 5px;
+}
+
+ /*Small devices (landscape phones, 576px and up)*/
+@media only screen and (max-width: 500px) {
+    .cover-heading {
+        font-size: 2em;
+    }
+    .lead {
+        font-size: 0.9em;
+    }
+}
