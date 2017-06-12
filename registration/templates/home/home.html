@@ -1,6 +1,10 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
 {% block title %} foss@amrita {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}"/>
+{% endblock %}
 
 {% block body %}
 <div class="site-wrapper">
@@ -11,7 +15,7 @@
 
       <div class="masthead clearfix">
         <div class="inner">
-          <h3 class="masthead-brand">Cover</h3>
+          <h3 class="masthead-brand">FOSS@Amrita</h3>
           <nav class="nav nav-masthead">
             <a class="nav-link active" href="#">Home</a>
             <a class="nav-link" href="#">Features</a>
@@ -21,16 +25,17 @@
       </div>
 
       <div class="inner cover">
-        <h1 class="cover-heading">Cover your page.</h1>
-        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-        <p class="lead">
-          <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+        <h1 class="cover-heading">Your freedom begins here</h1>
+        <p class="lead cover-content">FOSS@Amrita is one of the most active student community at Amrita University. We
+            encourage, support and mentor students to improve their technical and social skills.</p>
+        <p class="lead cover-content">
+          <a href="#" class="btn btn-lg btn-secondary">Explore more</a>
         </p>
       </div>
 
       <div class="mastfoot">
-        <div class="inner">
-          <p>Cover template for <a href="https://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        <div class="inner cover-footer-text">
+          <p>Maintainded by <a href="">WebTeam</a> <a href="https://twitter.com/mdo">FOSS@Amrita</a>.</p>
         </div>
       </div>
 
