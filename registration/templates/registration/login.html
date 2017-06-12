@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %} SignUp {% endblock %}l
+{% block title %} Login {% endblock %}l
 {% block css %}
     <link rel="stylesheet" href="{% static 'registration/css/style.css' %}" />
 {% endblock %}
@@ -11,11 +11,34 @@
 
             {% include 'base/nav-bar.html' %}
 
+            {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
             <div class="container">
                 <div class="card-div">
                     <div class="card card-container">
                         <h1 id="profile-img" class="profile-img-card">Login</h1>
                         <p id="profile-name" class="profile-name-card"></p>
+
+                        {% if form.errors %}
+                            {% for error in form.erros %}
+                            <div class="alert alert-danger" role="alert">
+                                <strong>{{ error }}</strong>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
 
                         <form class="form-signin" action="" method="post">
                             {% csrf_token %}

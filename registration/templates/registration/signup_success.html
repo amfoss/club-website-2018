@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Successful {% endblock %}
+
+{% block body %}
+     <div id="wrap">
+        <div id="main">
+            {% include 'base/nav-bar.html' %}
+
+            <div class="jumbotron">
+                <h1 class="display-3">Welcome to FOSS@Amrita!</h1>
+                <p class="lead">Click the button below to login or use the navbar.<hr class="my-4">
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
+                </p>
+            </div>
+        </div>
+     </div>
+
+    {% include 'base/footer.html' %}
+{% endblock %}

@@ -16,15 +16,30 @@
                     <div class="card card-container">
                         <h1 id="profile-img" class="profile-img-card">SignUp</h1>
                         <p id="profile-name" class="profile-name-card"></p>
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
 
                         <form class="form-signin" action="" method="post">
                             {% csrf_token %}
                             <span id="reauth-email" class="reauth-email"></span>
                             <input type="text" id="inputEmail" class="form-control" placeholder="First name" name="first_name" required autofocus>
                             <input type="text" id="inputEmail" class="form-control" placeholder="First name" name="last_name" required autofocus>
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                            <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
                             <input type="text" id="inputEmail" class="form-control" placeholder="User name" name="username" required autofocus>
-                            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+                            <input type="password" id="inputPassword" name="password1" class="form-control" placeholder="Password" required>
+                            <input type="password" id="inputPassword" name="password2" class="form-control" placeholder="Once more" required>
 
                             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign up</button>
                         </form><!-- /form -->

@@ -1,17 +1,24 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib.auth.models import User
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, TemplateView
+
+from registration.forms import UserSignUpForm
 
 
-class UserCreateView(CreateView):
-    model = User
-    fields = ['first_name', 'last_name', 'email', 'username', 'password']
+class UserSignUpView(CreateView):
+    form_class = UserSignUpForm
     template_name = 'registration/signup.html'
+    success_url = reverse_lazy('signup_success')
 
     def get_context_data(self, **kwargs):
-        context = super(UserCreateView, self).get_context_data(**kwargs)
+        context = super(UserSignUpView, self).get_context_data(**kwargs)
         context['signup'] = True
         return context
+
+
+class UserSignUpSuccess(TemplateView):
+    template_name = 'registration/signup_success.html'
+
