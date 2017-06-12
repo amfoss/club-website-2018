@@ -5,38 +5,38 @@
     <link rel="stylesheet" href="{% static 'registration/css/style.css' %}" />
 {% endblock %}
 
-{% with signup='True' %}
+{% block body %}
+    <div id="wrap">
+        <div id="main">
 
-    {% block body %}
-        <div id="wrap">
-            <div id="main">
-                {% include 'base/nav-bar.html' %}
+            {% include 'base/nav-bar.html' %}
 
-                    <div class="container">
-                        <div class="card-div">
-                            <div class="card card-container">
-                                <h1 id="profile-img" class="profile-img-card">Login</h1>
-                                <p id="profile-name" class="profile-name-card"></p>
-                                <form class="form-signin">
-                                    <span id="reauth-email" class="reauth-email"></span>
-                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                    <div id="remember" class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="remember-me"> Remember me
-                                        </label>
-                                    </div>
-                                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-                                </form><!-- /form -->
-                                <a href="#" class="forgot-password">
-                                    Forgot the password?
-                                </a>
-                            </div><!-- /card-container -->
-                        </div>
-                    </div><!-- /container -->
-            </div>
+            <div class="container">
+                <div class="card-div">
+                    <div class="card card-container">
+                        <h1 id="profile-img" class="profile-img-card">SignUp</h1>
+                        <p id="profile-name" class="profile-name-card"></p>
+                        <form class="form-signin">
+                            <span id="reauth-email" class="reauth-email"></span>
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                            <div id="remember" class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="remember-me"> Remember me
+                                </label>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                        </form><!-- /form -->
+                        <a href="{% url 'password_reset' %}" class="forgot-password">
+                            Forgot the password?
+                        </a>
+                    </div><!-- /card-container -->
+                </div>
+            </div><!-- /container -->
         </div>
-        {% include 'base/footer.html' %}
-    {% endblock %}
+    </div>
 
-{% endwith %}
+    {% include 'base/footer.html' %}
+
+{% endblock %}
+

@@ -15,9 +15,7 @@ body, html {
     padding: 40px 40px;
 }
 
-.card-div {
 
-}
 
 .btn {
     font-weight: 700;
@@ -91,7 +89,7 @@ body, html {
 
 .btn.btn-signin {
     /*background-color: #4d90fe; */
-    background-color: rgb(104, 145, 162);
+    background-color: rgb(44, 119, 216);
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
     font-weight: 700;
@@ -110,15 +108,16 @@ body, html {
 .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
-    background-color: rgb(52, 116, 192);
+    background-color: rgb(34, 78, 192);
 }
 
 .forgot-password {
-    color: rgb(104, 145, 162);
+    color: rgb(43, 120, 191);
+    font-size: 0.8em;
 }
 
 .forgot-password:hover,
 .forgot-password:active,
 .forgot-password:focus{
-    color: rgb(12, 97, 33);
+    color: rgb(31, 147, 238);
 }

@@ -31,13 +31,13 @@
                     <a class="nav-link" href="">{{ request.user.username }}</a>
                 </li>
             {% else %}
-                {%  ifequal signup 'True' %}
+                {%  ifequal signup True %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
                     </li>
                 {% endifequal %}
             {% endif %}
