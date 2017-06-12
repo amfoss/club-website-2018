@@ -25,7 +25,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 ```
 Lets create a virtual environment for our project
 ```bash
-mkvirtualenv foss
+mkvirtualenv --python=`which python3` foss
 workon foss
 ```
 ## Install requirements

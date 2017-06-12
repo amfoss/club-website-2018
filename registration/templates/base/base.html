@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{%  load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %} {% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{%  static 'base/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    {% block css %} {% endblock %}
+  </head>
+
+  <body>
+    {% block body %}
+    {% endblock %}
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'base/js/jquery-slim.min.js' %}"></script>
+    <script src="{% static 'base/js/tether.min.js' %}"></script>
+    <script src="{% static 'base/js/bootstrap.min.js' %}"></script>
+    {% block script %} {% endblock %}
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'base/js/ie10-viewport-bug-workaround.js' %}"></script>
+  </body>
+</html>
