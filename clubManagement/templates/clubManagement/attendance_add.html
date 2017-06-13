@@ -3,20 +3,25 @@
 {% block title %} Add attendance {% endblock %}
 
 {% block body %}
-    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            {% include 'base/nav-bar.html' %}
 
-        <form action="" method="post">
+                <form action="" method="post">
+                {% csrf_token %}
 
-            {% for user in users %}
-                <p>
-                    {{ user.first_name }} - {{ user.last_name }}
-                    <input type="checkbox" value="True" name="{{ user.username }}">
-                </p>
-            {% endfor %}
+                    {% for user_info in user_info_list %}
+                        <p>
+                            {{ user_info.user.first_name }} - {{ user_info.user.last_name }}
+                            <input type="checkbox" value="True" name="{{ user_info.user.username }}">
+                        </p>
+                    {% endfor %}
 
-            <input type="submit">
+                    <input type="submit">
 
-        </form>
+                </form>
+        </div>
+    </div>
 
     {% include 'base/footer.html' %}
 {% endblock %}

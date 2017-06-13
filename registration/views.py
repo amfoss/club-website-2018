@@ -13,11 +13,6 @@ class UserSignUpView(CreateView):
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('signup_success')
 
-    def get_context_data(self, **kwargs):
-        context = super(UserSignUpView, self).get_context_data(**kwargs)
-        context['login'] = True
-        return context
-
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('already_logged_in')

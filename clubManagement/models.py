@@ -26,7 +26,7 @@ class TeamMembers(models.Model):
 class Attendance(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="added_by")
-    date = models.DateTimeField()
+    date = models.DateField()
     modified_date = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     def __str__(self):
