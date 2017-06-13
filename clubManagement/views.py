@@ -26,7 +26,7 @@ class AttendanceAddView(View):
         attendance_list = []
         for user_info in user_info_list:
             try:
-                attendance = Attendance.objects.get(user=user_info.user)
+                attendance = Attendance.objects.get(user=user_info.user, date=d)
             except Attendance.DoesNotExist:
                 attendance = Attendance(user=user_info.user, added_by=User.objects.get(username=self.request.user.username), date=d)
                 attendance.save()
@@ -45,7 +45,7 @@ class AttendanceAddView(View):
             except User.DoesNotExist:
                 user = None
             if user:
-                att = Attendance.objects.get(user=user)
+                att = Attendance.objects.get(user=user, date=d)
                 att.attendance = True
                 att.save()
         return redirect('add_attendance', **kwargs)

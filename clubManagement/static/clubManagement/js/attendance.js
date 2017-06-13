@@ -9,11 +9,13 @@ function click_attendance(name) {
         inp.setAttribute("checked", ""); // For IE
         inp.removeAttribute("checked"); // For other browsers
         inp.checked = false;
-        div.classList = 'btn btn-danger';
+        div.classList.add('btn-danger');
+        div.classList.remove('btn-success');
     }
     else {
         inp.checked = true;
         inp.setAttribute('checked', 'checked');
-        div.classList = 'btn btn-success';
+        div.classList.add('btn-success');
+        div.classList.remove('btn-danger');
     }
 }
