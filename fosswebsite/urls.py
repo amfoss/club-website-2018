@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^$', Home.as_view(), name='home'),
     url(r'^accounts/', include('registration.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^club/', include('clubManagement.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
