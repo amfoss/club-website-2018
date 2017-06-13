@@ -8,6 +8,8 @@ db.sqlite3
 
 # media files
 
+media/
+
 # django
 
 media/

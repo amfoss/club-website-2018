@@ -14,7 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
+
+from fosswebsite import settings
 from .views import Home
 
 urlpatterns = [
@@ -22,4 +25,4 @@ urlpatterns = [
     url(r'^$', Home.as_view(), name='home'),
     url(r'^accounts/', include('registration.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
