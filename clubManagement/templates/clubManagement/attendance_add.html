@@ -11,7 +11,7 @@
                 {% csrf_token %}
                     {% for att in attendance_list %}
                         <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}" onclick="click_attendance('{{ att.user.username }}')" id="{{ att.user.username }}_div">
-                            <p>{{ att.user.first_name }} - {{ att.user.last_name }}</p>
+                            <p>{{ att.user.first_name }} {{ att.user.last_name }}</p>
                             <input type="checkbox" style="display: None" id="{{ att.user.username }}" value="True" name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
                         </div>
                     {% endfor %}
