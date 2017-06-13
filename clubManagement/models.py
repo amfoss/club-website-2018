@@ -4,6 +4,25 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class Team(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='team/', blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return ' '
+
+
+class TeamMembers(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    date_assigned = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+
 class Attendance(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="added_by")
