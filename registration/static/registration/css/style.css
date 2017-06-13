@@ -121,3 +121,12 @@ body, html {
 .forgot-password:focus{
     color: rgb(31, 147, 238);
 }
+
+.notifications {
+    position: fixed;
+    top: 90px;
+    right: 0;
+    z-index: 1000;
+    font-size: 0.7em;
+    max-width: 90%;
+}

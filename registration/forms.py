@@ -8,9 +8,6 @@ class UserSignUpForm(forms.ModelForm):
     A form that creates a user, with no privileges, from the given username and
     password.
     """
-    error_messages = {
-        'password_mismatch': _("The two password fields didn't match."),
-    }
     password1 = forms.CharField(label=_("Password"),
                                 widget=forms.PasswordInput)
     password2 = forms.CharField(label=_("Password confirmation"),
@@ -22,15 +19,24 @@ class UserSignUpForm(forms.ModelForm):
         fields = ["first_name", "last_name", "email", "username"]
 
     def clean_password2(self):
+        """
+        password match check
+        :return: return the correct password
+        """
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2 and not self.validate_password_strength():
-            raise forms.ValidationError(
-                self.error_messages['password_mismatch']
-            )
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(_("The two password fields didn't match."))
+        if not self.validate_password_strength():
+            raise forms.ValidationError(_('Password must contain at least 1 digit and letter.'))
         return password2
 
     def save(self, commit=True):
+        """
+        Add password and save user
+        :param commit: save the user by default
+        :return: The saved user
+        """
         user = super(UserSignUpForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:
@@ -38,14 +44,21 @@ class UserSignUpForm(forms.ModelForm):
         return user
 
     def clean_username(self):
+        """
+        check username already exists
+        :return: cleaned username
+        """
         username = self.cleaned_data.get('username', None)
         if User.objects.filter(username__iexact=username):
             raise forms.ValidationError(_('That username is already in use, please use a new one!'))
         return username
 
     def clean_email(self):
+        """
+        check email already exists
+        :return: cleaned email
+        """
         email = self.cleaned_data.get('email', None)
-        print(email)
         if User.objects.filter(email__iexact=email):
             raise forms.ValidationError(_('That email is already in registered, please login using the login button!'))
         return email

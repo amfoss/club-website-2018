@@ -11,33 +11,39 @@
 
             {% include 'base/nav-bar.html' %}
 
+            <div class="notifications">
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger alert-dismissable">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            {{ error|escape }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
             <div class="container">
                 <div class="card-div">
                     <div class="card card-container">
                         <h1 id="profile-img" class="profile-img-card">SignUp</h1>
                         <p id="profile-name" class="profile-name-card"></p>
-                        {% if form.errors %}
-                            {% for field in form %}
-                                {% for error in field.errors %}
-                                    <div class="alert alert-danger">
-                                        <strong>{{ error|escape }}</strong>
-                                    </div>
-                                {% endfor %}
-                            {% endfor %}
-                            {% for error in form.non_field_errors %}
-                                <div class="alert alert-danger">
-                                    <strong>{{ error|escape }}</strong>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
+
 
                         <form class="form-signin" action="" method="post">
                             {% csrf_token %}
                             <span id="reauth-email" class="reauth-email"></span>
-                            <input type="text" id="inputEmail" class="form-control" placeholder="First name" name="first_name" required autofocus>
-                            <input type="text" id="inputEmail" class="form-control" placeholder="First name" name="last_name" required autofocus>
-                            <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
-                            <input type="text" id="inputEmail" class="form-control" placeholder="User name" name="username" required autofocus>
+                            <input type="text" value="{{ form.first_name.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="First name" name="first_name" required autofocus>
+                            <input type="text" value="{{ form.last_name.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="Last name" name="last_name" required autofocus>
+                            <input type="email" value="{{ form.email.value|default_if_none:"" }}" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
+                            <input type="text" value="{{ form.username.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="User name" name="username" required autofocus>
                             <input type="password" id="inputPassword" name="password1" class="form-control" placeholder="Password" required>
                             <input type="password" id="inputPassword" name="password2" class="form-control" placeholder="Once more" required>
 

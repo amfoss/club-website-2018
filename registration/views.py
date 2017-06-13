@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
-from django.shortcuts import render
+from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 
@@ -22,3 +21,9 @@ class UserSignUpView(CreateView):
 class UserSignUpSuccess(TemplateView):
     template_name = 'registration/signup_success.html'
 
+
+def login(request,  *args, **kwargs):  # view to handle remember me
+    if request.method == 'POST':
+        if not request.POST.get('remember_me', None):
+            request.session.set_expiry(0)
+    return auth_views.login(request, *args, **kwargs)
