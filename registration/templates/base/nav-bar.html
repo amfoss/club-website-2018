@@ -34,7 +34,7 @@
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
             {% else %}
-                {%  ifequal signup True %}
+                {%  ifequal login True %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Login</a>
                     </li>
