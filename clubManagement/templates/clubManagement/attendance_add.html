@@ -7,7 +7,7 @@
 
         <form action="" method="post">
 
-            {% for user in object_list %}
+            {% for user in users %}
                 <p>
                     {{ user.first_name }} - {{ user.last_name }}
                     <input type="checkbox" value="True" name="{{ user.username }}">
