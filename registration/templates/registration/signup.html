@@ -3,6 +3,10 @@
 {% block title %} SignUp {% endblock %}l
 {% block css %}
     <link rel="stylesheet" href="{% static 'registration/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'registration/css/bootstrapValidator.css' %}" />
+    <script type="text/javascript" src="{% static 'registration/js/bootstrapValidator.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'registration/js/jquery.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'registration/js/passwd.js' %}" ></script>
 {% endblock %}
 
 {% block body %}
@@ -37,16 +41,17 @@
                         <p id="profile-name" class="profile-name-card"></p>
 
 
-                        <form class="form-signin" action="" method="post">
+                        <form class="form-signin" id="signup" action=""  method="post">
                             {% csrf_token %}
                             <span id="reauth-email" class="reauth-email"></span>
                             <input type="text" value="{{ form.first_name.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="First name" name="first_name" required autofocus>
                             <input type="text" value="{{ form.last_name.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="Last name" name="last_name" required autofocus>
                             <input type="email" value="{{ form.email.value|default_if_none:"" }}" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
                             <input type="text" value="{{ form.username.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="User name" name="username" required autofocus>
+                            <fieldset>
                             <input type="password" id="inputPassword" name="password1" class="form-control" placeholder="Password" required>
-                            <input type="password" id="inputPassword" name="password2" class="form-control" placeholder="Once more" required>
-
+                            <input type="password" id="inputPassword" name="password2" class="form-control"  placeholder="Once more" required>
+                        </fieldset>
                             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign up</button>
                         </form><!-- /form -->
 
