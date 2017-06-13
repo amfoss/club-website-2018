@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Add attendance {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+
+        <form action="" method="post">
+
+            {% for user in object_list %}
+                <p>
+                    {{ user.first_name }} - {{ user.last_name }}
+                    <input type="checkbox" value="True" name="{{ user.username }}">
+                </p>
+            {% endfor %}
+
+            <input type="submit">
+
+        </form>
+
+    {% include 'base/footer.html' %}
+{% endblock %}

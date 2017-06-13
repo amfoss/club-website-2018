@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 
-{% block title %} Error {% endblock %}
+{% block title %} Permission denied {% endblock %}
 
 {% block body %}
      <div id="wrap">
@@ -9,7 +9,7 @@
 
             <div class="jumbotron">
                 <h1 class="display-3">Sorry :(</h1>
-                <p class="lead">You are already logged in, Please logout to continue.<hr class="my-4">
+                <p class="lead">Permission denied! Only an admin can access this page, please login to an admin account.<hr class="my-4">
                 <p class="lead">
                     <a class="btn btn-primary btn-lg" href="{% url 'logout' %}" role="button">Logout</a>
                 </p>
