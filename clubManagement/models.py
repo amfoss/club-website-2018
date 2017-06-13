@@ -28,9 +28,13 @@ class Attendance(models.Model):
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="added_by")
     date = models.DateField()
     modified_date = models.DateTimeField(auto_now=True, auto_now_add=False)
+    attendance = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username + " " + str(self.date)
+        if self.attendance:
+            return self.user.username + " " + str(self.date) + " - present"
+        else:
+            return self.user.username + " " + str(self.date) + " - absent"
 
 
 class Responsibility(models.Model):

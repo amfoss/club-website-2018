@@ -10,10 +10,10 @@
                 <form action="" method="post">
                 {% csrf_token %}
 
-                    {% for user_info in user_info_list %}
+                    {% for att in attendance_list %}
                         <p>
-                            {{ user_info.user.first_name }} - {{ user_info.user.last_name }}
-                            <input type="checkbox" value="True" name="{{ user_info.user.username }}">
+                            {{ att.user.first_name }} - {{ att.user.last_name }}
+                            <input type="checkbox" value="True" name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
                         </p>
                     {% endfor %}
 
