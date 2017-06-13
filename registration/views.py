@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView
 
 from registration.forms import UserSignUpForm
 
@@ -13,23 +13,10 @@ class UserSignUpView(CreateView):
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('signup_success')
 
-    def get_context_data(self, **kwargs):
-        context = super(UserSignUpView, self).get_context_data(**kwargs)
-        context['login'] = True
-        return context
-
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('already_logged_in')
         return super(UserSignUpView, self).get(request, *args, **kwargs)
-
-
-class UserSignUpSuccess(TemplateView):
-    template_name = 'registration/signup_success.html'
-
-
-class UserAlreadyLoggedInView(TemplateView):
-    template_name = 'registration/already_logged_in.html'
 
 
 def login(request,  *args, **kwargs):  # view to handle remember me

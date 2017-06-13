@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Add attendance {% endblock %}
+
+{% block body %}
+    <div id="wrap">
+        <div id="main">
+            {% include 'base/nav-bar.html' %}
+
+                <form action="" method="post">
+                {% csrf_token %}
+
+                    {% for att in attendance_list %}
+                        <p>
+                            {{ att.user.first_name }} - {{ att.user.last_name }}
+                            <input type="checkbox" value="True" name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
+                        </p>
+                    {% endfor %}
+
+                    <input type="submit">
+
+                </form>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+{% endblock %}
