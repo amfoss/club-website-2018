@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Add attendance {% endblock %}
+
+{% block body %}
+    <div id="wrap">
+        <div id="main">
+            {% include 'base/nav-bar.html' %}
+            <div class="container">
+                <h2 class="year-header">{{ year }}</h2>
+                <div class="row form">
+                {% csrf_token %}
+                    {% for user_info in data %}
+                        <div class="col-xs-6 col-sm-4 col-md-2 btn names btn-success">
+                            <p>{{ user_info.0.first_name }} {{ user_info.0.last_name }} - {{ user_info.2 }}</p>
+                        </div>
+                    {% endfor %}
+                    <p class="col-xs-12 col-md-12"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+    <style>
+        .btn {
+            margin: 10px;
+        }
+
+        .save-btn {
+            padding: 10px 0;
+        }
+
+        .year-header {
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .names {
+            height: 80px;
+        }
+
+        .names p {
+            margin: 16px 0;
+        }
+
+        .form {
+            margin: 30px 0;
+        }
+    </style>
+
+    {% block script %}
+        <script src="{% static 'clubManagement/js/attendance.js' %}"></script>
+    {% endblock %}
+{% endblock %}
