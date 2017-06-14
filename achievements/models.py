@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from registration.models import UserInfo
+from django.contrib.auth.models import User
 # Create your models here.
 
 ACHIEVEMENT_CHOICE = (('article','Article'),
@@ -15,84 +15,95 @@ ACHIEVEMENT_CHOICE = (('article','Article'),
                       ('other','Other'))
 INTERN_CHOICE = (('internship','Internship'),
                  ('masters','Masters'),
-                 ('exchange student','Exchange programme'))
+                 ('exchange_student','Exchange programme'))
 SPEAKER_CHOICE =(('talk',' Talk'),
                  ('demo','Demo'),
                  ('workshop','Workshop'),
                  ('paper','Paper Presentation'),
                  ('other','Other'))
-class Achievement(models.Model):
-    achievement_id = models.BigIntegerField( primary_key=True, blank=False, unique=True)
-    achieve_type = models.CharField(max_length=15, choices=ACHIEVEMENT_CHOICE)
-    username = models.ForeignKey(UserInfo, blank=False, null=False)
 
 
 class Article(models.Model):
-    achievement_id = models.ForeignKey(Achievement, blank=False, null=False)
-    username = models.ForeignKey(UserInfo, blank=False, null=False)
-    magazine_name = models.CharField(max_length=50, blank=False, null=False)
-    publication_date = models.DateField(blank=False)
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    magazine_name = models.CharField(max_length=50)
+    publication_date = models.DateField()
+    def __str__(self):
+        return self.user.username + " " + self.magazine_name
 
 class Contribution(models.Model):
-    achievement_id = models.ForeignKey(Achievement, blank=False, null=False)
-    bug_id = models.BigIntegerField( blank=False)
-    username = models.ForeignKey(UserInfo, blank=False, null=False)
-    org_name = models.CharField(max_length=50, blank=False, null=False)
-    bug_url = models.URLField(max_length=200, blank=False, null=False)
-    bug_description = models.CharField(max_length=200)
+    bug_id = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    org_name = models.CharField(max_length=50)
+    bug_url = models.URLField(max_length=200)
+    bug_description = models.CharField(max_length=500)
 
     class Meta:
         unique_together = ('bug_id','org_name')
 
+    def __str__(self):
+        return self.user.username
+
+
 
 class Gsoc(models.Model):
-    achievement_id = models.ForeignKey(Achievement, blank=False, null=False)
-    username = models.ForeignKey(UserInfo, blank=False, null=False)
-    organization = models.CharField(max_length=100, blank=False, null=False)
-    project_title = models.CharField(max_length=250, blank=False, null=False)
-    mentor_name = models.CharField(max_length=50, blank=False, null=False)
-    gsoc_url = models.URLField(max_length=400, blank=False, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    organization = models.CharField(max_length=100)
+    project_title = models.CharField(max_length=250)
+    mentor_name = models.CharField(max_length=50)
+    gsoc_url = models.URLField(max_length=400)
+
+    def __str__(self):
+        return self.user.username
+
 
 
 class Intern(models.Model):
-    achievement_id = models.ForeignKey(Achievement, blank=False, null=False)
-    username = models.ForeignKey(UserInfo, blank=False, null=False)
-    place = models.CharField(max_length=50, blank=False, null=False)
-    intern_type = models.CharField(max_length=16, choices=INTERN_CHOICE, blank=False, null=False)
-    period = models.CharField(max_length=25, blank=False, null=False)
-    area = models.CharField(max_length=100, blank=False, null=False)
-    description = models.CharField(max_length=1000, blank=False, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    place = models.CharField(max_length=50)
+    intern_type = models.CharField(max_length=16)
+    period = models.CharField(max_length=25)
+    area = models.CharField(max_length=100)
+    description = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.user.username
+
 
 
 class Speaker(models.Model):
-    achievement_id = models.ForeignKey(Achievement, blank=False, null=False)
-    username = models.ForeignKey(UserInfo, blank=False, null=False)
-    title = models.CharField(max_length=200, blank=False, null=False)
-    speaker_type = models.CharField(max_length=15, choices=SPEAKER_CHOICE, blank=False, null=False)
-    conference_name = models.CharField(max_length=100, blank=False, null=False)
-    speaker_url = models.URLField(max_length=400, blank=False, null=False)
-    year = models.BigIntegerField( blank=False, null=False)
-    description = models.CharField(max_length=1000, blank=False, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    speaker_type = models.CharField(max_length=15)
+    conference_name = models.CharField(max_length=100)
+    speaker_url = models.URLField(max_length=400)
+    year = models.BigIntegerField()
+    description = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.user.username + " " + self.title
+
 
 
 class Contest_won(models.Model):
-    achievement_id = models.ForeignKey(Achievement, blank=False, null=False)
-    username = models.ForeignKey(UserInfo, blank=False, null=False)
-    contest_id = models.BigIntegerField( primary_key=True, blank=False, null=False)
-    contest_name = models.CharField(max_length=100, blank=False, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    contest_id = models.BigIntegerField()
+    contest_name = models.CharField(max_length=100)
     contest_url = models.URLField(max_length=200)
-    no_of_problems_solved = models.IntegerField(blank=False, null=False)
-    ranking = models.BigIntegerField(blank=False, null=False)
-    yr_of_participation = models.BigIntegerField(blank=False, null=False)
+    no_of_problems_solved = models.IntegerField()
+    ranking = models.BigIntegerField()
+    yr_of_participation = models.BigIntegerField()
     description = models.CharField(max_length=200)
+    def __str__(self):
+        return self.user.username + " " + self.contest_name
+
 
 
 class Scholarship(models.Model):
-    achievement_id = models.ForeignKey(Achievement, blank=False, null=False)
-    username = models.ForeignKey(UserInfo, blank=False, null=False)
-    scholarship_name = models.CharField(max_length=100, blank=False, null=False)
-    description = models.TextField(max_length=1000, blank=False, null=False)
-    year = models.IntegerField(blank=False, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    scholarship_name = models.CharField(max_length=100)
+    description = models.TextField(max_length=1000)
+    year = models.IntegerField()
 
+    def __str__(self):
+        return self.user.username + " " + self.scholarship_name
 
