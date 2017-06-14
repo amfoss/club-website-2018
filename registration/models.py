@@ -19,6 +19,8 @@ class UserInfo(models.Model):
     resume = models.FileField(upload_to='resume/', blank=True, null=True)
     typing_speed = models.IntegerField(blank=True, null=True)
 
+    is_mentor = models.BooleanField(default=False)
+
     def __str__(self):
         return self.user.username
 

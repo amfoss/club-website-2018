@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Add attendance {% endblock %}
+
+{% block body %}
+    <div id="wrap">
+        <div id="main">
+            {% include 'base/nav-bar.html' %}
+            <div class="container">
+                <form class="row" action="" method="post">
+                {% csrf_token %}
+                    {% for att in attendance_list %}
+                        <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}" onclick="click_attendance('{{ att.user.username }}')" id="{{ att.user.username }}_div">
+                            <p>{{ att.user.first_name }} {{ att.user.last_name }}</p>
+                            <input type="checkbox" style="display: None" id="{{ att.user.username }}" value="True" name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
+                        </div>
+                    {% endfor %}
+                    <p class="col-xs-12 col-md-12"></p>
+                    <button class="col-md-2 col-sm-6 btn btn-primary save-btn">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+    <style>
+        .btn {
+            margin: 10px;
+        }
+
+        .save-btn {
+            padding: 10px 0;
+        }
+
+        .names {
+            height: 80px;
+        }
+
+        .names p {
+            margin: 16px 0;
+        }
+
+        form {
+            margin: 30px 0;
+        }
+    </style>
+
+    {% block script %}
+        <script src="{% static 'clubManagement/js/attendance.js' %}"></script>
+    {% endblock %}
+{% endblock %}
