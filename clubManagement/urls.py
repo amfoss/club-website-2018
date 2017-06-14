@@ -7,7 +7,7 @@ urlpatterns = [
     url(
         r'^attendance-report-batch/(?P<batch>[0-9]+)/(?P<year>[0-9]+)/$',
         login_required(YearBatchAttendanceReportView.as_view()),
-        name='attendance_batch_report_yearly'
+        name='attendance_report_batch_yearly'
     ),
     url(
         r'^attendance-report/(?P<year>[0-9]+)/(?P<user_id>[0-9]+)/$',

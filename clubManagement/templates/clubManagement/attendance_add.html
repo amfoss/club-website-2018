@@ -7,6 +7,7 @@
         <div id="main">
             {% include 'base/nav-bar.html' %}
             <div class="container">
+                <h2 class="header">{{ head }}</h2>
                 <form class="row" action="" method="post">
                 {% csrf_token %}
                     {% for att in attendance_list %}
@@ -43,6 +44,10 @@
 
         form {
             margin: 30px 0;
+        }
+        .header {
+            padding-top: 20px;
+            text-align: center;
         }
     </style>
 
