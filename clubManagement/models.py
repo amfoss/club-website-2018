@@ -22,6 +22,9 @@ class TeamMembers(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     date_assigned = models.DateTimeField(auto_now_add=True, auto_now=False)
 
+    def __str__(self):
+        return self.user.username + " - " + self.team.name
+
 
 class Attendance(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
