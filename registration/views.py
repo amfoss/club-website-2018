@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView, ListView
+from django.views.generic import CreateView, TemplateView, ListView, DetailView
 
 from registration.forms import UserSignUpForm
 from registration.models import UserInfo
@@ -22,9 +22,10 @@ class UserSignUpView(CreateView):
 class UserSignUpSuccess(TemplateView):
     template_name = 'registration/signup_success.html'
 
-class ProfileView(ListView):
-    template_name = 'profile/profile.html'
-    model = UserInfo
+class ProfileView(DetailView):
+  model = UserInfo
+
+
 
 
 def login(request,  *args, **kwargs):  # view to handle remember me
