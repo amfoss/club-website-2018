@@ -7,17 +7,21 @@
         <div id="main">
             {% include 'base/nav-bar.html' %}
             <div class="container">
-                <h2 class="header">{{ head }}</h2>
                 <form class="row" action="" method="post">
                 {% csrf_token %}
-                    {% for att in attendance_list %}
-                        <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}" onclick="click_attendance('{{ att.user.username }}')" id="{{ att.user.username }}_div">
-                            <p>{{ att.user.first_name }} {{ att.user.last_name }}</p>
-                            <input type="checkbox" style="display: None" id="{{ att.user.username }}" value="True" name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
-                        </div>
+                    {% for attendance in attendance_list %}
+                        <h2 class="header col-xs-12 col-md-12">{{ attendance.1 }}</h2>
+                        {% for att in attendance.0 %}
+                            <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}" {% if request.user.is_superuser %} onclick="click_attendance('{{ att.user.username }}')" {% endif %} id="{{ att.user.username }}_div">
+                                <p>{{ att.user.first_name }} {{ att.user.last_name }}</p>
+                                <input type="checkbox" style="display: None" id="{{ att.user.username }}" value="True" name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
+                            </div>
+                        {% endfor %}
                     {% endfor %}
                     <p class="col-xs-12 col-md-12"></p>
-                    <button class="col-md-2 col-sm-6 btn btn-primary save-btn">Save</button>
+                    {% if request.user.is_superuser %}
+                    <button type="submit" class="col-md-2 col-sm-6 btn btn-primary save-btn">Save</button>
+                    {% endif %}
                 </form>
             </div>
         </div>
