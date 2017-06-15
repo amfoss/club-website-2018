@@ -5,8 +5,8 @@ from datetime import date, datetime
 
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.views.generic import View
-from clubManagement.models import Attendance
+from django.views.generic import View, CreateView, UpdateView, DeleteView, ListView, DetailView
+from clubManagement.models import Attendance, Responsibility
 from registration.models import UserInfo
 
 month = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
@@ -179,3 +179,32 @@ class YearAttendanceReportView(View):
                 data_list.append([user_data, year, 'No record found'])
         context = {'data_list': data_list}
         return render(request, self.template_name, context)
+
+
+# Responsibilities
+
+class ResponsibilityListView(ListView):
+    model = Responsibility
+
+
+class ResponsibilityDetailView(DetailView):
+    model = Responsibility
+
+
+class ResponsibilityCreateView(CreateView):
+    model = Responsibility
+    fields = ['user', 'name', 'description']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ResponsibilityCreateView, self).form_valid(form)
+
+
+class ResponsibilityUpdateView(UpdateView):
+    model = Responsibility
+    fields = ['name', 'description']
+
+
+class ResponsibilityDeleteView(DeleteView):
+    model = Responsibility
+    success_url = ''

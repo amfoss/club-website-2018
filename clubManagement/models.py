@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
 
+from projects.models import Project
+
 
 class Team(models.Model):
     name = models.CharField(max_length=200)
@@ -41,23 +43,28 @@ class Attendance(models.Model):
 
 
 class Responsibility(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    responsibility = models.CharField(max_length=300)
-    more_info = models.TextField(blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_by')
+    name = models.CharField(max_length=300)
+    description = models.TextField(blank=True)
 
     def __str__(self):
-        return self.user.username + " " + self.responsibility
+        return self.name
 
     def get_absolute_url(self):
         return " "
+
+
+class StudentResponsibility(models.Model):
+    responsibility = models.ForeignKey(Responsibility, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class StatusReport(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=False, auto_now_add=True)
     content = models.TextField()
-    img = models.ImageField(upload_to='status_img/', blank=True)
-    # project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True, blank=True)
+    image = models.ImageField(upload_to='status_img/', blank=True)
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.user.username + " " + self.content[:20] + ".."
