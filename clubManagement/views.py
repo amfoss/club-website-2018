@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from datetime import date
+from datetime import date, datetime
 
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
@@ -15,49 +15,81 @@ month = ["January", "February", "March", "April", "May", "June", "July", "August
 month_num = range(12)
 
 
+def calculate_year(year):
+    if datetime.now().month > 5:
+        year += 1
+
+    if year == 1:
+        return '1st year'
+    elif year == 2:
+        return '2nd year'
+    elif year == 3:
+        return '3rd year'
+    elif year == 4:
+        return '4th year'
+    else:
+        return 'Alumni - ' + str(year) + ' batch'
+
+
 class AttendanceAddView(View):
     template_name = 'clubManagement/attendance_add.html'
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, **kwargs):
         """
         A view for an admin to add attendance for a particular date.
         url = /batch/year/month/day/
         date is calculated from (year, month, day)
         and students is selected according to batch
+
+        attendance_list = [ [ '1st_year', list_of_1st_years ], ..... ]
         """
         if not request.user.is_superuser:
             return redirect('permission_denied')
-        context = self.get_context_data(**kwargs)
+
+        d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
+        context = {}
+        if 'batch' in kwargs:
+            user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
+            attendance_list_year = []
+
+            # display the current attendance for this date and batch
+
+            for user_info in user_info_list:
+                try:
+                    attendance = Attendance.objects.get(user=user_info.user, date=d)
+                except Attendance.DoesNotExist:
+                    attendance = Attendance(user=user_info.user,
+                                            added_by=User.objects.get(username=self.request.user.username), date=d)
+                    attendance.save()
+                attendance_list_year.append(attendance)
+
+            # attendance list contains all the Attendance objects of the batch with date = d
+            year = calculate_year(int(kwargs.get('batch')) - datetime.now().year)
+            context = {'attendance_list': [attendance_list_year, year]}
+        else:
+            pass
         return render(request, self.template_name, context)
 
-    def get_context_data(self, **kwargs):
-        year = int(kwargs.get('batch', None))
-        d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
-        user_info_list = UserInfo.objects.filter(year=year)
-        attendance_list = []
-
-        # display the current attendance for this date and batch
-
-        for user_info in user_info_list:
-            try:
-                attendance = Attendance.objects.get(user=user_info.user, date=d)
-            except Attendance.DoesNotExist:
-                attendance = Attendance(user=user_info.user,
-                                        added_by=User.objects.get(username=self.request.user.username), date=d)
-                attendance.save()
-            attendance_list.append(attendance)
-        # attendance list contains all the Attendance objects of the batch with date = d
-        return {'attendance_list': attendance_list, 'head': str(d)}
-
     def post(self, request, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('permission_denied')
+
         d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
-        attendance_list = Attendance.objects.filter(date=d)
 
-        # make all attendance false and make attendance = true for users in request.POST.
+        if 'batch' in kwargs:
+            user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
+            for user_info in user_info_list:
+                attendance_list = user_info.user.attendance_set.filter(date=d)
+                for i in attendance_list:
+                    i.attendance = False
+                    i.save()
+        else:
+            # make all attendance false and make attendance = true for users in request.POST.
+            attendance_list = Attendance.objects.filter(date=d)
+            for i in attendance_list:
+                i.attendance = False
+                i.save()
 
-        for i in attendance_list:
-            i.attendance = False
-            i.save()
         for key in request.POST:
             try:
                 user = User.objects.get(username=key)
@@ -67,6 +99,7 @@ class AttendanceAddView(View):
                 att = Attendance.objects.get(user=user, date=d)
                 att.attendance = True
                 att.save()
+
         return redirect('add_attendance', **kwargs)
 
 
