@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+{% load index %}
+
+{% block title %}Teams{% endblock %}
+
+{% block body %}
+ {% include 'base/nav-bar.html' %}
+<div style="margin:0 auto;margin-top:60px ;width: 300px;">
+<h1>Team {{ team.name }}</h1>
+<img src="/media/{{  team.image }}" style="width: 300px ;height: 180px">
+<p>Description{{ team.description }}</p>
+<p>Created by:{{ team.created_by }}</p>
+
+  <h3>Members</h3>
+    {% for i in members %}
+    <ul>{{ i.user }}</ul>
+        <a href="/club/teams/delmemb/{{ i.id }}"><button>Delete members</button></a>
+    {% endfor %}
+<br>
+
+    <button onclick="display()">Add Members</button>
+<div style="display: none;" id="form" >
+
+    <h2>Add members</h2>
+    <form method="post" action="" >
+        {% csrf_token %}
+    <div class="form-group" style="width: 25%">
+        Name:
+        <select name="id">
+            {% for i in users %}
+            <option value="{{ i.id }}" required class="form-control">{{ i.username }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" class="btn btn-primary btn-block">
+   </div>
+    </form>
+</div>
+<script>
+    function display() {
+        form = document.getElementById('form');
+        form.style.display = 'block' ;
+
+    }
+</script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+{% include 'base/footer.html' %}
+{% endblock %}

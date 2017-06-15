@@ -4,9 +4,11 @@ from __future__ import unicode_literals
 from datetime import date
 
 from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
-from django.views.generic import View, YearArchiveView
-from clubManagement.models import Attendance
+from django.urls import reverse
+from django.views.generic import View, YearArchiveView, ListView, DetailView, UpdateView, DeleteView, CreateView
+from clubManagement.models import Attendance, Team, TeamMembers
 from registration.models import UserInfo
 
 
@@ -68,3 +70,72 @@ class YearAttendanceReportView(View):
                 month_att.append(len(att.filter(date__month=(i + 1))))
             context = {'user': user, 'month_att': month_att, 'month': month, 'month_num': month_num, 'year': kwargs.get('year')}
         return render(request, self.template_name, context)
+
+class TeamListView(ListView):
+    model = Team
+    def post(self, request, **kwargs):
+        name = request.POST['name']
+        desc = request.POST['desc']
+        img  = request.FILES['img']
+        user = request.user
+        team = Team(name=name,description=desc, image=img, created_by=user)
+        team.save()
+        return redirect('view_teams')
+
+class TeamDetailView(DetailView):
+    model = Team
+
+    def get_context_data(self, **kwargs):
+        context = super(TeamDetailView, self).get_context_data(**kwargs)
+        members = TeamMembers.objects.filter(team=context['object'])
+        users = User.objects.all()
+        context['members'] = members
+        context['users'] = users
+        return context
+    def post(self, request, **kwargs):
+        team = Team.objects.get(id=self.kwargs['pk'])
+        if request.user.username != team.created_by.username:
+            raise PermissionDenied
+        user = User.objects.get(id=request.POST['id'])
+        memb = TeamMembers(user=user, team=team)
+        memb.save()
+        return redirect('team_detail', team.id)
+
+class MemberDeleteView(DeleteView):
+    model = TeamMembers
+    def post(self, request, **kwargs):
+        teammemb = TeamMembers.objects.get(id=self.kwargs['pk'])
+        if request.user.username != teammemb.team.created_by.username:
+            raise PermissionDenied
+        teammemb.delete()
+        return redirect('team_detail', teammemb.team.id)
+
+class TeamDeleteView(DeleteView):
+    model = Team
+    def post(self, request, **kwargs):
+        team = Team.objects.get(id=self.kwargs['pk'])
+        if request.user.username != team.created_by.username:
+            raise PermissionDenied
+        team.delete()
+        return redirect('view_teams')
+
+class TeamUpdateView(UpdateView):
+    model = Team
+    fields = ['name', 'description', 'image']
+
+    def get_context_data(self, **kwargs):
+        context = super(TeamUpdateView, self).get_context_data(**kwargs)
+        team = Team.objects.get(id=self.kwargs['pk'])
+        context['team'] = team
+        return context
+    def post(self, request, **kwargs):
+        team = Team.objects.get(id=self.kwargs['pk'])
+        if request.user.username != team.created_by.username:
+            raise PermissionDenied
+
+        team.name = request.POST['name']
+        team.description = request.POST['desc']
+        team.image  = request.FILES['img']
+
+        team.save()
+        return redirect('view_teams')
