@@ -11,11 +11,11 @@ LEVEL_CHOICES = (('beginner', 'Beginner'),
 
 class Event(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    mentor_name = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mentor')
     name = models.CharField(max_length=300)
     starting_date = models.DateTimeField()
     ending_date = models.DateTimeField()
     description = models.TextField()
+    location = models.CharField(max_length=300)
     level = models.CharField(choices=LEVEL_CHOICES, max_length=100)
     prerequisite = models.TextField()
 
