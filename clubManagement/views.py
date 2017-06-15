@@ -19,16 +19,25 @@ class AttendanceAddView(View):
     template_name = 'clubManagement/attendance_add.html'
 
     def get(self, request, *args, **kwargs):
+        """
+        A view for an admin to add attendance for a particular date.
+        url = /batch/year/month/day/
+        date is calculated from (year, month, day)
+        and students is selected according to batch
+        """
         if not request.user.is_superuser:
             return redirect('permission_denied')
         context = self.get_context_data(**kwargs)
         return render(request, self.template_name, context)
 
-    def get_context_data(self, *args, **kwargs):
+    def get_context_data(self, **kwargs):
         year = int(kwargs.get('batch', None))
         d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
         user_info_list = UserInfo.objects.filter(year=year)
         attendance_list = []
+
+        # display the current attendance for this date and batch
+
         for user_info in user_info_list:
             try:
                 attendance = Attendance.objects.get(user=user_info.user, date=d)
@@ -37,11 +46,15 @@ class AttendanceAddView(View):
                                         added_by=User.objects.get(username=self.request.user.username), date=d)
                 attendance.save()
             attendance_list.append(attendance)
-        return {'attendance_list': attendance_list}
+        # attendance list contains all the Attendance objects of the batch with date = d
+        return {'attendance_list': attendance_list, 'head': str(d)}
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, **kwargs):
         d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
         attendance_list = Attendance.objects.filter(date=d)
+
+        # make all attendance false and make attendance = true for users in request.POST.
+
         for i in attendance_list:
             i.attendance = False
             i.save()
@@ -58,34 +71,41 @@ class AttendanceAddView(View):
 
 
 class DayAttendanceView(View):
+    """
+    A view to view a attendance by date.
+    url = /batch/year/month/day/
+    date is calculated from (year, month, day) and students is selected according to batch
+    """
     template_name = 'clubManagement/attendance_daily.html'
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, **kwargs):
+        """
+        find all attendance where user has year=batch and date=d
+        """
         context = {}
         d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
         if not Attendance.objects.filter(date=d).exists():
             context['errors'] = 'No records found'
         else:
-            year = int(kwargs.get('batch', None))
-            user_info_list = UserInfo.objects.filter(year=year)
+            user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
             attendance_list = []
             for user_info in user_info_list:
-                try:
-                    att = Attendance.objects.get(user=user_info.user, date=d)
-                    attendance_list.append(att)
-                except Attendance.DoesNotExist:
-                    pass
+                # attendance associated with the user whose year=batch and date=d
+                att = user_info.user.attendance_set.filter(date=d)
+                if att.exists():
+                    attendance_list += att
             if len(attendance_list) > 0:
                 context['attendance_list'] = attendance_list
             else:
                 context['errors'] = 'No records found'
+            context['head'] = str(d)
         return render(request, self.template_name, context)
 
 
 class YearAttendanceReportView(View):
     template_name = 'clubManagement/attendance_yearly.html'
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, **kwargs):
         user = User.objects.get(id=int(kwargs.get('user_id')))
         att = user.attendance_set.filter(date__year=int(kwargs.get('year')))
         if len(att) > 0:
@@ -102,7 +122,7 @@ class YearAttendanceReportView(View):
 class YearBatchAttendanceReportView(View):
     template_name = 'clubManagement/attendance_batch_yearly.html'
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, **kwargs):
         user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
         data = []
         for user_info in user_info_list:
@@ -120,7 +140,7 @@ class YearBatchAttendanceReportView(View):
                 month_att.append(att_month)
             data.append([user_info.user, month_att, total_att])
         if len(data) > 0:
-            context = {'data': data, 'year': kwargs.get('year')}
+            context = {'data': data, 'head': kwargs.get('year')}
         else:
             context = {'errors': 'No data found'}
         return render(request, self.template_name, context)

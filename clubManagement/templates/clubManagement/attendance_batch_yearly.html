@@ -7,7 +7,7 @@
         <div id="main">
             {% include 'base/nav-bar.html' %}
             <div class="container">
-                <h2 class="year-header">{{ year }}</h2>
+                <h2 class="header">{{ head }}</h2>
                 <div class="row form">
                 {% csrf_token %}
                     {% for user_info in data %}
@@ -32,7 +32,7 @@
             padding: 10px 0;
         }
 
-        .year-header {
+        .header {
             padding-top: 20px;
             text-align: center;
         }
