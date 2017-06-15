@@ -3,32 +3,37 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 
-ACHIEVEMENT_CHOICE = (('article','Article'),
-                      ('contribution','Contribution'),
-                      ('gsoc','GSoC'),
-                      ('intern','Internship'),
-                      ('speaker','Speaker'),
-                      ('contest','contest'),
-                      ('scholarship', 'Scholarship')
-                      ('other','Other'))
-INTERN_CHOICE = (('internship','Internship'),
-                 ('masters','Masters'),
-                 ('exchange_student','Exchange programme'))
-SPEAKER_CHOICE =(('talk',' Talk'),
-                 ('demo','Demo'),
-                 ('workshop','Workshop'),
-                 ('paper','Paper Presentation'),
-                 ('other','Other'))
+ACHIEVEMENT_CHOICE = (('article', 'Article'),
+                      ('contribution', 'Contribution'),
+                      ('gsoc', 'GSoC'),
+                      ('intern', 'Internship'),
+                      ('speaker', 'Speaker'),
+                      ('contest', 'contest'),
+                      ('scholarship', 'Scholarship'),
+                      ('other', 'Other'))
+
+INTERN_CHOICE = (('internship', 'Internship'),
+                 ('masters', 'Masters'),
+                 ('exchange_student', 'Exchange programme'))
+
+SPEAKER_CHOICE = (('talk', ' Talk'),
+                  ('demo', 'Demo'),
+                  ('workshop', 'Workshop'),
+                  ('paper', 'Paper Presentation'),
+                  ('other', 'Other'))
 
 
 class Article(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     magazine_name = models.CharField(max_length=50)
     publication_date = models.DateField()
+
     def __str__(self):
         return self.user.username + " " + self.magazine_name
+
 
 class Contribution(models.Model):
     bug_id = models.CharField(max_length=200)
@@ -38,11 +43,10 @@ class Contribution(models.Model):
     bug_description = models.CharField(max_length=500)
 
     class Meta:
-        unique_together = ('bug_id','org_name')
+        unique_together = ('bug_id', 'org_name')
 
     def __str__(self):
         return self.user.username
-
 
 
 class Gsoc(models.Model):
@@ -56,7 +60,6 @@ class Gsoc(models.Model):
         return self.user.username
 
 
-
 class Intern(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     place = models.CharField(max_length=50)
@@ -67,7 +70,6 @@ class Intern(models.Model):
 
     def __str__(self):
         return self.user.username
-
 
 
 class Speaker(models.Model):
@@ -83,7 +85,6 @@ class Speaker(models.Model):
         return self.user.username + " " + self.title
 
 
-
 class Contest_won(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     contest_id = models.BigIntegerField()
@@ -93,9 +94,9 @@ class Contest_won(models.Model):
     ranking = models.BigIntegerField()
     yr_of_participation = models.BigIntegerField()
     description = models.CharField(max_length=200)
+
     def __str__(self):
         return self.user.username + " " + self.contest_name
-
 
 
 class Scholarship(models.Model):
@@ -106,4 +107,3 @@ class Scholarship(models.Model):
 
     def __str__(self):
         return self.user.username + " " + self.scholarship_name
-
