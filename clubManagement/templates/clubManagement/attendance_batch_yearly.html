@@ -7,13 +7,16 @@
         <div id="main">
             {% include 'base/nav-bar.html' %}
             <div class="container">
-                <h2 class="header">{{ head }}</h2>
                 <div class="row form">
                 {% csrf_token %}
-                    {% for user_info in data %}
-                        <div class="col-xs-6 col-sm-4 col-md-2 btn names btn-success">
-                            <p>{{ user_info.0.first_name }} {{ user_info.0.last_name }} - {{ user_info.2 }}</p>
-                        </div>
+                    {% for data in data_list %}
+                        <h2 class="header col-md-12 col-xs-12">{{ data.1 }}</h2>
+                        <h3 class="col-md-12 col-xs-12">{{ data.2 }}</h3>
+                        {% for user_info in data.0 %}
+                            <div class="col-xs-6 col-sm-4 col-md-2 btn names btn-success">
+                                <p>{{ user_info.0.first_name }} {{ user_info.0.last_name }} - {{ user_info.2 }}</p>
+                            </div>
+                        {% endfor %}
                     {% endfor %}
                     <p class="col-xs-12 col-md-12"></p>
                 </div>
@@ -26,10 +29,6 @@
     <style>
         .btn {
             margin: 10px;
-        }
-
-        .save-btn {
-            padding: 10px 0;
         }
 
         .header {
@@ -49,8 +48,4 @@
             margin: 30px 0;
         }
     </style>
-
-    {% block script %}
-        <script src="{% static 'clubManagement/js/attendance.js' %}"></script>
-    {% endblock %}
 {% endblock %}

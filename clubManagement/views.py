@@ -16,6 +16,7 @@ month_num = range(12)
 
 
 def calculate_year(year):
+    year = datetime.now().year - year
     if datetime.now().month > 5:
         year += 1
     print(year)
@@ -82,7 +83,7 @@ class AttendanceAddView(View):
                 attendance_list_batch.append(attendance)
 
             # attendance list contains all the Attendance objects of the batch with date = d
-            year = calculate_year(datetime.now().year - batch)
+            year = calculate_year(batch)
             attendance_list += [[attendance_list_batch, year], ]
 
         context = {'attendance_list': attendance_list}
@@ -142,27 +143,39 @@ class YearStudentAttendanceReportView(View):
 
 
 class YearAttendanceReportView(View):
+    """
+    context = {'data_list': data_list}
+    where:
+        data_list = [ [user_data, year, error], ....]
+        user_data = [[user, month_att, total_att], ......]
+        month_att = list of attendance for 12 months
+    """
     template_name = 'clubManagement/attendance_batch_yearly.html'
 
     def get(self, request, **kwargs):
-        user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
-        data = []
-        for user_info in user_info_list:
-            month_att = []
-            total_att = 0
-            for i in month_num:
-                att_month = len(
-                    user_info.user.attendance_set.filter(
-                        date__year=int(kwargs.get('year')),
-                        date__month=(i + 1),
-                        attendance=True
+        batch_list = get_batch_list(kwargs)
+        data_list = []
+        for batch in batch_list:
+            user_info_list = UserInfo.objects.filter(year=batch)
+            user_data = []
+            for user_info in user_info_list:
+                month_att = []
+                total_att = 0
+                for i in month_num:
+                    att_month = len(
+                        user_info.user.attendance_set.filter(
+                            date__year=int(kwargs.get('year')),
+                            date__month=(i + 1),
+                            attendance=True
+                        )
                     )
-                )
-                total_att += att_month
-                month_att.append(att_month)
-            data.append([user_info.user, month_att, total_att])
-        if len(data) > 0:
-            context = {'data': data, 'head': kwargs.get('year')}
-        else:
-            context = {'errors': 'No data found'}
+                    total_att += att_month
+                    month_att.append(att_month)
+                user_data.append([user_info.user, month_att, total_att])
+            year = calculate_year(batch)
+            if len(user_data) > 0:
+                data_list.append([user_data, year, ''])
+            else:
+                data_list.append([user_data, year, 'No record found'])
+        context = {'data_list': data_list}
         return render(request, self.template_name, context)
