@@ -30,4 +30,10 @@ urlpatterns = [
         AttendanceAddView.as_view(),
         name='add_attendance_batch'
     ),
+
+    url(r'^responsibility/$', ResponsibilityListView.as_view(), name='responsibility'),
+    url(r'^responsibility/(?P<pk>[0-9]+)/$', ResponsibilityDetailView.as_view(), name='responsibility_detail'),
+    url(r'^responsibility/create/$', ResponsibilityCreateView.as_view(), name='responsibility_create'),
+    url(r'^responsibility/(?P<pk>[0-9]+)/update/$', ResponsibilityUpdateView.as_view(), name='responsibility_update'),
+    url(r'^responsibility/(?P<pk>[0-9]+)/delete/$', ResponsibilityDeleteView.as_view(), name='responsibility_delete'),
 ]

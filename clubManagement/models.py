@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 from projects.models import Project
 
@@ -51,7 +52,7 @@ class Responsibility(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return " "
+        return reverse('responsibility_detail', kwargs={'pk': self.pk})
 
 
 class StudentResponsibility(models.Model):
@@ -70,4 +71,4 @@ class StatusReport(models.Model):
         return self.user.username + " " + self.content[:20] + ".."
 
     def get_absolute_url(self):
-        return " "
+        return ' '

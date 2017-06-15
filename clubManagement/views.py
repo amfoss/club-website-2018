@@ -5,6 +5,7 @@ from datetime import date, datetime
 
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.generic import View, CreateView, UpdateView, DeleteView, ListView, DetailView
 from clubManagement.models import Attendance, Responsibility
 from registration.models import UserInfo
@@ -182,7 +183,7 @@ class YearAttendanceReportView(View):
 
 
 # Responsibilities
-
+# CreateView and UpdateView calls get_absolute_url() on the model to get the success_url
 class ResponsibilityListView(ListView):
     model = Responsibility
 
@@ -193,10 +194,10 @@ class ResponsibilityDetailView(DetailView):
 
 class ResponsibilityCreateView(CreateView):
     model = Responsibility
-    fields = ['user', 'name', 'description']
+    fields = ['created_by', 'name', 'description']
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.created_by = self.request.user
         return super(ResponsibilityCreateView, self).form_valid(form)
 
 
@@ -207,4 +208,4 @@ class ResponsibilityUpdateView(UpdateView):
 
 class ResponsibilityDeleteView(DeleteView):
     model = Responsibility
-    success_url = ''
+    success_url = reverse_lazy('responsibility')
