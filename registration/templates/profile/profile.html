@@ -45,7 +45,7 @@
                                     <div class="col-md-12 ">
                                         <center>
                                             <a class="" href="#">
-                                                <img class="media-object dp img-circle" src="https://helpr.in/blog/wp-content/uploads/2016/03/2_ROHIT.jpg" style="width: 180px;height:180px;">
+                                                <img class="img-circle" src="{{ MEDIA_URL }}profile_pics/{{ object.profile_pic }}" style="width: 180px;height:180px;">
                                             </a>
                                         </center>
                                     </div>
@@ -210,38 +210,16 @@
 
       </div>
 
-   <div class="card-deck">
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-block">
-      <h4 class="card-title">Card title</h4>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <div class="w3-container w3-card-2 w3-white">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Comments</h2>
+    <div class="fb-comments" data-href="{{ request.build_absolute_url }}" data-numposts="5"></div>
+      </div>
+
+    <!-- End Right Column -->
     </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
+
+  <!-- End Grid -->
   </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-block">
-      <h4 class="card-title">Card title</h4>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-block">
-      <h4 class="card-title">Card title</h4>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-</div>
 
   <!-- End Page Container -->
 </div>

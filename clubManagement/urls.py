@@ -1,0 +1,33 @@
+from django.conf.urls import url
+
+from clubManagement.views import *
+from django.contrib.auth.decorators import login_required
+
+urlpatterns = [
+    url(
+        r'^attendance-report/(?P<year>[0-9]+)/$',
+        login_required(YearAttendanceReportView.as_view()),
+        name='attendance_report_year_all'
+    ),
+    url(
+        r'^attendance-report/(?P<batch>[0-9]+)/(?P<year>[0-9]+)/$',
+        login_required(YearAttendanceReportView.as_view()),
+        name='attendance_report_year_batch'
+    ),
+    url(
+        r'^attendance-report-student/(?P<year>[0-9]+)/(?P<user_id>[0-9]+)/$',
+        login_required(YearStudentAttendanceReportView.as_view()),
+        name='attendance_report_year'
+    ),
+    # url(r'^attendance-report/(?P<batch>[0-9]+)/(?P<year>[0-9]+)/$', AttendanceReportView.as_view(), name='attendance_report_month'),
+    url(
+        r'^attendance/(?P<year>[0-9]+)/(?P<month>[0-9]+)/(?P<day>[0-9]+)/$',
+        AttendanceAddView.as_view(),
+        name='add_attendance_all'
+    ),
+    url(
+        r'^attendance/(?P<batch>[0-9]+)/(?P<year>[0-9]+)/(?P<month>[0-9]+)/(?P<day>[0-9]+)/$',
+        AttendanceAddView.as_view(),
+        name='add_attendance_batch'
+    ),
+]

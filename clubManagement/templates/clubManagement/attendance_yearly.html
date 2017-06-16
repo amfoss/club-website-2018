@@ -1,0 +1,65 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+{% load index %}
+
+{% block title %} Add attendance {% endblock %}
+{% block css %}
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div id="wrap">
+        <div id="main">
+            {% include 'base/nav-bar.html' %}
+
+            <div class="container graph-div">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+                        <hr>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="col-md-12">
+                            <h2>{{ year }}</h2>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-md-10 graph-div" id="graph" style="height: 550px"></div>
+                    <div class="col-md-2">
+                        {% for i in month_num %}
+                        <div class="col-md-12">
+                            <p>{{ month|index:i }} - {{ month_att|index:i }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {{ month }}
+
+    {% include 'base/footer.html' %}
+
+    <script>
+        graph = document.getElementById('graph');
+        month = [
+        {% for i in month %}
+            '{{ i }}',
+        {% endfor %}
+        ];
+        Plotly.plot( graph, [{
+        x: month,
+        y: {{ month_att }} }], {
+        margin: { t: 0 } } );
+    </script>
+
+    <style>
+        .graph-div {
+            margin-top: 60px;
+        }
+    </style>
+
+{% endblock %}
