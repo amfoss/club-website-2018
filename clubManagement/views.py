@@ -8,8 +8,8 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 
 from django.urls import reverse, reverse_lazy
-from django.views.generic import View, YearArchiveView, ListView, DetailView, UpdateView, DeleteView, CreateView
-from clubManagement.models import Attendance, Team, TeamMembers, Responsibility
+from django.views.generic import View, ListView, DetailView, UpdateView, DeleteView, CreateView
+from clubManagement.models import Attendance, Team, TeamMembers, Responsibility, StudentResponsibility
 
 from registration.models import UserInfo
 
@@ -220,14 +220,22 @@ class ResponsibilityDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ResponsibilityDetailView, self).get_context_data(**kwargs)
-        context['user_list'] = User.objects.filter(username=self.object.created_by.username)
-        context['user_count'] = len(context['user_list'])
+        context['responsibility_list'] = self.get_object().studentresponsibility_set.all()
+        context['user_count'] = len(context['responsibility_list'])
         context['all_users'] = User.objects.all()
         return context
 
     def post(self, request, **kwargs):
-
-        return redirect('responsibility-detail', kwargs={'pk': self.object.pk})
+        try:
+            user = User.objects.get(id=int(request.POST.get('user_id')))
+            StudentResponsibility.objects.get(responsibility=self.get_object(), user=user)
+        except StudentResponsibility.DoesNotExist:
+            try:
+                user = User.objects.get(id=int(request.POST.get('user_id')))
+                StudentResponsibility(responsibility=self.get_object(), user=user).save()
+            except User.DoesNotExist:
+                redirect('error')
+        return redirect('responsibility_detail', self.get_object().pk)
 
 
 class ResponsibilityCreateView(CreateView):
@@ -236,7 +244,9 @@ class ResponsibilityCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
-        return super(ResponsibilityCreateView, self).form_valid(form)
+        response = super(ResponsibilityCreateView, self).form_valid(form)
+        StudentResponsibility(responsibility=self.object, user=self.request.user).save()
+        return response
 
 
 class ResponsibilityUpdateView(UpdateView):
@@ -251,6 +261,7 @@ class ResponsibilityDeleteView(DeleteView):
 
 class TeamListView(ListView):
     model = Team
+
     def post(self, request, **kwargs):
         name = request.POST['name']
         desc = request.POST['desc']
@@ -259,6 +270,7 @@ class TeamListView(ListView):
         team = Team(name=name,description=desc, image=img, created_by=user)
         team.save()
         return redirect('view_teams')
+
 
 class TeamDetailView(DetailView):
     model = Team
@@ -270,6 +282,7 @@ class TeamDetailView(DetailView):
         context['members'] = members
         context['users'] = users
         return context
+
     def post(self, request, **kwargs):
         team = Team.objects.get(id=self.kwargs['pk'])
         if request.user.username != team.created_by.username:
@@ -279,8 +292,10 @@ class TeamDetailView(DetailView):
         memb.save()
         return redirect('team_detail', team.id)
 
+
 class MemberDeleteView(DeleteView):
     model = TeamMembers
+
     def post(self, request, **kwargs):
         teammemb = TeamMembers.objects.get(id=self.kwargs['pk'])
         if request.user.username != teammemb.team.created_by.username:
@@ -288,14 +303,17 @@ class MemberDeleteView(DeleteView):
         teammemb.delete()
         return redirect('team_detail', teammemb.team.id)
 
+
 class TeamDeleteView(DeleteView):
     model = Team
+
     def post(self, request, **kwargs):
         team = Team.objects.get(id=self.kwargs['pk'])
         if request.user.username != team.created_by.username:
             raise PermissionDenied
         team.delete()
         return redirect('view_teams')
+
 
 class TeamUpdateView(UpdateView):
     model = Team
@@ -306,14 +324,13 @@ class TeamUpdateView(UpdateView):
         team = Team.objects.get(id=self.kwargs['pk'])
         context['team'] = team
         return context
+
     def post(self, request, **kwargs):
         team = Team.objects.get(id=self.kwargs['pk'])
         if request.user.username != team.created_by.username:
             raise PermissionDenied
-
         team.name = request.POST['name']
         team.description = request.POST['desc']
-        team.image  = request.FILES['img']
-
+        team.image = request.FILES['img']
         team.save()
         return redirect('view_teams')

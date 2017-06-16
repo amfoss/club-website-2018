@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Error {% endblock %}
+
+{% block body %}
+     <div id="wrap">
+        <div id="main">
+            {% include 'base/nav-bar.html' %}
+
+            <div class="jumbotron">
+                <h1 class="display-3">Sorry we Crashed:(</h1>
+                <p class="lead">Please go back and try again.<hr class="my-4">
+            </div>
+        </div>
+     </div>
+
+    {% include 'base/footer.html' %}
+{% endblock %}

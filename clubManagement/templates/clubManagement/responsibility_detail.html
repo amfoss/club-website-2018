@@ -32,20 +32,25 @@
                               </div>
                             </div>
 
-                            <div class="card student-form" id="student-form">
+                            <div class="card student-form" id="student-form" style="display: none">
                               <div class="card-block">
-                                <form class="form-group" action="" method="post">
-                                    {% csrf_tocken %}
-                                    <label for="exampleInputEmail1">Add Student</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <form class="form-group col-md-6" action="" method="post">
+                                    {% csrf_token %}
+                                    <label for="exampleInputEmail1"><h4>Add Student</h4></label>
+                                    <div class="dropdown">
+                                        <input id="search" onkeyup="myFunction()" class="form-control" data-toggle="dropdown" placeholder="Search..." autocomplete="off">
+                                        <input type="hidden" id="search-id" name="user_id">
+                                        <div class="dropdown-menu" id="search-results">
+                                            {% for user in all_users %}
+                                                <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')" class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
                                     <small id="emailHelp" class="form-text text-muted">Search for a student above.</small>
-                                    <button type="submit" class="btn btn-secondary">Add</button>
+                                    <button type="submit" class="btn btn-secondary add-btn">Add</button>
                                   </form>
                               </div>
                             </div>
-
-
-
                         </div>
 
                         <ul class="list-group col-md-4">
@@ -54,9 +59,9 @@
                                 <h5>Student's responsible</h5>
                                 <span class="badge badge-default badge-pill">{{ user_count }}</span>
                               </li>
-                            {% for user in user_list %}
+                            {% for resp in responsibility_list %}
                               <li class="list-group-item justify-content-between">
-                                {{ user.first_name }}  {{ user.last_name }}
+                                {{ resp.user.first_name }}  {{ resp.user.last_name }}
                               </li>
                             {% endfor %}
                             <div onclick="showForm()" class="col-md-6 offset-md-3">
@@ -77,12 +82,8 @@
         .container {
             margin-top: 50px;
         }
-
         .add-btn {
             margin-top: 20px;
-        }
-        .student-form {
-{#            display: block;#}
         }
         .margin-20 {
             margin: 24px;
@@ -91,10 +92,37 @@
 
     <script>
         function showForm() {
-            form = document.getElementById('student-form');
+            var form = document.getElementById('student-form');
             if(form.style.display === 'none') {
                 form.style.display = 'block';
             }
+            else {
+                form.style.display = 'none';
+            }
+        }
+
+        function myFunction() {
+            // Declare variables
+            var input, filter, items, i;
+            input = document.getElementById('search');
+            filter = input.value.toUpperCase();
+            items = document.getElementsByClassName('dropdown-item');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < items.length; i++) {
+                if (items[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        function addText(id, name) {
+            var inp1 = document.getElementById('search');
+            var inp2 = document.getElementById('search-id');
+            inp1.value = name;
+            inp2.value = id;
         }
     </script>
 {% endblock %}
