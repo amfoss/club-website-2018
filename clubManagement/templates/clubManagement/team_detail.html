@@ -62,6 +62,10 @@
                             {% for resp in responsibility_list %}
                               <li class="list-group-item justify-content-between">
                                 {{ resp.user.first_name }}  {{ resp.user.last_name }}
+                                  <form method="post" action="{% url "team_member_delete" resp.id %}">
+                                       {% csrf_token %}
+                                      <button type="submit" class="close">×</button>
+                                  </form>
                               </li>
                             {% endfor %}
                             {% if edit_permission %}

@@ -290,6 +290,9 @@ class ResponsibilityDeleteView(DeleteView):
 class StudentResponsibilityDeleteView(DeleteView):
     model = StudentResponsibility
 
+    def get_success_url(self):
+        return reverse('responsibility_detail', kwargs={'pk': self.object.responsibility.id})
+
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
@@ -374,6 +377,9 @@ class TeamDeleteView(DeleteView):
 
 class TeamMemberDeleteView(DeleteView):
     model = TeamMember
+
+    def get_success_url(self):
+        return reverse('team_detail', kwargs={'pk': self.object.team.id})
 
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):

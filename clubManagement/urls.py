@@ -38,10 +38,12 @@ urlpatterns = [
     url(r'^responsibility/create/$', ResponsibilityCreateView.as_view(), name='responsibility_create'),
     url(r'^responsibility/(?P<pk>[0-9]+)/update/$', ResponsibilityUpdateView.as_view(), name='responsibility_update'),
     url(r'^responsibility/(?P<pk>[0-9]+)/delete/$', ResponsibilityDeleteView.as_view(), name='responsibility_delete'),
+    url(r'^responsibility-student/(?P<pk>[0-9]+)/delete/$', StudentResponsibilityDeleteView.as_view(), name='student_responsibility_delete'),
     # Teams
     url(r'^teams/$', TeamListView.as_view(), name='view_teams'),
     url(r'^teams/(?P<pk>[0-9]+)/$', TeamDetailView.as_view(), name='team_detail'),
     url(r'^teams/create/$', TeamCreateView.as_view(), name='team_create'),
     url(r'^teams/(?P<pk>[0-9]+)/update$', TeamUpdateView.as_view(), name='team_update'),
     url(r'^teams/(?P<pk>[0-9]+)/delete/$', TeamDeleteView.as_view(), name='team_delete'),
+    url(r'^teams-member/(?P<pk>[0-9]+)/delete/$', TeamMemberDeleteView.as_view(), name='team_member_delete'),
 ]
