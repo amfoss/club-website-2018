@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+        <div id="wrap">
+            <div id="main">
+            <!-- content goes here -->
+                <p>Delete confirmation for {{ object.name }}</p>
+
+                <form class="wide" action="" method="post">
+                        {% csrf_token %}
+                        <p class="submit"><input type="submit" value="Yes, delete this responsibility."></p>
+                </form>
+            </div>
+        </div>
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+
+
+
+
+

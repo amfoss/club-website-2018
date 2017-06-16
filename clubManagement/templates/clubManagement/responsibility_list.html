@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+        <div id="wrap">
+            <div id="main">
+            <!-- content goes here -->
+                {% for object in responsibility_list %}
+                    <p>{{ object.name }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    {% include 'base/footer.html' %}
+{% endblock %}
+
