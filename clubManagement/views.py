@@ -248,7 +248,7 @@ class ResponsibilityDetailView(DetailView):
 
 class ResponsibilityCreateView(CreateView):
     model = Responsibility
-    fields = ['created_by', 'name', 'description']
+    fields = ['name', 'description']
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -285,6 +285,15 @@ class ResponsibilityDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(ResponsibilityDeleteView, self).post(request, *args, **kwargs)
+
+
+class StudentResponsibilityDeleteView(DeleteView):
+    model = StudentResponsibility
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(StudentResponsibilityDeleteView, self).post(request, *args, **kwargs)
 
 # Views to add, update and delete Teams
 
@@ -324,7 +333,7 @@ class TeamDetailView(DetailView):
 
 class TeamCreateView(CreateView):
     model = Team
-    fields = ['created_by', 'name', 'image', 'description']
+    fields = ['name', 'image', 'description']
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -361,3 +370,12 @@ class TeamDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(TeamDeleteView, self).post(request, *args, **kwargs)
+
+
+class TeamMemberDeleteView(DeleteView):
+    model = TeamMember
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(TeamMemberDeleteView, self).post(request, *args, **kwargs)

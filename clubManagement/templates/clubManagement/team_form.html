@@ -1,29 +1,88 @@
- {% extends 'base/base.html' %}
+{% extends 'base/base.html' %}
 
-{% load static %}
-{% load index %}
-
-{% block title %}Teams{% endblock %}
+{% block title %} New team {% endblock %}
 
 {% block body %}
- {% include 'base/nav-bar.html' %}
-<div style="margin:0 auto;margin-top:60px ;width: 300px;">
-  <h2>Edit team</h2>
-    <form method="post" action="" enctype="multipart/form-data" >
-    <div class="form-group" style="width: 75%" >
-        {% csrf_token %}
-        <input type="text" name="name"  value="{{ team.name }} " required class="form-control">
-        <br>
-        <textarea name="desc"  required class="form-control">{{ team.description }} </textarea><br>
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-2 card">
+                        <div class="card-block">
+                            <h1 class="card-title">Team</h1>
+                            <hr>
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                           value="{{ object.name }}" placeholder="Title">
+                                    <small id="emailHelp" class="form-text text-muted">
+                                        Name of the team
+                                    </small>
+                                </div>
 
-        <input type="file" name="img" alt="submit" value="{{ team.image }}" >
-        <br>
-        <input type="submit" class="btn btn-primary btn-block">
-  </div>
-    </form>
-</div>
-<br>
-<br>
 
-{% include 'base/footer.html' %}
+                                <label for="file">
+                                    Image
+                                    {% if object.image %}
+                                        : {{ object.image }}
+                                    {% endif %}
+                                </label><br>
+                                <div class="custom-file form-group">
+                                    <input type="file" name="image" id="file" class="form-control">
+                                </div>
+                                <br>
+                                <br>
+
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" class="form-control"
+                                              placeholder="Description" rows="5">{{ object.description }}</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notifications">
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ field.label }}: {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    {% include 'base/footer.html' %}
+
+    <style>
+        .container {
+            margin-top: 70px;
+        }
+        .notifications {
+            position: fixed;
+            top: 90px;
+            right: 0;
+            z-index: 1000;
+            font-size: 0.7em;
+            max-width: 90%;
+        }
+    </style>
 {% endblock %}

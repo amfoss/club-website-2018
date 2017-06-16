@@ -11,13 +11,13 @@ class Team(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='team/', blank=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return ' '
+        return reverse('team_detail', kwargs={'pk': self.id})
 
 
 class TeamMember(models.Model):
@@ -71,4 +71,4 @@ class StatusReport(models.Model):
         return self.user.username + " " + self.content[:20] + ".."
 
     def get_absolute_url(self):
-        return ' '
+        return ''

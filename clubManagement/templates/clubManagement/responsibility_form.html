@@ -39,9 +39,36 @@
     </div>
     {% include 'base/footer.html' %}
 
+    <div class="notifications">
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    {{ field.label }}: {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger alert-dismissable">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                {{ error|escape }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+
     <style>
         .container {
             margin-top: 70px;
+        }
+        .notifications {
+            position: fixed;
+            top: 90px;
+            right: 0;
+            z-index: 1000;
+            font-size: 0.7em;
+            max-width: 90%;
         }
     </style>
 {% endblock %}
