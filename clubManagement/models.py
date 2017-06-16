@@ -20,7 +20,7 @@ class Team(models.Model):
         return ' '
 
 
-class TeamMembers(models.Model):
+class TeamMember(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     date_assigned = models.DateTimeField(auto_now_add=True, auto_now=False)

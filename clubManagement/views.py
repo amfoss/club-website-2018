@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, ListView, DetailView, UpdateView, DeleteView, CreateView
-from clubManagement.models import Attendance, Team, TeamMembers, Responsibility, StudentResponsibility
+from clubManagement.models import Attendance, Team, TeamMember, Responsibility, StudentResponsibility
 
 from registration.models import UserInfo
 
@@ -211,6 +211,8 @@ class MonthAttendanceReportView(View):
 
 # Responsibilities
 # CreateView and UpdateView calls get_absolute_url() on the model to get the success_url
+
+
 class ResponsibilityListView(ListView):
     model = Responsibility
 
@@ -259,23 +261,36 @@ class ResponsibilityUpdateView(UpdateView):
     model = Responsibility
     fields = ['name', 'description']
 
+    def get(self, request, *args, **kwargs):
+        if not(request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(ResponsibilityUpdateView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(ResponsibilityUpdateView, self).post(request, *args, **kwargs)
+
 
 class ResponsibilityDeleteView(DeleteView):
     model = Responsibility
     success_url = reverse_lazy('responsibility')
 
+    def get(self, request, *args, **kwargs):
+        if not(request.user.is_superuser or request.user == self.get_object().created_by):
+            return redirect('permission_denied')
+        return super(ResponsibilityDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(ResponsibilityDeleteView, self).post(request, *args, **kwargs)
+
+# Views to add, update and delete Teams
+
 
 class TeamListView(ListView):
     model = Team
-
-    def post(self, request, **kwargs):
-        name = request.POST['name']
-        desc = request.POST['desc']
-        img  = request.FILES['img']
-        user = request.user
-        team = Team(name=name,description=desc, image=img, created_by=user)
-        team.save()
-        return redirect('view_teams')
 
 
 class TeamDetailView(DetailView):
@@ -283,60 +298,66 @@ class TeamDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(TeamDetailView, self).get_context_data(**kwargs)
-        members = TeamMembers.objects.filter(team=context['object'])
-        users = User.objects.all()
-        context['members'] = members
-        context['users'] = users
+        context['responsibility_list'] = self.get_object().teammember_set.all()
+        context['user_count'] = len(context['responsibility_list'])
+        context['all_users'] = User.objects.all()
+        if self.request.user.is_superuser or self.request.user == self.object.created_by:
+            context['edit_permission'] = True
+        else:
+            context['edit_permission'] = False
         return context
 
     def post(self, request, **kwargs):
-        team = Team.objects.get(id=self.kwargs['pk'])
-        if request.user.username != team.created_by.username:
-            raise PermissionDenied
-        user = User.objects.get(id=request.POST['id'])
-        memb = TeamMembers(user=user, team=team)
-        memb.save()
-        return redirect('team_detail', team.id)
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            return redirect('permission_denied')
+        try:
+            user = User.objects.get(id=int(request.POST.get('user_id')))
+            TeamMember.objects.get(team=self.get_object(), user=user)
+        except TeamMember.DoesNotExist:
+            try:
+                user = User.objects.get(id=int(request.POST.get('user_id')))
+                TeamMember(team=self.get_object(), user=user).save()
+            except User.DoesNotExist:
+                redirect('error')
+        return redirect('team_detail', self.get_object().pk)
 
 
-class MemberDeleteView(DeleteView):
-    model = TeamMembers
-
-    def post(self, request, **kwargs):
-        teammemb = TeamMembers.objects.get(id=self.kwargs['pk'])
-        if request.user.username != teammemb.team.created_by.username:
-            raise PermissionDenied
-        teammemb.delete()
-        return redirect('team_detail', teammemb.team.id)
-
-
-class TeamDeleteView(DeleteView):
+class TeamCreateView(CreateView):
     model = Team
+    fields = ['created_by', 'name', 'image', 'description']
 
-    def post(self, request, **kwargs):
-        team = Team.objects.get(id=self.kwargs['pk'])
-        if request.user.username != team.created_by.username:
-            raise PermissionDenied
-        team.delete()
-        return redirect('view_teams')
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        response = super(TeamCreateView, self).form_valid(form)
+        TeamMember(team=self.object, user=self.request.user).save()
+        return response
 
 
 class TeamUpdateView(UpdateView):
     model = Team
-    fields = ['name', 'description', 'image']
+    fields = ['name', 'image', 'description']
 
-    def get_context_data(self, **kwargs):
-        context = super(TeamUpdateView, self).get_context_data(**kwargs)
-        team = Team.objects.get(id=self.kwargs['pk'])
-        context['team'] = team
-        return context
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(TeamUpdateView, self).get(request, *args, **kwargs)
 
-    def post(self, request, **kwargs):
-        team = Team.objects.get(id=self.kwargs['pk'])
-        if request.user.username != team.created_by.username:
-            raise PermissionDenied
-        team.name = request.POST['name']
-        team.description = request.POST['desc']
-        team.image = request.FILES['img']
-        team.save()
-        return redirect('view_teams')
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(TeamUpdateView, self).post(request, *args, **kwargs)
+
+
+class TeamDeleteView(DeleteView):
+    model = Team
+    success_url = reverse_lazy('responsibility')
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(TeamDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(TeamDeleteView, self).post(request, *args, **kwargs)

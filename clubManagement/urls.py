@@ -32,15 +32,16 @@ urlpatterns = [
         MonthAttendanceReportView.as_view(),
         name='attendance_report_month'
         ),
+    # Responsibilities
     url(r'^responsibility/$', ResponsibilityListView.as_view(), name='responsibility'),
     url(r'^responsibility/(?P<pk>[0-9]+)/$', ResponsibilityDetailView.as_view(), name='responsibility_detail'),
     url(r'^responsibility/create/$', ResponsibilityCreateView.as_view(), name='responsibility_create'),
     url(r'^responsibility/(?P<pk>[0-9]+)/update/$', ResponsibilityUpdateView.as_view(), name='responsibility_update'),
     url(r'^responsibility/(?P<pk>[0-9]+)/delete/$', ResponsibilityDeleteView.as_view(), name='responsibility_delete'),
-
+    # Teams
     url(r'^teams/$', TeamListView.as_view(), name='view_teams'),
     url(r'^teams/(?P<pk>[0-9]+)/$', TeamDetailView.as_view(), name='team_detail'),
-    url(r'^teams/delmemb/(?P<pk>[0-9]+)/', MemberDeleteView.as_view(), name='delete_member'),
-    url(r'^teams/delete/(?P<pk>[0-9]+)/', TeamDeleteView.as_view(), name='delete_team'),
-    url(r'^teams/edit/(?P<pk>[0-9]+)/', TeamUpdateView.as_view(), name='edit_team'),
+    url(r'^teams/create/$', TeamCreateView.as_view(), name='team_create'),
+    url(r'^teams/(?P<pk>[0-9]+)/update$', TeamUpdateView.as_view(), name='team_update'),
+    url(r'^teams/(?P<pk>[0-9]+)/delete/$', TeamDeleteView.as_view(), name='team_delete'),
 ]

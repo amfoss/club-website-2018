@@ -1,53 +1,60 @@
 {% extends 'base/base.html' %}
-
 {% load static %}
-{% load index %}
-
-{% block title %}Teams{% endblock %}
+{% block title %} Teams {% endblock %}
 
 {% block body %}
- {% include 'base/nav-bar.html' %}
-<div style="margin:0 auto;margin-top:60px ;width: 300px;">
-{% for i in object_list %}
-<a href="{% url 'team_detail' i.id   %}"><h1>{{ i.name }}</h1></a>
-<img src="/media/{{  i.image }}" style="width: 300px ;height: 180px">
-<p>{{ i.description }}</p>
-<p>{{ i.created_by }}</p>
- <a href="delete/{{ i.id }}">Delete team</a><br>
- <a href="edit/{{ i.id }}">Edit  team</a>
-{% endfor %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="card col-md-12">
+                        <div class="card-block">
+                            <h1 class="card-title">Teams</h1>
+                            <p class="card-text">
+                                <small class="text-muted">A list of all the Teams, FOSS@Amrita.</small>
+                            </p>
+                            <hr>
+                            <div class="row">
+                                {% for object in object_list %}
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <img class="card-img-top" height="250px" src="/media/{{ object.image }}" alt="Card image cap">
+                                            <div class="card-block">
+                                                <h3 class="card-title">{{ object.name }}</h3>
+                                                <p class="card-text">{{ object.description }}</p>
+                                                <a href="{% url 'team_detail' object.id %}"
+                                                   class="btn btn-primary">More info
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
 
-   <br>
-   <br>
-<br>
-    <button onclick="display()">Add Team</button>
-<div style="display: none;" id="form">
+                                <div class="col-md-12">
+                                    <div class="container">
+                                        <a href="{% url 'team_create' %}">
+                                            <button class="btn btn-secondary">Add new</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2>Add team</h2>
-    <form method="post" action="" enctype="multipart/form-data" >
-        {% csrf_token %}
-        <div class="form-group" style="width: 75%">
-        <input type="text" name="name"  placeholder="team name" required class="form-control">
-        <br>
-        <textarea name="desc"  placeholder="Team description" required class="form-control"></textarea><br>
+    {% include 'base/footer.html' %}
 
-        <input type="file" name="img" alt="submit" required class="form-control">
-        <br>
-        <input type="submit" class="btn btn-primary btn-block" >
-  </div>
-    </form>
-</div>
-    <br>
-    <br>
-    <br>
-<script>
-    function display() {
-        form = document.getElementById('form');
-        form.style.display = 'block' ;
-
-    }
-
-</script>
-</div>
-{% include 'base/footer.html' %}
+    <style>
+        .card {
+            margin: 10px;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
 {% endblock %}

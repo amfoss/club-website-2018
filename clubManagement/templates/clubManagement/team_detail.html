@@ -1,55 +1,131 @@
 {% extends 'base/base.html' %}
 
-{% load static %}
-{% load index %}
+{% block title %} {% endblock %}
 
-{% block title %}Teams{% endblock %}
+{% load static %}
+
+{% block script %}
+    <!-- Latest compiled and minified JavaScript -->
+{% endblock %}
 
 {% block body %}
- {% include 'base/nav-bar.html' %}
-<div style="margin:0 auto;margin-top:60px ;width: 300px;">
-<h1>Team {{ team.name }}</h1>
-<img src="/media/{{  team.image }}" style="width: 300px ;height: 180px">
-<p>Description{{ team.description }}</p>
-<p>Created by:{{ team.created_by }}</p>
+    {% include 'base/nav-bar.html' %}
+        <div id="wrap">
+            <div id="main">
+            <!-- content goes here -->
 
-  <h3>Members</h3>
-    {% for i in members %}
-    <ul>{{ i.user }}</ul>
-        <a href="/club/teams/delmemb/{{ i.id }}"><button>Delete members</button></a>
-    {% endfor %}
-<br>
+                <div class="container">
+                    <div class="row">
 
-    <button onclick="display()">Add Members</button>
-<div style="display: none;" id="form" >
+                        <div class="col-md-8">
+                            <h3>Team details</h3>
+                            <div class="card mb-3">
+                              <img class="card-img-top" src="/media/{{ object.image }}">
+                              <div class="card-block">
+                                <h4 class="card-title">{{ object.name }}</h4>
+                                <p class="card-text">{{ object.description }}</p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                       Added by : {{ object.created_by.first_name }} {{ object.created_by.last_name }}
+                                    </small>
+                                </p>
+                              </div>
+                            </div>
 
-    <h2>Add members</h2>
-    <form method="post" action="" >
-        {% csrf_token %}
-    <div class="form-group" style="width: 25%">
-        Name:
-        <select name="id">
-            {% for i in users %}
-            <option value="{{ i.id }}" required class="form-control">{{ i.username }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <input type="submit" class="btn btn-primary btn-block">
-   </div>
-    </form>
-</div>
-<script>
-    function display() {
-        form = document.getElementById('form');
-        form.style.display = 'block' ;
+                            <div class="card student-form" id="student-form" style="display: none">
+                              <div class="card-block">
+                                <form class="form-group col-md-6" action="" method="post">
+                                    {% csrf_token %}
+                                    <label for="exampleInputEmail1"><h4>Add Student</h4></label>
+                                    <div class="dropdown">
+                                        <input id="search" onkeyup="myFunction()" class="form-control" data-toggle="dropdown" placeholder="Search..." autocomplete="off">
+                                        <input type="hidden" id="search-id" name="user_id">
+                                        <div class="dropdown-menu" id="search-results">
+                                            {% for user in all_users %}
+                                                <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')" class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <small id="emailHelp" class="form-text text-muted">Search for a student above.</small>
+                                    <button type="submit" class="btn btn-secondary add-btn">Add</button>
+                                  </form>
+                              </div>
+                            </div>
+                        </div>
 
-    }
-</script>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-</div>
-{% include 'base/footer.html' %}
+                        <ul class="list-group col-md-4">
+                            <div class="margin-20"></div>
+                            <li class="list-group-item justify-content-between">
+                                <h5>Team members</h5>
+                                <span class="badge badge-default badge-pill">{{ user_count }}</span>
+                              </li>
+                            {% for resp in responsibility_list %}
+                              <li class="list-group-item justify-content-between">
+                                {{ resp.user.first_name }}  {{ resp.user.last_name }}
+                              </li>
+                            {% endfor %}
+                            {% if edit_permission %}
+                            <div onclick="showForm()" class="col-md-6 offset-md-3">
+                                <button class="btn btn-secondary add-btn">
+                                    Add student
+                                </button>
+                            </div>
+                            {% endif %}
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% include 'base/footer.html' %}
+
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .add-btn {
+            margin-top: 20px;
+        }
+        .margin-20 {
+            margin: 24px;
+        }
+    </style>
+
+    <script>
+        function showForm() {
+            var form = document.getElementById('student-form');
+            if(form.style.display === 'none') {
+                form.style.display = 'block';
+            }
+            else {
+                form.style.display = 'none';
+            }
+        }
+
+        function myFunction() {
+            // Declare variables
+            var input, filter, items, i;
+            input = document.getElementById('search');
+            filter = input.value.toUpperCase();
+            items = document.getElementsByClassName('dropdown-item');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < items.length; i++) {
+                if (items[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        function addText(id, name) {
+            var inp1 = document.getElementById('search');
+            var inp2 = document.getElementById('search-id');
+            inp1.value = name;
+            inp2.value = id;
+        }
+    </script>
 {% endblock %}
+
