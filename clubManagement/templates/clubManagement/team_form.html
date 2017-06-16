@@ -1,0 +1,29 @@
+ {% extends 'base/base.html' %}
+
+{% load static %}
+{% load index %}
+
+{% block title %}Teams{% endblock %}
+
+{% block body %}
+ {% include 'base/nav-bar.html' %}
+<div style="margin:0 auto;margin-top:60px ;width: 300px;">
+  <h2>Edit team</h2>
+    <form method="post" action="" enctype="multipart/form-data" >
+    <div class="form-group" style="width: 75%" >
+        {% csrf_token %}
+        <input type="text" name="name"  value="{{ team.name }} " required class="form-control">
+        <br>
+        <textarea name="desc"  required class="form-control">{{ team.description }} </textarea><br>
+
+        <input type="file" name="img" alt="submit" value="{{ team.image }}" >
+        <br>
+        <input type="submit" class="btn btn-primary btn-block">
+  </div>
+    </form>
+</div>
+<br>
+<br>
+
+{% include 'base/footer.html' %}
+{% endblock %}
