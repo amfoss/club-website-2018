@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+{% load index %}
+
+{% block title %}Teams{% endblock %}
+
+{% block body %}
+ {% include 'base/nav-bar.html' %}
+<div style="margin:0 auto;margin-top:60px ;width: 300px;">
+{% for i in object_list %}
+<a href="{% url 'team_detail' i.id   %}"><h1>{{ i.name }}</h1></a>
+<img src="/media/{{  i.image }}" style="width: 300px ;height: 180px">
+<p>{{ i.description }}</p>
+<p>{{ i.created_by }}</p>
+ <a href="delete/{{ i.id }}">Delete team</a><br>
+ <a href="edit/{{ i.id }}">Edit  team</a>
+{% endfor %}
+
+   <br>
+   <br>
+<br>
+    <button onclick="display()">Add Team</button>
+<div style="display: none;" id="form">
+
+    <h2>Add team</h2>
+    <form method="post" action="" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <div class="form-group" style="width: 75%">
+        <input type="text" name="name"  placeholder="team name" required class="form-control">
+        <br>
+        <textarea name="desc"  placeholder="Team description" required class="form-control"></textarea><br>
+
+        <input type="file" name="img" alt="submit" required class="form-control">
+        <br>
+        <input type="submit" class="btn btn-primary btn-block" >
+  </div>
+    </form>
+</div>
+    <br>
+    <br>
+    <br>
+<script>
+    function display() {
+        form = document.getElementById('form');
+        form.style.display = 'block' ;
+
+    }
+
+</script>
+</div>
+{% include 'base/footer.html' %}
+{% endblock %}

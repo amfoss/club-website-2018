@@ -1,7 +1,7 @@
 from django.conf.urls import url
-
 from clubManagement.views import *
 from django.contrib.auth.decorators import login_required
+
 
 urlpatterns = [
     url(
@@ -31,9 +31,18 @@ urlpatterns = [
         name='add_attendance_batch'
     ),
 
-    url(r'^responsibility/$', login_required(ResponsibilityListView.as_view()), name='responsibility'),
-    url(r'^responsibility/(?P<pk>[0-9]+)/$', login_required(ResponsibilityDetailView.as_view()), name='responsibility_detail'),
-    url(r'^responsibility/create/$', login_required(ResponsibilityCreateView.as_view()), name='responsibility_create'),
-    url(r'^responsibility/(?P<pk>[0-9]+)/update/$', login_required(ResponsibilityUpdateView.as_view()), name='responsibility_update'),
-    url(r'^responsibility/(?P<pk>[0-9]+)/delete/$', login_required(ResponsibilityDeleteView.as_view()), name='responsibility_delete'),
+    url(r'^attendance-report/(?P<batch>[0-9]+)/(?P<year>[0-9]+)/(?P<month>[0-9]+)/$',
+        MonthAttendanceReportView.as_view(), name='attendance_report_month'),
+
+    url(r'^responsibility/$', ResponsibilityListView.as_view(), name='responsibility'),
+    url(r'^responsibility/(?P<pk>[0-9]+)/$', ResponsibilityDetailView.as_view(), name='responsibility_detail'),
+    url(r'^responsibility/create/$', ResponsibilityCreateView.as_view(), name='responsibility_create'),
+    url(r'^responsibility/(?P<pk>[0-9]+)/update/$', ResponsibilityUpdateView.as_view(), name='responsibility_update'),
+    url(r'^responsibility/(?P<pk>[0-9]+)/delete/$', ResponsibilityDeleteView.as_view(), name='responsibility_delete'),
+
+    url(r'^teams/$', TeamListView.as_view(), name='view_teams'),
+    url(r'^teams/(?P<pk>[0-9]+)/$', TeamDetailView.as_view(), name='team_detail'),
+    url(r'^teams/delmemb/(?P<pk>[0-9]+)/', MemberDeleteView.as_view(), name='delete_member'),
+    url(r'^teams/delete/(?P<pk>[0-9]+)/', TeamDeleteView.as_view(), name='delete_team'),
+    url(r'^teams/edit/(?P<pk>[0-9]+)/', TeamUpdateView.as_view(), name='edit_team'),
 ]
