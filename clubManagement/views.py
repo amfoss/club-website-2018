@@ -182,6 +182,30 @@ class YearAttendanceReportView(View):
         return render(request, self.template_name, context)
 
 
+class MonthAttendanceReportView(View):
+    template_name = 'clubManagement/attendance_monthly.html'
+
+    def get(self, request, **kwargs):
+        user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
+        data = []
+        for user_info in user_info_list:
+            total_att = 0
+            att_month = len(
+                user_info.user.attendance_set.filter(
+                    date__year=int(kwargs.get('year')),
+                    date__month=int(kwargs.get('month')),
+                    attendance=True
+                )
+            )
+            total_att += att_month
+            data.append([user_info.user, att_month])
+        if len(data) > 0:
+            context = {'data': data, 'head': kwargs.get('year')}
+        else:
+            context = {'errors': 'No data found'}
+        return render(request, self.template_name, context)
+
+
 # Responsibilities
 # CreateView and UpdateView calls get_absolute_url() on the model to get the success_url
 class ResponsibilityListView(ListView):

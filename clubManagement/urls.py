@@ -31,6 +31,9 @@ urlpatterns = [
         name='add_attendance_batch'
     ),
 
+    url(r'^attendance-report/(?P<batch>[0-9]+)/(?P<year>[0-9]+)/(?P<month>[0-9]+)/$',
+        MonthAttendanceReportView.as_view(), name='attendance_report_month'),
+
     url(r'^responsibility/$', ResponsibilityListView.as_view(), name='responsibility'),
     url(r'^responsibility/(?P<pk>[0-9]+)/$', ResponsibilityDetailView.as_view(), name='responsibility_detail'),
     url(r'^responsibility/create/$', ResponsibilityCreateView.as_view(), name='responsibility_create'),
