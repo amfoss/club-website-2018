@@ -2,15 +2,100 @@
 
 {% block title %} {% endblock %}
 
+{% load static %}
+
+{% block script %}
+    <!-- Latest compiled and minified JavaScript -->
+{% endblock %}
+
 {% block body %}
     {% include 'base/nav-bar.html' %}
         <div id="wrap">
             <div id="main">
             <!-- content goes here -->
-                {{ object.name }}
-                {{ object.description }}
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <h3>Club Responsibility</h3>
+                            <div class="card mb-3">
+                              <img class="card-img-top" src="{% static 'clubManagement/image/great_power_great_responsibility.jpg' %}">
+                              <div class="card-block">
+                                <h4 class="card-title">{{ object.name }}</h4>
+                                <p class="card-text">{{ object.description }}</p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                       Added by : {{ object.created_by.first_name }} {{ object.created_by.last_name }}
+                                    </small>
+                                </p>
+                              </div>
+                            </div>
+
+                            <div class="card student-form" id="student-form">
+                              <div class="card-block">
+                                <form class="form-group" action="" method="post">
+                                    {% csrf_tocken %}
+                                    <label for="exampleInputEmail1">Add Student</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <small id="emailHelp" class="form-text text-muted">Search for a student above.</small>
+                                    <button type="submit" class="btn btn-secondary">Add</button>
+                                  </form>
+                              </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <ul class="list-group col-md-4">
+                            <div class="margin-20"></div>
+                            <li class="list-group-item justify-content-between">
+                                <h5>Student's responsible</h5>
+                                <span class="badge badge-default badge-pill">{{ user_count }}</span>
+                              </li>
+                            {% for user in user_list %}
+                              <li class="list-group-item justify-content-between">
+                                {{ user.first_name }}  {{ user.last_name }}
+                              </li>
+                            {% endfor %}
+                            <div onclick="showForm()" class="col-md-6 offset-md-3">
+                                <button class="btn btn-secondary add-btn">
+                                    Add student
+                                </button>
+                            </div>
+                        </ul>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     {% include 'base/footer.html' %}
+
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+
+        .add-btn {
+            margin-top: 20px;
+        }
+        .student-form {
+{#            display: block;#}
+        }
+        .margin-20 {
+            margin: 24px;
+        }
+    </style>
+
+    <script>
+        function showForm() {
+            form = document.getElementById('student-form');
+            if(form.style.display === 'none') {
+                form.style.display = 'block';
+            }
+        }
+    </script>
 {% endblock %}
 

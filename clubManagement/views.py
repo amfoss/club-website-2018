@@ -191,6 +191,17 @@ class ResponsibilityListView(ListView):
 class ResponsibilityDetailView(DetailView):
     model = Responsibility
 
+    def get_context_data(self, **kwargs):
+        context = super(ResponsibilityDetailView, self).get_context_data(**kwargs)
+        context['user_list'] = User.objects.filter(username=self.object.created_by.username)
+        context['user_count'] = len(context['user_list'])
+        context['all_users'] = User.objects.all()
+        return context
+
+    def post(self, request, **kwargs):
+
+        return redirect('responsibility-detail', kwargs={'pk': self.object.pk})
+
 
 class ResponsibilityCreateView(CreateView):
     model = Responsibility
