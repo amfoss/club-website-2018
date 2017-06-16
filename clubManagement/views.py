@@ -362,7 +362,7 @@ class TeamUpdateView(UpdateView):
 
 class TeamDeleteView(DeleteView):
     model = Team
-    success_url = reverse_lazy('responsibility')
+    success_url = reverse_lazy('team')
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
