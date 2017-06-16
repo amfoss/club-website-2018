@@ -4,15 +4,44 @@
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
-        <div id="wrap">
-            <div id="main">
+    <div id="wrap">
+        <div id="main">
             <!-- content goes here -->
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit">
-                </form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-2 card">
+                        <div class="card-block">
+                            <h1 class="card-title">Responsibility</h1>
+                            <hr>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="name">Title</label>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                           value="{{ object.name }}" placeholder="Title">
+                                    <small id="emailHelp" class="form-text text-muted">
+                                        Title of the responsibility
+                                    </small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" class="form-control"
+                                              placeholder="Description" rows="5">{{ object.description }}</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
     {% include 'base/footer.html' %}
+
+    <style>
+        .container {
+            margin-top: 70px;
+        }
+    </style>
 {% endblock %}
