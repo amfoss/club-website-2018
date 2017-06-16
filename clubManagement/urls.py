@@ -1,7 +1,7 @@
 from django.conf.urls import url
-
 from clubManagement.views import *
 from django.contrib.auth.decorators import login_required
+
 
 urlpatterns = [
     url(
@@ -39,4 +39,9 @@ urlpatterns = [
     url(r'^responsibility/create/$', ResponsibilityCreateView.as_view(), name='responsibility_create'),
     url(r'^responsibility/(?P<pk>[0-9]+)/update/$', ResponsibilityUpdateView.as_view(), name='responsibility_update'),
     url(r'^responsibility/(?P<pk>[0-9]+)/delete/$', ResponsibilityDeleteView.as_view(), name='responsibility_delete'),
+    url(r'^teams/$', TeamListView.as_view(), name='view_teams'),
+    url(r'^teams/(?P<pk>[0-9]+)/$', TeamDetailView.as_view(), name='team_detail'),
+    url(r'^teams/delmemb/(?P<pk>[0-9]+)/', MemberDeleteView.as_view(), name='delete_member'),
+    url(r'^teams/delete/(?P<pk>[0-9]+)/', TeamDeleteView.as_view(), name='delete_team'),
+    url(r'^teams/edit/(?P<pk>[0-9]+)/', TeamUpdateView.as_view(), name='edit_team'),
 ]
