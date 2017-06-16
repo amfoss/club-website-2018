@@ -6,15 +6,11 @@ from datetime import date, datetime
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
-from django.urls import reverse_lazy
-from django.views.generic import View, CreateView, UpdateView, DeleteView, ListView, DetailView
-from clubManagement.models import Attendance, Responsibility
-=======
-from django.urls import reverse
+
+from django.urls import reverse, reverse_lazy
 from django.views.generic import View, YearArchiveView, ListView, DetailView, UpdateView, DeleteView, CreateView
-from clubManagement.models import Attendance, Team, TeamMembers
->>>>>>> origin/master
+from clubManagement.models import Attendance, Team, TeamMembers, Responsibility
+
 from registration.models import UserInfo
 
 month = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
@@ -212,7 +208,6 @@ class MonthAttendanceReportView(View):
             context = {'errors': 'No data found'}
         return render(request, self.template_name, context)
 
-<<<<<<< HEAD
 
 # Responsibilities
 # CreateView and UpdateView calls get_absolute_url() on the model to get the success_url
@@ -241,7 +236,8 @@ class ResponsibilityUpdateView(UpdateView):
 class ResponsibilityDeleteView(DeleteView):
     model = Responsibility
     success_url = reverse_lazy('responsibility')
-=======
+
+
 class TeamListView(ListView):
     model = Team
     def post(self, request, **kwargs):
@@ -310,4 +306,3 @@ class TeamUpdateView(UpdateView):
 
         team.save()
         return redirect('view_teams')
->>>>>>> origin/master
