@@ -64,11 +64,13 @@
                                 {{ resp.user.first_name }}  {{ resp.user.last_name }}
                               </li>
                             {% endfor %}
+                            {% if edit_permission %}
                             <div onclick="showForm()" class="col-md-6 offset-md-3">
                                 <button class="btn btn-secondary add-btn">
                                     Add student
                                 </button>
                             </div>
+                            {% endif %}
                         </ul>
 
                     </div>

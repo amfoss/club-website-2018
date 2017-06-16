@@ -12,7 +12,9 @@
                     <div class="card col-md-12">
                         <div class="card-block">
                             <h1 class="card-title">Club responsibilities</h1>
-                            <p class="card-text"><small class="text-muted">A list of all the responsibilities.</small></p>
+                            <p class="card-text">
+                                <small class="text-muted">A list of all the responsibilities.</small>
+                            </p>
                             <hr>
                             <div class="row">
                                 {% for object in responsibility_list %}
@@ -21,7 +23,9 @@
                                             <div class="card-block">
                                                 <h3 class="card-title">{{ object.name }}</h3>
                                                 <p class="card-text">{{ object.description }}</p>
-                                                <a href="{% url 'responsibility_detail' object.id  %}" class="btn btn-primary">More info</a>
+                                                <a href="{% url 'responsibility_detail' object.id %}"
+                                                   class="btn btn-primary">More info
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -29,19 +33,21 @@
 
                                 <div class="col-md-12">
                                     <div class="container">
-                                        <a href="{% url 'responsibility_create' %}"><button class="btn btn-secondary">Add new</button></a>
+                                        <a href="{% url 'responsibility_create' %}">
+                                            <button class="btn btn-secondary">Add new</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     {% include 'base/footer.html' %}
+
     <style>
         .card {
             margin: 10px;
@@ -51,4 +57,3 @@
         }
     </style>
 {% endblock %}
-

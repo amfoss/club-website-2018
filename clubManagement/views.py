@@ -223,9 +223,15 @@ class ResponsibilityDetailView(DetailView):
         context['responsibility_list'] = self.get_object().studentresponsibility_set.all()
         context['user_count'] = len(context['responsibility_list'])
         context['all_users'] = User.objects.all()
+        if self.request.user.is_superuser or self.request.user == self.object.created_by:
+            context['edit_permission'] = True
+        else:
+            context['edit_permission'] = False
         return context
 
     def post(self, request, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            raise PermissionDenied
         try:
             user = User.objects.get(id=int(request.POST.get('user_id')))
             StudentResponsibility.objects.get(responsibility=self.get_object(), user=user)
