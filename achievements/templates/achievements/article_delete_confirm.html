@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 id="page-header">Articles</h1>
+                    </div>
+                    <div class="col-md-12">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block css %}
+    <style>
+        #page-header {
+            margin: 30px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
