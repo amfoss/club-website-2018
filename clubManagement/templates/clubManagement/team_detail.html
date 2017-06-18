@@ -29,12 +29,14 @@
                                        Added by : {{ object.created_by.first_name }} {{ object.created_by.last_name }}
                                     </small>
                                 </p>
-                                <a href="{% url 'team_update' object.id %}">
-                                    <button type="submit" class="btn btn-primary add-btn">Update</button>
-                                </a>
-                                <a href="{% url 'team_delete' object.id %}">
-                                    <button type="submit" class="btn btn-danger add-btn">Delete</button>
-                                </a>
+                                  {% if edit_permission %}
+                                    <a href="{% url 'team_update' object.id %}">
+                                        <button type="submit" class="btn btn-primary add-btn">Update</button>
+                                    </a>
+                                    <a href="{% url 'team_delete' object.id %}">
+                                        <button type="submit" class="btn btn-danger add-btn">Delete</button>
+                                    </a>
+                                  {% endif %}
                               </div>
                             </div>
 

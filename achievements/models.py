@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 INTERN_CHOICE = (('internship', 'Internship'),
                  ('masters', 'Masters'),
@@ -20,47 +21,54 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     magazine = models.CharField(max_length=200)
-    publication_date = models.DateField(blank=True)
+    date = models.DateField()
+    area = models.CharField(blank=True, max_length=300)
 
     def __str__(self):
         return self.user.username + " " + self.magazine
 
+    def get_absolute_url(self):
+        return reverse('article_detail', kwargs={'pk': self.pk})
+
 
 class Contribution(models.Model):
-    contribution_id = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    org_name = models.CharField(max_length=200)
+    title = models.CharField(max_length=300)
+    contribution_id = models.CharField(max_length=200)
+    organisation = models.CharField(max_length=200)
     url = models.URLField()
     description = models.TextField(blank=True)
-    year = models.IntegerField()
+    date = models.DateField()
 
     def __str__(self):
-        return self.user.username + ' ' + self.org_name + ' ' + self.contribution_id
+        return self.user.username + ' ' + self.organisation + ' ' + self.contribution_id
+
+    def get_absolute_url(self):
+        return reverse('contribution_detail', kwargs={'pk': self.pk})
 
 
-class GSoC(models.Model):
+class Gsoc(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     organization = models.CharField(max_length=200)
-    name = models.CharField(max_length=250)
-    mentor = models.CharField(max_length=250)
+    title = models.CharField(max_length=250)
+    mentors = models.CharField(max_length=300)
     url = models.URLField(max_length=400)
     description = models.TextField(blank=True)
-    year = models.IntegerField()
+    date = models.DateField()
 
     def __str__(self):
-        return self.user.username + ' ' + self.organization + ' ' + str(self.year)
+        return self.user.username + ' ' + self.organization + ' ' + str(self.date)
 
 
 class Intern(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     organisation = models.CharField(max_length=300)
+    title = models.CharField(max_length=300)
     location = models.CharField(max_length=200)
     type = models.CharField(max_length=100, choices=INTERN_CHOICE)
-    start_data = models.DateField(blank=True)
-    end_data = models.DateField(blank=True)
-    field = models.CharField(max_length=100, blank=True)
+    data = models.DateField()
+    area = models.CharField(max_length=100, blank=True)
     description = models.TextField(blank=True)
-    year = models.IntegerField()
 
     def __str__(self):
         return self.user.username + ' ' + self.organisation
@@ -71,8 +79,9 @@ class Speaker(models.Model):
     title = models.CharField(max_length=200)
     type = models.CharField(max_length=100, choices=SPEAKER_CHOICE)
     conference_name = models.CharField(max_length=200)
+    location = models.CharField(max_length=300)
     url = models.URLField(blank=True)
-    year = models.IntegerField()
+    date = models.DateField()
     description = models.TextField(blank=True)
 
     def __str__(self):
@@ -82,22 +91,22 @@ class Speaker(models.Model):
 class Contest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     contest_id = models.BigIntegerField()
-    name = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
     url = models.URLField(blank=True)
     problems_solved = models.IntegerField()
     ranking = models.BigIntegerField()
-    year = models.IntegerField()
-    description = models.TextField(blank=True)
+    date = models.DateField()
+    description = models.TextField(null=True)
 
     def __str__(self):
-        return self.user.username + " " + self.name
+        return self.user.username + " " + self.title
 
 
 class Scholarship(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000, blank=True)
-    year = models.IntegerField()
+    date = models.DateField(null=True)
 
     def __str__(self):
-        return self.user.username + " " + self.name
+        return self.user.username + " " + self.title

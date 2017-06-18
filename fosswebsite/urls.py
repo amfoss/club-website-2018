@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^club/', include('clubManagement.urls')),
     url(r'^foss/', include('promotion.urls')),
+    url(r'^achievements/', include('achievements.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
