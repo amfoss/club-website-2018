@@ -52,6 +52,7 @@ class ArticleUpdateView(UpdateView):
 
 class ArticleDeleteView(DeleteView):
     model = Article
+    template_name = 'achievements/confirm_delete.html'
     success_url = reverse_lazy('article')
 
     def get(self, request, *args, **kwargs):
@@ -63,3 +64,66 @@ class ArticleDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(ArticleDeleteView, self).post(request, *args, **kwargs)
+
+# Contribution views
+
+
+class ContributionListView(ListView):
+    model = Contribution
+
+
+class ContributionDetailView(DetailView):
+    model = Contribution
+
+    def get_context_data(self, **kwargs):
+        context = super(ContributionDetailView, self).get_context_data(**kwargs)
+        if self.request.user.is_superuser or self.request.user == self.get_object().user:
+            context['edit_permission'] = True
+        return context
+
+
+class ContributionCreateView(CreateView):
+    model = Contribution
+    fields = ['contribution_id', 'org_name', 'url', 'description', 'date']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ContributionCreateView, self).form_valid(form)
+
+
+class ContributionUpdateView(UpdateView):
+    model = Contribution
+    fields = ['contribution_id', 'org_name', 'url', 'description', 'date']
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(ContributionUpdateView, self).get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ContributionUpdateView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(ContributionUpdateView, self).post(request, *args, **kwargs)
+
+
+class ContributionDeleteView(DeleteView):
+    model = Contribution
+    template_name = 'achievements/confirm_delete.html'
+    success_url = reverse_lazy('contribution')
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(ContributionDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(ContributionDeleteView, self).post(request, *args, **kwargs)
+
+# GSoc Views
+

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -21,7 +23,7 @@ class Article(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     magazine = models.CharField(max_length=200)
-    publication_date = models.DateField(blank=True)
+    publication_date = models.DateField(null=True)
     area = models.CharField(blank=True, max_length=300)
 
     def __str__(self):
@@ -37,10 +39,13 @@ class Contribution(models.Model):
     org_name = models.CharField(max_length=200)
     url = models.URLField()
     description = models.TextField(blank=True)
-    year = models.IntegerField()
+    date = models.DateField(null=True)
 
     def __str__(self):
         return self.user.username + ' ' + self.org_name + ' ' + self.contribution_id
+
+    def get_absolute_url(self):
+        return reverse('contribution_detail', kwargs={'pk': self.pk})
 
 
 class Gsoc(models.Model):
