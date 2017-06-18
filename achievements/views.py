@@ -15,22 +15,23 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(CreateView):
     model = Article
-    fields = ['user', 'title', 'description', 'magazine', 'publication_date']
+    fields = ['title', 'area', 'description', 'magazine', 'publication_date']
 
     def form_valid(self, form):
-        form.cleaned_data['user'] = self.request.user
+        form.instance.user = self.request.user
         return super(ArticleCreateView, self).form_valid(form)
 
 
 class ArticleUpdateView(UpdateView):
     model = Article
+    fields = ['title', 'area', 'description', 'magazine', 'publication_date']
 
     def get(self, request, *args, **kwargs):
 
         return super(ArticleUpdateView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.cleaned_data['user'] = self.request.user
+        form.instance.user = self.request.user
         return super(ArticleUpdateView, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
