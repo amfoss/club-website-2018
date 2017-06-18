@@ -1,0 +1,342 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} {{ object.user }} -profile {% endblock %}l
+{% block css %}
+<link rel="stylesheet" href="{% static 'profile/css/style.css' %}" />
+{% endblock %}
+{% block body %}
+<div class="inner">
+   <h3 class="masthead-brand">FOSS@Amrita</h3>
+   <nav class="nav nav-masthead">
+      <a class="nav-link" href="#">Achievements</a>
+      {% if request.user.is_authenticated %}
+      <a class="nav-link" href="">{{ request.user.username }}</a>
+      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+      <a class="nav-link" href="#">Contact</a>
+      <a class="nav-link" href="{% url 'login' %}">Login</a>
+      {% endif %}
+   </nav>
+</div>
+</div>
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+   <!-- The Grid -->
+   <div class="w3-row-padding">
+      <!-- Left Column -->
+      <div class="w3-third">
+         <div class="w3-white w3-text-grey w3-card-4">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="col-md-4"></div>
+                     <div class="col-md-4">
+                        <div class="panel panel-default">
+                           <div class="panel-body text-left">
+                              <div class="row">
+                                 <div class="col-md-12 ">
+                                    <center>
+                                       <a class="" href="#">
+                                       <img class="img-circle" src="{{ MEDIA_URL }}profile_pics/{{ object.profile_pic }}" style="width: 180px;height:180px;">
+                                       </a>
+                                    </center>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <h2>{{ object.user }}</h2>
+                                 </div>
+                              </div>
+                           </div>
+                           <div id="IdFooter" class="panel-footer text-right">
+                              <p class="w3-large w3-text-theme"><b><i class="fa-fw w3-margin-left w3-text-teal"></i>Contact</b></p>
+                              <ul class="social-network social-circle">
+                                 <li><a href="{{ object.facebook }}" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                 <li><a href="{{ object.twitter }}" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                 <li><a href="{{ object.googlePlus }}" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                                 <li><a href="{{ object.linkedIn }}" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                  <li><a href="{{ object.github }}" class="icoGithub" title="Github"><i class="fa fa-github"></i></a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4"></div>
+                  </div>
+               </div>
+            </div>
+            <hr>
+            <div class="w3-container">
+               <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Intro</b></p>
+               <p><i class=" fa-fw w3-margin-right w3-large w3-text-teal"></i> {{ object.intro }}</p>
+               <hr>
+               <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Expertise</b></p>
+               <p><i class=" fa-fw w3-margin-right w3-large w3-text-teal"></i> {{ object.expertise }}</p>
+               <hr>
+               <br>
+               <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Type Speed</b></p>
+               <div class="w3-light-grey w3-round-xlarge w3-small">
+                  <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{ object.typing_speed }}%">{{ object.typing_speed }}%</div>
+               </div>
+               <br>
+            </div>
+         </div>
+         <br>
+         <div class="card" style="width: 29rem;">
+             <br>
+            <!--2nd Container-->
+            <div class="container">
+               <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Article</h2>
+               <div class="hover panel" onmouseover="javascript:this.className += ' flip';" onmouseout="javascript:this.className = 'hover panel';">
+                  <div class="front">
+                     <div class="frontTitle">
+                        Article
+                     </div>
+                     <div class="frontLogo isas">
+                     </div>
+                     <div class="frontLocation">
+                        Author
+                     </div>
+                  </div>
+                  <div class="back">
+                     <div class="backTitle">date</div>
+                     <div class="backParagraph">
+                        Description.
+                     </div>
+                     <div class="backGoto">
+                        <a href="http://nicholas.dizin.x10.bz" target="_blank" title="Academic Portfolio">read now→</a>
+                     </div>
+                  </div>
+               </div>
+               <div class="hover panel" onmouseover="javascript:this.className += ' flip';" onmouseout="javascript:this.className = 'hover panel';">
+                  <div class="front">
+                     <div class="frontTitle">
+                        Article
+                     </div>
+                     <div class="frontLogo isas">
+                     </div>
+                     <div class="frontLocation">
+                        Author
+                     </div>
+                  </div>
+                  <div class="back">
+                     <div class="backTitle">date</div>
+                     <div class="backParagraph">
+                        Description.
+                     </div>
+                     <div class="backGoto">
+                        <a href="http://nicholas.dizin.x10.bz" target="_blank" title="Academic Portfolio">read now→</a>
+                     </div>
+                  </div>
+               </div>
+               <div class="hover panel" onmouseover="javascript:this.className += ' flip';" onmouseout="javascript:this.className = 'hover panel';">
+                  <div class="front">
+                     <div class="frontTitle">
+                        Example
+                     </div>
+                     <div class="frontLogo dissolve">
+                     </div>
+                     <div class="frontLocation">
+                        Dissolve.com
+                     </div>
+                  </div>
+                  <div class="back">
+                     <div class="backTitle"> Cinematography</div>
+                     <div class="backParagraph">
+                        I am an independent stock footage contributor on Dissolve.com. I use a GoPro Hero 3+, Canon EOS 70D and DJI Phantom 3 with Adobe Premiere to create the highest quality video and timeplapses I can.
+                     </div>
+                     <div class="backGoto">
+                        <a href="http://dissolve.com/products?media_type=video&producer=Nicholas+Butler" target="_blank" title="Stock Video Collection (Not very comprehensive atm)">Read More →</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- End Left Column -->
+      </div>
+      <!-- Right Column -->
+      <div class="w3-twothird">
+         <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+            <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Registered Events</h2>
+            <div class="w3-container">
+               <div class="container">
+                  <div class="row">
+                     <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+                        <ul class="event-list">
+                           <li>
+                              <time datetime="2014-07-20">
+                              <span class="day">4</span>
+                              <span class="month">Jul</span>
+                              <span class="year">2014</span>
+                              <span class="time">ALL DAY</span>
+                              </time>
+                              <div class="info">
+                                 <h2 class="title">Event 1</h2>
+                                 <p class="desc">Event description</p>
+                                 <ul>
+                                    <li style="width:50%;"><a href="#website"><span class="fa fa-globe"></span> Join Now</a></li>
+                                 </ul>
+                              </div>
+                              <div class="social">
+                                 <ul>
+                                    <li class="facebook" style="width:33%;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
+                                    <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
+                                    <li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
+                                 </ul>
+                              </div>
+                           </li>
+                           <li>
+                              <time datetime="2014-07-20 0000">
+                              <span class="day">8</span>
+                              <span class="month">Jul</span>
+                              <span class="year">2014</span>
+                              <span class="time">12:00 AM</span>
+                              </time>
+                              <div class="info">
+                                 <h2 class="title">Event 2</h2>
+                                 <p class="desc">Event description</p>
+                                 <ul>
+                                    <li style="width:50%;"><a href="#website"><span class="fa fa-globe"></span> Join Now</a></li>
+                                 </ul>
+                              </div>
+                              <div class="social">
+                                 <ul>
+                                    <li class="facebook" style="width:33%;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
+                                    <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
+                                    <li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
+                                 </ul>
+                              </div>
+                           </li>
+                           <li>
+                              <time datetime="2014-07-20 0000">
+                              <span class="day">8</span>
+                              <span class="month">Jul</span>
+                              <span class="year">2014</span>
+                              <span class="time">12:00 AM</span>
+                              </time>
+                              <div class="info">
+                                 <h2 class="title">Event 3</h2>
+                                 <p class="desc">Event description</p>
+                                 <ul>
+                                    <li style="width:50%;"><a href="#website"><span class="fa fa-globe"></span> Join Now</a></li>
+                                 </ul>
+                              </div>
+                              <div class="social">
+                                 <ul>
+                                    <li class="facebook" style="width:33%;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
+                                    <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
+                                    <li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
+                                 </ul>
+                              </div>
+                           </li>
+                           <li>
+                              <time datetime="2014-07-20 0000">
+                              <span class="day">8</span>
+                              <span class="month">Jul</span>
+                              <span class="year">2014</span>
+                              <span class="time">12:00 AM</span>
+                              </time>
+                              <div class="info">
+                                 <h2 class="title">Event 4</h2>
+                                 <p class="desc">Event description</p>
+                                 <ul>
+                                    <li style="width:50%;"><a href="#website"><span class="fa fa-globe"></span> Join Now</a></li>
+                                 </ul>
+                              </div>
+                              <div class="social">
+                                 <ul>
+                                    <li class="facebook" style="width:33%;"><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
+                                    <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
+                                    <li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fa fa-google-plus"></span></a></li>
+                                 </ul>
+                              </div>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="w3-container w3-card-2 w3-white">
+            <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Achivements</h2>
+            <div class="row mb-5">
+               <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                  <div class="card card-inverse card-info">
+                     <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                     <div class="card-block">
+                        <figure class="profile">
+                           <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                        </figure>
+                        <h4 class="card-title mt-3">Empty Card</h4>
+                        <div class="meta card-text">
+                           <div class="card-text">
+                              Description
+                           </div>
+                           <a></a>
+                        </div>
+                     </div>
+                     <div class="card-footer">
+                        <button class="btn btn-info float-right btn-sm">more</button>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                  <div class="card card-inverse card-info">
+                     <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                     <div class="card-block">
+                        <figure class="profile">
+                           <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                        </figure>
+                        <h4 class="card-title mt-3">Empty card</h4>
+                        <div class="meta card-text">
+                        </div>
+                        <div class="card-text">
+                           Description
+                        </div>
+                     </div>
+                     <div class="card-footer">
+                        <button class="btn btn-info float-right btn-sm">More</button>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                  <div class="card card-inverse card-info">
+                     <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                     <div class="card-block">
+                        <figure class="profile profile-inline">
+                           <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                        </figure>
+                        <h4 class="card-title">Empty Card</h4>
+                        <div class="card-text">
+                           Description
+                        </div>
+                     </div>
+                     <div class="card-footer">
+                        <button class="btn btn-info float-right btn-sm">More</button>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                  <div class="card card-inverse card-info">
+                     <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                     <div class="card-block">
+                        <figure class="profile profile-inline">
+                           <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+                        </figure>
+                        <h4 class="card-title">Empty Card</h4>
+                        <div class="card-text">
+                           Description
+                        </div>
+                     </div>
+                     <div class="card-footer">
+                        <button class="btn btn-info btn-sm">More</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- End Right Column -->
+      </div>
+      <!-- End Grid -->
+   </div>
+   <!-- End Page Container -->
+</div>
+{% include 'base/footer.html' %}
+{% endblock %}
