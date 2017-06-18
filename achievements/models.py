@@ -34,15 +34,16 @@ class Article(models.Model):
 
 
 class Contribution(models.Model):
-    contribution_id = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    org_name = models.CharField(max_length=200)
+    title = models.CharField(max_length=300)
+    contribution_id = models.CharField(max_length=200)
+    organisation = models.CharField(max_length=200)
     url = models.URLField()
     description = models.TextField(blank=True)
     date = models.DateField(null=True)
 
     def __str__(self):
-        return self.user.username + ' ' + self.org_name + ' ' + self.contribution_id
+        return self.user.username + ' ' + self.organisation + ' ' + self.contribution_id
 
     def get_absolute_url(self):
         return reverse('contribution_detail', kwargs={'pk': self.pk})

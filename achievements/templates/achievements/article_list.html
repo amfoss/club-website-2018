@@ -25,7 +25,7 @@
                             </thead>
                             <tbody>
                             {% for object in object_list %}
-                                <tr>
+                                <tr class="click" onclick="window.location='{% url 'contribution_detail' object.id %}';">
                                     <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
                                     <td>{{ object.magazine }}</td>
                                     <td>{{ object.title }}</td>
@@ -51,6 +51,9 @@
         }
         .container-fluid {
             margin: 0 6%;
+        }
+        .click {
+            cursor: pointer;
         }
     </style>
 {% endblock %}

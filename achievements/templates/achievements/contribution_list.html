@@ -10,27 +10,27 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 id="page-header">Articles</h1>
+                        <h1 id="page-header">Contribution</h1>
                     </div>
                     <div class="col-md-12">
                         <table class="table table-bordered table-hover">
                             <thead class="thead-default">
                             <tr>
                                 <th>Student</th>
-                                <th>Magazine</th>
+                                <th>Organisation</th>
                                 <th>Title</th>
-                                <th>Area</th>
+                                <th>Bug id</th>
                                 <th>Date</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for object in object_list %}
-                                <tr>
+                                <tr class="click" onclick="window.location='{% url 'contribution_detail' object.id %}';">
                                     <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
-                                    <td>{{ object.magazine }}</td>
+                                    <td>{{ object.organisation }}</td>
                                     <td>{{ object.title }}</td>
-                                    <td>{{ object.area }}</td>
-                                    <td>{{ object.publication_date }}</td>
+                                    <td><a href="{{ object.url }}">{{ object.contribution_id }}</a></td>
+                                    <td>{{ object.date }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -51,6 +51,9 @@
         }
         .container-fluid {
             margin: 0 6%;
+        }
+        .click {
+            cursor: pointer;
         }
     </style>
 {% endblock %}

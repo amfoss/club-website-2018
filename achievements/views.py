@@ -84,7 +84,7 @@ class ContributionDetailView(DetailView):
 
 class ContributionCreateView(CreateView):
     model = Contribution
-    fields = ['contribution_id', 'org_name', 'url', 'description', 'date']
+    fields = ['contribution_id', 'title', 'organisation', 'url', 'description', 'date']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -93,7 +93,7 @@ class ContributionCreateView(CreateView):
 
 class ContributionUpdateView(UpdateView):
     model = Contribution
-    fields = ['contribution_id', 'org_name', 'url', 'description', 'date']
+    fields = ['contribution_id', 'title', 'organisation', 'url', 'description', 'date']
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):

@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %} New Article {% endblock %}
+{% block title %} New contribution {% endblock %}
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-8 offset-2 card">
                         <div class="card-block">
-                            <h1 class="card-title">Article</h1>
+                            <h1 class="card-title">Contribution</h1>
                             <hr>
                             <form action="" method="post">
                                 {% csrf_token %}
@@ -20,23 +20,32 @@
                                     <input type="text" class="form-control" name="title" id="name"
                                            value="{{ object.title }}" placeholder="Title">
                                     <small class="form-text text-muted">
-                                        Title of the responsibility
+                                        Title of the contribution
                                     </small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="magazine">Magazine name</label>
-                                    <input type="text" class="form-control" name="magazine" id="magazine"
-                                           value="{{ object.magazine }}" placeholder="Magazine">
+                                    <label for="contribution_id">Bug id</label>
+                                    <input type="text" class="form-control" name="contribution_id" id="contribution_id"
+                                           value="{{ object.contribution_id }}" placeholder="Contribution id">
                                     <small class="form-text text-muted">
-                                        Name of the magazine
+                                        Contribution or bug id
                                     </small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="topic">Topic</label>
-                                    <input type="text" class="form-control" name="area" id="topic"
-                                           value="{{ object.area }}" placeholder="Topic">
+                                    <label for="organisation">Organisation name</label>
+                                    <input type="text" class="form-control" name="organisation" id="organisation"
+                                           value="{{ object.organisation }}" placeholder="Org name">
                                     <small class="form-text text-muted">
-                                        Topic or area of the article
+                                        Your org name
+                                    </small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="url">Project Url</label>
+                                    <input type="text" class="form-control" name="url" id="url"
+                                           value="{{ object.url }}" placeholder="Url">
+                                    <small class="form-text text-muted">
+                                        Url for your project
                                     </small>
                                 </div>
 
@@ -49,7 +58,7 @@
                                 <div class="form-group">
                                     <label for="date">Publication date</label>
                                     <div class='input-group date' id='datetimepicker1'>
-                                        <input id="date" name="publication_date" value="{{ object.publication_date|date:'Y-M-D' }}"
+                                        <input id="date" name="date" value="{{ object.date|date:'Y-M-D' }}"
                                                type='text' placeholder="YYYY-MM-DD" class="form-control" />
                                         <span class="input-group-addon">
                                             <span class="fa fa-calendar"></span>
