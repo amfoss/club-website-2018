@@ -21,6 +21,7 @@ class Article(models.Model):
     description = models.TextField(blank=True)
     magazine = models.CharField(max_length=200)
     publication_date = models.DateField(blank=True)
+    area = models.CharField(blank=True, max_length=300)
 
     def __str__(self):
         return self.user.username + " " + self.magazine
@@ -38,7 +39,7 @@ class Contribution(models.Model):
         return self.user.username + ' ' + self.org_name + ' ' + self.contribution_id
 
 
-class GSoC(models.Model):
+class Gsoc(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     organization = models.CharField(max_length=200)
     name = models.CharField(max_length=250)

@@ -13,22 +13,26 @@
                         <h1 id="page-header">Articles</h1>
                     </div>
                     <div class="col-md-12">
-                        <table class="table">
+                        <table class="table table-bordered table-hover">
                             <thead class="thead-default">
                             <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                <th>Student</th>
+                                <th>Magazine</th>
+                                <th>Title</th>
+                                <th>Area</th>
+                                <th>Date</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
+                            {% for object in object_list %}
+                                <tr>
+                                    <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                    <td>{{ object.magazine }}</td>
+                                    <td>{{ object.title }}</td>
+                                    <td>{{ object.area }}</td>
+                                    <td>{{ object.publication_date }}</td>
+                                </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
