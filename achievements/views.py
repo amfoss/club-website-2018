@@ -24,7 +24,7 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(CreateView):
     model = Article
-    fields = ['title', 'area', 'description', 'magazine', 'publication_date']
+    fields = ['title', 'area', 'description', 'magazine', 'date']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -33,7 +33,7 @@ class ArticleCreateView(CreateView):
 
 class ArticleUpdateView(UpdateView):
     model = Article
-    fields = ['title', 'area', 'description', 'magazine', 'publication_date']
+    fields = ['title', 'area', 'description', 'magazine', 'date']
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):

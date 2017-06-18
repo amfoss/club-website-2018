@@ -19,7 +19,7 @@
                             <h4 class="card-title">{{ object.title }}</h4>
                               <h5 class="card-text"><small class="text-muted">{{ object.area }}, {{ object.magazine }}</small></h5>
                             <p class="card-text">{{ object.description }}</p>
-                            <p class="card-text"><small class="text-muted">{{ object.user.first_name }} {{ object.user.last_name }}, {{ object.publication_date }}</small></p>
+                            <p class="card-text"><small class="text-muted">{{ object.user.first_name }} {{ object.user.last_name }}, {{ object.date }}</small></p>
                             {% if edit_permission %}
                                 <a href="{% url 'article_update' object.id %}">
                                     <button type="submit" class="btn btn-primary add-btn">Update</button>
