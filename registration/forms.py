@@ -17,8 +17,7 @@ class UserSignUpForm(forms.ModelForm):
     password2 = forms.CharField(label=_("Password confirmation"),
                                 widget=forms.PasswordInput,
                                 help_text=_("Enter the same password as above, for verification."))
-    year = forms.IntegerField(label=_("Year of admission"),
-                              widget=forms.IntegerField)
+    year = forms.IntegerField(label=_("Year of admission"))
 
     class Meta:
         model = User
@@ -43,7 +42,7 @@ class UserSignUpForm(forms.ModelForm):
         :return: cleaned year
         """
         year = int(self.cleaned_data.get("year"))
-        if year > datetime.timezone.now().year:
+        if year > int(datetime.timezone.now().year):
             raise forms.ValidationError(_("The year cannot be greater than the current year"))
         if year < 2000:
             raise forms.ValidationError(_("The year cannot be less than 2000"))
@@ -57,9 +56,10 @@ class UserSignUpForm(forms.ModelForm):
         """
         user = super(UserSignUpForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
-        UserInfo(year=self.cleaned_data['year']).save()     # Add a new UserInfo with only the year of joining
+        user.is_active = False
         if commit:
             user.save()
+        UserInfo(user=user, year=self.cleaned_data['year']).save()  # Add a new UserInfo with only the year of joining
         return user
 
     def clean_username(self):
