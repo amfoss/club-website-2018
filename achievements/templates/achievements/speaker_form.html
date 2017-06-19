@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %} New Article {% endblock %}
+{% block title %} New Speaker {% endblock %}
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-8 offset-md-2 card">
                         <div class="card-block">
-                            <h1 class="card-title">Article</h1>
+                            <h1 class="card-title">Speaker</h1>
                             <hr>
                             <form action="" method="post">
                                 {% csrf_token %}
@@ -20,30 +20,52 @@
                                     <input type="text" class="form-control" name="title" id="name"
                                            value="{{ object.title }}" placeholder="Title">
                                     <small class="form-text text-muted">
-                                        Title of the article
+                                        Title of the contribution
                                     </small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="magazine">Magazine name</label>
-                                    <input type="text" class="form-control" name="magazine" id="magazine"
-                                           value="{{ object.magazine }}" placeholder="Magazine">
+                                    <label for="type">Type</label>
+                                    <select class="form-control" name="type" id="type">
+                                        {% for value, text in form.fields.type.choices %}
+                                            <option {% if form.fields.type.value == value %}selected{% endif %} value="{{ value }}">{{ text }}</option>
+                                        {% endfor %}
+                                    </select>
                                     <small class="form-text text-muted">
-                                        Name of the magazine
+                                        Select the area or type
+                                    </small>
+                                  </div>
+                                <div class="form-group">
+                                    <label for="conference_name">Conference</label>
+                                    <input type="text" class="form-control" name="conference_name" id="conference_name"
+                                           value="{{ object.conference_name }}" placeholder="Conference name">
+                                    <small class="form-text text-muted">
+                                        Enter your conference name
                                     </small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="topic">Topic</label>
-                                    <input type="text" class="form-control" name="area" id="topic"
-                                           value="{{ object.area }}" placeholder="Topic">
+                                    <label for="location">Location</label>
+                                    <input type="text" class="form-control" name="location" id="location"
+                                           value="{{ object.location }}" placeholder="Location">
                                     <small class="form-text text-muted">
-                                        Topic or area of the article
+                                        Location of the conference
+                                    </small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="url">Conference url</label>
+                                    <input type="text" class="form-control" name="url" id="url"
+                                           value="{{ object.url }}" placeholder="Url">
+                                    <small class="form-text text-muted">
+                                        Url to the conference or talk
                                     </small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="description">Description</label>
                                     <textarea id="description" name="description" class="form-control"
-                                              placeholder="Description" rows="5">{{ object.description }}</textarea>
+                                              placeholder="Description" rows="5">
+                                        {{ object.description }}
+                                    </textarea>
                                 </div>
 
                                 <div class="form-group">
