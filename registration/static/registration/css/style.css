@@ -5,8 +5,6 @@
  * General styles
  */
 body, html {
-    height: 100%;
-    background-repeat: no-repeat;
     background-image: linear-gradient(rgb(249, 248, 249), rgb(227, 230, 229));
 }
 
@@ -14,7 +12,6 @@ body, html {
     max-width: 350px;
     padding: 40px 40px;
 }
-
 
 
 .btn {
@@ -68,6 +65,7 @@ body, html {
 
 .form-signin input[type=email],
 .form-signin input[type=password],
+.form-signin input[type=number],
 .form-signin input[type=text],
 .form-signin button {
     width: 100%;

@@ -47,6 +47,7 @@
                             <input type="text" value="{{ form.last_name.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="Last name" name="last_name" required autofocus>
                             <input type="email" value="{{ form.email.value|default_if_none:"" }}" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
                             <input type="text" value="{{ form.username.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="User name" name="username" required autofocus>
+                            <input type="number" value="{{ form.username.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="Year of admission" name="year" required autofocus>
                             <fieldset>
                             <input type="password" id="inputPassword" name="password1" class="form-control" placeholder="Password" required>
                             <input type="password" id="inputPassword" name="password2" class="form-control"  placeholder="Once more" required>
@@ -64,6 +65,12 @@
     </div>
 
     {% include 'base/footer.html' %}
+
+    <style>
+        #wrap {
+            min-height: calc(100% - 100px);
+        }
+    </style>
 
 {% endblock %}
 
