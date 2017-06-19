@@ -46,4 +46,7 @@ urlpatterns = [
     url(r'^contest/(?P<pk>[0-9]+)/$', ContestDetailView.as_view(), name='contest_detail'),
     url(r'^contest/(?P<pk>[0-9]+)/update/$', ContestUpdateView.as_view(), name='contest_update'),
     url(r'^contest/(?P<pk>[0-9]+)/delete/$', ContestDeleteView.as_view(), name='contest_delete'),
+
+    # all achievements
+    url(r'^$', AchievementListView.as_view(), name='achievements')
 ]

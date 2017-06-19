@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
 from .forms import *
 from .models import *
@@ -399,3 +399,17 @@ class ContestDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(ContestDeleteView, self).post(request, *args, **kwargs)
+
+
+class AchievementListView(TemplateView):
+    template_name = 'achievements/achievements_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AchievementListView, self).get_context_data(**kwargs)
+        context['article_list'] = Article.objects.all().order_by('-date')
+        context['contest_list'] = Contest.objects.all().order_by('-date')
+        context['contribution_list'] = Contribution.objects.all().order_by('-date')
+        context['gsoc_list'] = Gsoc.objects.all().order_by('-date')
+        context['intern_list'] = Intern.objects.all().order_by('-date')
+        context['speaker_list'] = Speaker.objects.all().order_by('-date')
+        return context
