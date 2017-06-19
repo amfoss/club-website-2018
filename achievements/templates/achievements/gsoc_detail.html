@@ -16,10 +16,17 @@
                         <div class="card mb-3">
                           <img class="card-img-top" src="{% static 'achievements/image/articles-writing.jpg' %}" alt="Card image cap">
                           <div class="card-block">
-                            <h4 class="card-title">{{ object.title }}</h4>
-                            <p class="card-text">{{ object.description }}</p>
+                              <h4 class="card-title"><a href="{{ object.url }}">{{ object.title }}</a></h4>
+                            <h5 class="card-text">
+                                <small class="text-muted">
+                                    {{ object.organization }}
+                                </small>
+                            </h5>
+                              <p class="card-text">{{ object.description }}</p>
+                            <p class="card-text">Mentors: {{ object.mentors }}</p>
                             <p class="card-text"><small class="text-muted">{{ object.user.first_name }} {{ object.user.last_name }}, {{ object.date }}</small></p>
-                            {% if edit_permission %}
+
+                              {% if edit_permission %}
                                 <a href="{% url 'gsoc_update' object.id %}">
                                     <button type="submit" class="btn btn-primary add-btn">Update</button>
                                 </a>

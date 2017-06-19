@@ -146,7 +146,6 @@ class ContributionDeleteView(DeleteView):
         return super(ContributionDeleteView, self).post(request, *args, **kwargs)
 
 
-      
 # GSoc Views
 class GsocListView(ListView):
     model = Gsoc

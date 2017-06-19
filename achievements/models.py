@@ -60,6 +60,9 @@ class Gsoc(models.Model):
     def __str__(self):
         return self.user.username + ' ' + self.organization + ' ' + str(self.date)
 
+    def get_absolute_url(self):
+        return reverse('gsoc_detail', kwargs={'pk': self.pk})
+
 
 class Intern(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -73,6 +76,9 @@ class Intern(models.Model):
 
     def __str__(self):
         return self.user.username + ' ' + self.organisation
+
+    def get_absolute_url(self):
+        return reverse('intern_detail', kwargs={'pk': self.pk})
 
 
 class Speaker(models.Model):
