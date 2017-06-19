@@ -215,7 +215,7 @@ class ContestListView(ListView):
 
 
 class ContestDetailView(DetailView):
-    model = Speaker
+    model = Contest
 
     def get_context_data(self, **kwargs):
         context = super(ContestDetailView, self).get_context_data(**kwargs)
@@ -227,6 +227,11 @@ class ContestDetailView(DetailView):
 class ContestCreateView(CreateView):
     form_class = ContestForm
     template_name = 'achievements/form.html'
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(ContestCreateView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -240,13 +245,20 @@ class ContestCreateView(CreateView):
 
 
 class ContestUpdateView(UpdateView):
+    form_class = ContestForm
+    template_name = 'achievements/form.html'
     model = Contest
-    fields = ['title', 'type', 'conference_name', 'location', 'url', 'date', 'description']
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(ContestUpdateView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(ContestUpdateView, self).get_context_data(**kwargs)
+        context['heading'] = 'Contest'
+        context['title'] = 'Contests'
+        return context
 
     def form_valid(self, form):
         form.instance.user = self.request.user
