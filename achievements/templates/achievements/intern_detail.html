@@ -46,12 +46,16 @@
         </div>
     </div>
     {% include 'base/footer.html' %}
-{% endblock %}
-
-{% block css %}
     <style>
         #page-header {
             margin-top: 30px;
+        }
+
+        @media (max-width:480px)  {
+            /* smartphones, Android phones, landscape iPhone */
+            .card-img-top {
+                height: 7em;
+            }
         }
     </style>
 {% endblock %}

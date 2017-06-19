@@ -10,7 +10,34 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="contribution col-md-12">
-                        <div class="heading col-md-12">Contribution</div>
+                        <div class="heading col-md-12">
+                            <h1>Contribution</h1>
+                        </div>
+                        <div class="content col-md-12">
+                            <table class="table-responsive table-bordered table-hover">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Magazine</th>
+                                    <th>Title</th>
+                                    <th>Area</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for object in article_list %}
+                                    <tr class="click"
+                                        onclick="window.location='{% url 'contribution_detail' object.id %}';">
+                                        <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                        <td>{{ object.magazine }}</td>
+                                        <td>{{ object.title }}</td>
+                                        <td>{{ object.area }}</td>
+                                        <td>{{ object.date }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -21,6 +48,22 @@
 
 {% block css %}
     <style>
+        .container-fluid {
+            margin-top: 30px;
+        }
+
+        @media (min-width:1025px) {
+            /* big landscape tablets, laptops, and desktops */
+            .container-fluid {
+                margin: 30px 10%;
+            }
+        }
+
+        #main {
+            overflow-x: hidden;
+        }
+
+
 
     </style>
 {% endblock %}
