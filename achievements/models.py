@@ -71,7 +71,6 @@ class Intern(models.Model):
     location = models.CharField(max_length=200)
     type = models.CharField(max_length=100, choices=INTERN_CHOICE)
     date = models.DateField()
-    area = models.CharField(max_length=100, blank=True)
     description = models.TextField(blank=True)
 
     def __str__(self):

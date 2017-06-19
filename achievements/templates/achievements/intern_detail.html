@@ -18,6 +18,14 @@
                                  alt="Card image cap">
                             <div class="card-block">
                                 <h4 class="card-title">{{ object.title }}</h4>
+                                <h4 class="card-title">
+                                    <small class="text-muted">
+                                        {{ object.organisation }}
+                                    </small>
+                                </h4>
+                                <h5 class="card-text">
+                                    <small class="text-muted">{{ object.type }}, {{ object.area }}</small>
+                                </h5>
                                 <p class="card-text">{{ object.description }}</p>
                                 <p class="card-text">
                                     <small class="text-muted">{{ object.user.first_name }} {{ object.user.last_name }}, {{ object.date }}</small>
