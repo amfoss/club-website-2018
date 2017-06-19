@@ -19,4 +19,11 @@ urlpatterns = [
     url(r'^contribution/(?P<pk>[0-9]+)/update/$', ContributionUpdateView.as_view(), name='contribution_update'),
     url(r'^contribution/(?P<pk>[0-9]+)/delete/$', ContributionDeleteView.as_view(), name='contribution_delete'),
 
+    # speaker
+    url(r'^speaker/$', SpeakerListView.as_view(), name='speaker'),
+    url(r'^speaker/create/$', SpeakerCreateView.as_view(), name='speaker_create'),
+    url(r'^speaker/(?P<pk>[0-9]+)/$', SpeakerDetailView.as_view(), name='speaker_detail'),
+    url(r'^speaker/(?P<pk>[0-9]+)/update/$', SpeakerUpdateView.as_view(), name='speaker_update'),
+    url(r'^speaker/(?P<pk>[0-9]+)/delete/$', SpeakerDeleteView.as_view(), name='speaker_delete'),
+
 ]

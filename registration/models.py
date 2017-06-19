@@ -16,7 +16,7 @@ class UserInfo(models.Model):
     googlePlus = models.URLField(blank=True)
     facebook = models.URLField(blank=True)
     twitter = models.URLField(blank=True)
-    year = models.IntegerField(blank=True)
+    year = models.IntegerField(blank=True, null=True)
     resume = models.FileField(upload_to='resume/', blank=True, null=True)
     typing_speed = models.IntegerField(blank=True, null=True)
 
@@ -26,5 +26,5 @@ class UserInfo(models.Model):
         return self.user.username
 
     def get_absolute_url(self):
-        id = self.id
-        return 'url to %d' %id
+        pk = self.id
+        return 'url to %d' % pk

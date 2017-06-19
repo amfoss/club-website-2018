@@ -88,6 +88,9 @@ class Speaker(models.Model):
     def __str__(self):
         return self.user.username + " " + self.title
 
+    def get_absolute_url(self):
+        return reverse('speaker_detail', kwargs={'pk': self.pk})
+
 
 class Contest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
