@@ -386,3 +386,10 @@ class TeamMemberDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(TeamMemberDeleteView, self).post(request, *args, **kwargs)
+
+
+
+
+
+
+

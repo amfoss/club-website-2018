@@ -19,6 +19,20 @@ urlpatterns = [
     url(r'^contribution/(?P<pk>[0-9]+)/update/$', ContributionUpdateView.as_view(), name='contribution_update'),
     url(r'^contribution/(?P<pk>[0-9]+)/delete/$', ContributionDeleteView.as_view(), name='contribution_delete'),
 
+    # GSoc
+    url(r'^gsoc/$', GsocListView.as_view(), name='gsoc'),
+    url(r'^gsoc/create/$', GsocCreateView.as_view(), name='gsoc_create'),
+    url(r'^gsoc/(?P<pk>[0-9]+)/$', GsocDetailView.as_view(), name='gsoc_detail'),
+    url(r'^gsoc/(?P<pk>[0-9]+)/update/$', GsocUpdateView.as_view(), name='gsoc_update'),
+    url(r'^gsoc/(?P<pk>[0-9]+)/delete/$', GsocDeleteView.as_view(), name='gsoc_delete'),
+
+    # Intern
+    url(r'^intern/$', InternListView.as_view(), name='intern'),
+    url(r'^intern/create/$', InternCreateView.as_view(), name='intern_create'),
+    url(r'^intern/(?P<pk>[0-9]+)/$', InternDetailView.as_view(), name='intern_detail'),
+    url(r'^intern/(?P<pk>[0-9]+)/update/$', InternUpdateView.as_view(), name='intern_update'),
+    url(r'^intern/(?P<pk>[0-9]+)/delete/$', InternDeleteView.as_view(), name='intern_delete'),
+
     # speaker
     url(r'^speaker/$', SpeakerListView.as_view(), name='speaker'),
     url(r'^speaker/create/$', SpeakerCreateView.as_view(), name='speaker_create'),
