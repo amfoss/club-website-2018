@@ -223,7 +223,7 @@ class InternDetailView(DetailView):
     
 class InternCreateView(CreateView):
     model = Intern
-    fields = ['organisation', 'title', 'type', 'date', 'description']
+    fields = ['organisation', 'title', 'location', 'area', 'type', 'date', 'description']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -232,7 +232,7 @@ class InternCreateView(CreateView):
 
 class InternUpdateView(UpdateView):
     model = Intern
-    fields = ['organisation', 'title', 'type', 'date', 'description']
+    fields = ['organisation', 'title', 'location', 'area', 'type', 'date', 'description']
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
