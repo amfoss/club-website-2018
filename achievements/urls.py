@@ -26,4 +26,10 @@ urlpatterns = [
     url(r'^speaker/(?P<pk>[0-9]+)/update/$', SpeakerUpdateView.as_view(), name='speaker_update'),
     url(r'^speaker/(?P<pk>[0-9]+)/delete/$', SpeakerDeleteView.as_view(), name='speaker_delete'),
 
+    # Contest
+    url(r'^contest/$', ContestListView.as_view(), name='contest'),
+    url(r'^contest/create/$', ContestCreateView.as_view(), name='contest_create'),
+    url(r'^contest/(?P<pk>[0-9]+)/$', ContestDetailView.as_view(), name='contest_detail'),
+    url(r'^contest/(?P<pk>[0-9]+)/update/$', ContestUpdateView.as_view(), name='contest_update'),
+    url(r'^contest/(?P<pk>[0-9]+)/delete/$', ContestDeleteView.as_view(), name='contest_delete'),
 ]

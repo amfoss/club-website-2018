@@ -94,7 +94,7 @@ class Speaker(models.Model):
 
 class Contest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    contest_id = models.BigIntegerField()
+    contest_id = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     url = models.URLField(blank=True)
     problems_solved = models.IntegerField()
@@ -104,6 +104,9 @@ class Contest(models.Model):
 
     def __str__(self):
         return self.user.username + " " + self.title
+
+    def get_absolute_url(self):
+        return reverse('contest_detail', kwargs={'pk': self.pk})
 
 
 class Scholarship(models.Model):

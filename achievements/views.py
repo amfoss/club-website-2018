@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from .forms import *
 from .models import *
 
 
@@ -206,3 +207,68 @@ class SpeakerDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(SpeakerDeleteView, self).post(request, *args, **kwargs)
+
+
+# Contest Views
+class ContestListView(ListView):
+    model = Contest
+
+
+class ContestDetailView(DetailView):
+    model = Speaker
+
+    def get_context_data(self, **kwargs):
+        context = super(ContestDetailView, self).get_context_data(**kwargs)
+        if self.request.user.is_superuser or self.request.user == self.get_object().user:
+            context['edit_permission'] = True
+        return context
+
+
+class ContestCreateView(CreateView):
+    form_class = ContestForm
+    template_name = 'achievements/form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ContestCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(ContestCreateView, self).get_context_data(**kwargs)
+        context['heading'] = 'Contest'
+        context['title'] = 'Contests'
+        return context
+
+
+class ContestUpdateView(UpdateView):
+    model = Contest
+    fields = ['title', 'type', 'conference_name', 'location', 'url', 'date', 'description']
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(ContestUpdateView, self).get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ContestUpdateView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(ContestUpdateView, self).post(request, *args, **kwargs)
+
+
+class ContestDeleteView(DeleteView):
+    model = Contest
+    template_name = 'achievements/confirm_delete.html'
+    success_url = reverse_lazy('contest')
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(ContestDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(ContestDeleteView, self).post(request, *args, **kwargs)
