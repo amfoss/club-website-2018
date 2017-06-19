@@ -10,11 +10,107 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="contribution col-md-12">
+
+                        <!-- Contributions -->
+
                         <div class="heading col-md-12">
-                            <h1>Contribution</h1>
+                            <h1><i class="fa fa-share-alt"></i> Contributions</h1>
+                        </div>
+                        <div class="content col-md-12 table-responsive">
+                            {% if contribution_list %}
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Organisation</th>
+                                    <th>Title</th>
+                                    <th>Bug id</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for object in contribution_list %}
+                                    <tr class="click"
+                                        onclick="window.location='{% url 'contribution_detail' object.id %}';">
+                                        <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                        <td>{{ object.organisation }}</td>
+                                        <td>{{ object.title }}</td>
+                                        <td><a href="{{ object.url }}">{{ object.contribution_id }}</a></td>
+                                        <td>{{ object.date }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <a href="{% url 'contribution' %}">
+                                <button class="btn btn-secondary">All contributions</button>
+                            </a>
+                            {% if request.user.is_authenticated %}
+                                <a href="{% url 'contribution_create' %}">
+                                    <button class="btn btn-secondary">New contribution</button>
+                                </a>
+                            {% endif %}
+                            {% else %}
+                                <div class="alert alert-warning col-md-12" role="alert">
+                                  <strong>No records found!</strong> Sorry, no data to be loaded.
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+                        <hr> <!-- GSoC -->
+
+                        <div class="heading col-md-12">
+                            <h1><i class="fa fa-google-plus"></i> GSoC</h1>
                         </div>
                         <div class="content col-md-12">
-                            <table class="table-responsive table-bordered table-hover">
+                            {% if gsoc_list %}
+                                <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="thead-default">
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Organisation</th>
+                                        <th>Title</th>
+                                        <th>Mentors</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for object in gsoc_list %}
+                                        <tr class="click" onclick="window.location='{% url 'gsoc_detail' object.id %}';">
+                                            <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                            <td>{{ object.organization }}</td>
+                                            <td>{{ object.title }}</td>
+                                            <td>{{ object.mentors }}</td>
+                                            <td>{{ object.date }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            <a href="{% url 'gsoc' %}">
+                                <button class="btn btn-secondary">All GSoCs</button>
+                            </a>
+                            {% if request.user.is_authenticated %}
+                                <a href="{% url 'gsoc_create' %}">
+                                    <button class="btn btn-secondary">New GSoC</button>
+                                </a>
+                            {% endif %}
+                            {% else %}
+                                <div class="alert alert-warning col-md-12" role="alert">
+                                  <strong>No records found!</strong> Sorry, no data to be loaded.
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <hr> <!-- Articles -->
+
+                        <div class="heading col-md-12">
+                            <h1><i class="fa fa-file-text"></i> Articles</h1>
+                        </div>
+                        <div class="content col-md-12 table-responsive">
+                            {% if article_list %}
+                            <table class="table table-bordered table-hover">
                                 <thead class="thead-default">
                                 <tr>
                                     <th>Student</th>
@@ -37,7 +133,23 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
+                            <a href="{% url 'article' %}">
+                                <button class="btn btn-secondary">All articles</button>
+                            </a>
+                            {% if request.user.is_authenticated %}
+                                <a href="{% url 'article_create' %}">
+                                    <button class="btn btn-secondary">New article</button>
+                                </a>
+                            {% endif %}
+                            {% else %}
+                                <div class="alert alert-warning col-md-12" role="alert">
+                                  <strong>No records found!</strong> Sorry, no data to be loaded.
+                                </div>
+                            {% endif %}
                         </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -52,18 +164,38 @@
             margin-top: 30px;
         }
 
+
+
         @media (min-width:1025px) {
             /* big landscape tablets, laptops, and desktops */
             .container-fluid {
                 margin: 30px 10%;
             }
         }
+        
+
 
         #main {
             overflow-x: hidden;
         }
 
+        .heading {
+            margin: 40px 0;
+        }
+        .content {
+            margin: 40px 0;
+        }
+        .click {
+            cursor: pointer;
+        }
+        .btn {
+            margin: 10px 10px 10px 0;
+        }
 
-
+        @media (max-width: 500px) {
+            .btn {
+                margin: 40px 10px 10px 0;
+            }
+        }
     </style>
 {% endblock %}
