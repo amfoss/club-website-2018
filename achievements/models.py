@@ -112,13 +112,3 @@ class Contest(models.Model):
 
     def get_absolute_url(self):
         return reverse('contest_detail', kwargs={'pk': self.pk})
-
-
-class Scholarship(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
-    description = models.TextField(max_length=1000, blank=True)
-    date = models.DateField(null=True)
-
-    def __str__(self):
-        return self.user.username + " " + self.title

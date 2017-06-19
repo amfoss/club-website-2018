@@ -11,4 +11,4 @@ admin.site.register(Gsoc)
 admin.site.register(Intern)
 admin.site.register(Speaker)
 admin.site.register(Contest)
-admin.site.register(Scholarship)
+
