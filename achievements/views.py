@@ -127,3 +127,126 @@ class ContributionDeleteView(DeleteView):
 
 # GSoc Views
 
+
+class GsocListView(ListView):
+    model = Gsoc
+
+
+class GsocDetailView(DetailView):
+    model = Gsoc
+
+    def get_context_data(self, **kwargs):
+        context = super(GsocDetailView, self).get_context_data(**kwargs)
+        if self.request.user.is_superuser or self.request.user == self.get_object().user:
+            context['edit_permission'] = True
+        return context
+
+
+class GsocCreateView(CreateView):
+    model = Gsoc
+    fields = ['organization', 'title', 'mentors', 'url', 'description', 'date']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(GsocCreateView, self).form_valid(form)
+
+
+class GsocUpdateView(UpdateView):
+    model = Gsoc
+    fields = ['organization', 'title', 'mentors', 'url', 'description', 'date']
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(GsocUpdateView, self).get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(GsocUpdateView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(GsocUpdateView, self).post(request, *args, **kwargs)
+
+
+class GsocDeleteView(DeleteView):
+    model = Gsoc
+    template_name = 'achievements/confirm_delete.html'
+    success_url = reverse_lazy('gsoc')
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(GsocDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(GsocDeleteView, self).post(request, *args, **kwargs)
+
+
+# Intern Views
+
+class InternListView(ListView):
+    model = Intern
+
+
+class InternDetailView(DetailView):
+    model = Intern
+
+    def get_context_data(self, **kwargs):
+        context = super(InternDetailView, self).get_context_data(**kwargs)
+        if self.request.user.is_superuser or self.request.user == self.get_object().user:
+            context['edit_permission'] = True
+        return context
+
+
+class InternCreateView(CreateView):
+    model = Intern
+    fields = ['organisation', 'title', 'type', 'date', 'description']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(InternCreateView, self).form_valid(form)
+
+
+class InternUpdateView(UpdateView):
+    model = Intern
+    fields = ['organisation', 'title', 'type', 'date', 'description']
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(InternUpdateView, self).get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(InternUpdateView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(InternUpdateView, self).post(request, *args, **kwargs)
+
+
+class InternDeleteView(DeleteView):
+    model = Intern
+    template_name = 'achievements/confirm_delete.html'
+    success_url = reverse_lazy('intern')
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(InternDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(InternDeleteView, self).post(request, *args, **kwargs)
+
+
+
+
+
+
