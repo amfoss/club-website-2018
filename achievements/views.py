@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# created by Chirath R, chirath.02@gmail.com
 from __future__ import unicode_literals
 
 from django.shortcuts import redirect
@@ -9,60 +10,77 @@ from .models import *
 
 
 class ArticleListView(ListView):
+    """
+    list out all the articles as a table, article_list.html
+    """
     model = Article
 
 
 class ArticleDetailView(DetailView):
+    """
+    Show the detail of the article, pk should be passed in the url. article_detail.html
+    """
     model = Article
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
         if self.request.user.is_superuser or self.request.user == self.get_object().user:
-            context['edit_permission'] = True
+            context['edit_permission'] = True   # To show update and delete button
         return context
 
 
 class ArticleCreateView(CreateView):
+    """
+    Creates an article, verifies and saves data to the db. article_form.html
+    pk should be provided as url parameter.
+    """
     model = Article
     fields = ['title', 'area', 'description', 'magazine', 'date']
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.user = self.request.user  # user foreign key has to be explicitly set with the logged in user
         return super(ArticleCreateView, self).form_valid(form)
 
 
 class ArticleUpdateView(UpdateView):
+    """
+    Updates an article, same as CreateView but data will be pre loaded in the form. article_form.html
+    pk should be provided as url parameter.
+    """
     model = Article
     fields = ['title', 'area', 'description', 'magazine', 'date']
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
-            redirect('permission_denied')
+            redirect('permission_denied')   # error page if not admin or creator of article
         return super(ArticleUpdateView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.user = self.request.user   # user foreign key has to be explicitly set with the logged in user
         return super(ArticleUpdateView, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
-            redirect('permission_denied')
+            redirect('permission_denied')   # error page if not admin or creator of article
         return super(ArticleUpdateView, self).post(request, *args, **kwargs)
 
 
 class ArticleDeleteView(DeleteView):
+    """
+    Deletes a given article, takes pk as parameter in the url.
+    """
     model = Article
     template_name = 'achievements/confirm_delete.html'
-    success_url = reverse_lazy('article')
+    success_url = reverse_lazy('article')   # url to redirect after deleting
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
-            redirect('permission_denied')
+            redirect('permission_denied')   # error page if not admin or creator of article
         return super(ArticleDeleteView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
-            redirect('permission_denied')
+            redirect('permission_denied')   # error page if not admin or creator of article
         return super(ArticleDeleteView, self).post(request, *args, **kwargs)
 
 
