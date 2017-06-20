@@ -424,10 +424,14 @@ class AchievementListView(TemplateView):
             '#FF6F00', '#E65100', '#BF360C', '#3E2723', '#212121', '#263238'
         ]
 
-        contribution_x = []
+        contribution_x = Contribution.objects.order_by().values_list('organisation').distinct()
         contribution_y = []
 
-        org_list = Contribution.objects.order_by().values('organisation').distinct()
+        for org in contribution_x:
+            contribution_y.append(len(Contribution.objects.filter(organisation=org[0])))
 
-        print(org_list)
+        context['contribution_x'] = contribution_x
+        context['contribution_y'] = contribution_y
+        context['color_list'] = color_list[:len(contribution_x)]
+
         return context

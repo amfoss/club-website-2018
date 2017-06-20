@@ -338,31 +338,37 @@
 {% endblock %}
 
 {% block script %}
+<script src="{% static 'base/js/chart-bundle.js'%}"></script>
 <script>
     var config = {
         type: 'pie',
         data: {
             datasets: [{
                 data: [
-                    {% for i in contribution_x %}
+                    {% for i in contribution_y %}
                         {{ i }},
                     {% endfor %}
                 ],
                 backgroundColor: [
                     {% for i in color_list %}
-                        {{ i }},
+                        '{{ i }}',
                     {% endfor %}
                 ],
                 label: 'Organisations'
             }],
             labels: [
-                {% for i in contribution_y %}
-                    '{{ i }}',
+                {% for i in contribution_x %}
+                    '{{ i.0 }}',
                 {% endfor %}
             ]
         },
         options: {
-            responsive: true
+            title: {
+                display:true,
+                text:'Contributions'
+            },
+            responsive: true,
+            maintainAspectRatio: true
         }
     };
 
@@ -379,6 +385,7 @@
     <style>
         #contribution-chart {
             max-height: 500px;
+            max-width: 500px;
         }
         .container-fluid {
             margin-top: 30px;
@@ -387,6 +394,12 @@
             /* big landscape tablets, laptops, and desktops */
             .container-fluid {
                 margin: 30px 10%;
+            }
+        }
+        @media (min-width: 550px) {
+            /* big landscape tablets, laptops, and desktops */
+            canvas {
+                margin: 40px 0;
             }
         }
         #main {

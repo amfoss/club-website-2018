@@ -4,9 +4,6 @@
 {% load index %}
 
 {% block title %} Add attendance {% endblock %}
-{% block css %}
-    <script src="{% static 'base/js/chart-bundle.js'%}"></script>
-{% endblock %}
 
 {% block body %}
     <div id="wrap">
@@ -47,6 +44,8 @@
     </div>
 
     {% include 'base/footer.html' %}
+
+    <script src="{% static 'base/js/chart-bundle.js'%}"></script>
 
     <script>
 
