@@ -341,7 +341,7 @@ class ContestDetailView(DetailView):
       
 class ContestCreateView(CreateView):
     form_class = ContestForm
-    template_name = 'achievements/form.html'
+    template_name = 'base/form.html'
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
@@ -361,7 +361,7 @@ class ContestCreateView(CreateView):
 
 class ContestUpdateView(UpdateView):
     form_class = ContestForm
-    template_name = 'achievements/form.html'
+    template_name = 'base/form.html'
     model = Contest
 
     def get(self, request, *args, **kwargs):
