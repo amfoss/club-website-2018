@@ -18,3 +18,4 @@ class JoinApplicationDetailView(DetailView):
 
 class JoinApplicationCreateView(CreateView):
     model = JoinApplication
+    template_name = 'base/form.html'
