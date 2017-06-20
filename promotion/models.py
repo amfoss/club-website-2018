@@ -19,8 +19,8 @@ class JoinApplication(models.Model):
     batch = models.CharField(max_length=100, choices=batch_choices)
     motivation = models.TextField()
     cs_background = models.TextField(blank=True)
-    previous_work = models.TextField(blank=True)
     interests = models.TextField()
+    is_approved = models.BooleanField(default=False)
 
     date = models.DateTimeField(auto_now_add=False, auto_now=True)
 

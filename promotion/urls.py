@@ -3,7 +3,7 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 
-from promotion.views import JoinApplicationCreateView, JoinApplicationListView, JoinApplicationDetailView
+from promotion.views import *
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='promotion/index.html'), name='foss_intro'),
@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^join/$', JoinApplicationCreateView.as_view(), name='join'),
     url(r'^join/list$', login_required(JoinApplicationListView.as_view()), name='join_list'),
     url(r'^join/(?P<pk>[0-9]+)/$', login_required(JoinApplicationDetailView.as_view()), name='join_detail'),
+    url(r'^join/(?P<pk>[0-9]+)/update$', login_required(JoinApplicationUpdateView.as_view()), name='join_update'),
 ]

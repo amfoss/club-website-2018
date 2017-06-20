@@ -6,6 +6,13 @@ from django import forms
 
 from promotion.models import JoinApplication
 
+batch_choices = (
+    ('1st year', '1st year'),
+    ('2nd year', '2nd year'),
+    ('3rd year', '3rd year'),
+    ('4th year', '4t year'),
+)
+
 
 class JoinApplicationForm(forms.ModelForm):
 
@@ -15,8 +22,7 @@ class JoinApplicationForm(forms.ModelForm):
     email = forms.EmailField(label='Email', help_text="Enter your email id",
                              widget=forms.EmailInput(attrs={'placeholder': 'Email id'}))
 
-    batch = forms.ChoiceField(label='Batch', help_text="Enter your current year",
-                              widget=forms.Select(attrs={'placeholder': 'Email id'}))
+    batch = forms.ChoiceField(choices=batch_choices, label='Batch', help_text="Enter your current year")
 
     motivation = forms.CharField(label='Why dou you want to join?',
                                  help_text="Write briefly about why you would like to join us. Please answer " +
@@ -39,4 +45,4 @@ class JoinApplicationForm(forms.ModelForm):
 
     class Meta:
         model = JoinApplication
-        fields = ['name', 'email', 'batch', 'motivation', 'cs_background', 'previous_work', 'interests']
+        fields = ['name', 'email', 'batch', 'motivation', 'cs_background', 'interests']
