@@ -11,7 +11,11 @@
 <p>Project name:{{ i.project }}</p>
 <img src="/media/{{ i.image }}" style="height:180px;width:250px" >
 <p>{{ i.content }}</p>
+ <a href="{% url 'delete_status'  i.id %}">delete</a>
+    <a href="{% url 'edit_status' i.id %}">edit</a>
 {% endfor %}
+
+<a href="{% url 'add_status' %}"><button>Add status</button></a>
 <br>
 <br>
 <br>

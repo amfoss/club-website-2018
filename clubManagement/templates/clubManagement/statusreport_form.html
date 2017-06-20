@@ -1,23 +1,122 @@
-{% extends 'base/base.html' %}
+{#{% extends 'base/base.html' %}#}
+{##}
+{#{% block title %} New status {% endblock %}#}
+{##}
+{#{% block body %}#}
+{#    {% include 'base/nav-bar.html' %}#}
+{#<br>#}
+{#<br>#}
+{#<br>#}
+{#    <form method="post" action="." enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+{#{{ form.as_p }}#}
+{#     <button type="submit" >Submit</button>#}
+{#    </form>#}
+{##}
+{##}
+{#<br>#}
+{#<br>#}
+{#<br>#}
+{##}
+{#    {% include 'base/footer.html' %}#}
+{##}
+{#{% endblock %}#}
 
-{% block title %} New status {% endblock %}
+
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Status {% endblock %}
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
-<br>
-<br>
-<br>
-    <form method="post" action="." enctype="multipart/form-data">
-    {% csrf_token %}
-{{ form.as_p }}
-     <button type="submit" >Submit</button>
-    </form>
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 card">
+                        <div class="card-block">
+                            <h1 class="card-title">Status</h1>
+                            <hr>
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                              <small class="form-text text-muted">
+                                        Content
+                                    </small>
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control" name="content" id="id_content"
+                                             >{{ object.content }}</textarea>
 
+                                </div>
 
-<br>
-<br>
-<br>
+                                <div class="form-group">
 
+                                    <small class="form-text text-muted">
+                                    Project
+                                    </small>
+                                 <select name="project" class="form-control">
+                                     {% for i in project %}
+                                     <option>{{ i }}</option>
+                                     {% endfor %}
+                                 </select>
+
+                                </div>
+
+                                <div class="form-group">
+                                        <input id="id_image" name="image" value="{{ object.image }}"
+                                               type='file'  class="form-control"/>
+
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% include 'base/footer.html' %}
+
+    <div class="notifications">
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ field.label }}: {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <style>
+        .container {
+            margin-top: 70px;
+        }
+
+        .notifications {
+            position: fixed;
+            top: 90px;
+            right: 0;
+            z-index: 1000;
+            font-size: 0.7em;
+            max-width: 90%;
+        }
+
+        body {
+            background-color: #fcfcfc;
+        }
+    </style>
+
+
 
 {% endblock %}

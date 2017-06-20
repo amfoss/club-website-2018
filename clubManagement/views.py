@@ -401,7 +401,11 @@ class StatusCreateView(CreateView):
         form.instance.user = self.request.user
         response = super(StatusCreateView, self).form_valid(form)
         return response
-
+    def get_context_data(self, **kwargs):
+        context = super(StatusCreateView, self).get_context_data(**kwargs)
+        proj = Project.objects.all()
+        context['project'] = proj
+        return context
 
 class StatusUpdateView(UpdateView):
     model = StatusReport
@@ -411,6 +415,12 @@ class StatusUpdateView(UpdateView):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(StatusUpdateView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(StatusUpdateView, self).get_context_data(**kwargs)
+        proj = Project.objects.all()
+        context['project'] = proj
+        return context
 
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
