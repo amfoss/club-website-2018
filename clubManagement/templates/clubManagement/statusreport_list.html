@@ -1,0 +1,22 @@
+
+
+{% extends 'base/base.html' %}
+
+{% block title %} Status {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+{% for i in object_list %}
+
+<p>Project name:{{ i.project }}</p>
+<img src="/media/{{ i.image }}" style="height:180px;width:250px" >
+<p>{{ i.content }}</p>
+{% endfor %}
+<br>
+<br>
+<br>
+
+
+    {% include 'base/footer.html' %}
+
+{% endblock %}

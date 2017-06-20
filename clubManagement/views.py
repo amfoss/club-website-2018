@@ -9,7 +9,8 @@ from django.shortcuts import render, redirect
 
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, ListView, DetailView, UpdateView, DeleteView, CreateView
-from clubManagement.models import Attendance, Team, TeamMember, Responsibility, StudentResponsibility
+from clubManagement.models import Attendance, Team, TeamMember, Responsibility, StudentResponsibility, StatusReport
+from projects.models import Project
 
 from registration.models import UserInfo
 
@@ -354,6 +355,7 @@ class TeamUpdateView(UpdateView):
             redirect('permission_denied')
         return super(TeamUpdateView, self).get(request, *args, **kwargs)
 
+
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
@@ -368,6 +370,7 @@ class TeamDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(TeamDeleteView, self).get(request, *args, **kwargs)
+
 
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
@@ -385,3 +388,46 @@ class TeamMemberDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(TeamMemberDeleteView, self).post(request, *args, **kwargs)
+
+
+class StatusListView(ListView):
+    model = StatusReport
+
+class StatusCreateView(CreateView):
+    model = StatusReport
+    fields = ['content', 'image', 'project']
+    success_url = '/club/status'
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        response = super(StatusCreateView, self).form_valid(form)
+        return response
+
+
+class StatusUpdateView(UpdateView):
+    model = StatusReport
+    fields = ['content', 'image', 'project']
+    success_url = reverse_lazy('view_status')
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(StatusUpdateView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(StatusUpdateView, self).post(request, *args, **kwargs)
+
+class StatusDeleteView(DeleteView):
+    model = StatusReport
+    success_url = reverse_lazy('view_status')
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(StatusDeleteView, self).get(request, *args, **kwargs)
+
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(StatusDeleteView, self).post(request, *args, **kwargs)

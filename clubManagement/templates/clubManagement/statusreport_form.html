@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{% block title %} New status {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+<br>
+<br>
+<br>
+    <form method="post" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+{{ form.as_p }}
+     <button type="submit" >Submit</button>
+    </form>
+
+
+<br>
+<br>
+<br>
+
+    {% include 'base/footer.html' %}
+
+{% endblock %}

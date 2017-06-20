@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Delete {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+<form method="post" action="">
+    {% csrf_token %}
+    <h2>Delete this status</h2>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'view_status'  %}"><button class="btn btn-info">No, take me out of here</button></a>
+
+</form>
+    <br>
+    <br>
+    <br>
+    {% include 'base/footer.html' %}
+
+{% endblock %}
