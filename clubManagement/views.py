@@ -143,7 +143,7 @@ class YearStudentAttendanceReportView(View):
             context = {'user': user, 'month_att': month_att, 'month': month, 'month_num': month_num,
                        'year': kwargs.get('year')}
         else:
-            context = {'errors', 'No records found'}
+            context = {'errors': 'No records found'}
         return render(request, self.template_name, context)
 
 

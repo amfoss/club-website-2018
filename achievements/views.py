@@ -406,10 +406,11 @@ class AchievementListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(AchievementListView, self).get_context_data(**kwargs)
-        context['article_list'] = Article.objects.all().order_by('-date')
-        context['contest_list'] = Contest.objects.all().order_by('-date')
-        context['contribution_list'] = Contribution.objects.all().order_by('-date')
-        context['gsoc_list'] = Gsoc.objects.all().order_by('-date')
-        context['intern_list'] = Intern.objects.all().order_by('-date')
-        context['speaker_list'] = Speaker.objects.all().order_by('-date')
+        context['article_list'] = Article.objects.all().order_by('-date')[:6]
+        context['contest_list'] = Contest.objects.all().order_by('-date')[:6]
+        context['contribution_list'] = Contribution.objects.all().order_by('-date')[:6]
+        context['all_contribution_list'] = Contribution.objects.all().order_by('-date')
+        context['gsoc_list'] = Gsoc.objects.all().order_by('-date')[:6]
+        context['intern_list'] = Intern.objects.all().order_by('-date')[:6]
+        context['speaker_list'] = Speaker.objects.all().order_by('-date')[:6]
         return context
