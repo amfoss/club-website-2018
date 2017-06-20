@@ -1,0 +1,426 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} {{ object.title }} {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="contribution col-md-12">
+
+                        <!-- Contributions -->
+
+                        <div class="heading col-md-12">
+                            <h1><i class="fa fa-share-alt"></i> Contributions</h1>
+                        </div>
+                        <div class="content col-md-12">
+                            <div class="table-responsive">
+                                {% if contribution_list %}
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th>Student</th>
+                                            <th>Organisation</th>
+                                            <th>Title</th>
+                                            <th>Bug id</th>
+                                            <th>Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for object in contribution_list %}
+                                            <tr class="click"
+                                                onclick="window.location='{% url 'contribution_detail' object.id %}';">
+                                                <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                                <td>{{ object.organisation }}</td>
+                                                <td>{{ object.title }}</td>
+                                                <td><a href="{{ object.url }}">{{ object.contribution_id }}</a></td>
+                                                <td>{{ object.date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    </div>
+
+                                    <canvas id="contribution-chart" ></canvas>
+
+                                    <a href="{% url 'contribution' %}">
+                                        <button class="btn btn-secondary">All contributions</button>
+                                    </a>
+                                    {% if request.user.is_authenticated %}
+                                        <a href="{% url 'contribution_create' %}">
+                                            <button class="btn btn-secondary">New contribution</button>
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <div class="alert alert-warning col-md-12" role="alert">
+                                        <strong>No records found!</strong> Sorry, no data to be loaded.
+                                    </div>
+                                    {% if request.user.is_authenticated %}
+                                        <a href="{% url 'contribution_create' %}">
+                                            <button class="btn btn-secondary">New contribution</button>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+
+                        </div>
+
+                        <hr> <!-- GSoC -->
+
+                        <div class="heading col-md-12">
+                            <h1><i class="fa fa-google-plus"></i> GSoC</h1>
+                        </div>
+                        <div class="content col-md-12">
+                            {% if gsoc_list %}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th>Student</th>
+                                            <th>Organisation</th>
+                                            <th>Title</th>
+                                            <th>Mentors</th>
+                                            <th>Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for object in gsoc_list %}
+                                            <tr class="click"
+                                                onclick="window.location='{% url 'gsoc_detail' object.id %}';">
+                                                <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                                <td>{{ object.organization }}</td>
+                                                <td>{{ object.title }}</td>
+                                                <td>{{ object.mentors }}</td>
+                                                <td>{{ object.date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a href="{% url 'gsoc' %}">
+                                    <button class="btn btn-secondary">All GSoCs</button>
+                                </a>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'gsoc_create' %}">
+                                        <button class="btn btn-secondary">New GSoC</button>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <div class="alert alert-warning col-md-12" role="alert">
+                                    <strong>No records found!</strong> Sorry, no data to be loaded.
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'gsoc_create' %}">
+                                        <button class="btn btn-secondary">New GSoC</button>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                        <hr> <!-- Articles -->
+
+                        <div class="heading col-md-12">
+                            <h1><i class="fa fa-file-text"></i> Articles</h1>
+                        </div>
+                        <div class="content col-md-12 table-responsive">
+                            {% if article_list %}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th>Student</th>
+                                            <th>Magazine</th>
+                                            <th>Title</th>
+                                            <th>Area</th>
+                                            <th>Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for object in article_list %}
+                                            <tr class="click"
+                                                onclick="window.location='{% url 'contribution_detail' object.id %}';">
+                                                <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                                <td>{{ object.magazine }}</td>
+                                                <td>{{ object.title }}</td>
+                                                <td>{{ object.area }}</td>
+                                                <td>{{ object.date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a href="{% url 'article' %}">
+                                    <button class="btn btn-secondary">All articles</button>
+                                </a>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'article_create' %}">
+                                        <button class="btn btn-secondary">New article</button>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <div class="alert alert-warning col-md-12" role="alert">
+                                    <strong>No records found!</strong> Sorry, no data to be loaded.
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'article_create' %}">
+                                        <button class="btn btn-secondary">New article</button>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                        <hr> <!-- Interships -->
+
+                        <div class="heading col-md-12">
+                            <h1><i class="fa fa-graduation-cap"></i> Internships</h1>
+                        </div>
+                        <div class="content col-md-12 table-responsive">
+                            {% if intern_list %}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th>Student</th>
+                                            <th>Organisation</th>
+                                            <th>Title</th>
+                                            <th>Type</th>
+                                            <th>Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for object in intern_list %}
+                                            <tr class="click"
+                                                onclick="window.location='{% url 'intern_detail' object.id %}';">
+                                                <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                                <td>{{ object.organisation }}</td>
+                                                <td>{{ object.title }}</td>
+                                                <td>{{ object.type }}</td>
+                                                <td>{{ object.date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a href="{% url 'intern' %}">
+                                    <button class="btn btn-secondary">All internships</button>
+                                </a>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'intern_create' %}">
+                                        <button class="btn btn-secondary">New internship</button>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <div class="alert alert-warning col-md-12" role="alert">
+                                    <strong>No records found!</strong> Sorry, no data to be loaded.
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'intern_create' %}">
+                                        <button class="btn btn-secondary">New internship</button>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                        <hr> <!-- Speakers -->
+
+                        <div class="heading col-md-12">
+                            <h1><i class="fa fa-graduation-cap"></i> Talks</h1>
+                        </div>
+                        <div class="content col-md-12 table-responsive">
+                            {% if speaker_list %}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th>Student</th>
+                                            <th>Conference, location</th>
+                                            <th>Title</th>
+                                            <th>type</th>
+                                            <th>Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for object in speaker_list %}
+                                            <tr class="click"
+                                                onclick="window.location='{% url 'speaker_detail' object.id %}';">
+                                                <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                                <td>{{ object.conference_name }}, {{ object.location }}</td>
+                                                <td><a href="{{ object.url }}">{{ object.title }}</a></td>
+                                                <td>{{ object.type }}</td>
+                                                <td>{{ object.date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a href="{% url 'speaker' %}">
+                                    <button class="btn btn-secondary">All talks</button>
+                                </a>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'speaker_create' %}">
+                                        <button class="btn btn-secondary">New talk</button>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <div class="alert alert-warning col-md-12" role="alert">
+                                    <strong>No records found!</strong> Sorry, no data to be loaded.
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'speaker_create' %}">
+                                        <button class="btn btn-secondary">New talk</button>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                        <hr> <!-- Contests -->
+
+                        <div class="heading col-md-12">
+                            <h1><i class="fa fa-graduation-cap"></i> Contests</h1>
+                        </div>
+                        <div class="content col-md-12 table-responsive">
+                            {% if speaker_list %}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th>Student</th>
+                                            <th>Title</th>
+                                            <th>Rank</th>
+                                            <th>Contest Id</th>
+                                            <th>Solved problems</th>
+                                            <th>Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for object in object_list %}
+                                            <tr class="click"
+                                                onclick="window.location='{% url 'contest_detail' object.id %}';">
+                                                <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                                <td><a href="{{ object.url }}">{{ object.title }}</a></td>
+                                                <td>{{ object.ranking }}</td>
+                                                <td>{{ object.contest_id }}</td>
+                                                <td>{{ object.problems_solved }}</td>
+                                                <td>{{ object.date }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a href="{% url 'contest' %}">
+                                    <button class="btn btn-secondary">All contests</button>
+                                </a>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'contest_create' %}">
+                                        <button class="btn btn-secondary">New contest</button>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <div class="alert alert-warning col-md-12" role="alert">
+                                    <strong>No records found!</strong> Sorry, no data to be loaded.
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'contest_create' %}">
+                                        <button class="btn btn-secondary">New contest</button>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'base/js/chart-bundle.js'%}"></script>
+<script>
+    var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    {% for i in contribution_y %}
+                        {{ i }},
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    {% for i in color_list %}
+                        '{{ i }}',
+                    {% endfor %}
+                ],
+                label: 'Organisations'
+            }],
+            labels: [
+                {% for i in contribution_x %}
+                    '{{ i.0 }}',
+                {% endfor %}
+            ]
+        },
+        options: {
+            title: {
+                display:true,
+                text:'Contributions'
+            },
+            responsive: true,
+            maintainAspectRatio: true
+        }
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("contribution-chart").getContext("2d");
+        window.myPie = new Chart(ctx, config);
+    };
+
+
+</script>
+{% endblock %}
+
+{% block css %}
+    <style>
+        #contribution-chart {
+            max-height: 500px;
+            max-width: 500px;
+        }
+        .container-fluid {
+            margin-top: 30px;
+        }
+        @media (min-width: 1025px) {
+            /* big landscape tablets, laptops, and desktops */
+            .container-fluid {
+                margin: 30px 10%;
+            }
+        }
+        @media (min-width: 550px) {
+            /* big landscape tablets, laptops, and desktops */
+            canvas {
+                margin: 40px 0;
+            }
+        }
+        #main {
+            overflow-x: hidden;
+        }
+        .heading {
+            margin: 40px 0;
+        }
+        .content {
+            margin: 40px 0;
+        }
+        .click {
+            cursor: pointer;
+        }
+        .btn {
+            margin: 10px 10px 10px 0;
+        }
+        @media (max-width: 500px) {
+            .btn {
+                margin: 40px 10px 10px 0;
+            }
+        }
+    </style>
+{% endblock %}

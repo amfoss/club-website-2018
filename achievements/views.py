@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
 from .forms import *
 from .models import *
@@ -146,7 +146,6 @@ class ContributionDeleteView(DeleteView):
         return super(ContributionDeleteView, self).post(request, *args, **kwargs)
 
 
-      
 # GSoc Views
 class GsocListView(ListView):
     model = Gsoc
@@ -224,7 +223,7 @@ class InternDetailView(DetailView):
     
 class InternCreateView(CreateView):
     model = Intern
-    fields = ['organisation', 'title', 'type', 'date', 'description']
+    fields = ['organisation', 'title', 'location', 'type', 'date', 'description']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -233,7 +232,7 @@ class InternCreateView(CreateView):
 
 class InternUpdateView(UpdateView):
     model = Intern
-    fields = ['organisation', 'title', 'type', 'date', 'description']
+    fields = ['organisation', 'title', 'location', 'type', 'date', 'description']
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
@@ -400,3 +399,39 @@ class ContestDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(ContestDeleteView, self).post(request, *args, **kwargs)
+
+
+class AchievementListView(TemplateView):
+    template_name = 'achievements/achievements_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AchievementListView, self).get_context_data(**kwargs)
+        context['article_list'] = Article.objects.all().order_by('-date')[:6]
+        context['contest_list'] = Contest.objects.all().order_by('-date')[:6]
+        context['contribution_list'] = Contribution.objects.all().order_by('-date')[:6]
+        context['gsoc_list'] = Gsoc.objects.all().order_by('-date')[:6]
+        context['intern_list'] = Intern.objects.all().order_by('-date')[:6]
+        context['speaker_list'] = Speaker.objects.all().order_by('-date')[:6]
+
+        # contribution graph
+
+        color_list = [
+            'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)', 'rgb(201, 203, 207)', '#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5',
+            '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107',
+            '#FF9800', '#FF5722', '#795548', '#9E9E9E', '#607D8B', '#b71c1c', '#880E4F', '#4A148C', '#311B92',
+            '#1A237E', '#0D47A1', '#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17',
+            '#FF6F00', '#E65100', '#BF360C', '#3E2723', '#212121', '#263238'
+        ]
+
+        contribution_x = Contribution.objects.order_by().values_list('organisation').distinct()
+        contribution_y = []
+
+        for org in contribution_x:
+            contribution_y.append(len(Contribution.objects.filter(organisation=org[0])))
+
+        context['contribution_x'] = contribution_x
+        context['contribution_y'] = contribution_y
+        context['color_list'] = color_list[:len(contribution_x)]
+
+        return context

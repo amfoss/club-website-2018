@@ -12,7 +12,7 @@
                     <div class="col-md-12">
                         <h1 id="page-header">Contribution</h1>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead class="thead-default">
                             <tr>
@@ -25,7 +25,8 @@
                             </thead>
                             <tbody>
                             {% for object in object_list %}
-                                <tr class="click" onclick="window.location='{% url 'contribution_detail' object.id %}';">
+                                <tr class="click"
+                                    onclick="window.location='{% url 'contribution_detail' object.id %}';">
                                     <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
                                     <td>{{ object.organisation }}</td>
                                     <td>{{ object.title }}</td>
@@ -51,9 +52,11 @@
             margin: 30px;
             text-align: center;
         }
+
         .container-fluid {
             margin: 0 6%;
         }
+
         .click {
             cursor: pointer;
         }

@@ -16,20 +16,31 @@
                     </div>
                     <div class="col-md-10">
                         <div class="card mb-3">
-                          <img class="card-img-top" src="{% static 'achievements/image/articles-writing.jpg' %}" alt="Card image cap">
-                          <div class="card-block">
-                            <h4 class="card-title">{{ object.title }}</h4>
-                            <p class="card-text">{{ object.description }}</p>
-                            <p class="card-text"><small class="text-muted">{{ object.user.first_name }} {{ object.user.last_name }}, {{ object.date }}</small></p>
-                            {% if edit_permission %}
-                                <a href="{% url 'intern_update' object.id %}">
-                                    <button type="submit" class="btn btn-primary add-btn">Update</button>
-                                </a>
-                                <a href="{% url 'intern_delete' object.id %}">
-                                    <button type="submit" class="btn btn-danger add-btn">Delete</button>
-                                </a>
-                            {% endif %}
-                          </div>
+                            <img class="card-img-top" src="{% static 'achievements/image/articles-writing.jpg' %}"
+                                 alt="Card image cap">
+                            <div class="card-block">
+                                <h4 class="card-title">{{ object.title }}</h4>
+                                <h4 class="card-title">
+                                    <small class="text-muted">
+                                        {{ object.organisation }}
+                                    </small>
+                                </h4>
+                                <h5 class="card-text">
+                                    <small class="text-muted">{{ object.type }}, {{ object.area }}</small>
+                                </h5>
+                                <p class="card-text">{{ object.description }}</p>
+                                <p class="card-text">
+                                    <small class="text-muted">{{ object.user.first_name }} {{ object.user.last_name }}, {{ object.date }}</small>
+                                </p>
+                                {% if edit_permission %}
+                                    <a href="{% url 'intern_update' object.id %}">
+                                        <button type="submit" class="btn btn-primary add-btn">Update</button>
+                                    </a>
+                                    <a href="{% url 'intern_delete' object.id %}">
+                                        <button type="submit" class="btn btn-danger add-btn">Delete</button>
+                                    </a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -37,12 +48,16 @@
         </div>
     </div>
     {% include 'base/footer.html' %}
-{% endblock %}
-
-{% block css %}
     <style>
         #page-header {
             margin-top: 30px;
+        }
+
+        @media (max-width:480px)  {
+            /* smartphones, Android phones, landscape iPhone */
+            .card-img-top {
+                height: 7em;
+            }
         }
     </style>
 {% endblock %}
