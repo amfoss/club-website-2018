@@ -43,6 +43,9 @@
                                         </tbody>
                                     </table>
                                     </div>
+
+                                    <canvas id="contribution-chart" ></canvas>
+
                                     <a href="{% url 'contribution' %}">
                                         <button class="btn btn-secondary">All contributions</button>
                                     </a>
@@ -334,8 +337,49 @@
     {% include 'base/footer.html' %}
 {% endblock %}
 
+{% block script %}
+<script>
+    var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    {% for i in contribution_x %}
+                        {{ i }},
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    {% for i in color_list %}
+                        {{ i }},
+                    {% endfor %}
+                ],
+                label: 'Organisations'
+            }],
+            labels: [
+                {% for i in contribution_y %}
+                    '{{ i }}',
+                {% endfor %}
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("contribution-chart").getContext("2d");
+        window.myPie = new Chart(ctx, config);
+    };
+
+
+</script>
+{% endblock %}
+
 {% block css %}
     <style>
+        #contribution-chart {
+            max-height: 500px;
+        }
         .container-fluid {
             margin-top: 30px;
         }

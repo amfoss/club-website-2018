@@ -31,6 +31,9 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('article_detail', kwargs={'pk': self.pk})
 
+    class Meta:
+        ordering = ('-date',)
+
 
 class Contribution(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -46,6 +49,9 @@ class Contribution(models.Model):
 
     def get_absolute_url(self):
         return reverse('contribution_detail', kwargs={'pk': self.pk})
+
+    class Meta:
+        ordering = ('-date',)
 
 
 class Gsoc(models.Model):
@@ -63,6 +69,9 @@ class Gsoc(models.Model):
     def get_absolute_url(self):
         return reverse('gsoc_detail', kwargs={'pk': self.pk})
 
+    class Meta:
+        ordering = ('-date',)
+
 
 class Intern(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -78,6 +87,9 @@ class Intern(models.Model):
 
     def get_absolute_url(self):
         return reverse('intern_detail', kwargs={'pk': self.pk})
+
+    class Meta:
+        ordering = ('-date',)
 
 
 class Speaker(models.Model):
@@ -96,6 +108,9 @@ class Speaker(models.Model):
     def get_absolute_url(self):
         return reverse('speaker_detail', kwargs={'pk': self.pk})
 
+    class Meta:
+        ordering = ('-date',)
+
 
 class Contest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -112,3 +127,6 @@ class Contest(models.Model):
 
     def get_absolute_url(self):
         return reverse('contest_detail', kwargs={'pk': self.pk})
+
+    class Meta:
+        ordering = ('-date',)
