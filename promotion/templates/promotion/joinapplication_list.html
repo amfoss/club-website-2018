@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Application {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 id="page-header">Applications</h1>
+                    </div>
+                    <div class="col-md-12 table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-default">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Batch</th>
+                                <th>Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for object in object_list %}
+                                <tr class="click"
+                                    onclick="window.location='{% url 'join_detail' object.id %}';">
+                                    <th scope="row">{{ object.name }}</th>
+                                    <td>{{ object.email }}</td>
+                                    <td>{{ object.batch }}</td>
+                                    <td>{{ object.date }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block css %}
+    <style>
+        #page-header {
+            margin: 30px;
+            text-align: center;
+        }
+
+        .container-fluid {
+            margin: 0 6%;
+        }
+
+        .click {
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}

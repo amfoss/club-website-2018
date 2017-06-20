@@ -22,7 +22,7 @@ class UserSignUpView(CreateView):
 
 def login(request,  *args, **kwargs):  # view to handle remember me and login
     if request.method == 'POST':
-        if not request.POST.get():
+        if not request.POST.get('remember_me'):
             request.session.set_expiry(0)
     if request.method == 'GET' and request.user.is_authenticated:
         return redirect('already_logged_in')

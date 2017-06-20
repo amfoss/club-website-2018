@@ -21,14 +21,15 @@ class JoinApplication(models.Model):
     cs_background = models.TextField(blank=True)
     interests = models.TextField()
     is_approved = models.BooleanField(default=False)
+    is_rejected = models.BooleanField(default=False)
 
-    date = models.DateTimeField(auto_now_add=False, auto_now=True)
+    date = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('join_application_detail', kwargs={'pk', self.id})
+        return reverse('join_detail', kwargs={'pk': self.pk})
 
     class Meta:
         ordering = ('date',)

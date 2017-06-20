@@ -12,6 +12,7 @@ from promotion.models import JoinApplication
 
 class JoinApplicationListView(ListView):
     model = JoinApplication
+    queryset = JoinApplication.objects.filter(is_approved=False)
 
 
 class JoinApplicationDetailView(DetailView):
