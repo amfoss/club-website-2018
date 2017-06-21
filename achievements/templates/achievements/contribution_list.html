@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
 {% block title %} {% endblock %}
 
 {% block body %}
@@ -12,6 +12,7 @@
                     <div class="col-md-12">
                         <h1 id="page-header">Contribution</h1>
                     </div>
+                    <canvas id="contribution-chart" ></canvas>
                     <div class="col-md-12 table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead class="thead-default">
@@ -24,7 +25,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for object in object_list %}
+                            {% for object in contribution_list %}
                                 <tr class="click"
                                     onclick="window.location='{% url 'contribution_detail' object.id %}';">
                                     <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
@@ -46,8 +47,57 @@
     {% include 'base/footer.html' %}
 {% endblock %}
 
+{% block script %}
+<script src="{% static 'base/js/chart-bundle.js'%}"></script>
+<script>
+    var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    {% for i in contribution_y %}
+                        {{ i }},
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    {% for i in color_list %}
+                        '{{ i }}',
+                    {% endfor %}
+                ],
+                label: 'Organisations'
+            }],
+            labels: [
+                {% for i in contribution_x %}
+                    '{{ i.0 }}',
+                {% endfor %}
+            ]
+        },
+        options: {
+            title: {
+                display:true,
+                text:'Contributions'
+            },
+            responsive: true,
+            maintainAspectRatio: true
+        }
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("contribution-chart").getContext("2d");
+        window.myPie = new Chart(ctx, config);
+    };
+
+
+</script>
+{% endblock %}
+
 {% block css %}
     <style>
+        #contribution-chart {
+           max-height: 400px;
+           max-width: 400px;
+        }
+
         #page-header {
             margin: 30px;
             text-align: center;
