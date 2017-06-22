@@ -12,11 +12,23 @@ from promotion.models import JoinApplication
 
 class JoinApplicationListView(ListView):
     model = JoinApplication
-    queryset = JoinApplication.objects.filter(is_approved=False)
+    queryset = JoinApplication.objects.filter(is_approved=False, is_rejected=False)
+
+    def get_context_data(self, **kwargs):
+        context = super(JoinApplicationListView, self).get_context_data(**kwargs)
+        context['count'] = len(context['object_list'])
+        return context
 
 
 class JoinApplicationDetailView(DetailView):
     model = JoinApplication
+
+    def get_context_data(self, **kwargs):
+        context = super(JoinApplicationDetailView, self).get_context_data(**kwargs)
+        context['mail_subject'] = 'Congrats! You are selected for interview'
+        context['mail_content'] = 'Hi ' + self.get_object().name + ' We are exited to inform that you are selected ' \
+                                                                   'for the interview.'
+        return context
 
 
 class JoinApplicationCreateView(CreateView):
