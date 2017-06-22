@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from captcha.fields import ReCaptchaField
 from django import forms
 
 from promotion.models import JoinApplication
@@ -38,6 +39,10 @@ class JoinApplicationForm(forms.ModelForm):
     interests = forms.CharField(label='Interests', help_text="Write about your interests, passions and hobbies",
                                 widget=forms.Textarea(attrs={'placeholder': 'example: I love reading books.'}))
 
+    captcha = ReCaptchaField(attrs={
+        'theme': 'clean',
+    })
+
     def __init__(self, *args, **kwargs):
         super(JoinApplicationForm, self).__init__(*args, **kwargs)
         for field in iter(self.fields):
@@ -45,4 +50,4 @@ class JoinApplicationForm(forms.ModelForm):
 
     class Meta:
         model = JoinApplication
-        fields = ['name', 'email', 'batch', 'motivation', 'cs_background', 'interests']
+        fields = ['name', 'email', 'batch', 'motivation', 'cs_background', 'interests', 'captcha']

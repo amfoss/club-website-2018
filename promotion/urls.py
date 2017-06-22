@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^join/list$', login_required(JoinApplicationListView.as_view()), name='join_list'),
     url(r'^join/(?P<pk>[0-9]+)/$', login_required(JoinApplicationDetailView.as_view()), name='join_detail'),
     url(r'^join/(?P<pk>[0-9]+)/update$', login_required(JoinApplicationUpdateView.as_view()), name='join_update'),
+    url(r'^join/success/$', TemplateView.as_view(template_name='promotion/success.html'), name='join_success'),
 ]

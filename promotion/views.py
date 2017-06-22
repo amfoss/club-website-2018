@@ -10,7 +10,7 @@ from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.core.mail import send_mail
 
@@ -26,7 +26,7 @@ reject_mail_content = ',\\n\\nWe are sorry to inform that you are not selected f
 
 class JoinApplicationListView(ListView):
     model = JoinApplication
-    queryset = JoinApplication.objects.filter(is_approved=False, is_rejected=False)
+    queryset = JoinApplication.objects.filter(is_approved=False, is_rejected=False).order_by('-date')
 
     def get_context_data(self, **kwargs):
         context = super(JoinApplicationListView, self).get_context_data(**kwargs)
@@ -51,6 +51,7 @@ class JoinApplicationDetailView(DetailView):
 class JoinApplicationCreateView(CreateView):
     form_class = JoinApplicationForm
     template_name = 'base/form.html'
+    success_url = reverse_lazy('join_success')
 
     def get_context_data(self, **kwargs):
         context = super(JoinApplicationCreateView, self).get_context_data(**kwargs)

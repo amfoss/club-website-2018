@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -26,6 +25,9 @@ SECRET_KEY = '9ifxvaju5mpu&vivktom6-r!ow6l171_uk^a=$a)zrl)u(c040'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+# Additional info like email configurations, passwords and secrete keys kept in separate file during development
+# from .local_settings import *
 
 
 # Application definition
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'events',
     'projects',
     'promotion',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +137,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# No captcha
+NOCAPTCHA = True
