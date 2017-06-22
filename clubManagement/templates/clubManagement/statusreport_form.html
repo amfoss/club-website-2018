@@ -54,9 +54,10 @@
                                     <small class="form-text text-muted">
                                     Project
                                     </small>
-                                 <select name="project" class="form-control">
+                                 <select name="project" class="form-control" id="id_project">
+                                    <option value="">None</option>
                                      {% for i in project %}
-                                     <option>{{ i }}</option>
+                                     <option value="{{ i.id }}">{{ i }}</option>
                                      {% endfor %}
                                  </select>
 

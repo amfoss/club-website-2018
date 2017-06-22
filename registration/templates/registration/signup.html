@@ -2,10 +2,9 @@
 {% load static %}
 {% block title %} SignUp {% endblock %}l
 {% block css %}
-    <link rel="stylesheet" href="{% static 'registration/css/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'registration/css/bootstrapValidator.css' %}" />
-    <script type="text/javascript" src="{% static 'registration/js/bootstrapValidator.js' %}" ></script>
-    <script type="text/javascript" src="{% static 'registration/js/passwd.js' %}" ></script>
+    <link rel="stylesheet" href="{% static 'registration/css/bootstrapValidator.css' %}"/>
+    <script type="text/javascript" src="{% static 'registration/js/bootstrapValidator.js' %}"></script>
+    <script type="text/javascript" src="{% static 'registration/js/passwd.js' %}"></script>
 {% endblock %}
 
 {% block body %}
@@ -14,13 +13,13 @@
 
             {% include 'base/nav-bar.html' %}
 
-            <div class="notifications">
+                <div class="notifications">
                 {% if form.errors %}
                     {% for field in form %}
                         {% for error in field.errors %}
                             <div class="alert alert-danger alert-dismissable">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                                {{ error|escape }}
+                                {{ field.label }}: {{ error|escape }}
                             </div>
                         {% endfor %}
                     {% endfor %}
@@ -31,39 +30,117 @@
                         </div>
                     {% endfor %}
                 {% endif %}
-            </div>
+                </div>
 
             <div class="container">
-                <div class="card-div">
-                    <div class="card card-container">
-                        <h1 id="profile-img" class="profile-img-card">SignUp</h1>
-                        <p id="profile-name" class="profile-name-card"></p>
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 card">
+                        <div class="card-block">
+                            <h1 class="card-title">SignUp</h1>
+                            <hr>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="first_name">First Name</label>
+                                        <input type="text" class="form-control" name="first_name" id="first_name"
+                                               value="{{ form.first_name.value|default_if_none:"" }}"
+                                               placeholder="First name">
+                                        <small class="form-text text-muted">
+                                            First name
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="last_name">First Name</label>
+                                        <input type="text" class="form-control" name="last_name" id="last_name"
+                                               value="{{ form.last_name.value|default_if_none:"" }}"
+                                               placeholder="Last name">
+                                        <small class="form-text text-muted">
+                                            Last name
+                                        </small>
+                                    </div>
 
 
-                        <form class="form-signin" id="signup" action=""  method="post">
-                            {% csrf_token %}
-                            <span id="reauth-email" class="reauth-email"></span>
-                            <input type="text" value="{{ form.first_name.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="First name" name="first_name" required autofocus>
-                            <input type="text" value="{{ form.last_name.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="Last name" name="last_name" required autofocus>
-                            <input type="email" value="{{ form.email.value|default_if_none:"" }}" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
-                            <input type="text" value="{{ form.username.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="User name" name="username" required autofocus>
-                            <fieldset>
-                            <input type="password" id="inputPassword" name="password1" class="form-control" placeholder="Password" required>
-                            <input type="password" id="inputPassword" name="password2" class="form-control"  placeholder="Once more" required>
-                        </fieldset>
-                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign up</button>
-                        </form><!-- /form -->
+                                    <div class="form-group col-md-12">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" name="email" id="email"
+                                               value="{{ form.email.value|default_if_none:"" }}" placeholder="email">
+                                        <small class="form-text text-muted">
+                                            Enter your email id
+                                        </small>
+                                    </div>
 
-                        <a href="{% url 'login' %}" class="forgot-password">
-                            Already have an account?
-                        </a>
-                    </div><!-- /card-container -->
+                                    <div class="form-group col-md-12">
+                                        <label for="year">Batch</label>
+                                        <input type="number" class="form-control" name="year" id="year"
+                                               value="{{ form.year.value|default_if_none:"" }}" placeholder="YYYY">
+                                        <small class="form-text text-muted">
+                                            Year of admission
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" name="username" id="username"
+                                               value="{{ form.username.value|default_if_none:"" }}" placeholder="Username">
+                                        <small class="form-text text-muted">
+                                            Username, used for login
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="password1">Password</label>
+                                        <input type="password" class="form-control" name="password1" id="password1"
+                                               value="" placeholder="Password">
+                                        <small class="form-text text-muted">
+                                            Password
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="password2">Again</label>
+                                        <input type="password" class="form-control" name="password2" id="password"
+                                               value="{{ object.email }}" placeholder="Paasword again">
+                                        <small class="form-text text-muted">
+                                            Password, once more
+                                        </small>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div><!-- /container -->
+            </div>
         </div>
     </div>
 
+
+    <style>
+        .container {
+            margin-top: 70px;
+        }
+
+        .notifications {
+            position: fixed;
+            top: 90px;
+            right: 0;
+            z-index: 1000;
+            font-size: 0.7em;
+            max-width: 90%;
+        }
+
+        body {
+            background: rgb(242, 245, 244);
+        }
+    </style>
     {% include 'base/footer.html' %}
+
 
 {% endblock %}
 

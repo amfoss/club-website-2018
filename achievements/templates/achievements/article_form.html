@@ -1,0 +1,132 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} New Article {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 card">
+                        <div class="card-block">
+                            <h1 class="card-title">Article</h1>
+                            <hr>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="name">Title</label>
+                                    <input type="text" class="form-control" name="title" id="name"
+                                           value="{{ object.title }}" placeholder="Title">
+                                    <small class="form-text text-muted">
+                                        Title of the article
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="magazine">Magazine name</label>
+                                    <input type="text" class="form-control" name="magazine" id="magazine"
+                                           value="{{ object.magazine }}" placeholder="Magazine">
+                                    <small class="form-text text-muted">
+                                        Name of the magazine
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="topic">Topic</label>
+                                    <input type="text" class="form-control" name="area" id="topic"
+                                           value="{{ object.area }}" placeholder="Topic">
+                                    <small class="form-text text-muted">
+                                        Topic or area of the article
+                                    </small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" class="form-control"
+                                              placeholder="Description" rows="5">{{ object.description }}</textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="date">Publication date</label>
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input id="date" name="date" value="{{ object.date|date:'Y-M-D' }}"
+                                               type='text' placeholder="YYYY-MM-DD" class="form-control"/>
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+
+    <div class="notifications">
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ field.label }}: {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <style>
+        .container {
+            margin-top: 70px;
+        }
+
+        .notifications {
+            position: fixed;
+            top: 90px;
+            right: 0;
+            z-index: 1000;
+            font-size: 0.7em;
+            max-width: 90%;
+        }
+
+        body {
+            background-color: #fcfcfc;
+        }
+    </style>
+
+    {% block script %}
+        <script src="{% static 'base/js/jquery.min.js' %}"></script>
+        <script src="{% static 'base/js/moment.min.js' %}"></script>
+        <script src="{% static 'base/js/bootstrap-datetimepicker.min.js' %}"></script>
+        <link href="{% static 'base/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-arrow-up",
+                        down: "fa fa-arrow-down"
+                    },
+                    format: 'YYYY-MM-DD',
+                    widgetPositioning: {
+                        horizontal: 'right',
+                        vertical: 'top'
+                    }
+                });
+            });
+        </script>
+    {% endblock %}
+
+{% endblock %}

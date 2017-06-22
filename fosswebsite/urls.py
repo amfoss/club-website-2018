@@ -1,3 +1,4 @@
+# created by Chirath R, chirath.02@gmail.com
 """fosswebsite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -27,4 +28,6 @@ urlpatterns = [
     url(r'^accounts/', include('registration.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^club/', include('clubManagement.urls')),
+    url(r'^foss/', include('promotion.urls')),
+    url(r'^achievements/', include('achievements.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

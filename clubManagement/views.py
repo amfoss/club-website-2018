@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# created by Chirath R, chirath.02@gmail.com
 from __future__ import unicode_literals
 
 from datetime import date, datetime
@@ -143,7 +144,7 @@ class YearStudentAttendanceReportView(View):
             context = {'user': user, 'month_att': month_att, 'month': month, 'month_num': month_num,
                        'year': kwargs.get('year')}
         else:
-            context = {'errors', 'No records found'}
+            context = {'errors': 'No records found'}
         return render(request, self.template_name, context)
 
 
@@ -411,6 +412,14 @@ class StatusUpdateView(UpdateView):
     model = StatusReport
     fields = ['content', 'image', 'project']
     success_url = reverse_lazy('view_status')
+
+    def form_valid(self, form):
+        if self.request.POST['project'] != "":
+            form.instance.project = Project.objects.get(id=int(self.request.POST['project']))
+
+        response = super(StatusUpdateView, self).form_valid(form)
+        return response
+
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
@@ -425,6 +434,7 @@ class StatusUpdateView(UpdateView):
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
+        print request.POST
         return super(StatusUpdateView, self).post(request, *args, **kwargs)
 
 class StatusDeleteView(DeleteView):
@@ -441,3 +451,8 @@ class StatusDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(StatusDeleteView, self).post(request, *args, **kwargs)
+
+
+
+
+
