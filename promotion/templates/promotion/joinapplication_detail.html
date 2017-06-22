@@ -51,10 +51,10 @@
                                         <hr>
                                         {% csrf_token %}
                                         <h2 id="head">Sent mail</h2>
-                                        <input style="display: none" id="option" type="checkbox" value="" name="">
+                                        <input style="display: none" id="option" value="" name="">
                                         <div class="form-group">
                                             <label for="mail_id">To</label>
-                                            <input type="text" class="form-control" name="mail_id" id="mail_id"
+                                            <input type="email" class="form-control" name="mail_id" id="mail_id"
                                                    value="{{ object.mail_subject }}" placeholder="Mail Id">
                                         </div>
                                         <div class="form-group">
@@ -158,7 +158,7 @@
                 // reject
                 head.innerHTML = 'Sent rejection mail';
                 option.value = 'True';
-                option.name = 'is_approved';
+                option.name = 'is_rejected';
                 subject.value = '{{ reject_mail_subject }}';
                 content.innerHTML = '{{ reject_mail_content }}';
 

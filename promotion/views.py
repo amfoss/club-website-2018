@@ -80,11 +80,24 @@ class JoinApplicationUpdateView(UpdateView):
             try:
                 send_mail(form.cleaned_data['mail_subject'], form.cleaned_data['mail_content'],
                           'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
+                join_application = self.get_object()
+
+                # approve
+                if request.POST.get('is_approved', None):
+                    join_application.is_approved = True
+
+                # reject
+                if request.POST.get('is_rejected', None):
+                    join_application.is_rejected = True
+
+                # save
+                join_application.save()
             except SMTPException:
                 errors = 'Mail not sent, mail id might be wrong'
 
             # render the detail page
-            return redirect(reverse('join_detail', kwargs={'pk' : self.get_object().id}) + '?errors=' + errors)
+            if not errors:
+                return redirect(reverse('join_detail', kwargs={'pk': self.get_object().id}))
         else:
             errors = "The given mail is invalid, try again"
         # error in form
