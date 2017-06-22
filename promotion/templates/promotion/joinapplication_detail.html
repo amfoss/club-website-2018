@@ -25,13 +25,13 @@
                                 {% if object.is_approved %}
                                     <hr>
                                     <div class="alert alert-success" role="alert">
-                                        <strong>Approved!</strong> Mail has already been sent to this applicant.
+                                        <strong>Approved!</strong> Mail has sent to this applicant.
                                     </div>
                                 {% endif %}
                                 {% if object.is_rejected %}
                                     <hr>
                                     <div class="alert alert-danger" role="alert">
-                                        <strong>Rejected!</strong> Mail has already been sent to this applicant.
+                                        <strong>Rejected!</strong> Mail has sent to this applicant.
                                     </div>
                                 {% endif %}
                                 {% ifequal object.is_rejected object.is_approved %}

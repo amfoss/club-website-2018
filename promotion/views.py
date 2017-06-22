@@ -2,10 +2,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import datetime
 from smtplib import SMTPException
 
 from django.contrib.auth.models import User
 from django import forms
+from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -49,6 +51,30 @@ class JoinApplicationDetailView(DetailView):
 class JoinApplicationCreateView(CreateView):
     form_class = JoinApplicationForm
     template_name = 'base/form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(JoinApplicationCreateView, self).get_context_data(**kwargs)
+        context['title'] = 'Applications'
+        context['heading'] = 'Membership application'
+        return context
+
+    def form_valid(self, form):
+        valid_form = super(JoinApplicationCreateView, self).form_valid(form)
+
+        # generate urls
+        url = ''.join(['http://', get_current_site(self.request).domain, self.get_success_url()])
+        list_url = ''.join(['http://', get_current_site(self.request).domain, reverse('join_list')])
+
+        # mail data
+        subject = 'Application from ' + form.cleaned_data.get('name')
+        content = 'A new application was submitted by ' + form.cleaned_data.get('name') + ' at ' + \
+                  str(datetime.datetime.now()) + '. \n\nPlease visit ' + url + ' for more details. All ' \
+                  'applications ' + list_url
+        to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
+
+        # sent mail when application is submitted
+        send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
+        return valid_form
 
 
 class EmailForm(forms.Form):
