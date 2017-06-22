@@ -99,6 +99,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <canvas id="gsoc-chart" ></canvas>
                                 <a href="{% url 'gsoc' %}">
                                     <button class="btn btn-secondary">All GSoCs</button>
                                 </a>
@@ -372,9 +373,43 @@
         }
     };
 
+    var config_gsoc = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    {% for i in gsoc_y %}
+                        {{ i }},
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    {% for i in color_list %}
+                        '{{ i }}',
+                    {% endfor %}
+                ],
+                label: 'Organizations'
+            }],
+            labels: [
+                {% for i in gsoc_x %}
+                    '{{ i.0 }}',
+                {% endfor %}
+            ]
+        },
+        options: {
+            title: {
+                display:true,
+                text:'GSoC'
+            },
+            responsive: true,
+            maintainAspectRatio: true
+        }
+    };
+
     window.onload = function() {
-        var ctx = document.getElementById("contribution-chart").getContext("2d");
-        window.myPie = new Chart(ctx, config);
+        var ctx1 = document.getElementById("contribution-chart").getContext("2d");
+        window.myPie1 = new Chart(ctx1, config);
+        var ctx2 = document.getElementById("gsoc-chart").getContext("2d");
+        window.myPie2 = new Chart(ctx2, config_gsoc);
     };
 
 
@@ -383,7 +418,7 @@
 
 {% block css %}
     <style>
-        #contribution-chart {
+        #contribution-chart, #gsoc-chart {
             max-height: 500px;
             max-width: 500px;
         }
