@@ -6,7 +6,7 @@ The official website of FOSS at Amritapuri website
 ## Authors
 * Chirath R
 * Rahul Krishnan
-* 
+* Navaneeth S
 
 ## Installation instructions
 See INSTALL.

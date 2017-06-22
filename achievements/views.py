@@ -88,8 +88,33 @@ class ArticleDeleteView(DeleteView):
 # Contribution views
 
 
-class ContributionListView(ListView):
-    model = Contribution
+class ContributionListView(TemplateView):
+    template_name = 'achievements/contribution_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ContributionListView, self).get_context_data(**kwargs)
+        context['contribution_list'] = Contribution.objects.all().order_by('-date')[:6]
+
+        color_list = [
+            'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)', 'rgb(201, 203, 207)', '#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5',
+            '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107',
+            '#FF9800', '#FF5722', '#795548', '#9E9E9E', '#607D8B', '#b71c1c', '#880E4F', '#4A148C', '#311B92',
+            '#1A237E', '#0D47A1', '#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17',
+            '#FF6F00', '#E65100', '#BF360C', '#3E2723', '#212121', '#263238'
+        ]
+
+        contribution_x = Contribution.objects.order_by().values_list('organisation').distinct()
+        contribution_y = []
+
+        for org in contribution_x:
+            contribution_y.append(len(Contribution.objects.filter(organisation=org[0])))
+
+        context['contribution_x'] = contribution_x
+        context['contribution_y'] = contribution_y
+        context['color_list'] = color_list[:len(contribution_x)]
+
+        return context
 
 
 class ContributionDetailView(DetailView):
@@ -147,8 +172,33 @@ class ContributionDeleteView(DeleteView):
 
 
 # GSoc Views
-class GsocListView(ListView):
-    model = Gsoc
+class GsocListView(TemplateView):
+    template_name = 'achievements/gsoc_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(GsocListView, self).get_context_data(**kwargs)
+        context['gsoc_list'] = Gsoc.objects.all().order_by('-date')[:6]
+
+        color_list = [
+            'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)', 'rgb(201, 203, 207)', '#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5',
+            '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107',
+            '#FF9800', '#FF5722', '#795548', '#9E9E9E', '#607D8B', '#b71c1c', '#880E4F', '#4A148C', '#311B92',
+            '#1A237E', '#0D47A1', '#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17',
+            '#FF6F00', '#E65100', '#BF360C', '#3E2723', '#212121', '#263238'
+        ]
+
+        gsoc_x = Gsoc.objects.order_by().values_list('organization').distinct()
+        gsoc_y = []
+
+        for org in gsoc_x:
+            gsoc_y.append(len(Gsoc.objects.filter(organization=org[0])))
+
+        context['gsoc_x'] = gsoc_x
+        context['gsoc_y'] = gsoc_y
+        context['color_list'] = color_list[:len(gsoc_x)]
+
+        return context
 
 
 class GsocDetailView(DetailView):
