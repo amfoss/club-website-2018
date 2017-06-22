@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.core.mail import send_mail
 
@@ -32,6 +33,7 @@ class JoinApplicationListView(ListView):
 
 
 class JoinApplicationDetailView(DetailView):
+    errors = None
     model = JoinApplication
 
     def get_context_data(self, **kwargs):
@@ -40,7 +42,7 @@ class JoinApplicationDetailView(DetailView):
         context['approve_mail_content'] = 'Hi ' + self.get_object().name + approve_mail_content
         context['reject_mail_subject'] = 'FOSS@Amrita membership application'
         context['reject_mail_content'] = 'Hi ' + self.get_object().name + reject_mail_content
-        context['mail_error'] = kwargs.get('mail_errors', None)
+        context['mail_error'] = self.request.GET.get('errors', None)
         return context
 
 
@@ -66,6 +68,7 @@ class JoinApplicationUpdateView(UpdateView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             return redirect('permission_denied')
 
+        errors = None
         form = EmailForm(request.POST)
 
         if form.is_valid():
@@ -74,15 +77,15 @@ class JoinApplicationUpdateView(UpdateView):
             to_address_list.append(form.cleaned_data['mail_id'])
 
             # sent mail, if there are errors in mail, check that too
-            mail_errors = False
             try:
                 send_mail(form.cleaned_data['mail_subject'], form.cleaned_data['mail_content'],
                           'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
             except SMTPException:
-                mail_errors = True
+                errors = 'Mail not sent, mail id might be wrong'
 
             # render the detail page
-            return redirect('join_detail', self.get_object().id)
-
+            return redirect(reverse('join_detail', kwargs={'pk' : self.get_object().id}) + '?errors=' + errors)
+        else:
+            errors = "The given mail is invalid, try again"
         # error in form
-        return redirect('join_detail', self.get_object().id)
+        return redirect(reverse('join_detail', kwargs={'pk': self.get_object().id}) + '?errors=' + errors)

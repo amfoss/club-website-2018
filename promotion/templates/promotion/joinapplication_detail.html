@@ -41,6 +41,11 @@
                                         <button id="reject" onclick="control(2)" class="btn btn-danger card-link">Reject</button>
                                     </div>
                                 {% endifequal %}
+                                {% if mail_error %}
+                                    <div class="error alert alert-danger" role="alert">
+                                        <strong>error!</strong> {{ mail_error }}.
+                                    </div>
+                                {% endif %}
                                 <div style="display: none;" id="mail_form">
                                     <form method="post" action="{% url 'join_update' object.id %}">
                                         <hr>
@@ -83,6 +88,10 @@
     </div>
     {% include 'base/footer.html' %}
     <style>
+
+        .error {
+            margin: 20px 0;
+        }
 
         .card {
                 margin: 70px 5% 0 5%;
