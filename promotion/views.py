@@ -58,6 +58,9 @@ class EmailForm(forms.Form):
 
 
 class JoinApplicationUpdateView(UpdateView):
+    """
+    Approve or reject application, sends mail to the applicant and all admin users.
+    """
     model = JoinApplication
     fields = ['is_approved']
 
