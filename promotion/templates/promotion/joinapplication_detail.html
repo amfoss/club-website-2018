@@ -41,33 +41,39 @@
                                         <button id="reject" onclick="control(2)" class="btn btn-danger card-link">Reject</button>
                                     </div>
                                 {% endifequal %}
-
-                                <form style="display: none;" method="post" id="mail_form" action="{% url 'join_update' object.id %}">
-                                    <hr>
-                                    {% csrf_token %}
-                                    <h2 id="head">Sent mail</h2>
-                                    <input style="display: none" id="option" type="checkbox" value="" name="">
-                                    <div class="form-group">
-                                        <label for="subject">Subject</label>
-                                        <input type="text" class="form-control" name="mail_subject" id="subject"
-                                               value="{{ object.mail_subject }}" placeholder="Subject">
-                                        <small class="form-text text-muted">
-                                            Subject of the mail
-                                        </small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="mail_content">Description</label>
-                                        <textarea rows="10" name="mail_content" class="form-control"
-                                                  placeholder="Mail content" id="mail_content" rows="5">
-                                            {{ object.mail_content }}
-                                        </textarea>
-                                        <small class="form-text text-muted">
-                                                Content of the mail
-                                        </small>
-                                    </div>
-                                    <button type="submit" class=""></button>
-                                    <div class="btn btn-secondary">Cancel</div>
-                                </form>
+                                <div style="display: none;" id="mail_form">
+                                    <form method="post" action="{% url 'join_update' object.id %}">
+                                        <hr>
+                                        {% csrf_token %}
+                                        <h2 id="head">Sent mail</h2>
+                                        <input style="display: none" id="option" type="checkbox" value="" name="">
+                                        <div class="form-group">
+                                            <label for="mail_id">To</label>
+                                            <input type="text" class="form-control" name="mail_id" id="mail_id"
+                                                   value="{{ object.mail_subject }}" placeholder="Mail Id">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="subject">Subject</label>
+                                            <input type="text" class="form-control" name="mail_subject" id="subject"
+                                                   value="{{ object.mail_subject }}" placeholder="Subject">
+                                            <small class="form-text text-muted">
+                                                Subject of the mail
+                                            </small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mail_content">Description</label>
+                                            <textarea rows="10" name="mail_content" class="form-control"
+                                                      placeholder="Mail content" id="mail_content" rows="5">
+                                                {{ object.mail_content }}
+                                            </textarea>
+                                            <small class="form-text text-muted">
+                                                    Content of the mail
+                                            </small>
+                                        </div>
+                                        <button id="submit-btn" type="submit" class=""></button>
+                                        <div onclick="control(3)" class="btn btn-secondary">Cancel</div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,9 +120,13 @@
             subject = document.getElementById('subject');
             content = document.getElementById('mail_content');
             btns = document.getElementById('buttons');
+            submit_btn = document.getElementById('submit-btn');
+            to = document.getElementById('mail_id');
+            to.value = '{{ object.email }}';
+
             console.log(selection);
 
-            if(selection = 3) {
+            if(selection === 3) {
                 // cancel
                 form.style.display = 'none';
                 btns.style.display = 'block';
@@ -126,23 +136,27 @@
                 head.innerHTML = 'Sent approval mail';
                 option.value = 'True';
                 option.name = 'is_approved';
-                subject.value = '{{ mail_subject }}';
-                content.innerHTML = '{{ mail_content }}';
+                subject.value = '{{ approve_mail_subject }}';
+                content.innerHTML = '{{ approve_mail_content }}';
 
                 form.style.display = 'block';
                 btns.style.display = 'none';
                 console.log(selection);
+                submit_btn.innerHTML = 'Approve';
+                submit_btn.classList = 'btn btn-success';
             }
             else {
                 // reject
                 head.innerHTML = 'Sent rejection mail';
                 option.value = 'True';
                 option.name = 'is_approved';
-                subject.value = '{{ mail_subject }}';
-                content.innerHTML = '{{ mail_content }}';
+                subject.value = '{{ reject_mail_subject }}';
+                content.innerHTML = '{{ reject_mail_content }}';
 
                 form.style.display = 'block';
                 btns.style.display = 'none';
+                submit_btn.innerHTML = 'Reject';
+                submit_btn.classList = 'btn btn-danger';
             }
         }
     </script>
