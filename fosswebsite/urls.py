@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^club/', include('clubManagement.urls')),
     url(r'^foss/', include('promotion.urls')),
     url(r'^achievements/', include('achievements.urls')),
+    url(r'^documents/', include('documents.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

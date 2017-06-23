@@ -1,0 +1,60 @@
+<!-- Created by Navaneeth S, navisk13@gmail.com -->
+
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Documents {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="card col-md-12">
+                        <div class="card-block">
+                            <h1 class="card-title">Documents</h1>
+                            <hr>
+                            <div class="row">
+                                {% for object in object_list %}
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <h3 class="card-title">{{ object.title }}</h3>
+                                                <a href="/media/{{ object.document }}">
+                                                <button class="btn btn-info">View</button>
+                                                </a>
+                                                <a href="{% url 'document_delete' object.id %}">
+                                                <button class="btn btn-danger">Delete</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                <div class="col-md-12">
+                                    <div class="container">
+                                        <a href="{% url 'document_create' %}">
+                                            <button class="btn btn-secondary">Add new</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+    <style>
+        .card {
+            margin: 10px;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+{% endblock %}
