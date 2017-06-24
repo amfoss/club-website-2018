@@ -15,9 +15,9 @@
                                     {% csrf_token %}
                                     <h2>Delete {{ object.name }}?</h2>
                                     <button type="submit" class="btn btn-danger">Yes, continue</button>
-                                    <a href="{% url 'team_detail' object.id %}"><button class="btn btn-info">No, take me out of here</button></a>
                                 </div>
                             </form>
+                            <a href="{% url 'team_detail' object.id %}"><button class="btn btn-info">No, take me out of here</button></a>
                         </div>
                     </div>
                 </div>
