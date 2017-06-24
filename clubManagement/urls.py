@@ -14,6 +14,10 @@ urlpatterns = [
         login_required(YearAttendanceReportView.as_view()),
         name='attendance_report_year_batch'
     ),
+    url(r'^attendance-report/(?P<batch>[0-9]+)/(?P<year>[0-9]+)/(?P<month>[0-9]+)/$',
+        MonthAttendanceReportView.as_view(),
+        name='attendance_report_month'
+        ),
     url(
         r'^attendance-report-student/(?P<year>[0-9]+)/(?P<user_id>[0-9]+)/$',
         login_required(YearStudentAttendanceReportView.as_view()),
@@ -29,10 +33,6 @@ urlpatterns = [
         AttendanceAddView.as_view(),
         name='add_attendance_batch'
     ),
-    url(r'^attendance-report/(?P<batch>[0-9]+)/(?P<year>[0-9]+)/(?P<month>[0-9]+)/$',
-        MonthAttendanceReportView.as_view(),
-        name='attendance_report_month'
-        ),
 
     # Responsibilities
     url(r'^responsibility/$', ResponsibilityListView.as_view(), name='responsibility'),

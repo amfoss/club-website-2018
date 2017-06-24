@@ -472,8 +472,24 @@ class IndexView(TemplateView):
         year_list.reverse()
         context['year_list'] = year_list
 
-
+        # month list
         context['month_list'] = month
         context['list'] = range(12)
+
+        # batch list
+        batch_list = []
+        batches = UserInfo.objects.all()
+        for batch in batches:
+            if batch.year not in batch_list:
+                batch_list.append(batch.year)
+        year = datetime.today().year
+        if datetime.today().month < 4:
+            year -= 1
+        for i in range(4):
+            if (year - i) not in batch_list:
+                batch_list.append(year - i)
+        batch_list.sort()
+        batch_list.reverse()
+        context['batch_list'] = batch_list
 
         return context

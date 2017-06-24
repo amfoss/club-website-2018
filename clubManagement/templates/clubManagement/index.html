@@ -17,7 +17,9 @@
                                 <h1 class="card-title col-md-12">Attendance</h1>
                                 <h5 class="card-subtitle col-md-12 text-muted">Attendance report</h5>
                                 <hr class="col-md-11">
-
+                                <div class="alert alert-danger col-md-12" id="error" role="alert" style="display: none;">
+                                  <strong>Error!</strong> Batch should be selected.
+                                </div>
                                 <div class="form-group col-md-6">
                                     <label for="year">Year</label>
                                     <select class="form-control" onchange="printDaysInMonth()" id="year">
@@ -47,7 +49,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="batch">Batch</label>
-                                    <select class="form-control" id="batch">
+                                    <select class="form-control" onchange="errorBatch()" id="batch">
                                         <option value="all">All</option>
                                         {% for batch in batch_list %}
                                             <option value="{{ batch }}">{{ batch }}</option>
@@ -77,7 +79,7 @@
                                 </div>
 
                                 <div class="col-md-6 button">
-                                    <button onclick="attendanceLink()" class="btn btn-primary">Student report</button>
+                                    <button onclick="studentAttendanceLink()" class="btn btn-primary">Student report</button>
                                 </div>
 
                             </div>
@@ -143,9 +145,6 @@
     </style>
 
     <script>
-        function attendanceLink() {
-
-        }
         function myFunction() {
             // Declare variables
             var input, filter, items, i;
@@ -190,6 +189,56 @@
                     day_select.appendChild(opt);
                  }
              }
+        }
+
+        function errorBatch() {
+            var batch_input = document.getElementById('batch');
+            if(batch_input.value !== 'all')
+                document.getElementById('error').style.display = 'none';
+        }
+
+        function studentAttendanceLink() {
+
+        }
+
+        function attendanceLink() {
+            var batch_input = document.getElementById('batch');
+            var year_input = document.getElementById('year');
+            var month_input = document.getElementById('month');
+            var day_input = document.getElementById('day');
+
+            var link = '/club/attendance-report/';
+
+            if(batch_input.value !== 'all')
+                link += batch_input.value + '/';
+            if(year_input !== 'all')
+                link += year_input.value + '/';
+            if(month_input.value !== 'all') {
+                if(batch_input.value === 'all') {
+                    document.getElementById('error').style.display = 'block';
+                    return;
+                }
+                var mon = parseInt(month_input.value) + 1;
+                link += mon.toString() + '/';
+            }
+            if(day_input.value !== 'all')
+                link += day_input.value + '/';
+
+            if(day_input.value !== 'all' && batch_input.value !== 'all' && month_input.value !== 'all')
+                link = '/club/attendance/' + batch_input.value + '/' + year_input.value + '/' +
+                    month_input.value + '/' + day_input.value + '/';
+
+            window.location = link;
+        }
+
+        function editAttendance() {
+            var batch_input = document.getElementById('batch');
+            var year_input = document.getElementById('year');
+            var month_input = document.getElementById('month');
+            var day_input = document.getElementById('day');
+
+            var link = '/club/attendance/';
+            
         }
     </script>
 
