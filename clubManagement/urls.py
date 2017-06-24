@@ -47,4 +47,9 @@ urlpatterns = [
     url(r'^teams/(?P<pk>[0-9]+)/update$', TeamUpdateView.as_view(), name='team_update'),
     url(r'^teams/(?P<pk>[0-9]+)/delete/$', TeamDeleteView.as_view(), name='team_delete'),
     url(r'^teams-member/(?P<pk>[0-9]+)/delete/$', TeamMemberDeleteView.as_view(), name='team_member_delete'),
+    url(r'status/$', StatusListView.as_view(), name='view_status'),
+    url(r'status/add/$', StatusCreateView.as_view(), name='add_status'),
+    url(r'status/edit/(?P<pk>[0-9]+)/$', StatusUpdateView.as_view(), name='edit_status'),
+    url(r'status/delete/(?P<pk>[0-9]+)/$', StatusDeleteView.as_view(), name='delete_status'),
+
 ]
