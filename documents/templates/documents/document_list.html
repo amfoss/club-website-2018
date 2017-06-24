@@ -24,6 +24,9 @@
                                                 <a href="/media/{{ object.document }}">
                                                 <button class="btn btn-info">View</button>
                                                 </a>
+                                                <a href="{% url 'document_update' object.id %}">
+                                                <button type="submit" class="btn btn-primary add-btn">Update</button>
+                                                </a>
                                                 <a href="{% url 'document_delete' object.id %}">
                                                 <button class="btn btn-danger">Delete</button>
                                                 </a>
