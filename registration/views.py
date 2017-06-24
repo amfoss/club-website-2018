@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
+from registration.form import UserForm
 from registration.forms import UserSignUpForm
 from registration.models import UserInfo
 
@@ -32,6 +33,6 @@ def login(request,  *args, **kwargs):  # view to handle remember me and login
 
 class UserUpdateView(UpdateView):
     model = UserInfo
-    form_class = ''
+    form_class = UserForm
     template_name = 'base/form.html'
 
