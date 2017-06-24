@@ -18,7 +18,7 @@
                                 <h5 class="card-subtitle col-md-12 text-muted">Attendance report</h5>
                                 <hr class="col-md-11">
                                 <div class="alert alert-danger col-md-12" id="error" role="alert" style="display: none;">
-                                  <strong>Error!</strong> Batch should be selected.
+
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="year">Year</label>
@@ -57,9 +57,14 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-12 button">
+                                <div class="col-md-3 button">
                                     <button onclick="attendanceLink()" class="btn btn-primary">View attendance</button>
                                 </div>
+                                {% if request.user.is_superuser %}
+                                    <div class="col-md-3 button">
+                                        <button onclick="editAttendance()" class="btn btn-secondary">Add attendance</button>
+                                    </div>
+                                {% endif %}
 
 
                                 <hr class="col-md-11">
@@ -70,7 +75,6 @@
                                            data-toggle="dropdown" placeholder="Search..." autocomplete="off">
                                     <input type="hidden" id="search-id" name="user_id">
                                     <div class="dropdown-menu" id="search-results">
-                                        <p onclick="addText(0, 'All')" class="dropdown-item">All</p>
                                         {% for user in user_list %}
                                             <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
                                                class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>
@@ -79,7 +83,7 @@
                                 </div>
 
                                 <div class="col-md-6 button">
-                                    <button onclick="studentAttendanceLink()" class="btn btn-primary">Student report</button>
+                                    <button onclick="studentAttendance()" class="btn btn-primary">Student report</button>
                                 </div>
 
                             </div>
@@ -197,9 +201,6 @@
                 document.getElementById('error').style.display = 'none';
         }
 
-        function studentAttendanceLink() {
-
-        }
 
         function attendanceLink() {
             var batch_input = document.getElementById('batch');
@@ -215,7 +216,9 @@
                 link += year_input.value + '/';
             if(month_input.value !== 'all') {
                 if(batch_input.value === 'all') {
-                    document.getElementById('error').style.display = 'block';
+                    var error = document.getElementById('error');
+                    error.innerHTML = '<strong>Error!</strong> Batch should be selected.';
+                    error.style.display = 'block';
                     return;
                 }
                 var mon = parseInt(month_input.value) + 1;
@@ -238,7 +241,36 @@
             var day_input = document.getElementById('day');
 
             var link = '/club/attendance/';
-            
+
+            console.log(month_input.value);
+            console.log(day_input.value);
+
+            if(day_input.value !== 'all' && month_input.value !== 'all' && batch_input.value !== 'all')
+                link += batch_input.value + '/' + year_input.value + '/' +
+                    (parseInt(month_input.value)+1).toString() + '/' + day_input.value + '/';
+            else if(day_input.value !== 'all' && month_input.value !== 'all')
+                link += year_input.value + '/' + (parseInt(month_input.value)+1).toString() +
+                    '/' + day_input.value + '/';
+            else {
+                var error = document.getElementById('error');
+                error.innerHTML = '<strong>Error!</strong> Month and day should be selected.';
+                error.style.display = 'block';
+                return;
+            }
+            window.location = link;
+        }
+
+        function studentAttendance() {
+            var inp = document.getElementById('search-id');
+            var year_input = document.getElementById('year');
+            if(inp.value === '') {
+                var error = document.getElementById('error');
+                error.innerHTML = '<strong>Error!</strong> please select a student.';
+                error.style.display = 'block';
+                return;
+            }
+            var link = '/club/attendance-report-student/' + year_input.value + '/' + inp.value + '/';
+            window.location = link;
         }
     </script>
 
