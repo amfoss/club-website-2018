@@ -24,20 +24,22 @@
     .footer-icons {
         padding: 5px 5px;
         float: right;
+        margin-top: 1px;
     }
     footer {
         width: 100%;
     }
     .copyright {
         min-height:40px;
-        background-color: #1c1d1e;
         width: 100%;
+        background-color: #1c1d1e;
     }
     .copyright p {
         text-align:left;
         color:#FFF;
         padding:10px 0;
-        margin-bottom:0px;
+        margin-bottom:0;
+        margin-top: 3px;
     }
 
     .navbar {
@@ -49,33 +51,34 @@
     }
 
     html, body {
-      height: 100%;
+        height: 100%;
     }
 
     #wrap {
-      min-height: calc(100% - 170px);
+        min-height: calc(100% - 170px);
     }
 
     #main {
-      overflow-y: auto;
+        overflow-y: auto;
         overflow-x: hidden;
-      padding-bottom: 50px; /* must be same height as the footer */
+        padding-bottom: 50px; /* must be same height as the footer */
     }
 
     #footer {
-      position: relative;
-      margin-top: 50px; /* negative value of footer height */
-      height: 50px;
-      clear: both;
+        position: relative;
+        margin-top: 50px; /* negative value of footer height */
+        height: 50px;
+        clear: both;
+        background-color: #1c1d1e;
     }
 
     /* Opera Fix thanks to Maleika (Kohoutec) */
     body:before {
-      content: "";
-      height: 100%;
-      float: left;
-      width: 0;
-      margin-top: -32767px;/* thank you Erik J - negate effect of float*/
+        content: "";
+        height: 100%;
+        float: left;
+        width: 0;
+        margin-top: -32767px;/* thank you Erik J - negate effect of float*/
     }
 
 
@@ -89,6 +92,9 @@
         }
         #wrap {
             min-height: calc(100% - 210px);
+        }
+        .footer {
+            height: 140px;
         }
     }
 </style>

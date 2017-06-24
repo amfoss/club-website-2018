@@ -9,7 +9,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 
 from django.urls import reverse, reverse_lazy
-from django.views.generic import View, ListView, DetailView, UpdateView, DeleteView, CreateView
+from django.views.generic import View, ListView, DetailView, UpdateView, DeleteView, CreateView, TemplateView
 from clubManagement.models import Attendance, Team, TeamMember, Responsibility, StudentResponsibility, StatusReport
 from projects.models import Project
 
@@ -70,7 +70,6 @@ class AttendanceAddView(View):
             return redirect('permission_denied')
 
         d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
-        context = {}
         batch_list = get_batch_list(kwargs)
 
         attendance_list = []
@@ -356,7 +355,6 @@ class TeamUpdateView(UpdateView):
             redirect('permission_denied')
         return super(TeamUpdateView, self).get(request, *args, **kwargs)
 
-
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
@@ -371,7 +369,6 @@ class TeamDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(TeamDeleteView, self).get(request, *args, **kwargs)
-
 
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
@@ -394,19 +391,23 @@ class TeamMemberDeleteView(DeleteView):
 class StatusListView(ListView):
     model = StatusReport
 
+
 class StatusCreateView(CreateView):
     model = StatusReport
     fields = ['content', 'image', 'project']
     success_url = '/club/status'
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         response = super(StatusCreateView, self).form_valid(form)
         return response
+
     def get_context_data(self, **kwargs):
         context = super(StatusCreateView, self).get_context_data(**kwargs)
         proj = Project.objects.all()
         context['project'] = proj
         return context
+
 
 class StatusUpdateView(UpdateView):
     model = StatusReport
@@ -434,8 +435,8 @@ class StatusUpdateView(UpdateView):
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
-        print request.POST
         return super(StatusUpdateView, self).post(request, *args, **kwargs)
+
 
 class StatusDeleteView(DeleteView):
     model = StatusReport
@@ -446,13 +447,33 @@ class StatusDeleteView(DeleteView):
             redirect('permission_denied')
         return super(StatusDeleteView, self).get(request, *args, **kwargs)
 
-
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(StatusDeleteView, self).post(request, *args, **kwargs)
 
 
+class IndexView(TemplateView):
+    template_name = 'clubManagement/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['user_list'] = User.objects.all()
+
+        # get the available year
+        year_list = []
+        attendance_list = Attendance.objects.all()
+        for attendance in attendance_list:
+            if attendance.date.year not in year_list:
+                year_list.append(attendance.date.year)
+        if datetime.today().year not in year_list:
+            year_list.append(datetime.today().year)
+        year_list.sort()
+        year_list.reverse()
+        context['year_list'] = year_list
 
 
+        context['month_list'] = month
+        context['list'] = range(12)
 
+        return context

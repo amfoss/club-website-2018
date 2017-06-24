@@ -33,13 +33,18 @@ urlpatterns = [
         MonthAttendanceReportView.as_view(),
         name='attendance_report_month'
         ),
+
     # Responsibilities
     url(r'^responsibility/$', ResponsibilityListView.as_view(), name='responsibility'),
     url(r'^responsibility/(?P<pk>[0-9]+)/$', ResponsibilityDetailView.as_view(), name='responsibility_detail'),
     url(r'^responsibility/create/$', ResponsibilityCreateView.as_view(), name='responsibility_create'),
     url(r'^responsibility/(?P<pk>[0-9]+)/update/$', ResponsibilityUpdateView.as_view(), name='responsibility_update'),
     url(r'^responsibility/(?P<pk>[0-9]+)/delete/$', ResponsibilityDeleteView.as_view(), name='responsibility_delete'),
-    url(r'^responsibility-student/(?P<pk>[0-9]+)/delete/$', StudentResponsibilityDeleteView.as_view(), name='student_responsibility_delete'),
+    url(r'^responsibility-student/(?P<pk>[0-9]+)/delete/$',
+        StudentResponsibilityDeleteView.as_view(),
+        name='student_responsibility_delete'
+        ),
+
     # Teams
     url(r'^teams/$', TeamListView.as_view(), name='team'),
     url(r'^teams/(?P<pk>[0-9]+)/$', TeamDetailView.as_view(), name='team_detail'),
@@ -47,9 +52,13 @@ urlpatterns = [
     url(r'^teams/(?P<pk>[0-9]+)/update$', TeamUpdateView.as_view(), name='team_update'),
     url(r'^teams/(?P<pk>[0-9]+)/delete/$', TeamDeleteView.as_view(), name='team_delete'),
     url(r'^teams-member/(?P<pk>[0-9]+)/delete/$', TeamMemberDeleteView.as_view(), name='team_member_delete'),
-    url(r'status/$', StatusListView.as_view(), name='view_status'),
-    url(r'status/add/$', StatusCreateView.as_view(), name='add_status'),
-    url(r'status/edit/(?P<pk>[0-9]+)/$', StatusUpdateView.as_view(), name='edit_status'),
-    url(r'status/delete/(?P<pk>[0-9]+)/$', StatusDeleteView.as_view(), name='delete_status'),
 
+    # status report
+    url(r'status/$', StatusListView.as_view(), name='status'),
+    url(r'status/create/$', StatusCreateView.as_view(), name='status_create'),
+    url(r'status/(?P<pk>[0-9]+)/update/$', StatusUpdateView.as_view(), name='status_update'),
+    url(r'status/(?P<pk>[0-9]+)/delete/$', StatusDeleteView.as_view(), name='status_delete'),
+
+    # index
+    url(r'^$', IndexView.as_view(), name='club'),
 ]
