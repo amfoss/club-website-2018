@@ -19,6 +19,7 @@ class UserInfo(models.Model):
     year = models.IntegerField(blank=True)
     resume = models.FileField(upload_to='resume/', blank=True, null=True)
     typing_speed = models.IntegerField(blank=True, null=True)
+    system_number = models.IntegerField(blank=True, null=True)
 
     is_mentor = models.BooleanField(default=False)
 

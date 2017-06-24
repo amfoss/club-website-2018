@@ -4,9 +4,10 @@ from __future__ import unicode_literals
 from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from registration.forms import UserSignUpForm
+from registration.models import UserInfo
 
 
 class UserSignUpView(CreateView):
@@ -27,3 +28,10 @@ def login(request,  *args, **kwargs):  # view to handle remember me and login
     if request.method == 'GET' and request.user.is_authenticated:
         return redirect('already_logged_in')
     return auth_views.login(request, *args, **kwargs)
+
+
+class UserUpdateView(UpdateView):
+    model = UserInfo
+    form_class = ''
+    template_name = 'base/form.html'
+

@@ -1,11 +1,13 @@
 # created by Chirath R, chirath.02@gmail.com
 from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
-from registration.views import UserSignUpView, login
+from registration.views import UserSignUpView, login, UserUpdateView
 
 urlpatterns = [
     url(r'^login/$', login, name="login"),
     url(r'^signup/$', UserSignUpView.as_view(), name="signup"),
+    url(r'^update/$', login_required(UserUpdateView.as_view()), name="update_profile"),
     url(
         r'^signup/success$',
         TemplateView.as_view(template_name='registration/signup_success.html'),
