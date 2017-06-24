@@ -18,7 +18,7 @@
                                 <h5 class="card-subtitle col-md-12 text-muted">Attendance report</h5>
                                 <hr class="col-md-11">
 
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                     <label for="year">Year</label>
                                     <select class="form-control" onchange="printDaysInMonth()" id="year">
                                         {% for year in year_list %}
@@ -26,7 +26,7 @@
                                         {% endfor %}
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                     <label for="month">Month</label>
                                     <select class="form-control" onchange="printDaysInMonth()" id="month">
                                         <option value="all">All</option>
@@ -35,7 +35,7 @@
                                         {% endfor %}
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                     <label for="day">Day</label>
                                     <select class="form-control" id="day">
                                         <option value="all">All</option>
@@ -45,7 +45,24 @@
                                     </select>
                                 </div>
 
-                                <div class="dropdown col-md-4">
+                                <div class="form-group col-md-6">
+                                    <label for="batch">Batch</label>
+                                    <select class="form-control" id="batch">
+                                        <option value="all">All</option>
+                                        {% for batch in batch_list %}
+                                            <option value="{{ batch }}">{{ batch }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-md-12 button">
+                                    <button onclick="attendanceLink()" class="btn btn-primary">View attendance</button>
+                                </div>
+
+
+                                <hr class="col-md-11">
+
+                                <div class="dropdown col-md-6">
                                     <label for="search">Student</label>
                                     <input id="search" onkeyup="myFunction()" class="form-control"
                                            data-toggle="dropdown" placeholder="Search..." autocomplete="off">
@@ -59,8 +76,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 button">
-                                    <button onclick="attendanceLink()" class="btn btn-primary">View attendance</button>
+                                <div class="col-md-6 button">
+                                    <button onclick="attendanceLink()" class="btn btn-primary">Student report</button>
                                 </div>
 
                             </div>
@@ -69,7 +86,7 @@
 
                     <div class="card-deck col-md-8 offset-md-2">
                         <div class="card">
-                            <img class="card-img-top img-fluid" src="..." alt="Card image cap">
+                            <img class="card-img-top img-fluid" src="{% static 'clubManagement/image/status.png' %}" alt="Card image cap">
                             <div class="card-block">
                                 <h4 class="card-title">Status updates</h4>
                                 <p class="card-text">Weekly status updates sent by each student.</p>
@@ -77,7 +94,7 @@
                             </div>
                         </div>
                         <div class="card">
-                            <img class="card-img-top img-fluid" src="..." alt="Card image cap">
+                            <img class="card-img-top img-fluid" src="{% static 'clubManagement/image/teams.png' %}" alt="Card image cap">
                             <div class="card-block">
                                 <h4 class="card-title">Teams</h4>
                                 <p class="card-text">The various teams and members of the club.</p>
@@ -154,16 +171,16 @@
 
         function printDaysInMonth() {
              var year_input = document.getElementById('year');
-             var year_month = document.getElementById('month');
+             var month_input = document.getElementById('month');
 
              var day_select = document.getElementById('day');
 
-             if(month !== 'all') {
+             if(month_input.value !== 'all') {
                  var year = parseInt(year_input.value);
-                 var month = parseInt(year_month.value);
+                 var month = parseInt(month_input.value);
 
                  var date = new Date(year, month, 1);
-                 var days = [];
+
                  while (date.getMonth() === month) {
                     var day = new Date(date).getDate();
                     date.setDate(date.getDate() + 1);
@@ -173,9 +190,6 @@
                     day_select.appendChild(opt);
                  }
              }
-
-
-             console.log(days);
         }
     </script>
 
