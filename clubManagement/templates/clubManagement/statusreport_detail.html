@@ -1,0 +1,128 @@
+{% extends 'base/base.html' %}
+
+{% block title %} {{ object.name }} {% endblock %}
+
+{% load static %}
+
+{% block css %}
+    <script src="{% static 'base/js/tinymce/tinymce.min.js' %}"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            height: 300,
+            menubar: false,
+            entity_encoding: "raw",
+            readonly: 1,
+            statusbar: false,
+            branding: false,
+            toolbar: false,
+        });
+    </script>
+{% endblock %}
+
+{% block script %}
+    <!-- Latest compiled and minified JavaScript -->
+{% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+        <div id="wrap">
+            <div id="main">
+            <!-- content goes here -->
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1>Status update</h1>
+                            <h5 class="text-muted">{{ object.user.first_name }} {{ object.user.last_name }}</h5>
+                            <hr>
+                            <div class="card mb-3">
+                            {% if object.image %}
+                                <img class="card-img-top img-fluid" src="/media/{{ object.image }}">
+                            {% else %}
+                                <img class="card-img-top img-fluid" src="{% static 'clubManagement/image/status.png' %}">
+                            {% endif %}
+                              <div class="card-block">
+                                <p class="card-text">
+                                    <textarea type="text" class="form-control" name="content" id="id_content">
+                                        {{ object.content }}
+                                    </textarea>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                       Added by : {{ object.user.first_name }} {{ object.user.last_name }}
+                                    </small>
+                                </p>
+                                  {% if edit_permission %}
+                                    <a href="{% url 'status_update' object.id %}">
+                                        <button type="submit" class="btn btn-primary add-btn">Update</button>
+                                    </a>
+                                    <a href="{% url 'status_delete' object.id %}">
+                                        <button type="submit" class="btn btn-danger add-btn">Delete</button>
+                                    </a>
+                                  {% endif %}
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% include 'base/footer.html' %}
+
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .add-btn {
+            margin-top: 20px;
+        }
+        .margin-20 {
+            margin: 24px;
+        }
+        .mceu_12 {
+            display: none;
+        }
+        .mce-panel {
+            border: none;
+            background-color: white;
+        }
+    </style>
+
+    <script>
+        function showForm() {
+            var form = document.getElementById('student-form');
+            if(form.style.display === 'none') {
+                form.style.display = 'block';
+            }
+            else {
+                form.style.display = 'none';
+            }
+        }
+
+        function myFunction() {
+            // Declare variables
+            var input, filter, items, i;
+            input = document.getElementById('search');
+            filter = input.value.toUpperCase();
+            items = document.getElementsByClassName('dropdown-item');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < items.length; i++) {
+                if (items[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        function addText(id, name) {
+            var inp1 = document.getElementById('search');
+            var inp2 = document.getElementById('search-id');
+            inp1.value = name;
+            inp2.value = id;
+        }
+    </script>
+{% endblock %}

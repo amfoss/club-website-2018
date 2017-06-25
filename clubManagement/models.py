@@ -72,4 +72,4 @@ class StatusReport(models.Model):
         return self.user.username + " " + self.content[:20] + ".."
 
     def get_absolute_url(self):
-        return ''
+        return reverse('status_detail', kwargs={'pk': self.pk})

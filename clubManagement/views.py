@@ -390,12 +390,24 @@ class TeamMemberDeleteView(DeleteView):
 
 class StatusListView(ListView):
     model = StatusReport
+    queryset = StatusReport.objects.all().order_by('-date')
+
+
+class StatusDetailView(DetailView):
+    model = StatusReport
+
+    def get_context_data(self, **kwargs):
+        context = super(StatusDetailView, self).get_context_data(**kwargs)
+        if self.request.user.is_superuser or self.request.user == self.object.created_by:
+            context['edit_permission'] = True
+        else:
+            context['edit_permission'] = False
+        return context
 
 
 class StatusCreateView(CreateView):
     model = StatusReport
     fields = ['content', 'image', 'project']
-    success_url = '/club/status'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -412,7 +424,6 @@ class StatusCreateView(CreateView):
 class StatusUpdateView(UpdateView):
     model = StatusReport
     fields = ['content', 'image', 'project']
-    success_url = reverse_lazy('view_status')
 
     def form_valid(self, form):
         if self.request.POST['project'] != "":
@@ -440,7 +451,7 @@ class StatusUpdateView(UpdateView):
 
 class StatusDeleteView(DeleteView):
     model = StatusReport
-    success_url = reverse_lazy('view_status')
+    success_url = reverse_lazy('status')
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):

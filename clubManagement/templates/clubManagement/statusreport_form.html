@@ -1,31 +1,26 @@
-{#{% extends 'base/base.html' %}#}
-{##}
-{#{% block title %} New status {% endblock %}#}
-{##}
-{#{% block body %}#}
-{#    {% include 'base/nav-bar.html' %}#}
-{#<br>#}
-{#<br>#}
-{#<br>#}
-{#    <form method="post" action="." enctype="multipart/form-data">#}
-{#    {% csrf_token %}#}
-{#{{ form.as_p }}#}
-{#     <button type="submit" >Submit</button>#}
-{#    </form>#}
-{##}
-{##}
-{#<br>#}
-{#<br>#}
-{#<br>#}
-{##}
-{#    {% include 'base/footer.html' %}#}
-{##}
-{#{% endblock %}#}
-
-
 {% extends 'base/base.html' %}
 {% load static %}
 {% block title %} Status {% endblock %}
+{% block css %}
+    <script src="{% static 'base/js/tinymce/tinymce.min.js' %}"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            height: 300,
+            menubar: false,
+            entity_encoding: "raw",
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code'
+            ],
+            toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | link image',
+            statusbar: false,
+            branding: false
+        });
+    </script>
+{% endblock %}
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
@@ -40,36 +35,32 @@
                             <hr>
                             <form action="" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-                              <small class="form-text text-muted">
-                                        Content
-                                    </small>
+                                <small class="form-text text-muted">
+                                    Content
+                                </small>
                                 <div class="form-group">
-                                    <textarea type="text" class="form-control" name="content" id="id_content"
-                                             >{{ object.content }}</textarea>
-
+                                    <textarea type="text" class="form-control" name="content" id="id_content">
+                                        {{ object.content }}
+                                    </textarea>
                                 </div>
 
                                 <div class="form-group">
-
                                     <small class="form-text text-muted">
-                                    Project
+                                        Project
                                     </small>
-                                 <select name="project" class="form-control" id="id_project">
-                                    <option value="">None</option>
-                                     {% for i in project %}
-                                     <option value="{{ i.id }}">{{ i }}</option>
-                                     {% endfor %}
-                                 </select>
-
+                                    <select name="project" class="form-control" id="id_project">
+                                        <option value="">None</option>
+                                        {% for i in project %}
+                                            <option value="{{ i.id }}">{{ i }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
-                                        <input id="id_image" name="image" value="{{ object.image }}"
-                                               type='file'  class="form-control"/>
+                                    <input id="id_image" name="image" value="{{ object.image }}"
+                                           type='file' class="form-control"/>
 
-                                    </div>
                                 </div>
-
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>

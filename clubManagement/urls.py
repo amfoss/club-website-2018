@@ -55,6 +55,7 @@ urlpatterns = [
 
     # status report
     url(r'status/$', StatusListView.as_view(), name='status'),
+    url(r'status/(?P<pk>[0-9]+)/$', StatusDetailView.as_view(), name='status_detail'),
     url(r'status/create/$', StatusCreateView.as_view(), name='status_create'),
     url(r'status/(?P<pk>[0-9]+)/update/$', StatusUpdateView.as_view(), name='status_update'),
     url(r'status/(?P<pk>[0-9]+)/delete/$', StatusDeleteView.as_view(), name='status_delete'),
