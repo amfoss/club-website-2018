@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} {{ object.first_name }} {{ object.last_name }} {% endblock %}
 
-</body>
-</html>
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+    <style>
+
+    </style>
+{% endblock %}
+

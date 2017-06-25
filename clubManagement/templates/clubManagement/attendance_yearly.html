@@ -6,10 +6,10 @@
 {% block title %} Add attendance {% endblock %}
 
 {% block body %}
+    {% include 'base/nav-bar.html' %}
     <div id="wrap">
         <div id="main">
-            {% include 'base/nav-bar.html' %}
-
+            <!-- content goes here -->
             <div class="container graph-div">
                 <div class="row">
                     {% if errors %}
@@ -39,10 +39,8 @@
                     {% endif %}
                 </div>
             </div>
-
         </div>
     </div>
-
     {% include 'base/footer.html' %}
 
     <script src="{% static 'base/js/chart-bundle.js'%}"></script>
@@ -129,5 +127,5 @@
             max-height: 500px;
         }
     </style>
-
 {% endblock %}
+

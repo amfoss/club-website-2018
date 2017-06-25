@@ -5,9 +5,9 @@
 {% block title %} Add attendance {% endblock %}
 
 {% block body %}
+    {% include 'base/nav-bar.html' %}
     <div id="wrap">
         <div id="main">
-            {% include 'base/nav-bar.html' %}
                 {% csrf_token %}
                 <h2 class="header">{{ head }}</h2>
                     {% for user_info in data %}
