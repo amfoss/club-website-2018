@@ -71,14 +71,15 @@ class UserUpdateView(UpdateView):
 
 class ProfileDetailView(DetailView):
     model = User
+    template_name = 'registration/profile.html'
 
     def get_context_data(self, **kwargs):
         context = super(ProfileDetailView, self).get_context_data(**kwargs)
         try:
-            context['user_info'] = User.objects.get(user=self.get_object())
+            context['user_info'] = UserInfo.objects.get(user=self.get_object())
         except User.DoesNotExist:
             context['error'] = 'No data found for this user!'
-        context['teams'] = Team.objects.filter(user=self.get_object())
-        context['projects'] = Project.objects.filter(user=self.get_object())
-        context['responsibilities'] = Responsibility.objects.filter(user=self.get_object())
+        context['teams'] = Team.objects.filter(created_by=self.get_object())
+        context['projects'] = Project.objects.filter(created_by=self.get_object())
+        context['responsibilities'] = Responsibility.objects.filter(created_by=self.get_object())
         return context
