@@ -236,11 +236,11 @@ class ResponsibilityDetailView(DetailView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             raise PermissionDenied
         try:
-            user = User.objects.get(id=int(request.POST.get()))
+            user = User.objects.get(id=int(request.POST.get('user_id')))
             StudentResponsibility.objects.get(responsibility=self.get_object(), user=user)
         except StudentResponsibility.DoesNotExist:
             try:
-                user = User.objects.get(id=int(request.POST.get()))
+                user = User.objects.get(id=int(request.POST.get('user_id')))
                 StudentResponsibility(responsibility=self.get_object(), user=user).save()
             except User.DoesNotExist:
                 redirect('error')
@@ -324,11 +324,11 @@ class TeamDetailView(DetailView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             return redirect('permission_denied')
         try:
-            user = User.objects.get(id=int(request.POST.get()))
+            user = User.objects.get(id=int(request.POST.get('user_id')))
             TeamMember.objects.get(team=self.get_object(), user=user)
         except TeamMember.DoesNotExist:
             try:
-                user = User.objects.get(id=int(request.POST.get()))
+                user = User.objects.get(id=int(request.POST.get('user_id')))
                 TeamMember(team=self.get_object(), user=user).save()
             except User.DoesNotExist:
                 redirect('error')
