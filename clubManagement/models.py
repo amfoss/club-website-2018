@@ -63,6 +63,7 @@ class StudentResponsibility(models.Model):
 
 class StatusReport(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=300, null='True')
     date = models.DateTimeField(auto_now=False, auto_now_add=True)
     content = models.TextField()
     image = models.ImageField(upload_to='status_img/', blank=True)

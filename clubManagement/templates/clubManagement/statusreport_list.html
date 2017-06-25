@@ -17,7 +17,7 @@
                             <thead class="thead-default">
                             <tr>
                                 <th>Student</th>
-                                <th>Content</th>
+                                <th>Title</th>
                                 <th>Project</th>
                                 <th>Date</th>
                             </tr>
@@ -26,7 +26,7 @@
                             {% for object in object_list %}
                                 <tr class="click" onclick="window.location='{% url 'status_detail' object.id %}';">
                                     <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
-                                    <td>{{ object.content|slice:":70" }}</td>
+                                    <td>{{ object.title|slice:":70" }}</td>
                                     <td>{{ object.project }}</td>
                                     <td>{{ object.date }}</td>
                                 </tr>

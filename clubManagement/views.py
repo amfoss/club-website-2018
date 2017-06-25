@@ -407,7 +407,7 @@ class StatusDetailView(DetailView):
 
 class StatusCreateView(CreateView):
     model = StatusReport
-    fields = ['content', 'image', 'project']
+    fields = ['title', 'content', 'image', 'project']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -423,7 +423,7 @@ class StatusCreateView(CreateView):
 
 class StatusUpdateView(UpdateView):
     model = StatusReport
-    fields = ['content', 'image', 'project']
+    fields = ['title', 'content', 'image', 'project']
 
     def form_valid(self, form):
         if self.request.POST['project'] != "":

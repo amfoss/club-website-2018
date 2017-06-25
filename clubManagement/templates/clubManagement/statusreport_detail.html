@@ -43,6 +43,7 @@
                                 <img class="card-img-top img-fluid" src="{% static 'clubManagement/image/status.png' %}">
                             {% endif %}
                               <div class="card-block">
+                                <h4 class="card-title">{{ object.title }}</h4>
                                 <p class="card-text">
                                     <textarea type="text" class="form-control" name="content" id="id_content">
                                         {{ object.content }}
