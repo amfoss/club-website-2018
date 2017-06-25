@@ -10,22 +10,22 @@ urlpatterns = [
     url(r'^(?P<pk>[0-9])/update/$', login_required(UserUpdateView.as_view()), name="update_profile"),
     url(r'^(?P<pk>[0-9])/$', ProfileDetailView.as_view(), name="profile"),
     url(
-        r'^signup/success$',
+        r'^signup/success/$',
         TemplateView.as_view(template_name='registration/signup_success.html'),
         name="signup_success"
     ),
     url(
-        r'^signup/already-logged-in',
+        r'^signup/already-logged-in/$',
         TemplateView.as_view(template_name='registration/already_logged_in.html'),
         name="already_logged_in"
     ),
     url(
-        r'^signup/permission-denied',
+        r'^permission-denied/$',
         TemplateView.as_view(template_name='registration/permission_denied.html'),
         name="permission_denied"
     ),
     url(
-        r'^error/',
+        r'^error/$',
         TemplateView.as_view(template_name='registration/error.html'),
         name="error"
     ),
