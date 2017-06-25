@@ -16,7 +16,7 @@ class DocumentListView(ListView):
 
 class DocumentCreateView(CreateView):
     model = Document
-    fields = ['title', 'document']
+    fields = ['title', 'description', 'document']
     success_url = '/documents'
 
     def form_valid(self, form):
@@ -27,7 +27,7 @@ class DocumentCreateView(CreateView):
 
 class DocumentUpdateView(UpdateView):
     model = Document
-    fields = ['title', 'document']
+    fields = ['title', 'description', 'document']
     success_url = '/documents'
 
     def get(self, request, *args, **kwargs):
@@ -58,6 +58,3 @@ class DocumentDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(DocumentDeleteView, self).post(request, *args, **kwargs)
-
-
-

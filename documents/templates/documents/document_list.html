@@ -11,36 +11,36 @@
             <!-- content goes here -->
             <div class="container">
                 <div class="row">
-                    <div class="card col-md-12">
-                        <div class="card-block">
-                            <h1 class="card-title">Documents</h1>
-                            <hr>
-                            <div class="row">
+                    <div class="col-md-12">
+                        <h1>Documents</h1>
+                        <hr>
+                        <div class="row">
+                            <div class="card-columns">
                                 {% for object in object_list %}
-                                    <div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-block">
+                                    <div class="card">
+                                        <div class="card-block">
+                                            <a style="color: black;" href="/media/{{ object.document }}">
                                                 <h3 class="card-title">{{ object.title }}</h3>
-                                                <a href="/media/{{ object.document }}">
-                                                <button class="btn btn-info">View</button>
-                                                </a>
-                                                <a href="{% url 'document_update' object.id %}">
-                                                <button type="submit" class="btn btn-primary add-btn">Update</button>
-                                                </a>
-                                                <a href="{% url 'document_delete' object.id %}">
-                                                <button class="btn btn-danger">Delete</button>
-                                                </a>
-                                            </div>
+                                            </a>
+                                            <p class="card-text">{{ object.description }}</p>
+                                            <a class="btn btn-primary add-btn"
+                                               href="{% url 'document_update' object.id %}">Update
+                                            </a>
+                                            <a class="btn btn-danger"
+                                               href="{% url 'document_delete' object.id %}">Delete
+                                            </a>
+                                            <p class="card-text">
+                                                <small class="text-muted">{{ object.user.first_name }} {{ object.user.last_name }}</small>
+                                            </p>
                                         </div>
                                     </div>
                                 {% endfor %}
-
-                                <div class="col-md-12">
-                                    <div class="container">
-                                        <a href="{% url 'document_create' %}">
-                                            <button class="btn btn-secondary">Add new</button>
-                                        </a>
-                                    </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="container">
+                                    <a href="{% url 'document_create' %}">
+                                        <button class="btn btn-secondary">Add new</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -49,6 +49,7 @@
             </div>
         </div>
     </div>
+    </div>
 
     {% include 'base/footer.html' %}
 
@@ -56,6 +57,7 @@
         .card {
             margin: 10px;
         }
+
         .container {
             margin-top: 50px;
         }

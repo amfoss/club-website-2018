@@ -13,5 +13,8 @@ class Document(models.Model):
     user = models.ForeignKey(User)
     document = models.FileField(upload_to='files/')
     title = models.CharField(max_length=50)
+    description = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now=True, auto_now_add=False)
 
+    def __str__(self):
+        return self.title
