@@ -2,10 +2,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DetailView
 
+from clubManagement.models import Team, Responsibility
+from projects.models import Project
 from registration.form import UserForm
 from registration.forms import UserSignUpForm
 from registration.models import UserInfo
@@ -64,3 +67,18 @@ class UserUpdateView(UpdateView):
         if request.user != self.get_object().user:
             return redirect('permission_denied')
         return super(UserUpdateView, self).post(request, *args, **kwargs)
+
+
+class ProfileDetailView(DetailView):
+    model = User
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileDetailView, self).get_context_data(**kwargs)
+        try:
+            context['user_info'] = User.objects.get(user=self.get_object())
+        except User.DoesNotExist:
+            context['error'] = 'No data found for this user!'
+        context['teams'] = Team.objects.filter(user=self.get_object())
+        context['projects'] = Project.objects.filter(user=self.get_object())
+        context['responsibilities'] = Responsibility.objects.filter(user=self.get_object())
+        return context
