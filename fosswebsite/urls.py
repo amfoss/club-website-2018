@@ -31,5 +31,5 @@ urlpatterns = [
     url(r'^foss/', include('promotion.urls')),
     url(r'^achievements/', include('achievements.urls')),
     url(r'^documents/', include('documents.urls')),
-    url(r'^projects/', include('projects.urls')),
+    url(r'^project/', include('projects.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
