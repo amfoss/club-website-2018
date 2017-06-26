@@ -18,6 +18,12 @@
                                 {% for object in object_list %}
                                     <div class="col-md-6">
                                         <div class="card">
+                                            {% if object.image %}
+                                                <img class="card-img-top img-fluid" src="/media/{{ object.image }}">
+                                            {% else %}
+                                                <img class="card-img-top img-fluid"
+                                                     src="{% static 'projects/images/default.png' %}">
+                                            {% endif %}
                                             <div class="card-block">
                                                 <h3 class="card-title">{{ object.title }}</h3>
                                                 <p class="card-text">{{ object.description }}</p>
@@ -50,6 +56,7 @@
         .card {
             margin: 10px;
         }
+
         .container {
             margin-top: 50px;
         }
