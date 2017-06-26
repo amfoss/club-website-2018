@@ -23,16 +23,20 @@ class JoinApplicationForm(forms.ModelForm):
     email = forms.EmailField(label='Email', help_text="Enter your email id",
                              widget=forms.EmailInput(attrs={'placeholder': 'Email id'}))
 
+    roll_number = forms.CharField(label='Roll number', help_text="Enter your roll number(leave blank if you don't "
+                                                                 "have one.)", required=False,
+                                  widget=forms.TextInput(attrs={'placeholder': 'AM.XX.XXXXXXXXXX'}))
+
     batch = forms.ChoiceField(choices=batch_choices, label='Batch', help_text="Enter your current year")
 
-    motivation = forms.CharField(label='Why dou you want to join?',
+    motivation = forms.CharField(label='Why do you want to join FOSS?',
                                  help_text="Write briefly about why you would like to join us. Please answer " +
                                            "carefully, this is an important factor in our selection process ",
                                  widget=forms.Textarea(attrs={'placeholder': 'Why should we select you?'}))
 
     cs_background = forms.CharField(label='Technical knowledge',
                                     help_text="Experience in computer science. It's okay to leave this blank "
-                                              "if you are new to Computer Science",
+                                              "if you are new to Computer Science", required=False,
                                     widget=forms.Textarea(attrs={'placeholder': 'example: I studied C++ in my School.' +
                                                                                 ' I have made a game using Python.'}))
 
@@ -50,4 +54,4 @@ class JoinApplicationForm(forms.ModelForm):
 
     class Meta:
         model = JoinApplication
-        fields = ['name', 'email', 'batch', 'motivation', 'cs_background', 'interests', 'captcha']
+        fields = ['name', 'email', 'batch', 'roll_number', 'motivation', 'cs_background', 'interests', 'captcha']
