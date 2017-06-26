@@ -36,7 +36,14 @@ These features are successfully implemented
 * Password change
 
 ## promotion
-* Join the club
+* Membership application
+* Review application
+
+## projects
+* Manage project details
+
+## Documents
+* Manage important documents
 
 
 ## Feature to implement
@@ -44,10 +51,3 @@ These are ideas to be implemented
 
 ### Events
 Show event page with details and photos
-
-### Projects
-Show details about projects students are working on
-
-### Documents
-Pages to important documents like rules, details on how to apply for duty leave etc..
-Previous year question papers
