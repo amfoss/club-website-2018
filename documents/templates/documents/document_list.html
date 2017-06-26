@@ -36,6 +36,7 @@
                                     </div>
                                 {% endfor %}
                             </div>
+                        {% if request.user.is_authenticated %}
                             <div class="col-md-12">
                                 <div class="container">
                                     <a href="{% url 'document_create' %}">
@@ -43,6 +44,7 @@
                                     </a>
                                 </div>
                             </div>
+                        {% endif %}
                         </div>
                     </div>
                 </div>

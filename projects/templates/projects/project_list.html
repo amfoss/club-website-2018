@@ -35,6 +35,8 @@
                                     </div>
                                 {% endfor %}
 
+                                {% if request.user.is_authenticated %}
+
                                 <div class="col-md-12">
                                     <div class="container">
                                         <a href="{% url 'project_create' %}">
@@ -42,6 +44,9 @@
                                         </a>
                                     </div>
                                 </div>
+
+                                {% endif %}
+
                             </div>
                         </div>
                     </div>
