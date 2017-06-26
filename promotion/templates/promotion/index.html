@@ -44,6 +44,11 @@
 
     
     <style>
+        @media only screen and (max-width: 576px) {
+            .nav {
+                display: none;
+            }
+        }
         a {
             border-bottom: none !important;
         }
@@ -104,7 +109,7 @@
 											<a href="#fifth"><strong>Click here</strong></a> to join the club.
 									</p>
 									<ul class="actions">
-										<li><a href="#first" class="button special color1 circle icon fa-angle-right">Next</a></li>
+										<li><a href="#first" id="btn-home" class="button special color1 circle icon fa-angle-right">Next</a></li>
 									</ul>
 								</div>
 								<div class="image filtered tinted" data-position="top right">
@@ -320,5 +325,17 @@
 			<script src="{% static 'promotion/js/jquery.min.js'%}"></script>
 			<script src="{% static 'promotion/js/skel.min.js'%}"></script>
 			<script src="{% static 'promotion/js/main.js'%}"></script>
+
+            <script>
+                $(window).resize(function() {
+                  //resize just happened, pixels changed
+                     if ( $(window).width() < 920) {
+                    $("#btn-home").addClass('fa-angle-down').removeClass('fa-angle-right');
+                    }
+                    else {
+                    $("#btn-home").addClass('fa-angle-right').removeClass('fa-angle-down');
+                    }
+                });
+            </script>
 	</body>
 </html>
