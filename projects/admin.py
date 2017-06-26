@@ -9,3 +9,4 @@ from .models import *
 admin.site.register(Project)
 admin.site.register(ProjectMembers)
 admin.site.register(ProjectImages)
+admin.site.register(Language)
