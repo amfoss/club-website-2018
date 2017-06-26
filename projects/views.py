@@ -48,7 +48,6 @@ class ProjectDetailView(DetailView):
 class ProjectCreateView(CreateView):
     model = Project
     fields = ['title', 'url', 'description', 'date']
-    success_url = '/projects'
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -60,7 +59,6 @@ class ProjectCreateView(CreateView):
 class ProjectUpdateView(UpdateView):
     model = Project
     fields = ['title', 'url', 'description', 'date']
-    success_url = '/projects'
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
