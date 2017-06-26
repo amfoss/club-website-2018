@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 
 class Project(models.Model):
@@ -15,7 +16,7 @@ class Project(models.Model):
         return self.created_by.username + ' ' + self.title
 
     def get_absolute_url(self):
-        return " "
+        return reverse('project_detail', kwargs={'pk': self.id})
 
 
 class ProjectImages(models.Model):
