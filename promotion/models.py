@@ -16,7 +16,7 @@ batch_choices = (
 class JoinApplication(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField()
-    roll_number = models.CharField(max_length=100)
+    roll_number = models.CharField(max_length=100, blank=True, null=True)
     batch = models.CharField(max_length=100, choices=batch_choices)
     motivation = models.TextField()
     cs_background = models.TextField(blank=True)
