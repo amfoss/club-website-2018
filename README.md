@@ -1,7 +1,7 @@
 # FOSS@Amrita website
 
 ## Introduction
-The official website of FOSS at Amritapuri website
+The official website of FOSS@Amrita, Amritapuri campus.
 
 ## Authors
 * Chirath R
@@ -9,7 +9,7 @@ The official website of FOSS at Amritapuri website
 * Navaneeth S
 
 ## Installation instructions
-See INSTALL.
+See docs/INSTALL.md
 
 # Features
 These features are successfully implemented
