@@ -139,3 +139,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # No captcha
 NOCAPTCHA = True
+
+
+# application count notification
+
+TEMPLATES[0]['OPTIONS']['context_processors'].append("promotion.context_processors.application_processor")

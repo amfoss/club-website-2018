@@ -32,7 +32,11 @@
             </li>
             {% if request.user.is_superuser %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'join_list' %}">Projects</a>
+                <a class="nav-link" href="{% url 'join_list' %}">
+                    Applications {% if application_count %} <span class="badge badge-info">
+                    {{ application_count }}</span>
+                    {% endif %}
+                    </a>
             </li>
             {% endif %}
         </ul>
