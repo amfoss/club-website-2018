@@ -26,6 +26,15 @@
                                     <input type="text" class="form-control" name="url" id="url"
                                            value="{{ object.url }}" placeholder="Url">
                                 </div>
+                                <label for="file">
+                                    Image
+                                    {% if object.image %}
+                                        : {{ object.image }}
+                                    {% endif %}
+                                </label><br>
+                                <div class="custom-file form-group">
+                                    <input type="file" name="image" id="file" class="form-control">
+                                </div>
                                 <div class="form-group">
                                     <label for="description">Description</label>
                                     <textarea id="description" name="description" class="form-control"

@@ -47,7 +47,7 @@ class ProjectDetailView(DetailView):
 
 class ProjectCreateView(CreateView):
     model = Project
-    fields = ['title', 'url', 'description', 'date']
+    fields = ['title', 'url', 'image', 'description', 'date']
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -58,7 +58,7 @@ class ProjectCreateView(CreateView):
 
 class ProjectUpdateView(UpdateView):
     model = Project
-    fields = ['title', 'url', 'description', 'date']
+    fields = ['title', 'url', 'image', 'description', 'date']
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
@@ -96,8 +96,3 @@ class ProjectMemberDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(ProjectMemberDeleteView, self).post(request, *args, **kwargs)
-
-
-
-
-

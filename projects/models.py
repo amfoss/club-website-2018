@@ -10,6 +10,7 @@ class Project(models.Model):
     title = models.CharField(max_length=300)
     url = models.URLField(max_length=400, null=True, blank=True)
     description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='project/', null=True, blank=True)
     date = models.DateField(null=True, blank=True)
 
     def __str__(self):
@@ -19,7 +20,7 @@ class Project(models.Model):
         return reverse('project_detail', kwargs={'pk': self.id})
 
 
-class ProjectImages(models.Model):
+class ProjectScreenShot(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='project/')
 
@@ -36,7 +37,3 @@ class ProjectMembers(models.Model):
 class Language(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     language = models.CharField(max_length=100)
-
-
-
-
