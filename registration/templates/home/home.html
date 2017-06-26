@@ -15,14 +15,16 @@
 
                 <div class="masthead clearfix">
                     <div class="inner">
-                        <h3 class="masthead-brand">FOSS@Amrita</h3>
-                        <nav class="nav nav-masthead">
+                        <h3 onclick="arrow_click()" class="masthead-brand">FOSS@Amrita <i id="arrow" class="fa fa-angle-down"></i> </h3>
+                        <nav class="nav nav-masthead" id="nav-list">
                             <a class="nav-link" href="{% url 'achievements' %}">Achievements</a>
-                            <a class="nav-link" href="{% url 'foss_intro' %}#fifth">JoinUs</a>
+                            <a class="nav-link" href="{% url 'team' %}">Teams</a>
+                            <a class="nav-link" href="{% url 'project' %}">Projects</a>
                             {% if request.user.is_authenticated %}
                                 <a class="nav-link" href="">{{ request.user.username }}</a>
                                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                             {% else %}
+                                <a class="nav-link" href="{% url 'foss_intro' %}#fifth">JoinUs</a>
                                 <a class="nav-link" href="{% url 'foss_intro' %}#seventh">Contact</a>
                                 <a class="nav-link" href="{% url 'login' %}">Login</a>
                             {% endif %}
@@ -30,7 +32,7 @@
                     </div>
                 </div>
 
-                <div class="inner cover">
+                <div class="inner cover" id="cover">
                     <h1 class="cover-heading">Your freedom begins here</h1>
                     <p class="lead cover-content">FOSS@Amrita is one of the most active student communities at Amrita University. We
                         encourage, support and mentor students to improve their technical and social skills.</p>
@@ -56,5 +58,56 @@
 
         </div>
 
+    <style>
+        #arrow {
+            display: none;
+        }
+        @media only screen and (max-width: 500px) {
+            .nav {
+                display: block;
+                margin-top: 20px;
+                font-size: large;
+
+            }
+            .nav-masthead .nav-link + .nav-link {
+                margin-left: 0; !important;
+            }
+            #arrow {
+                display: inline;
+            }
+        }
+    </style>
+
+    <script>
+        function arrow_click() {
+            var arrow = document.getElementById('arrow');
+            var nav_list = document.getElementById('nav-list');
+            var cover = document.getElementById('cover');
+            if(nav_list.style.display === 'none') {
+                nav_list.style.display = 'block';
+                arrow.className = "fa fa-angle-up";
+                cover.style.marginTop = '';
+            }
+            else {
+                nav_list.style.display = 'none';
+                arrow.className = "fa fa-angle-down";
+                cover.style.marginTop = '20%';
+            }
+        }
+    </script>
+
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'promotion/js/jquery.min.js'%}"></script>
+    <script>
+        $(window).load(function() {
+            //resize just happened, pixels changed
+            if ($(window).width() < 550) {
+                $("#nav-list").hide();
+                document.getElementById('cover').style.marginTop = '20%';
+            }
+        });
+    </script>
 {% endblock %}

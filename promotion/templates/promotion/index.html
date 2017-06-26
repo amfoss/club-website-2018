@@ -327,7 +327,7 @@
 			<script src="{% static 'promotion/js/main.js'%}"></script>
 
             <script>
-                $(window).resize(function() {
+                $(window).load(function() {
                   //resize just happened, pixels changed
                      if ( $(window).width() < 737) {
                     $("#btn-home").addClass('fa-angle-down').removeClass('fa-angle-right');
