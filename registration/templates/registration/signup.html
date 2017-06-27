@@ -33,7 +33,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 offset-md-2 card">
+                    <div class="col-md-6 offset-md-3 card">
                         <div class="card-block">
                             <h1 class="card-title">SignUp</h1>
                             <hr>
@@ -61,7 +61,7 @@
                                     </div>
 
 
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-8">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control" name="email" id="email"
                                                value="{{ form.email.value|default_if_none:"" }}" placeholder="email">
@@ -70,7 +70,7 @@
                                         </small>
                                     </div>
 
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-4">
                                         <label for="year">Batch</label>
                                         <input type="number" class="form-control" name="year" id="year"
                                                value="{{ form.year.value|default_if_none:"" }}" placeholder="YYYY">
@@ -88,7 +88,7 @@
                                         </small>
                                     </div>
 
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-6">
                                         <label for="password1">Password</label>
                                         <input type="password" class="form-control" name="password1" id="password1"
                                                value="" placeholder="Password">
@@ -97,7 +97,7 @@
                                         </small>
                                     </div>
 
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-6">
                                         <label for="password2">Again</label>
                                         <input type="password" class="form-control" name="password2" id="password"
                                                value="{{ object.email }}" placeholder="Paasword again">
@@ -105,8 +105,11 @@
                                             Password, once more
                                         </small>
                                     </div>
+                                    <div class="form-group col-md-12">
+                                        <a class="text-muted" href="{% url 'login' %}"><small>Already have an account?</small></a>
+                                    </div>
 
-                                    <div class="col-md-5">
+                                    <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
 

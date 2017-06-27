@@ -1,80 +1,86 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %} Login {% endblock %}l
-{% block css %}
-    <link rel="stylesheet" href="{% static 'registration/css/style.css' %}" />
-{% endblock %}
+{% block title %} Login {% endblock %}
 
 {% block body %}
+    {% include 'base/nav-bar.html' %}
     <div id="wrap">
         <div id="main">
-
-            {% include 'base/nav-bar.html' %}
-
-
-            <div class="notifications">
-            {% if form.errors %}
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <div class="alert alert-danger alert-dismissable">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            {{ field.label }}: {{ error|escape }}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <div class="alert alert-danger alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                        {{ error|escape }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-            </div>
-
-
+            <!-- content goes here -->
             <div class="container">
-                <div class="card-div">
-                    <div class="card card-container">
-                        <h1 id="profile-img" class="profile-img-card">Login</h1>
-                        <p id="profile-name" class="profile-name-card"></p>
-
-                        {% if form.errors %}
-                            {% for error in form.erros %}
-                            <div class="alert alert-danger" role="alert">
-                                <strong>{{ error }}</strong>
-                            </div>
-                            {% endfor %}
-                        {% endif %}
-
-                        <form class="form-signin" action="" method="post">
-                            {% csrf_token %}
-                            <span id="reauth-email" class="reauth-email"></span>
-                            <input type="text" value="{{ form.username.value|default_if_none:"" }}" id="inputEmail" class="form-control" placeholder="User name" name="username" required autofocus>
-                            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                            <div id="remember" class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember_me" value="True"> Remember me
-                                </label>
-                            </div>
-                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-                        </form><!-- /form -->
-
-                        <a href="{% url 'password_reset' %}" class="forgot-password">
-                            Forgot the password?
-                        </a>
-                        <a href="{% url 'signup' %}" class="forgot-password">Don't have an account?</a>
-                    </div><!-- /card-container -->
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 card">
+                        <div class="card-block">
+                            <h1 class="card-title">Login</h1>
+                            <hr>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="name">Username</label>
+                                    <input type="text" class="form-control" name="username" id="username"
+                                           value="{{ form.username.value|default_if_none:"" }}" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="magazine">Password</label>
+                                    <input type="password" class="form-control" name="password" id="magazine" placeholder="Password">
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                      <input type="checkbox" value="True" class="form-check-input">
+                                        Remember me
+                                    </label>
+                                  </div>
+                                    <div class="form-group">
+                                        <a class="text-muted" href="{% url 'password_reset' %}"><small>Forgot password?</small></a>
+                                        <br>
+                                        <a class="text-muted" href="{% url 'signup' %}"><small>Don't have an account?</small></a>
+                                    </div>
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div><!-- /container -->
+            </div>
         </div>
     </div>
-
     {% include 'base/footer.html' %}
 
+    <div class="notifications">
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ field.label }}: {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
     <style>
-        #wrap {
-            min-height: calc(100% - 100px);
+        .container {
+            margin-top: 70px;
+        }
+
+        .notifications {
+            position: fixed;
+            top: 90px;
+            right: 0;
+            z-index: 1000;
+            font-size: 0.7em;
+            max-width: 90%;
+        }
+
+        body {
+            background-color: #fcfcfc;
         }
     </style>
-{% endblock %}
 
+{% endblock %}
