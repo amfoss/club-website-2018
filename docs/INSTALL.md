@@ -33,11 +33,6 @@ All the requirements are mentioned in the file `requirements.txt`.
 ```bash
 pip install -r requirements.txt
 ```
-## Local settings
-Copy the `local-settings.py` from `conffiles` to `fossWebsite` directory.
-```bash
-cp conffiles/local-settings.py fossWebsite/local_settings.py
-```
 ## Setup database
 In the development phase, we use sqlite3.db
 Setup tables in the DB
