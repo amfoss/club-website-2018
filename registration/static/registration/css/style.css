@@ -5,7 +5,9 @@
  * General styles
  */
 body, html {
-    background-image: linear-gradient(rgb(249, 248, 249), rgb(227, 230, 229));
+    background-image: url(http://lumin8media.com/wp-content/uploads/2014/12/coding-screen-1280x500.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 .card-container.card {
