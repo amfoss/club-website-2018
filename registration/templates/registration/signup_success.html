@@ -1,21 +1,46 @@
 {% extends 'base/base.html' %}
 
-{% block title %} Successful {% endblock %}
+{% block title %} signup successful {% endblock %}
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
-     <div id="wrap">
+    <div id="wrap">
         <div id="main">
-
-            <div class="jumbotron">
-                <h1 class="display-3">Welcome to FOSS@Amrita!</h1>
-                <p class="lead">Click the button below to login or use the navbar.<hr class="my-4">
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
-                </p>
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="container">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h1 class="card-title col-md-12">Welcome to FOSS@Amrita!</h1>
+                                    <hr>
+                                    <p class="card-text col-md-12">
+                                        Click the button below to login or use the navbar.
+                                    </p>
+                                    <p class="card-text col-md-12">
+                                        <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-     </div>
-
+    </div>
     {% include 'base/footer.html' %}
+    <style>
+        .card {
+            margin: 50px 0;
+        }
+        .card-text {
+            margin: 20px 0;
+        }
+
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
+
 {% endblock %}

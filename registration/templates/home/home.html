@@ -83,15 +83,17 @@
             var arrow = document.getElementById('arrow');
             var nav_list = document.getElementById('nav-list');
             var cover = document.getElementById('cover');
-            if(nav_list.style.display === 'none') {
-                nav_list.style.display = 'block';
-                arrow.className = "fa fa-angle-up";
-                cover.style.marginTop = '';
-            }
-            else {
-                nav_list.style.display = 'none';
-                arrow.className = "fa fa-angle-down";
-                cover.style.marginTop = '20%';
+            if ($(window).width() < 550) {
+                if (nav_list.style.display === 'none') {
+                    nav_list.style.display = 'block';
+                    arrow.className = "fa fa-angle-up";
+                    cover.style.marginTop = '';
+                }
+                else {
+                    nav_list.style.display = 'none';
+                    arrow.className = "fa fa-angle-down";
+                    cover.style.marginTop = '20%';
+                }
             }
         }
     </script>

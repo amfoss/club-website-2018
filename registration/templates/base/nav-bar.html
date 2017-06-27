@@ -47,7 +47,7 @@
                     <a class="nav-link" href="">{{ request.user.username }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}?next={{request.path}}">Logout</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
             {% else %}
                 {%  ifequal request.path '/accounts/login/' %}

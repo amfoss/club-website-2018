@@ -1,29 +1,50 @@
 {% extends 'base/base.html' %}
-{% load static %}
-{% block title %} Password Reset Successful {% endblock %}
-{% block css %}
-    <link rel="stylesheet" href="{% static 'registration/css/style.css' %}" />
-{% endblock %}
+
+{% block title %} logout {% endblock %}
+
 {% block body %}
     {% include 'base/nav-bar.html' %}
-     <div id="wrap">
+    <div id="wrap">
         <div id="main">
+            <!-- content goes here -->
             <div class="container">
-                <div class="card-div">
-                    <div class="card card-container">
-                        <h1 id="profile-img" class="profile-img-card" style="text-align:center">Logged Out.</h1>
-                        <p id="profile-name" class="profile-name-card"></p>
-
-
-
-        <a style="text-align:center" href="{% url 'login' %}">Login Again</a>
+                <div class="row">
+                    <div class="container">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h2 class="card-title col-md-12">Logout successful <i class="fa fa-check"></i> </h2>
+                                    <hr>
+                                    <p class="card-text col-md-8">
+                                        <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+                                        <a href="{% url 'signup' %}" class="btn btn-secondary">Signup</a>
+                                    </p>
+                                    <div class="col-md-12">
+                                        <a href="{% url 'foss_intro' %}" class="card-link">About us</a>
+                                        <a href="{% url 'achievements' %}" class="card-link">Achievements</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
-     </div>
-
+    </div>
     {% include 'base/footer.html' %}
+    <style>
+        .card {
+            margin: 50px 0;
+        }
+        .card-text {
+            margin: 20px 0;
+        }
+        .card-title {
+            color: #38c100;
+        }
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
+
 {% endblock %}
