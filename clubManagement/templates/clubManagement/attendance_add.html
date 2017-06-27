@@ -38,7 +38,6 @@
             var year = parseInt(variables[5]);
             var month = parseInt(variables[6]);
             var day = parseInt(variables[7]);
-            console.log(year , month , day);
 
             var link = '/club/attendance/';
 
@@ -52,18 +51,15 @@
                 day -= 1;
                 link += year + '/' + month + '/' + day;
             }
-            console.log(link);
 
             window.location = link;
         }
 
         function getYearStart(day ,month) {
-            console.log(day === 1 && month === 1);
             return (day === 1 && month === 1);
         }
 
         function getMonthStart(day) {
-            console.log(day === 1);
             return day === 1;
         }
 
@@ -113,13 +109,11 @@
                 day += 1;
                 link += year + '/' + month + '/' + day;
             }
-            console.log(link);
 
             window.location = link;
         }
 
         function getYearEnd(day ,month) {
-            console.log(day === 31 && month === 12 ? "YearEnd true" : "YearEnd false");
             return (day === 31 && month === 12);
         }
 
@@ -152,7 +146,6 @@
                             result = true;
                     break;
             }
-            console.log(result === true ? "MonthEnd true" : "MonthEnd false");
             return result;
         }
     </script>
