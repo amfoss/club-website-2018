@@ -31,7 +31,7 @@ workon foss
 ## Install requirements
 All the requirements are mentioned in the file `requirements.txt`.
 ```bash
-pip install -r requirements.txt
+pip install -r docs/requirements.txt
 ```
 ## Local settings
 Copy the `local-settings.py` from `conffiles` to `fossWebsite` directory.
