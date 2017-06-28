@@ -20,7 +20,9 @@
                     {% endfor %}
                     <p class="col-xs-12 col-md-12"></p>
                     {% if request.user.is_superuser %}
-                    <button type="submit" class="col-md-2 col-sm-6 btn btn-primary save-btn">Save</button>
+                    <button type="reset" onclick="previousDay()" class="col-md-2 col-sm-6 btn">Previous</button>
+                    <button type="submit" class="col-md-2 offset-md-3 col-sm-6 btn btn-primary save-btn">Save</button>
+                    <button type="reset" onclick="nextDay()" class="col-md-2 offset-md-3 col-sm-6 btn">Next</button>
                     {% endif %}
                 </form>
             </div>
@@ -28,6 +30,42 @@
     </div>
 
     {% include 'base/footer.html' %}
+
+    <script>
+        function previousDay() {
+            var variables = window.location.href.split("/");
+
+            var year = parseInt(variables[5]);
+            var month = parseInt(variables[6]) - 1;
+            var day = parseInt(variables[7]);
+
+            var link = '/club/attendance/';
+
+            var date = new Date(year , month , day , 0 , 0 , 0);
+            date.setDate(date.getDate() - 1);
+
+            link += date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+
+            window.location = link;
+        }
+
+        function nextDay() {
+            var variables = window.location.href.split("/");
+
+            var year = parseInt(variables[5]);
+            var month = parseInt(variables[6]) - 1;
+            var day = parseInt(variables[7]);
+
+            var link = '/club/attendance/';
+
+            var date = new Date(year , month , day , 0 , 0 , 0);
+            date.setDate(date.getDate() + 1);
+
+            link += date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+
+            window.location = link;
+        }
+    </script>
 
     <style>
         .btn {
