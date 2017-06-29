@@ -208,6 +208,9 @@
             var month_input = document.getElementById('month');
             var day_input = document.getElementById('day');
 
+            // add 1 to month
+            month_input.value = (parseInt(month_input.value) + 1).toString();
+
             var link = '/club/attendance-report/';
 
             if(batch_input.value !== 'all')
@@ -215,9 +218,9 @@
             if(year_input !== 'all')
                 link += year_input.value + '/';
             if(month_input.value !== 'all') {
-                if(batch_input.value === 'all') {
+                if(batch_input.value === 'all' && day_input.value === 'all') {
                     var error = document.getElementById('error');
-                    error.innerHTML = '<strong>Error!</strong> Batch should be selected.';
+                    error.innerHTML = '<strong>Error!</strong> Batch or day should be selected.';
                     error.style.display = 'block';
                     return;
                 }
@@ -229,6 +232,10 @@
 
             if(day_input.value !== 'all' && batch_input.value !== 'all' && month_input.value !== 'all')
                 link = '/club/attendance/' + batch_input.value + '/' + year_input.value + '/' +
+                    month_input.value + '/' + day_input.value + '/';
+
+            else if(day_input.value !== 'all' && month_input.value !== 'all')
+                link = '/club/attendance/' + year_input.value + '/' +
                     month_input.value + '/' + day_input.value + '/';
 
             window.location = link;
