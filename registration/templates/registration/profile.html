@@ -81,7 +81,7 @@
                                 <p class="card-text col-md-10">{{ user_info.expertise }}</p>
                             {% endif %}
 
-                            {% if user.is_authenticated %}
+                            {% if request.user.is_authenticated %}
 
                                 <div class="col-md-6">
                                     <a href="{% url 'update_profile' user_info.user.id %}"
