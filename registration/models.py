@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 
 class UserInfo(models.Model):
@@ -29,5 +30,4 @@ class UserInfo(models.Model):
         return self.user.username
 
     def get_absolute_url(self):
-        pk = self.id
-        return 'url to %d' % pk
+        return reverse('profile', kwargs={'pk': self.id})

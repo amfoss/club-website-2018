@@ -76,8 +76,16 @@
                                 <p class="card-text col-md-10">{{ user_info.expertise }}</p>
                             {% endif %}
 
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+                            {% if user.is_authenticated %}
+
+                                <div class="col-md-6">
+                                    <a href="{% url 'update_profile' user_info.user.id %}"
+                                       class="card-link btn btn-secondary">
+                                        Update profile
+                                    </a>
+                                </div>
+
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -135,7 +143,7 @@
 
         .link {
             text-decoration: none !important;
-            color:black;
+            color: black;
         }
 
         .icon-link {

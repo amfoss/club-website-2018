@@ -116,6 +116,8 @@ class UserForm(forms.ModelForm):
     # user Info model
     profile_pic = forms.ImageField(help_text='Select a profile pic or leave blank to keep the current one.',
                                    widget=forms.FileInput(attrs={'placeholder': 'Profile pic'}), required=False)
+    small_intro = forms.CharField(label="About you", help_text='About you in one line, max 16 words',
+                                  widget=forms.TextInput(attrs={'placeholder': 'About you'}), required=True)
     intro = forms.CharField(label='About you', help_text='Brief paragraph about you',
                             widget=forms.Textarea(attrs={'placeholder': 'A brief introduction.'}), required=False)
     interests = forms.CharField(help_text='Write briefly about your interests, 1 paragraph',
@@ -126,6 +128,8 @@ class UserForm(forms.ModelForm):
     # urls
     gitHub = forms.URLField(help_text='Enter your GitHub link',
                             widget=forms.URLInput(attrs={'placeholder': 'GitHub link'}), required=False)
+    blog = forms.URLField(help_text='Enter your Blog link',
+                          widget=forms.URLInput(attrs={'placeholder': 'Blog link'}), required=False)
     linkedIn = forms.URLField(help_text='Enter your LinkedIn profile link',
                               widget=forms.URLInput(attrs={'placeholder': 'LinkedIn profile'}), required=False)
     googlePlus = forms.URLField(help_text='Enter your Google Plus profile link',
@@ -152,5 +156,6 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = UserInfo
-        fields = ['first_name', 'last_name', 'email', 'profile_pic', 'intro', 'interests', 'expertise', 'gitHub',
-                  'linkedIn', 'googlePlus', 'facebook', 'twitter', 'year', 'resume', 'typing_speed', 'system_number']
+        fields = ['first_name', 'last_name', 'email', 'profile_pic', 'small_intro', 'intro', 'interests', 'expertise',
+                  'gitHub', 'blog', 'linkedIn', 'googlePlus', 'facebook', 'twitter', 'year', 'resume', 'typing_speed',
+                  'system_number']
