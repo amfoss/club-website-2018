@@ -204,7 +204,8 @@ class MonthAttendanceReportView(View):
             total_att += att_month
             data.append([user_info.user, att_month])
         if len(data) > 0:
-            context = {'data': data, 'head': kwargs.get('year')}
+            context = {'data': data, 'head': calculate_year(int(kwargs.get('batch'))) + " - " +
+                                             month[int(kwargs.get('month')) - 1] + ", " + kwargs.get('year')}
         else:
             context = {'errors': 'No data found'}
         return render(request, self.template_name, context)
@@ -263,7 +264,7 @@ class ResponsibilityUpdateView(UpdateView):
     fields = ['name', 'description']
 
     def get(self, request, *args, **kwargs):
-        if not(request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(ResponsibilityUpdateView, self).get(request, *args, **kwargs)
 
@@ -278,7 +279,7 @@ class ResponsibilityDeleteView(DeleteView):
     success_url = reverse_lazy('responsibility')
 
     def get(self, request, *args, **kwargs):
-        if not(request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
             return redirect('permission_denied')
         return super(ResponsibilityDeleteView, self).get(request, *args, **kwargs)
 
@@ -298,6 +299,7 @@ class StudentResponsibilityDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(StudentResponsibilityDeleteView, self).post(request, *args, **kwargs)
+
 
 # Views to add, update and delete Teams
 
