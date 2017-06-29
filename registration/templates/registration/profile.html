@@ -8,72 +8,137 @@
         <div id="main">
             <!-- content goes here -->
             <div class="row ctn">
-                <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+                <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12">
                     <div class="card text-center">
                         <div class="card-block">
-                          <img src="/media/{{ user_info.profile_pic }}" alt="" class="card-title profile-pic img-fluid rounded-circle">
-                          <h4 class="card-title">{{ user_info.user.first_name }} {{ user_info.user.last_name }}</h4>
-                          <p class="card-text">{{ user_info.intro }}</p>
-                          <div class="card-text">
-                              {% if user_info.gitHub %}
-                                <a class="icon-link" href="{{ user_info.gitHub }}">
-                                    <img height="30px" src="{% static 'base/icons/github.png' %}">
-                                </a>
-                              {% endif %}
-                              {% if user_info.blog %}
-                                <a class="icon-link" href="{{ user_info.blog }}">
-                                    <img height="30px" src="{% static 'base/icons/wordpress.png' %}">
-                                </a>
-                              {% endif %}
-                              {% if user_info.linkedIn %}
-                              <a class="icon-link" href="{{ user_info.linkedIn }}">
-                                  <img height="30px" src="{% static 'base/icons/linkedin.png' %}">
-                              </a>
-                              {% endif %}
-                              {% if user_info.googlePlus %}
-                              <a class="icon-link" href="{{ user_info.googlePlus }}">
-                                <img height="30px" src="{% static 'base/icons/google-plus.png' %}">
-                              </a>
-                              {% endif %}
-                              {% if user_info.facebook %}
-                              <a class="icon-link" href="{{ user_info.facebook }}">
-                                <img height="30px" src="{% static 'base/icons/facebook.png' %}">
-                              </a>
-                              {% endif %}
-                              {% if user_info.twitter %}
-                              <a class="icon-link" href="{{ user_info.twitter }}">
-                                <img height="30px" src="{% static 'base/icons/twitter.png' %}">
-                              </a>
-                              {% endif %}
-                          </div>
+                            <img src="/media/{{ user_info.profile_pic }}" alt=""
+                                 class="card-title profile-pic img-fluid rounded-circle">
+                            <h4 class="card-title">{{ user_info.user.first_name }} {{ user_info.user.last_name }}</h4>
+                            <p class="card-text">{{ user_info.intro }}</p>
+                            <div class="card-text">
+                                {% if user_info.gitHub %}
+                                    <a class="icon-link" href="{{ user_info.gitHub }}">
+                                        <img height="30px" src="{% static 'base/icons/github.png' %}">
+                                    </a>
+                                {% endif %}
+                                {% if user_info.blog %}
+                                    <a class="icon-link" href="{{ user_info.blog }}">
+                                        <img height="30px" src="{% static 'base/icons/wordpress.png' %}">
+                                    </a>
+                                {% endif %}
+                                {% if user_info.linkedIn %}
+                                    <a class="icon-link" href="{{ user_info.linkedIn }}">
+                                        <img height="30px" src="{% static 'base/icons/linkedin.png' %}">
+                                    </a>
+                                {% endif %}
+                                {% if user_info.googlePlus %}
+                                    <a class="icon-link" href="{{ user_info.googlePlus }}">
+                                        <img height="30px" src="{% static 'base/icons/google-plus.png' %}">
+                                    </a>
+                                {% endif %}
+                                {% if user_info.facebook %}
+                                    <a class="icon-link" href="{{ user_info.facebook }}">
+                                        <img height="30px" src="{% static 'base/icons/facebook.png' %}">
+                                    </a>
+                                {% endif %}
+                                {% if user_info.twitter %}
+                                    <a class="icon-link" href="{{ user_info.twitter }}">
+                                        <img height="30px" src="{% static 'base/icons/twitter.png' %}">
+                                    </a>
+                                {% endif %}
+                            </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <h2 class="card-title col-md-12">
+                                {{ user_info.user.first_name }} {{ user_info.user.last_name }}
+                                <span class="small pull-right">{{ user_info.typing_speed }} wpm</span>
+                            </h2>
+                            <h6 class="card-subtitle col-md-12 mb-2 text-muted">
+                                {% if user_info.is_mentor %}
+                                    Mentor,
+                                {% endif %}
+                                FOSS@Amrita
+                                <span class="small pull-right">{{ user_info.year }}</span>
+                            </h6>
+                            <hr>
+                            {% if user_info.interests %}
+                                <h4 class="card-title col-md-12">Interests</h4>
+                                <p class="card-text col-md-10">{{ user_info.interests }}</p>
+                            {% endif %}
+                            {% if user_info.expertise %}
+                                <h4 class="card-title col-md-12">Expertise</h4>
+                                <p class="card-text col-md-10">{{ user_info.expertise }}</p>
+                            {% endif %}
 
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    {% if teams %}
+                        <div class="card">
+                            <div class="card-block">
 
+                                <h4 class="card-title">Teams</h4>
+                                <hr>
+                                {% for team in teams %}
+                                    <a class="link" href="{% url 'team_detail' team.id %}">
+                                        <p class="card-text>">{{ team.title }}</p>
+                                    </a>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if projects %}
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Projects</h4>
+                                <hr>
+                                {% for project in projects %}
+                                    <a class="link" href="{% url 'project_detail' project.id %}">
+                                        <p class="card-text>">{{ project.title }}</p>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
+
             </div>
 
         </div>
     </div>
     {% include 'base/footer.html' %}
     <style>
+        .card {
+            margin-top: 20px;
+        }
+
         .ctn {
             margin: 50px 7%;
         }
+
         .profile-pic {
             margin: 50px 0 30px 0;
             padding: 0 20%;
-            
+
         }
+
+        .link {
+            text-decoration: none !important;
+            color:black;
+        }
+
         .icon-link {
             margin: 3px;
-            color: #000;
             text-decoration: none !important;
         }
 

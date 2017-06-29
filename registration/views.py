@@ -81,5 +81,4 @@ class ProfileDetailView(DetailView):
             context['error'] = 'No data found for this user!'
         context['teams'] = Team.objects.filter(created_by=self.get_object())
         context['projects'] = Project.objects.filter(created_by=self.get_object())
-        context['responsibilities'] = Responsibility.objects.filter(created_by=self.get_object())
         return context
