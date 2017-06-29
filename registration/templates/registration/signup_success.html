@@ -13,16 +13,20 @@
                         <div class="col-md-6 offset-md-3">
                             <div class="card">
                                 <div class="card-block">
-                                    <h1 class="card-title col-md-12">Welcome to FOSS@Amrita!</h1>
+                                    <h3 class="card-title col-md-12">Welcome to FOSS@Amrita!</h3>
                                     <hr>
                                     <p class="card-text col-md-12">
                                         Click the button below to login or use the navbar.
                                     </p>
-                                    <p class="card-text col-md-12">
-                                        <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
+                                    <p class="col-md-12">
+                                        <a class="btn btn-primary card-link" href="{% url 'login' %}" role="button">Login</a>
                                     </p>
                                 </div>
                             </div>
+                            <div class="alert alert-danger" role="alert">
+                                      <strong>Note!</strong> Your account needs to be verified before you can log in.
+                                        Please contact a senior member of the club to activate your account.
+                                    </div>
                         </div>
                     </div>
                 </div>
@@ -32,7 +36,7 @@
     {% include 'base/footer.html' %}
     <style>
         .card {
-            margin: 50px 0;
+            margin: 50px 0 30px 0;
         }
         .card-text {
             margin: 20px 0;
