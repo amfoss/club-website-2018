@@ -1,0 +1,86 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Add attendance {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <div class="container">
+                <form class="row" action="" method="post">
+                {% csrf_token %}
+                    {% for attendance in attendance_list %}
+                        <h2 class="header col-xs-12 col-md-12">{{ attendance.1 }}</h2>
+                        {% for att in attendance.0 %}
+                            <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}" {% if request.user.is_superuser %} onclick="click_attendance('{{ att.user.username }}')" {% endif %} id="{{ att.user.username }}_div">
+                                <p>{{ att.user.first_name }} {{ att.user.last_name }}</p>
+                                <input type="checkbox" style="display: None" id="{{ att.user.username }}" value="True" name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    <p class="col-xs-12 col-md-12"></p>
+                    <button type="reset" onclick="changeDay(-1)" class="col-md-2 col-sm-6 btn">Previous</button>
+                    {% if request.user.is_superuser %}
+                    <button type="submit" class="col-md-2 offset-md-3 col-sm-6 btn btn-primary save-btn">Save</button>
+                    {% endif %}
+                    <button type="reset" onclick="changeDay(1)" class="col-md-2 offset-md-3 col-sm-6 btn">Next</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+    <script>
+        function changeDay(i) {
+            var variables = window.location.href.split("/");
+
+            var batch = parseInt(variables[5]);
+            var year = parseInt(variables[6]);
+            var month = parseInt(variables[7]) - 1;
+            var day = parseInt(variables[8]);
+
+            console.log(batch , year , month , day);
+
+            var link = '/club/attendance/' + batch + '/';
+
+            var date = new Date(year , month , day , 0 , 0 , 0);
+            date.setDate(date.getDate() + i);
+            console.log(batch , year , month , day);
+
+            link += date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+
+            window.location = link;
+        }
+    </script>
+
+    <style>
+        .btn {
+            margin: 10px;
+        }
+
+        .save-btn {
+            padding: 10px 0;
+        }
+
+        .names {
+            height: 80px;
+        }
+
+        .names p {
+            margin: 16px 0;
+        }
+
+        form {
+            margin: 30px 0;
+        }
+        .header {
+            padding-top: 20px;
+            text-align: center;
+        }
+    </style>
+
+    {% block script %}
+        <script src="{% static 'clubManagement/js/attendance.js' %}"></script>
+    {% endblock %}
+{% endblock %}

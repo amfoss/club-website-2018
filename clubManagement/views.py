@@ -129,6 +129,83 @@ class AttendanceAddView(View):
         else:
             return redirect('add_attendance_all', **kwargs)
 
+class AttendanceAddBatchView(View):
+    template_name = 'clubManagement/attendance_add_batch.html'
+
+    def get(self, request, **kwargs):
+        """
+        A view for an admin to add attendance for a particular date.
+        url = /batch/year/month/day/
+        or
+        url = /year/month/day (display 1st - 4th year)
+        date is calculated from (year, month, day)
+        and students is selected according to batch
+
+        attendance_list = [ [ '1st_year', list_of_1st_years ], ..... ]
+        """
+        if not request.user.is_authenticated:
+            return redirect('permission_denied')
+
+        d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
+        batch_list = get_batch_list(kwargs)
+
+        attendance_list = []
+
+        for batch in batch_list:
+            user_info_list = UserInfo.objects.filter(year=batch)
+            # display the current attendance for this date and batch
+            attendance_list_batch = []
+            for user_info in user_info_list:
+                try:
+                    attendance = Attendance.objects.get(user=user_info.user, date=d)
+                except Attendance.DoesNotExist:
+                    attendance = Attendance(user=user_info.user,
+                                            added_by=User.objects.get(username=self.request.user.username), date=d)
+                    attendance.save()
+                attendance_list_batch.append(attendance)
+
+            # attendance list contains all the Attendance objects of the batch with date = d
+            year = calculate_year(batch)
+            attendance_list += [[attendance_list_batch, year], ]
+
+        context = {'attendance_list': attendance_list}
+        print(context)
+        return render(request, self.template_name, context)
+
+    def post(self, request, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('permission_denied')
+
+        d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
+
+        if 'batch' in kwargs:
+            user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
+            for user_info in user_info_list:
+                attendance_list = user_info.user.attendance_set.filter(date=d)
+                for i in attendance_list:
+                    i.attendance = False
+                    i.save()
+        else:
+            # make all attendance false and make attendance = true for users in request.POST.
+            attendance_list = Attendance.objects.filter(date=d)
+            for i in attendance_list:
+                i.attendance = False
+                i.save()
+
+        for key in request.POST:
+            try:
+                user = User.objects.get(username=key)
+            except User.DoesNotExist:
+                user = None
+            if user:
+                att = Attendance.objects.get(user=user, date=d)
+                att.attendance = True
+                att.save()
+        if 'batch' in kwargs:
+            return redirect('add_attendance_batch', **kwargs)
+        else:
+            return redirect('add_attendance_all', **kwargs)
+
 
 class YearStudentAttendanceReportView(View):
     template_name = 'clubManagement/attendance_yearly.html'
