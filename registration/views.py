@@ -7,10 +7,9 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView
 
-from clubManagement.models import Team, Responsibility
+from clubManagement.models import Team
 from projects.models import Project
-from registration.form import UserForm
-from registration.forms import UserSignUpForm
+from registration.forms import UserSignUpForm, UserForm
 from registration.models import UserInfo
 
 

@@ -14,7 +14,7 @@
                             <img src="/media/{{ user_info.profile_pic }}" alt=""
                                  class="card-title profile-pic img-fluid rounded-circle">
                             <h4 class="card-title">{{ user_info.user.first_name }} {{ user_info.user.last_name }}</h4>
-                            <p class="card-text">{{ user_info.intro }}</p>
+                            <p class="card-text">{{ user_info.small_intro }}</p>
                             <div class="card-text">
                                 {% if user_info.gitHub %}
                                     <a class="icon-link" href="{{ user_info.gitHub }}">
@@ -66,6 +66,7 @@
                                 <span class="small pull-right">{{ user_info.year }}</span>
                             </h6>
                             <hr>
+                            <p class="card-text col-md-10">{{ user_info.intro }}</p>
                             {% if user_info.interests %}
                                 <h4 class="card-title col-md-12">Interests</h4>
                                 <p class="card-text col-md-10">{{ user_info.interests }}</p>
