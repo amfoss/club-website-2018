@@ -19,11 +19,11 @@
                         {% endfor %}
                     {% endfor %}
                     <p class="col-xs-12 col-md-12"></p>
-                    {% if request.user.is_superuser %}
                     <button type="reset" onclick="changeDay(-1)" class="col-md-2 col-sm-6 btn">Previous</button>
+                    {% if request.user.is_superuser %}
                     <button type="submit" class="col-md-2 offset-md-3 col-sm-6 btn btn-primary save-btn">Save</button>
-                    <button type="reset" onclick="changeDay(1)" class="col-md-2 offset-md-3 col-sm-6 btn">Next</button>
                     {% endif %}
+                    <button type="reset" onclick="changeDay(1)" class="col-md-2 offset-md-3 col-sm-6 btn">Next</button>
                 </form>
             </div>
         </div>
