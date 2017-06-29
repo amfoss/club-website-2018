@@ -30,7 +30,7 @@ urlpatterns = [
     ),
     url(
         r'^attendance/(?P<batch>[0-9]+)/(?P<year>[0-9]+)/(?P<month>[0-9]+)/(?P<day>[0-9]+)/$',
-        login_required(AttendanceAddView.as_view()),
+        login_required(AttendanceAddBatchView.as_view()),
         name='add_attendance_batch'
     ),
 
