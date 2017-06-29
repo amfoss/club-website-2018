@@ -11,8 +11,13 @@
                 <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12">
                     <div class="card text-center">
                         <div class="card-block">
+                            {% if user_info.profile_pic %}
                             <img src="/media/{{ user_info.profile_pic }}" alt=""
                                  class="card-title profile-pic img-fluid rounded-circle">
+                             {% else %}
+                            <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
+                                 class="card-title profile-pic img-fluid rounded-circle">
+                             {% endif %}
                             <h4 class="card-title">{{ user_info.user.first_name }} {{ user_info.user.last_name }}</h4>
                             <p class="card-text">{{ user_info.small_intro }}</p>
                             <div class="card-text">
