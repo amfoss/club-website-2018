@@ -77,7 +77,9 @@
                         </li>
                         {% for project in project_list %}
                             <li class="list-group-item justify-content-between">
-                                {{ project.user.first_name }} {{ project.user.last_name }}
+                                 <a class="link" href="{% url 'profile' project.user.id %}">
+                                    {{ project.user.first_name }} {{ project.user.last_name }}
+                                 </a>
                                 <form method="post" action="{% url "project_member_delete" project.id %}">
                                     {% csrf_token %}
                                     <button type="submit" class="close">×</button>
@@ -118,6 +120,11 @@
 
         .head {
             margin: 30px 0;
+        }
+
+        .link {
+            text-decoration: none !important;
+            color:black;
         }
     </style>
 

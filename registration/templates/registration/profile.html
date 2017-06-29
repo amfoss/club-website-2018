@@ -90,7 +90,7 @@
                                 <hr>
                                 {% for team in teams %}
                                     <a class="link" href="{% url 'team_detail' team.id %}">
-                                        <p class="card-text>">{{ team.title }}</p>
+                                        <p class="card-text>">{{ team.name }}</p>
                                     </a>
                                 {% endfor %}
 
