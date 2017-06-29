@@ -25,7 +25,6 @@ def calculate_year(year):
     year = datetime.now().year - year
     if datetime.now().month > 5:
         year += 1
-    print(year)
     if year == 1:
         return '1st year'
     elif year == 2:
@@ -48,7 +47,6 @@ def get_batch_list(kwargs):
             year -= 1
         for i in range(4):
             batches += [year - i]
-    print(batches)
     return batches
 
 
@@ -91,8 +89,7 @@ class AttendanceAddView(View):
             year = calculate_year(batch)
             attendance_list += [[attendance_list_batch, year], ]
 
-        context = {'attendance_list': attendance_list}
-        print(context)
+        context = {'attendance_list': attendance_list, 'head': str(date)}
         return render(request, self.template_name, context)
 
     def post(self, request, **kwargs):
@@ -182,7 +179,7 @@ class YearAttendanceReportView(View):
                 data_list.append([user_data, year, ''])
             else:
                 data_list.append([user_data, year, 'No record found'])
-        context = {'data_list': data_list}
+        context = {'data_list': data_list, 'head': kwargs.get('year')}
         return render(request, self.template_name, context)
 
 
