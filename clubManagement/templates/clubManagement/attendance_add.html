@@ -8,20 +8,25 @@
         <div id="main">
             <div class="container">
                 <form class="row" action="" method="post">
-                {% csrf_token %}
+                    {% csrf_token %}
                     {% for attendance in attendance_list %}
                         <h2 class="header col-xs-12 col-md-12">{{ attendance.1 }}</h2>
                         {% for att in attendance.0 %}
-                            <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}" {% if request.user.is_superuser %} onclick="click_attendance('{{ att.user.username }}')" {% endif %} id="{{ att.user.username }}_div">
+                            <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}"
+                                    {% if request.user.is_superuser %}
+                                 onclick="click_attendance('{{ att.user.username }}')" {% endif %}
+                                 id="{{ att.user.username }}_div">
                                 <p>{{ att.user.first_name }} {{ att.user.last_name }}</p>
-                                <input type="checkbox" style="display: None" id="{{ att.user.username }}" value="True" name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
+                                <input type="checkbox" style="display: None" id="{{ att.user.username }}" value="True"
+                                       name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
                             </div>
                         {% endfor %}
                     {% endfor %}
                     <p class="col-xs-12 col-md-12"></p>
                     <button type="reset" onclick="changeDay(-1)" class="col-md-2 col-sm-6 btn">Previous</button>
                     {% if request.user.is_superuser %}
-                    <button type="submit" class="col-md-2 offset-md-3 col-sm-6 btn btn-primary save-btn">Save</button>
+                        <button type="submit" class="col-md-2 offset-md-3 col-sm-6 btn btn-primary save-btn">Save
+                        </button>
                     {% endif %}
                     <button type="reset" onclick="changeDay(1)" class="col-md-2 offset-md-3 col-sm-6 btn">Next</button>
                 </form>
@@ -33,29 +38,21 @@
 
     <script>
         function changeDay(i) {
-            var variables = window.location.href.split("/");
+            var variables, year, month, day, link, date;
 
-            console.log("Array Length " + variables.length);
-            for (j = 0; j < variables.length; ++j)
-                console.log(variables[j] + " at position " + j);
+            variables = window.location.href.split("/");
 
-            var year = variables[(variables.length - 4)];
-            console.log("Year : " + year);
-            var month = variables[variables.length - 3] - 1;
-            console.log("Month : " + month);
-            var day = variables[variables.length - 2];
-            console.log("Date : " + day);
+            year = variables[(variables.length - 4)];
+            month = variables[variables.length - 3] - 1;
+            day = variables[variables.length - 2];
 
             if (variables.length === 9)
-                var link = '/club/attendance/';
+                link = '/club/attendance/';
             else
-                var link = '/club/attendance/' + parseInt(variables[variables.length - 5]) + '/';
+                link = '/club/attendance/' + parseInt(variables[variables.length - 5]) + '/';
 
-            var date = new Date(year , month , day , 0 , 0 , 0);
-            console.log(date);
+            date = new Date(year, month, day, 0, 0, 0);
             date.setDate(date.getDate() + i);
-            console.log(date);
-
             link += date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
 
             window.location = link;
@@ -82,6 +79,7 @@
         form {
             margin: 30px 0;
         }
+
         .header {
             padding-top: 20px;
             text-align: center;
