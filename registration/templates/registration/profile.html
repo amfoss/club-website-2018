@@ -12,43 +12,43 @@
                     <div class="card text-center">
                         <div class="card-block">
                             {% if user_info.profile_pic %}
-                            <img src="/media/{{ user_info.profile_pic }}" alt=""
-                                 class="card-title profile-pic img-fluid rounded-circle">
-                             {% else %}
-                            <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
-                                 class="card-title profile-pic img-fluid rounded-circle">
-                             {% endif %}
+                                <img src="/media/{{ user_info.profile_pic }}" alt=""
+                                     class="card-title profile-pic img-fluid rounded-circle">
+                            {% else %}
+                                <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
+                                     class="card-title profile-pic img-fluid rounded-circle">
+                            {% endif %}
                             <h4 class="card-title">{{ user_info.user.first_name }} {{ user_info.user.last_name }}</h4>
                             <p class="card-text">{{ user_info.small_intro }}</p>
                             <div class="card-text">
                                 {% if user_info.gitHub %}
                                     <a class="icon-link" href="{{ user_info.gitHub }}">
-                                        <img height="30px" src="{% static 'base/icons/github.png' %}">
+                                        <img height="25px" src="{% static 'base/icons/github.png' %}">
                                     </a>
                                 {% endif %}
                                 {% if user_info.blog %}
                                     <a class="icon-link" href="{{ user_info.blog }}">
-                                        <img height="30px" src="{% static 'base/icons/wordpress.png' %}">
+                                        <img height="25px" src="{% static 'base/icons/wordpress.png' %}">
                                     </a>
                                 {% endif %}
                                 {% if user_info.linkedIn %}
                                     <a class="icon-link" href="{{ user_info.linkedIn }}">
-                                        <img height="30px" src="{% static 'base/icons/linkedin.png' %}">
+                                        <img height="25px" src="{% static 'base/icons/linkedin.png' %}">
                                     </a>
                                 {% endif %}
                                 {% if user_info.googlePlus %}
                                     <a class="icon-link" href="{{ user_info.googlePlus }}">
-                                        <img height="30px" src="{% static 'base/icons/google-plus.png' %}">
+                                        <img height="25px" src="{% static 'base/icons/google-plus.png' %}">
                                     </a>
                                 {% endif %}
                                 {% if user_info.facebook %}
                                     <a class="icon-link" href="{{ user_info.facebook }}">
-                                        <img height="30px" src="{% static 'base/icons/facebook.png' %}">
+                                        <img height="25px" src="{% static 'base/icons/facebook.png' %}">
                                     </a>
                                 {% endif %}
                                 {% if user_info.twitter %}
                                     <a class="icon-link" href="{{ user_info.twitter }}">
-                                        <img height="30px" src="{% static 'base/icons/twitter.png' %}">
+                                        <img height="25px" src="{% static 'base/icons/twitter.png' %}">
                                     </a>
                                 {% endif %}
                             </div>
@@ -80,17 +80,23 @@
                                 <h4 class="card-title col-md-12">Expertise</h4>
                                 <p class="card-text col-md-10">{{ user_info.expertise }}</p>
                             {% endif %}
-
-                            {% if request.user.is_authenticated %}
-
-                                <div class="col-md-6">
-                                    <a href="{% url 'update_profile' user_info.user.id %}"
-                                       class="card-link btn btn-secondary">
-                                        Update profile
+                            <div class="col-md-12 card-link">
+                                {% if request.user.is_authenticated %}
+                                <a href="{% url 'update_profile' user_info.user.id %}"
+                                   class="btn btn-secondary">
+                                    Update profile
+                                </a>
+                                {% endif %}
+                                {% if user_info.resume %}
+                                    <a href="/media/{{ user_info.resume }}"
+                                       class="btn btn-secondary">
+                                        Resume
                                     </a>
-                                </div>
-
-                            {% endif %}
+                                {% endif %}
+                                {% if request.user.is_authenticated %}
+                                    <p class="text-muted pull-right">System no: {{ user_info.system_number }}</p>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -161,6 +167,7 @@
                 margin: 30px 0;
             }
         }
+
     </style>
 {% endblock %}
 
