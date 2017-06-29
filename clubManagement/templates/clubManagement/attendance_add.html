@@ -35,14 +35,26 @@
         function changeDay(i) {
             var variables = window.location.href.split("/");
 
-            var year = parseInt(variables[5]);
-            var month = parseInt(variables[6]) - 1;
-            var day = parseInt(variables[7]);
+            console.log("Array Length " + variables.length);
+            for (j = 0; j < variables.length; ++j)
+                console.log(variables[j] + " at position " + j);
 
-            var link = '/club/attendance/';
+            var year = variables[(variables.length - 4)];
+            console.log("Year : " + year);
+            var month = variables[variables.length - 3] - 1;
+            console.log("Month : " + month);
+            var day = variables[variables.length - 2];
+            console.log("Date : " + day);
+
+            if (variables.length === 9)
+                var link = '/club/attendance/';
+            else
+                var link = '/club/attendance/' + parseInt(variables[variables.length - 5]) + '/';
 
             var date = new Date(year , month , day , 0 , 0 , 0);
+            console.log(date);
             date.setDate(date.getDate() + i);
+            console.log(date);
 
             link += date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
 
