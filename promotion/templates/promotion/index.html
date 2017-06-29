@@ -31,7 +31,7 @@
                 <div class="nav-item">
                     {% if request.user.is_authenticated %}
                         <h4 class="nav-data">
-                            <a class="nav-link" href="{% url 'logout' %}">{{ request.user.username }}</a>
+                            <a class="nav-link" href="{% url 'profile' request.user.id %}">{{ request.user.username }}</a>
                             <a class="nav-link nav-data" href="{% url 'logout' %}">Logout</a>
                         </h4>
                     {% else %}

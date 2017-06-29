@@ -7,12 +7,81 @@
     <div id="wrap">
         <div id="main">
             <!-- content goes here -->
+            <div class="row ctn">
+                <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+                    <div class="card text-center">
+                        <div class="card-block">
+                          <img src="/media/{{ user_info.profile_pic }}" alt="" class="card-title profile-pic img-fluid rounded-circle">
+                          <h4 class="card-title">{{ user_info.user.first_name }} {{ user_info.user.last_name }}</h4>
+                          <p class="card-text">{{ user_info.intro }}</p>
+                          <div class="card-text">
+                              {% if user_info.gitHub %}
+                                <a class="icon-link" href="{{ user_info.gitHub }}">
+                                    <img height="30px" src="{% static 'base/icons/github.png' %}">
+                                </a>
+                              {% endif %}
+                              {% if user_info.blog %}
+                                <a class="icon-link" href="{{ user_info.blog }}">
+                                    <img height="30px" src="{% static 'base/icons/wordpress.png' %}">
+                                </a>
+                              {% endif %}
+                              {% if user_info.linkedIn %}
+                              <a class="icon-link" href="{{ user_info.linkedIn }}">
+                                  <img height="30px" src="{% static 'base/icons/linkedin.png' %}">
+                              </a>
+                              {% endif %}
+                              {% if user_info.googlePlus %}
+                              <a class="icon-link" href="{{ user_info.googlePlus }}">
+                                <img height="30px" src="{% static 'base/icons/google-plus.png' %}">
+                              </a>
+                              {% endif %}
+                              {% if user_info.facebook %}
+                              <a class="icon-link" href="{{ user_info.facebook }}">
+                                <img height="30px" src="{% static 'base/icons/facebook.png' %}">
+                              </a>
+                              {% endif %}
+                              {% if user_info.twitter %}
+                              <a class="icon-link" href="{{ user_info.twitter }}">
+                                <img height="30px" src="{% static 'base/icons/twitter.png' %}">
+                              </a>
+                              {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="col-md-6">
+
+                </div>
+
+                <div class="col-md-3">
+
+                </div>
+            </div>
 
         </div>
     </div>
     {% include 'base/footer.html' %}
     <style>
+        .ctn {
+            margin: 50px 7%;
+        }
+        .profile-pic {
+            margin: 50px 0 30px 0;
+            padding: 0 20%;
+            
+        }
+        .icon-link {
+            margin: 3px;
+            color: #000;
+            text-decoration: none !important;
+        }
 
+        @media only screen and (max-width: 768px) {
+            .ctn {
+                margin: 30px 0;
+            }
+        }
     </style>
 {% endblock %}
 
