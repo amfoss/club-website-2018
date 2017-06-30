@@ -1,0 +1,109 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+
+            <div class="container">
+
+                <div class="row">
+
+
+                    <h1 class="head col-md-9">Team Members</h1>
+                    <div class="form-group col-md-3">
+                        <input type="text" class="form-control" id="search" placeholder="Search">
+                    </div>
+
+
+                    <div class="card-columns col-md-12">
+
+                        {% for user_info in object_list %}
+                            <div class="card text-center">
+                                <div class="card-block">
+                                    {% if user_info.profile_pic %}
+                                        <img src="/media/{{ user_info.profile_pic }}" alt=""
+                                             class="card-title profile-pic img-fluid rounded-circle">
+                                    {% else %}
+                                        <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
+                                             class="card-title profile-pic img-fluid rounded-circle">
+                                    {% endif %}
+                                    <h4 class="card-title">{{ user_info.user.first_name }} {{ user_info.user.last_name }}</h4>
+                                    <p class="card-text">{{ user_info.small_intro }}</p>
+                                    <div class="card-text">
+                                        {% if user_info.gitHub %}
+                                            <a class="icon-link" href="{{ user_info.gitHub }}">
+                                                <img height="25px" src="{% static 'base/icons/github.png' %}">
+                                            </a>
+                                        {% endif %}
+                                        {% if user_info.blog %}
+                                            <a class="icon-link" href="{{ user_info.blog }}">
+                                                <img height="25px" src="{% static 'base/icons/wordpress.png' %}">
+                                            </a>
+                                        {% endif %}
+                                        {% if user_info.linkedIn %}
+                                            <a class="icon-link" href="{{ user_info.linkedIn }}">
+                                                <img height="25px" src="{% static 'base/icons/linkedin.png' %}">
+                                            </a>
+                                        {% endif %}
+                                        {% if user_info.googlePlus %}
+                                            <a class="icon-link" href="{{ user_info.googlePlus }}">
+                                                <img height="25px" src="{% static 'base/icons/google-plus.png' %}">
+                                            </a>
+                                        {% endif %}
+                                        {% if user_info.facebook %}
+                                            <a class="icon-link" href="{{ user_info.facebook }}">
+                                                <img height="25px" src="{% static 'base/icons/facebook.png' %}">
+                                            </a>
+                                        {% endif %}
+                                        {% if user_info.twitter %}
+                                            <a class="icon-link" href="{{ user_info.twitter }}">
+                                                <img height="25px" src="{% static 'base/icons/twitter.png' %}">
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+    <style>
+        .profile-pic {
+            margin: 50px 0 30px 0;
+            padding: 0 20%;
+
+        }
+
+        .icon-link {
+            margin: 3px;
+            text-decoration: none !important;
+        }
+
+        .card {
+            margin-top: 30px;
+        }
+
+        .search {
+            margin-top: 30px;
+        }
+
+
+
+        .container ,.head, .form-group {
+            margin-top: 20px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .form-group {
+                display: none;
+            }
+        }
+    </style>
+{% endblock %}

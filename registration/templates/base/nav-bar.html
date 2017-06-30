@@ -28,6 +28,9 @@
                 <a class="nav-link" href="{% url 'team' %}">Teams</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile_list' %}">Members</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'project' %}">Projects</a>
             </li>
             {% if request.user.is_superuser %}

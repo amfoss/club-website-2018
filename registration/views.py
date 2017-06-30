@@ -5,7 +5,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView, ListView
 
 from clubManagement.models import Team
 from projects.models import Project
@@ -81,3 +81,8 @@ class ProfileDetailView(DetailView):
         context['teams'] = Team.objects.filter(created_by=self.get_object())
         context['projects'] = Project.objects.filter(created_by=self.get_object())
         return context
+
+
+class ProfileListView(ListView):
+    model = UserInfo
+    template_name = 'registration/profile_list.html'
