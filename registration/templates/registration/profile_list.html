@@ -12,26 +12,29 @@
 
                 <div class="row">
 
-
                     <h1 class="head col-md-9">Team Members</h1>
                     <div class="form-group col-md-3">
                         <input onkeyup="myFunction()" type="text" class="form-control" id="search" placeholder="Search">
                     </div>
 
-
                     <div class="card-columns col-md-12">
 
                         {% for user_info in object_list %}
-                            <div id="{{ user_info.user.first_name }} {{ user_info.user.last_name }}" class="items card text-center">
+                            <div id="{{ user_info.user.first_name }} {{ user_info.user.last_name }}"
+                                 class="items card text-center">
                                 <div class="card-block">
-                                    {% if user_info.profile_pic %}
-                                        <img src="/media/{{ user_info.profile_pic }}" alt=""
-                                             class="card-title profile-pic img-fluid rounded-circle">
-                                    {% else %}
-                                        <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
-                                             class="card-title profile-pic img-fluid rounded-circle">
-                                    {% endif %}
-                                    <h4 class="card-title">{{ user_info.user.first_name }} {{ user_info.user.last_name }}</h4>
+                                    <a class="link" href="{% url 'profile' user_info.user.id %}">
+                                        {% if user_info.profile_pic %}
+                                            <img src="/media/{{ user_info.profile_pic }}" alt=""
+                                                 class="card-title profile-pic img-fluid rounded-circle">
+                                        {% else %}
+                                            <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
+                                                 class="card-title profile-pic img-fluid rounded-circle">
+                                        {% endif %}
+                                    </a>
+                                    <h4 class="card-title"><a class="link" href="{% url 'profile' user_info.user.id %}">
+                                        {{ user_info.user.first_name }} {{ user_info.user.last_name }}
+                                    </a></h4>
                                     <p class="card-text">{{ user_info.small_intro }}</p>
                                     <div class="card-text">
                                         {% if user_info.gitHub %}
@@ -77,8 +80,7 @@
     <style>
         .profile-pic {
             margin: 50px 0 30px 0;
-            padding: 0 20%;
-
+            padding: 0 23%;
         }
 
         .icon-link {
@@ -86,13 +88,21 @@
             text-decoration: none !important;
         }
 
+        .link {
+            text-decoration: none !important;
+            color: black;
+        }
+
         .card {
             margin-top: 10px;
         }
 
-
-        .container ,.head, .form-group {
+        .container{
             margin-top: 20px;
+        }
+
+        .head, .form-group {
+
             margin-bottom: 20px;
         }
 
@@ -104,7 +114,7 @@
     </style>
 
     <script>
-         function myFunction() {
+        function myFunction() {
             // Declare variables
             var input, filter, items, i;
             input = document.getElementById('search');

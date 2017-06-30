@@ -86,3 +86,4 @@ class ProfileDetailView(DetailView):
 class ProfileListView(ListView):
     model = UserInfo
     template_name = 'registration/profile_list.html'
+    queryset = UserInfo.objects.order_by('user__first_name')
