@@ -15,14 +15,14 @@
 
                     <h1 class="head col-md-9">Team Members</h1>
                     <div class="form-group col-md-3">
-                        <input type="text" class="form-control" id="search" placeholder="Search">
+                        <input onkeyup="myFunction()" type="text" class="form-control" id="search" placeholder="Search">
                     </div>
 
 
                     <div class="card-columns col-md-12">
 
                         {% for user_info in object_list %}
-                            <div class="card text-center">
+                            <div id="{{ user_info.user.first_name }} {{ user_info.user.last_name }}" class="items card text-center">
                                 <div class="card-block">
                                     {% if user_info.profile_pic %}
                                         <img src="/media/{{ user_info.profile_pic }}" alt=""
@@ -87,17 +87,13 @@
         }
 
         .card {
-            margin-top: 30px;
+            margin-top: 10px;
         }
-
-        .search {
-            margin-top: 30px;
-        }
-
 
 
         .container ,.head, .form-group {
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         @media only screen and (max-width: 767px) {
@@ -106,4 +102,23 @@
             }
         }
     </style>
+
+    <script>
+         function myFunction() {
+            // Declare variables
+            var input, filter, items, i;
+            input = document.getElementById('search');
+            filter = input.value.toUpperCase();
+            items = document.getElementsByClassName('items');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < items.length; i++) {
+                if (items[i].id.toUpperCase().indexOf(filter) > -1) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 {% endblock %}
