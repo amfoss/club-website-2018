@@ -34,11 +34,21 @@
                             </tbody>
                         </table>
                     </div>
+                    <button onclick="addStatusUpdate()" class="col-md-2 offset-md-10 col-sm-6 btn btn-primary save-btn">Add
+                    </button>
                 </div>
             </div>
         </div>
     </div>
     {% include 'base/footer.html' %}
+{% endblock %}
+
+{%  block script %}
+    <script>
+        function addStatusUpdate() {
+            window.location = '/club/status/create';
+        }
+    </script>
 {% endblock %}
 
 {% block css %}
