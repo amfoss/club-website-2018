@@ -13,7 +13,7 @@
                     <h2 class="header col-md-12">{{ head }}</h2>
                     {% for user_info in data %}
                         <div class="col-xs-6 col-sm-4 col-md-2 btn names btn-success">
-                            <p>{{ user_info.0 }} - {{ user_info.1 }}</p>
+                            <p>{{ user_info.0.first_name }} {{ user_info.0.last_name }} - {{ user_info.1 }}</p>
                         </div>
                     {% endfor %}
                     <p class="col-xs-12 col-md-12"></p>
