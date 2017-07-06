@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 
-from projects.models import Project, ProjectMembers, Language
+from projects.models import Project, ProjectMembers, Language, ProjectScreenShot
 from django.urls import reverse, reverse_lazy
 
 
@@ -24,6 +24,7 @@ class ProjectDetailView(DetailView):
         context['project_list'] = self.get_object().projectmembers_set.all()
         context['user_count'] = len(context['project_list'])
         context['all_users'] = User.objects.all()
+        context['languages'] = Language.objects.filter(project=Project.objects.get(id=self.kwargs['pk']))
         if self.request.user.is_superuser or self.request.user == self.object.created_by:
             context['edit_permission'] = True
         else:
@@ -96,3 +97,63 @@ class ProjectMemberDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(ProjectMemberDeleteView, self).post(request, *args, **kwargs)
+
+
+class LanguageCreateView(CreateView):
+    model = Language
+    fields = ['language', 'project']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        response = super(LanguageCreateView, self).form_valid(form)
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super(LanguageCreateView, self).get_context_data(**kwargs)
+        project = Project.objects.get(id=self.kwargs['pk'])
+        context['proj'] = project
+        return context
+
+    def post(self, request, *args, **kwargs):
+        project = Project.objects.get(id=self.kwargs['pk'])
+        language = request.POST.get('language')
+        Language(project=project, language=language).save()
+        return redirect('project_detail', self.kwargs['pk'])
+
+
+class LanguageDeleteView(DeleteView):
+    model = Language
+
+    def get_success_url(self):
+        return reverse('project_detail', kwargs={'pk': self.object.project.id})
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(LanguageDeleteView, self).post(request, *args, **kwargs)
+
+
+class ProjectScreenShotListView(ListView):
+    model = ProjectScreenShot
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectScreenShotListView, self).get_context_data(**kwargs)
+        context['id'] = self.kwargs['pk']
+        return context
+
+
+class ProjectScreenShotCreateView(CreateView):
+    model = ProjectScreenShot
+    fields = ['project', 'image']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        response = super(ProjectScreenShotCreateView, self).form_valid(form)
+        return response
+
+    def post(self, request, *args, **kwargs):
+        project = Project.objects.get(id=self.kwargs['pk'])
+        image = request.FILES.get('image')
+        ProjectScreenShot(project=project, image=image).save()
+        return redirect('image_list', self.kwargs['pk'])
+
