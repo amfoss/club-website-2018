@@ -89,15 +89,17 @@
                               </li>
                             {% endfor %}
                             {% if edit_permission %}
-                            <div onclick="showForm()" class="col-md-6 offset-md-3">
+                            <div onclick="showForm()" class="col-md-1 offset-md-3">
                                 <button class="btn btn-secondary add-btn">
                                     Add student
                                 </button>
                             </div>
                             {% endif %}
-                            <li class="list-group-item justify-content-between">
-                            <h5>Languages & Frameworks</h5>
+                            <li style="margin-top: 20px " class="list-group-item justify-content-between">
+                                <h5>Languages & Frameworks</h5>
+                            </li>
                                 {% for i in languages %}
+
                                 <li class="list-group-item justify-content-between">
                                 <h6>{{ i.language }}</h6><br>
                                 <form method="post" action="{% url "language_delete" i.id %}">
