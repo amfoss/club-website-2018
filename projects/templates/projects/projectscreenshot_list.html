@@ -1,0 +1,51 @@
+<!-- Created by Navaneeth S, navisk13@gmail.com -->
+
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Screenshots {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Screenshots </h1>
+                                {% for object in object_list %}
+                                    <img class="img" src="/media/{{ object.image }}">
+                                    <form method="post" action="{% url "image_delete" object.id %}">
+                                       {% csrf_token %}
+                                      <button type="submit" class="">×</button>
+                                    </form>
+                                    <br><br>
+                                {% endfor %}
+
+                    </div>
+                </div>
+                <a href="{% url 'image_create' id %}">
+                    <button type="submit" class="btn btn-primary add-btn">Add Image</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {% include 'base/footer.html' %}
+
+    <style>
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .img {
+            height: 250px;
+            width: 50%;
+        }
+    </style>
+{% endblock %}
+

@@ -474,6 +474,6 @@ class AchievementListView(TemplateView):
 
         context['gsoc_x'] = gsoc_x
         context['gsoc_y'] = gsoc_y
-        context['color_list'] = color_list[:len(gsoc_x)]
+        context['color_list_gsoc'] = color_list[:len(gsoc_x)]
 
         return context

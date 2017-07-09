@@ -42,6 +42,9 @@
                                     <a href="{% url 'project_delete' object.id %}">
                                         <button type="submit" class="btn btn-danger add-btn">Delete</button>
                                     </a>
+                                    <a href="{% url 'image_list' object.id %}">
+                                        <button type="submit" class="btn btn-success add-btn">View Screenshots</button>
+                                    </a>
                                 {% endif %}
                             </div>
                         </div>
@@ -71,28 +74,43 @@
                     </div>
 
                     <ul class="list-group col-md-4">
-                        <li class="list-group-item justify-content-between">
-                            <h5>Project members</h5>
-                            <span class="badge badge-default badge-pill">{{ user_count }}</span>
-                        </li>
-                        {% for project in project_list %}
+                            <div class="margin-20"></div>
                             <li class="list-group-item justify-content-between">
-                                 <a class="link" href="{% url 'profile' project.user.id %}">
-                                    {{ project.user.first_name }} {{ project.user.last_name }}
-                                 </a>
-                                <form method="post" action="{% url "project_member_delete" project.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="close">×</button>
-                                </form>
-                            </li>
-                        {% endfor %}
-                        {% if edit_permission %}
-                            <div onclick="showForm()" class="col-md-6 offset-md-3">
+                                <h5>Project members</h5>
+                                <span class="badge badge-default badge-pill">{{ user_count }}</span>
+                              </li>
+                            {% for project in project_list %}
+                              <li class="list-group-item justify-content-between">
+                                {{ project.user.first_name }}  {{ project.user.last_name }}
+                                  <form method="post" action="{% url "project_member_delete" project.id %}">
+                                       {% csrf_token %}
+                                      <button type="submit" class="close">×</button>
+                                  </form>
+                              </li>
+                            {% endfor %}
+                            {% if edit_permission %}
+                            <div onclick="showForm()" class="col-md-1 offset-md-3">
                                 <button class="btn btn-secondary add-btn">
                                     Add student
                                 </button>
                             </div>
-                        {% endif %}
+                            {% endif %}
+                            <li style="margin-top: 20px " class="list-group-item justify-content-between">
+                                <h5>Languages & Frameworks</h5>
+                            </li>
+                                {% for i in languages %}
+
+                                <li class="list-group-item justify-content-between">
+                                <h6>{{ i.language }}</h6><br>
+                                <form method="post" action="{% url "language_delete" i.id %}">
+                                       {% csrf_token %}
+                                      <button type="submit" class="close">×</button>
+                                </form>
+                                {% endfor %}
+                                </li>
+                            <div class="col-md-6 offset-md-3">
+                                <a href="{% url 'language_create' object.id %}"><button class="btn btn-secondary add-btn">Add Language</button></a>
+                            </div>
                     </ul>
 
 
