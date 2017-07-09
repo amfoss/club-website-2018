@@ -71,7 +71,6 @@ class JoinApplicationCreateView(CreateView):
                   str(datetime.datetime.now()) + '. \n\nPlease visit ' + url + ' for more details. All ' \
                                                                                'applications ' + list_url
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
-        print to_address_list
         # sent mail when application is submitted
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
         return valid_form
@@ -134,12 +133,12 @@ class JoinApplicationUpdateView(UpdateView):
 
 
 class ContactView(View):
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         template_name = 'promotion/index.html'
         return render(request, template_name)
 
     def post(self, request):
-        subject = 'Message from' + request.POST.get('name')
+        subject = 'Message from ' + request.POST.get('name')
         content = request.POST.get('message')
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
