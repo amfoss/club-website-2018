@@ -9,15 +9,14 @@ from django.contrib.auth.models import User
 from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.core.mail import send_mail
 
-
 from promotion.forms import JoinApplicationForm
 from promotion.models import JoinApplication
-
 
 approve_mail_content = ',\\n\\nWe are exited to inform that you are selected for the interview.'
 reject_mail_content = ',\\n\\nWe are sorry to inform that you are not selected for the interview. Please try again ' \
@@ -70,9 +69,9 @@ class JoinApplicationCreateView(CreateView):
         subject = 'Application from ' + form.cleaned_data.get('name')
         content = 'A new application was submitted by ' + form.cleaned_data.get('name') + ' at ' + \
                   str(datetime.datetime.now()) + '. \n\nPlease visit ' + url + ' for more details. All ' \
-                  'applications ' + list_url
+                                                                               'applications ' + list_url
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
-
+        print to_address_list
         # sent mail when application is submitted
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
         return valid_form
@@ -132,3 +131,16 @@ class JoinApplicationUpdateView(UpdateView):
             errors = "The given mail is invalid, try again"
         # error in form
         return redirect(reverse('join_detail', kwargs={'pk': self.get_object().id}) + '?errors=' + errors)
+
+
+class ContactView(View):
+    def get(self, request, *args, **kwargs):
+        template_name = 'promotion/index.html'
+        return render(request, template_name)
+
+    def post(self, request):
+        subject = 'Message from' + request.POST.get('name')
+        content = request.POST.get('message')
+        to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
+        send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
+        return render(request, template_name='promotion/index.html', context={"is_success": 1})
