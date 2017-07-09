@@ -172,8 +172,11 @@ class YearAttendanceReportView(View):
                         )
                     )
                     total_att += att_month
+
                     month_att.append(att_month)
-                user_data.append([user_info.user, month_att, total_att])
+                x = (float(total_att) / float(365)) * 100
+                perc = float("{0:.2f}".format(x))
+                user_data.append([user_info.user, month_att, total_att, perc])
             year = calculate_year(batch)
             if len(user_data) > 0:
                 data_list.append([user_data, year, ''])
@@ -189,6 +192,12 @@ class MonthAttendanceReportView(View):
     def get(self, request, **kwargs):
         user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
         data = []
+        day = 30
+        if kwargs.get('month') in ['1','3','5','7','8','10','12']:
+            day = 31
+
+        elif kwargs.get('month') is '2':
+            day = 29
         for user_info in user_info_list:
             total_att = 0
             att_month = len(
@@ -199,7 +208,10 @@ class MonthAttendanceReportView(View):
                 )
             )
             total_att += att_month
-            data.append([user_info.user, att_month])
+            x = float(att_month*100)/float(day)
+            perc = float("{0:.2f}".format(x))
+            print att_month
+            data.append([user_info.user, att_month, perc])
         if len(data) > 0:
             context = {'data': data, 'head': calculate_year(int(kwargs.get('batch'))) + " - " +
                                              month[int(kwargs.get('month')) - 1] + ", " + kwargs.get('year')}
