@@ -7,94 +7,106 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>FOSS@Amrita</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{% static 'promotion/css/main.css' %}" />
-		<noscript><link rel="stylesheet" href="{% static 'promotion/css/noscript.css' %}" /></noscript>
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	</head>
-	<body>
+<head>
+    <title>FOSS@Amrita</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{% static 'promotion/css/main.css' %}"/>
+    <noscript>
+        <link rel="stylesheet" href="{% static 'promotion/css/noscript.css' %}"/>
+    </noscript>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+</head>
+<body>
 
-    <nav class="nav">
-        <div class="nav-content">
-            <div class="nav-left">
-                <div class="nav-item">
-                    <h3 class="nav-data active"><a class="nav-link" href="{% url 'home' %}">FOSS@Amrita</a></h3>
-                </div>
-                <div class="nav-item">
-                    <h4 class="nav-data"><a class="nav-link" href="{% url 'achievements' %}">Achievements</a></h4>
-                </div>
-                <div class="nav-item">
-                    <h4 class="nav-data"><a class="nav-link" href="{% url 'profile_list' %}">Members</a></h4>
-                </div>
+<nav class="nav">
+    <div class="nav-content">
+        <div class="nav-left">
+            <div class="nav-item">
+                <h3 class="nav-data active"><a class="nav-link" href="{% url 'home' %}">FOSS@Amrita</a></h3>
             </div>
-            <div class="nav-right">
-                <div class="nav-item">
-                    {% if request.user.is_authenticated %}
-                        <h4 class="nav-data">
-                            <a class="nav-link" href="{% url 'profile' request.user.id %}">{{ request.user.username }}</a>
-                            <a class="nav-link nav-data" href="{% url 'logout' %}">Logout</a>
-                        </h4>
-                    {% else %}
-                        <h4 class="nav-data"><a href="{% url 'login' %}">Login</a></h4>
-                    {% endif %}
-                </div>
+            <div class="nav-item">
+                <h4 class="nav-data"><a class="nav-link" href="{% url 'achievements' %}">Achievements</a></h4>
+            </div>
+            <div class="nav-item">
+                <h4 class="nav-data"><a class="nav-link" href="{% url 'profile_list' %}">Members</a></h4>
             </div>
         </div>
-    </nav>
+        <div class="nav-right">
+            <div class="nav-item">
+                {% if request.user.is_authenticated %}
+                    <h4 class="nav-data">
+                        <a class="nav-link" href="{% url 'profile' request.user.id %}">{{ request.user.username }}</a>
+                        <a class="nav-link nav-data" href="{% url 'logout' %}">Logout</a>
+                    </h4>
+                {% else %}
+                    <h4 class="nav-data"><a href="{% url 'login' %}">Login</a></h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
 
-    
-    <style>
-        @media only screen and (max-width: 737px) {
-            .nav {
-                display: none;
-            }
-        }
-        a {
-            border-bottom: none !important;
-        }
+
+<style>
+    @media only screen and (max-width: 737px) {
         .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 50px;
-            width: 100%;
-            background: #343335;
-            z-index: 10000;
+            display: none;
         }
-        .nav-content {
-            width: 100%;
-            margin: auto 0;
-        }
-        .nav-item {
-            display: inline-block;
-        }
-        .nav-data {
-            height: 50px;
-            line-height: 50px;
-            white-space: nowrap;
-            margin: 0 20px;
-            color: #b7c3c8;
-            font-family: 'Ubuntu', sans-serif;
+    }
 
-        }
-        .active {
-            color: white;
-        }
-        .nav-left {
-            display: inline-block;
-            margin-left: 20px;
-        }
-        .nav-right {
-            display: inline-block;
-            float: right;
-            margin-right: 10px;
-        }
-        .nav-link {
-            font-weight: 100;
-        }
+    a {
+        border-bottom: none !important;
+    }
+
+    .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 50px;
+        width: 100%;
+        background: #343335;
+        z-index: 10000;
+    }
+
+    .nav-content {
+        width: 100%;
+        margin: auto 0;
+    }
+
+    .nav-item {
+        display: inline-block;
+    }
+
+    .nav-data {
+        height: 50px;
+        line-height: 50px;
+        white-space: nowrap;
+        margin: 0 20px;
+        color: #b7c3c8;
+        font-family: 'Ubuntu', sans-serif;
+
+    }
+
+    .active {
+        color: white;
+    }
+
+    .nav-left {
+        display: inline-block;
+        margin-left: 20px;
+    }
+
+    .nav-right {
+        display: inline-block;
+        float: right;
+        margin-right: 10px;
+    }
+
+    .nav-link {
+        font-weight: 100;
+    }
+
     </style>
     
 		<!-- Page Wrapper -->
