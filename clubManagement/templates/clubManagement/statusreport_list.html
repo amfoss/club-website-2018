@@ -13,20 +13,20 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 id="page-header">Status updates</h1>
-                     </div>
-<div style="margin-right:700px">
-<form method="post" action="">
-    {% csrf_token %}
-	<input type="search" placeholder="Batch" name="batch" id="batch">
-</form>
-<br>
+                    </div>
+                    <div style="margin-right:1200px">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <input type="search" placeholder="Batch" name="batch" id="batch">
+                        </form>
+                        <br>
 
 
-    </div>
+                    </div>
 
 
-                <br>
-                <br>
+                    <br>
+                    <br>
 
 
                     <div class="col-md-12 table-responsive">
@@ -35,7 +35,6 @@
                             <tr>
                                 <th>Student</th>
                                 <th>Title</th>
-                                <th>Project</th>
                                 <th>Date</th>
                             </tr>
                             </thead>
@@ -44,14 +43,14 @@
                                 <tr class="click" onclick="window.location='{% url 'status_detail' object.id %}';">
                                     <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
                                     <td>{{ object.title|slice:":70" }}</td>
-                                    <td>{{ object.project }}</td>
                                     <td>{{ object.date }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
                     </div>
-                    <button onclick="window.location='{% url 'status_create' %}'" class="col-md-2 offset-md-10 col-sm-6 btn btn-primary save-btn">Add
+                    <button onclick="window.location='{% url 'status_create' %}'"
+                            class="col-md-2 offset-md-10 col-sm-6 btn btn-primary save-btn">Add
                     </button>
                 </div>
             </div>
@@ -66,79 +65,83 @@
             margin: 30px;
             text-align: center;
         }
+
         .container-fluid {
             margin: 0 6%;
         }
+
         .click {
             cursor: pointer;
         }
 
+        a {
+            color: #69C;
+            text-decoration: none;
+        }
 
-a {
-	color: #69C;
-	text-decoration: none;
-}
-a:hover {
-	color: #F60;
-}
-h1 {
-	font: 1.7em;
-	line-height: 110%;
-	color: #000;
-}
-p {
-	margin: 0 0 20px;
-}
+        a:hover {
+            color: #F60;
+        }
 
+        h1 {
+            font: 1.7em;
+            line-height: 110%;
+            color: #000;
+        }
 
-input {
-	outline: none;
-}
-input[type=search] {
-	-webkit-appearance: textfield;
-	-webkit-box-sizing: content-box;
-	font-family: inherit;
-	font-size: 100%;
-}
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button {
-	display: none;
-}
+        p {
+            margin: 0 0 20px;
+        }
 
+        input {
+            outline: none;
+        }
 
-input[type=search] {
-	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-	border: solid 1px #ccc;
-	padding: 9px 10px 9px 32px;
-	width: 55px;
-    margin-left: 1100px;
+        input[type=search] {
+            -webkit-appearance: textfield;
+            -webkit-box-sizing: content-box;
+            font-family: inherit;
+            font-size: 100%;
+        }
 
-	-webkit-border-radius: 10em;
-	-moz-border-radius: 10em;
-	border-radius: 10em;
+        input::-webkit-search-decoration,
+        input::-webkit-search-cancel-button {
+            display: none;
+        }
 
-	-webkit-transition: all .5s;
-	-moz-transition: all .5s;
-	transition: all .5s;
-}
-input[type=search]:focus {
-	width: 130px;
-	background-color: #fff;
-	border-color: #66CC75;
+        input[type=search] {
+            background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+            border: solid 1px #ccc;
+            padding: 9px 10px 9px 32px;
+            width: 55px;
+            margin-left: 1100px;
 
-	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	box-shadow: 0 0 5px rgba(109,207,246,.5);
-}
+            -webkit-border-radius: 10em;
+            -moz-border-radius: 10em;
+            border-radius: 10em;
 
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            transition: all .5s;
+        }
 
-input:-moz-placeholder {
-	color: #999;
-}
-input::-webkit-input-placeholder {
-	color: #999;
-}
+        input[type=search]:focus {
+            width: 110px;
+            background-color: #fff;
+            border-color: #66CC75;
 
+            -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+            -moz-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+            box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+        }
+
+        input:-moz-placeholder {
+            color: #999;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #999;
+        }
 
 
     </style>
