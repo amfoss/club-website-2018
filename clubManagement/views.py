@@ -391,6 +391,11 @@ class StatusListView(ListView):
     model = StatusReport
     queryset = StatusReport.objects.all().order_by('-date')
 
+    def post(self, request, **kwargs):
+        batch = int(request.POST.get('batch'))
+        return redirect('batch_filter', batch)
+
+
 
 class StatusDetailView(DetailView):
     model = StatusReport
@@ -503,3 +508,22 @@ class IndexView(TemplateView):
         context['batch_list'] = batch_list
 
         return context
+
+
+
+
+class batchfilterview(View):
+
+    def get(self, request, *args, **kwargs):
+        batch = self.kwargs['pk']
+        users = UserInfo.objects.filter(year=batch)
+        status = []
+
+        for i in users:
+            user = User.objects.get(username=i)
+            status += StatusReport.objects.filter(user=user)
+        context = {'object_list': status, 'batch': self.kwargs['pk']}
+        template_name = 'clubManagement/batchstatus.html'
+        return render(request, template_name, context)
+
+
