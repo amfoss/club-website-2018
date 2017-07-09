@@ -9,7 +9,7 @@ db.sqlite3
 # media files
 
 /media/
-./static/
+/static/
 
 # django
 
