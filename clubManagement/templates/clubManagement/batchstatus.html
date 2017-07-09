@@ -1,0 +1,56 @@
+{#created by Rahul Krishnan, rahul.krishnan27@gmail.com#}
+{% extends 'base/base.html' %}
+
+{% block title %} Status updates {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 id="page-header">Status updates - {{ batch }} batch</h1>
+                    </div>
+                    <div class="col-md-12 table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-default">
+                            <tr>
+                                <th>Student</th>
+                                <th>Title</th>
+                                <th>Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for object in object_list %}
+                                <tr class="click" onclick="window.location='{% url 'status_detail' object.id %}';">
+                                    <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
+                                    <td>{{ object.project }}</td>
+                                    <td>{{ object.date }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block css %}
+    <style>
+        #page-header {
+            margin: 30px;
+            text-align: center;
+        }
+        .container-fluid {
+            margin: 0 6%;
+        }
+        .click {
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}

@@ -1,5 +1,7 @@
     # created by Chirath R, chirath.02@gmail.com
 from django.conf.urls import url
+
+from clubManagement import views
 from clubManagement.views import *
 from django.contrib.auth.decorators import login_required
 
@@ -59,7 +61,7 @@ urlpatterns = [
     url(r'status/create/$', login_required(StatusCreateView.as_view()), name='status_create'),
     url(r'status/(?P<pk>[0-9]+)/update/$', login_required(StatusUpdateView.as_view()), name='status_update'),
     url(r'status/(?P<pk>[0-9]+)/delete/$', login_required(StatusDeleteView.as_view()), name='status_delete'),
-
+    url(r'status-by-batch/(?P<pk>[0-9]+)/$', batchfilterview.as_view(), name='batch_filter'),
     # index
     url(r'^$', login_required(IndexView.as_view()), name='club'),
 ]
