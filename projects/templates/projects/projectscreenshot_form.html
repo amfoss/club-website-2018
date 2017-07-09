@@ -1,0 +1,67 @@
+<!-- Created by Navaneeth S, navisk13@gmail.com -->
+{% extends 'base/base.html' %}
+
+{% block title %} Add Screenshot {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 card">
+                        <div class="card-block">
+                            <h1 class="card-title">Add Screenshot</h1>
+                            <hr>
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="custom-file form-group">
+                                    <input type="file" name="image" id="file" class="form-control">
+                                </div>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notifications">
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ field.label }}: {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    {% include 'base/footer.html' %}
+
+    <style>
+        .container {
+            margin-top: 70px;
+        }
+        .notifications {
+            position: fixed;
+            top: 90px;
+            right: 0;
+            z-index: 1000;
+            font-size: 0.7em;
+            max-width: 90%;
+        }
+    </style>
+{% endblock %}
