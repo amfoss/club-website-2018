@@ -17,7 +17,7 @@
                                     <img class="img" src="/media/{{ object.image }}">
                                     <form method="post" action="{% url "image_delete" object.id %}">
                                        {% csrf_token %}
-                                      <button type="submit" class="close">×</button>
+                                      <button type="submit" class="">×</button>
                                     </form>
                                     <br><br>
                                 {% endfor %}
