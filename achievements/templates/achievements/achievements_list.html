@@ -44,7 +44,7 @@
                                     </table>
                                     </div>
 
-                                    <canvas id="contribution-chart" ></canvas>
+                                    <canvas id="contribution-chart"></canvas>
 
                                     <a href="{% url 'contribution' %}">
                                         <button class="btn btn-secondary">All contributions</button>
@@ -72,6 +72,7 @@
                         <div class="heading col-md-12">
                             <h1><i class="fa fa-google-plus"></i> GSoC</h1>
                         </div>
+
                         <div class="content col-md-12">
                             {% if gsoc_list %}
                                 <div class="table-responsive">
@@ -99,7 +100,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <canvas id="gsoc-chart" ></canvas>
+                                <canvas id="gsoc-chart"></canvas>
                                 <a href="{% url 'gsoc' %}">
                                     <button class="btn btn-secondary">All GSoCs</button>
                                 </a>
@@ -339,81 +340,81 @@
 {% endblock %}
 
 {% block script %}
-<script src="{% static 'base/js/chart-bundle.js'%}"></script>
-<script>
-    var config = {
-        type: 'pie',
-        data: {
-            datasets: [{
-                data: [
-                    {% for i in contribution_y %}
-                        {{ i }},
+    <script src="{% static 'base/js/chart-bundle.js' %}"></script>
+    <script>
+        var config = {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: [
+                        {% for i in contribution_y %}
+                            {{ i }},
+                        {% endfor %}
+                    ],
+                    backgroundColor: [
+                        {% for i in color_list %}
+                            '{{ i }}',
+                        {% endfor %}
+                    ],
+                    label: 'Organisations'
+                }],
+                labels: [
+                    {% for i in contribution_x %}
+                        '{{ i.0 }}',
                     {% endfor %}
-                ],
-                backgroundColor: [
-                    {% for i in color_list %}
-                        '{{ i }}',
-                    {% endfor %}
-                ],
-                label: 'Organisations'
-            }],
-            labels: [
-                {% for i in contribution_x %}
-                    '{{ i.0 }}',
-                {% endfor %}
-            ]
-        },
-        options: {
-            title: {
-                display:true,
-                text:'Contributions'
+                ]
             },
-            responsive: true,
-            maintainAspectRatio: true
-        }
-    };
+            options: {
+                title: {
+                    display: true,
+                    text: 'Contributions'
+                },
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        };
 
-    var config_gsoc = {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                data: [
-                    {% for i in gsoc_y %}
-                        {{ i }},
+        var config_gsoc = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+                        {% for i in gsoc_y %}
+                            {{ i }},
+                        {% endfor %}
+                    ],
+                    backgroundColor: [
+                        {% for i in color_list_gsoc %}
+                            '{{ i }}',
+                        {% endfor %}
+                    ],
+                    label: 'Organizations'
+                }],
+                labels: [
+                    {% for i in gsoc_x %}
+                        '{{ i.0 }}',
                     {% endfor %}
-                ],
-                backgroundColor: [
-                    {% for i in color_list_gsoc %}
-                        '{{ i }}',
-                    {% endfor %}
-                ],
-                label: 'Organizations'
-            }],
-            labels: [
-                {% for i in gsoc_x %}
-                    '{{ i.0 }}',
-                {% endfor %}
-            ]
-        },
-        options: {
-            title: {
-                display:true,
-                text:'GSoC'
+                ]
             },
-            responsive: true,
-            maintainAspectRatio: true
-        }
-    };
+            options: {
+                title: {
+                    display: true,
+                    text: 'GSoC'
+                },
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        };
 
-    window.onload = function() {
-        var ctx1 = document.getElementById("contribution-chart").getContext("2d");
-        window.myPie1 = new Chart(ctx1, config);
-        var ctx2 = document.getElementById("gsoc-chart").getContext("2d");
-        window.myPie2 = new Chart(ctx2, config_gsoc);
-    };
+        window.onload = function () {
+            var ctx1 = document.getElementById("contribution-chart").getContext("2d");
+            window.myPie1 = new Chart(ctx1, config);
+            var ctx2 = document.getElementById("gsoc-chart").getContext("2d");
+            window.myPie2 = new Chart(ctx2, config_gsoc);
+        };
 
 
-</script>
+    </script>
 {% endblock %}
 
 {% block css %}
@@ -422,36 +423,45 @@
             max-height: 500px;
             max-width: 500px;
         }
+
         .container-fluid {
             margin-top: 30px;
         }
+
         @media (min-width: 1025px) {
             /* big landscape tablets, laptops, and desktops */
             .container-fluid {
                 margin: 30px 10%;
             }
         }
+
         @media (min-width: 550px) {
             /* big landscape tablets, laptops, and desktops */
             canvas {
                 margin: 40px 0;
             }
         }
+
         #main {
             overflow-x: hidden;
         }
+
         .heading {
             margin: 40px 0;
         }
+
         .content {
             margin: 40px 0;
         }
+
         .click {
             cursor: pointer;
         }
+
         .btn {
             margin: 10px 10px 10px 0;
         }
+
         @media (max-width: 500px) {
             .btn {
                 margin: 40px 10px 10px 0;
