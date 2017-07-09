@@ -5,26 +5,27 @@
 {% block title %} Add attendance {% endblock %}
 
 {% block body %}
-    {% include 'base/nav-bar.html' %}
-    <div id="wrap">
-        <div id="main">
-            <div class="container">
-                <div class="row">
-                    <h2 class="header col-md-12">{{ head }}</h2>
-                    {% for user_info in data %}
-                        <div class="col-xs-6 col-sm-4 col-md-2 btn names btn-success">
-                            <p>{{ user_info.0 }} - {{ user_info.2 }}%</p>
-                        </div>
-                    {% endfor %}
-                    <p class="col-xs-12 col-md-12"></p>
+{% include 'base/nav-bar.html' %}
+<div id="wrap">
+    <div id="main">
+        <div class="container">
+            <div class="row">
+                <h2 class="header col-md-12">{{ head }}</h2>
+                {% for user_info in data %}
+                <div class="col-xs-6 col-sm-4 col-md-2 btn names btn-success">
+                    <p>{{ user_info.0.first_name }} {{user_info.0.last_name }} - {{ user_info.2 }}%</p>
+
                 </div>
+                {% endfor %}
+                <p class="col-xs-12 col-md-12"></p>
             </div>
         </div>
     </div>
+</div>
 
-    {% include 'base/footer.html' %}
+{% include 'base/footer.html' %}
 
-    <style>
+<style>
         .btn {
             margin: 10px;
         }
@@ -49,11 +50,12 @@
         .form {
             margin: 30px 0;
         }
-    </style>
 
-    {% block script %}
-        <script src="{% static 'clubManagement/js/attendance.js' %}"></script>
-    {% endblock %}
+</style>
+
+{% block script %}
+<script src="{% static 'clubManagement/js/attendance.js' %}"></script>
+{% endblock %}
 {% endblock %}
 
 

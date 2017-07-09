@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from promotion.views import *
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='promotion/index.html'), name='foss_intro'),
+    url(r'^$', ContactView.as_view(), name='foss_intro'),
     url(r'^success/$', TemplateView.as_view(template_name='promotion/success.html'), name='join_success'),
     url(r'^join/$', JoinApplicationCreateView.as_view(), name='join'),
     url(r'^join/list$', login_required(JoinApplicationListView.as_view()), name='join_list'),
