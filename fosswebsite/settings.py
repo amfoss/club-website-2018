@@ -26,10 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Additional info like email configurations, passwords and secrete keys kept in separate file during development
-# from .local_settings import *
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -115,7 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -146,3 +143,6 @@ NOCAPTCHA = True
 # application count notification
 
 TEMPLATES[0]['OPTIONS']['context_processors'].append("promotion.context_processors.application_processor")
+
+# Additional info like email configurations, passwords and secrete keys kept in separate file during development
+from .local_settings import *
