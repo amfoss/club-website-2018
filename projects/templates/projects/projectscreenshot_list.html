@@ -8,28 +8,30 @@
     {% include 'base/nav-bar.html' %}
     <div id="wrap">
         <div id="main">
-            <!-- content goes here -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>Screenshots </h1>
-                                {% for object in object_list %}
-                                    <img class="img" src="/media/{{ object.image }}">
-                                    <form method="post" action="{% url "image_delete" object.id %}">
-                                       {% csrf_token %}
-                                      <button type="submit" class="">×</button>
-                                    </form>
-                                    <br><br>
-                                {% endfor %}
-
+        <div class="container">
+            <h1>Screenshots</h1>
+            <div class="row">
+                {% for object in object_list %}
+                    <div class="col-md-6">
+                        <img class="img" src="/media/{{ object.image }}">
+                        <div class="div2">
+                            <form method="post" action="{% url "image_delete" object.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="button">×</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <a href="{% url 'image_create' id %}">
-                    <button type="submit" class="btn btn-primary add-btn">Add Image</button>
-                </a>
+                {% endfor %}
+                        <div class="col-md-12">
+                         <a href="{% url 'image_create' id %}">
+                            <button type="submit" class="btn btn-primary add-btn">Add Image</button>
+                         </a>
+                        </div>
             </div>
         </div>
     </div>
+</div>
+
 
 
 
@@ -43,8 +45,28 @@
         }
 
         .img {
-            height: 250px;
-            width: 50%;
+            height: 270px;
+            width: 540px;
+            padding: 10px;
+        }
+
+        .button {
+            display: absolute;
+            background-color: transparent;
+            border: none;
+            font-size: 25px;
+         }
+
+        .div2 {
+            position: absolute;
+            left: 518px;
+            bottom: 234px;
+        }
+
+        .btn {
+            margin-left: 20px;
+            margin-top: 20px;
+
         }
     </style>
 {% endblock %}
