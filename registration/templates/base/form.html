@@ -4,9 +4,42 @@
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
+
+
     <div id="wrap">
         <div id="main">
-            <!-- content goes here -->
+<div class="border">
+        <div class="col-md-6 offset-md-3 card">
+
+                     <div class="card-block">
+                <h2 class="card-title">Tasks to complete<br/></h2>
+                <h5>So with that brief introduction let us get to the tasks in hand.
+                    You can do some or all of these tasks depending on your time and interest
+                </h5>
+                <ol>
+                    <li style="color: black">
+                        Try to buy a laptop before you come and join. This will help you a lot.
+                        Try to avoid laptops with dedicated graphics card as it might have issues running Linux.
+                        You can buy a laptop without any operating system as well.
+                    </li>
+                    <li style="color: black">
+                        Candidates with prior experience in programming should try out challenges in HackerRank(at least 30 problems).
+                    </li>
+                    <li style="color: black">
+                        Watch the video lectures from <strong><a href="http://cs50.tv/">cs50.tv</a></strong> and do the
+                        assignments
+                    </li>
+                    <li style="color: black">
+                        Go to <strong><a href="https://www.powertyping.com/">powertyping.com</a></strong> or
+                        <strong><a href="https://www.keybr.com/">keybr.com</a></strong> and take the typing test and
+                        measure your typing speed.
+                        Do typing practice daily from sites like powertyping.com or typing.com
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+</div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 offset-md-2 card">
@@ -66,7 +99,7 @@
 
     <style>
         .container {
-            margin-top: 70px;
+            margin-top: 30px;
         }
 
         .notifications {
@@ -81,6 +114,10 @@
         body {
             background-color: #fcfcfc;
         }
+
+    .border{
+       margin-top:50px;
+    }
     </style>
 
     {% block script %}
