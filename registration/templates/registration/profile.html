@@ -12,7 +12,7 @@
                     <div class="card text-center">
                         <div class="card-block">
                             {% if user_info.profile_pic %}
-                                <img src="/media/{{ user_info.profile_pic }}" alt=""
+                                <img src="/static/media/{{ user_info.profile_pic }}" alt=""
                                      class="card-title profile-pic img-fluid rounded-circle">
                             {% else %}
                                 <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
@@ -88,7 +88,7 @@
                                 </a>
                                 {% endif %}
                                 {% if user_info.resume %}
-                                    <a href="/media/{{ user_info.resume }}"
+                                    <a href="/static/media/{{ user_info.resume }}"
                                        class="btn btn-secondary">
                                         Resume
                                     </a>
