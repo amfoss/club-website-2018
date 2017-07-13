@@ -77,15 +77,17 @@ class JoinApplicationCreateView(CreateView):
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
 
         mail_content = "Hi " + form.cleaned_data.get('name')+ ", \n\n" + \
-                       "Great to know that you are interested in being a part of the FOSS club at Amritpauri."  + \
+                       "Great to know that you are interested in being a part of the FOSS club at Amritpauri." + \
                        "We got your application, please complete the " + \
-                       "tasks at [1] and complete at least 25 Hackerrank[2] problems before 30th of this month. \n\n" + \
+                       "tasks at [1] and complete at least 25 Hackerrank[2] problems or " + \
+                       "if you are not familiar with programing complete cs50.tv[3] till week 3 " + \
+                       "before 30th of this month.\n\n" + \
                        "Let us know when you are done with the Hackerrank problems, so that we can have a one on " + \
                        "one interview. We won't be testing your skills but would ask about the problems you have " + \
                        "solved. This is to test if you are really interested and we expect you to be honest. " + \
                        "If you have any queries feel free to reply to this mail." + \
                        "\n\n[1] http://foss.amrita.ac.in/foss/#sixth\n[2] https://www.hackerrank.com/" + \
-                       "\n\nWith regards, \n\nFOSS@Amrita"
+                       "\n[3] http://cs50.tv/2016/fall/\n\nWith regards, \n\nFOSS@Amrita"
 
         email = EmailMessage(
             'Tasks to complete, FOSS@Amrita',
