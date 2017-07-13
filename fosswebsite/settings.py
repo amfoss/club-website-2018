@@ -142,5 +142,10 @@ NOCAPTCHA = True
 
 TEMPLATES[0]['OPTIONS']['context_processors'].append("promotion.context_processors.application_processor")
 
+join_application_mail_list = ['chirath.02@gmail.com', 'vipin.p@gmail.com', 'anuv.1994@gmail.com',
+                              'haritha.h20@gmail.com', 'akshayharidas006@gmail.com', 'bithin2007@gmail.com']
+
+join_application_reply_to = ['chirath.02@gmail.com']
+
 # Additional info like email configurations, passwords and secrete keys kept in separate file during development
 # from .local_settings import *
