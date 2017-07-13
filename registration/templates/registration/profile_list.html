@@ -12,7 +12,7 @@
 
                 <div class="row">
 
-                    <h1 class="head col-md-9">Team Members</h1>
+                    <h1 class="head col-md-9">Club Members</h1>
                     <div class="form-group col-md-3">
                         <input onkeyup="myFunction()" type="text" class="form-control" id="search" placeholder="Search">
                     </div>
@@ -22,7 +22,7 @@
                         {% for user_info in object_list %}
                             {% if user_info.user.is_active %}
                                 <div id="{{ user_info.user.first_name }} {{ user_info.user.last_name }}"
-                                     class="items card text-center">
+                                     class="items  card text-center">
                                     <div class="card-block">
                                         <a class="link" href="{% url 'profile' user_info.user.id %}">
                                             {% if user_info.profile_pic %}

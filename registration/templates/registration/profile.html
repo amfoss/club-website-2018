@@ -81,12 +81,12 @@
                                 <p class="card-text col-md-10">{{ user_info.expertise }}</p>
                             {% endif %}
                             <div class="col-md-12 card-link">
-                                {% if request.user.is_authenticated %}
+                                {% ifequal request.user user_info.user %}
                                 <a href="{% url 'update_profile' user_info.user.id %}"
                                    class="btn btn-secondary">
                                     Update profile
                                 </a>
-                                {% endif %}
+                                {% endifequal %}
                                 {% if user_info.resume %}
                                     <a href="/media/{{ user_info.resume }}"
                                        class="btn btn-secondary">
