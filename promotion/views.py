@@ -91,7 +91,7 @@ class JoinApplicationCreateView(CreateView):
             'Tasks to complete, FOSS@Amrita',
             mail_content,
             'amritapurifoss@gmail.com',
-            [form.cleaned_data.get('name')],
+            [form.cleaned_data.get('name'), join_application_reply_to],
             join_application_mail_list,
             reply_to=join_application_reply_to,
             headers={'Message-ID': 'foss@amrita'},
