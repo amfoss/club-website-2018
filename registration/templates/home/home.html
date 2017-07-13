@@ -23,7 +23,7 @@
                                 <a class="nav-link" href="{% url 'profile' request.user.id %}">{{ request.user.username }}</a>
                                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                             {% else %}
-                                <a class="nav-link" href="{% url 'join' %}">Join Us</a>
+                                <a class="nav-link" href="{% url 'join' %}">JoinUs</a>
                                 <a class="nav-link" href="{% url 'foss_intro' %}#seventh">Contact</a>
                                 <a class="nav-link" href="{% url 'login' %}">Login</a>
                             {% endif %}
