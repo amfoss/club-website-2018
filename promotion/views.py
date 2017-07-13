@@ -55,7 +55,7 @@ class JoinApplicationCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(JoinApplicationCreateView, self).get_context_data(**kwargs)
         context['title'] = 'Applications'
-        context['heading'] = 'Membership application'
+        context['heading'] = 'Membership Application'
         return context
 
     def form_valid(self, form):
