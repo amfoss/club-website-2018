@@ -17,7 +17,7 @@
                         <input onkeyup="myFunction()" type="text" class="form-control" id="search" placeholder="Search">
                     </div>
 
-                    <div class="card-columns col-md-12">
+                    <div class="card-deck col-md-12">
 
                         {% for user_info in object_list %}
                             {% if user_info.user.is_active %}
