@@ -3,11 +3,12 @@
 from __future__ import unicode_literals
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView, ListView
-
+from django.views.generic import CreateView, UpdateView, DetailView, ListView, View
+import xlrd, datetime
 from clubManagement.models import Team
+from achievements.models import Contribution
 from projects.models import Project
 from registration.forms import UserSignUpForm, UserForm
 from registration.models import UserInfo
@@ -87,3 +88,23 @@ class ProfileListView(ListView):
     model = UserInfo
     template_name = 'registration/profile_list.html'
     queryset = UserInfo.objects.order_by('user__first_name')
+
+
+class AddData(View):
+
+
+    def get(self, request, **kwargs):
+        template_name = 'registration/adduser.html'
+        wb = xlrd.open_workbook('/Users/rahulk/projects/fosswebsite/registration/templates/registration/contributions.xls')
+        wb.sheet_names()
+        sh = wb.sheet_by_index(0)
+        name = sh.cell(7,0).value
+        bug_id = sh.cell(7,1).value
+        org = sh.cell(7,3).value
+        link = sh.cell(7,2).value
+        desc = sh.cell(7,4).value
+        title = 'Test'
+        date = datetime.date(year=2014, month=1, day=1)
+        Contribution(user=request.user,contribution_id=bug_id,title=title,organisation=org,url=link,description=desc,date=date).save()
+
+        return render(request, template_name)
