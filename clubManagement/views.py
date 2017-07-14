@@ -210,7 +210,7 @@ class MonthAttendanceReportView(View):
             total_att += att_month
             x = float(att_month*100)/float(day)
             perc = float("{0:.2f}".format(x))
-            print att_month
+
             data.append([user_info.user, att_month, perc])
         if len(data) > 0:
             context = {'data': data, 'head': calculate_year(int(kwargs.get('batch'))) + " - " +

@@ -14,9 +14,12 @@ from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 
 from promotion.forms import JoinApplicationForm
 from promotion.models import JoinApplication
+
+from fosswebsite.settings import join_application_mail_list, join_application_reply_to
 
 approve_mail_content = ',\\n\\nWe are exited to inform that you are selected for the interview.'
 reject_mail_content = ',\\n\\nWe are sorry to inform that you are not selected for the interview. Please try again ' \
@@ -62,17 +65,41 @@ class JoinApplicationCreateView(CreateView):
         valid_form = super(JoinApplicationCreateView, self).form_valid(form)
 
         # generate urls
-        url = ''.join(['http://', get_current_site(self.request).domain, self.get_success_url()])
         list_url = ''.join(['http://', get_current_site(self.request).domain, reverse('join_list')])
 
         # mail data
         subject = 'Application from ' + form.cleaned_data.get('name')
         content = 'A new application was submitted by ' + form.cleaned_data.get('name') + ' at ' + \
-                  str(datetime.datetime.now()) + '. \n\nPlease visit ' + url + ' for more details. All ' \
-                                                                               'applications ' + list_url
+                  str(datetime.datetime.now()) + '. \n\nPlease visit ' + list_url + ' for more details.'
+
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
         # sent mail when application is submitted
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
+
+        mail_content = "Hi " + form.cleaned_data.get('name')+ ", \n\n" + \
+                       "Great to know that you are interested in being a part of the FOSS club at Amritpauri." + \
+                       "We got your application, please complete the " + \
+                       "tasks at [1] and complete at least 25 Hackerrank[2] problems or " + \
+                       "if you are not familiar with programing complete cs50.tv[3] till week 3 " + \
+                       "before 30th of this month.\n\n" + \
+                       "Let us know when you are done with the Hackerrank problems, so that we can have a one on " + \
+                       "one interview. We won't be testing your skills but would ask about the problems you have " + \
+                       "solved. This is to test if you are really interested and we expect you to be honest. " + \
+                       "If you have any queries feel free to reply to this mail." + \
+                       "\n\n[1] http://foss.amrita.ac.in/foss/#sixth\n[2] https://www.hackerrank.com/" + \
+                       "\n[3] http://cs50.tv/2016/fall/\n\nWith regards, \n\nFOSS@Amrita"
+
+        email = EmailMessage(
+            'Tasks to complete, FOSS@Amrita',
+            mail_content,
+            'amritapurifoss@gmail.com',
+            [form.cleaned_data.get('name'), join_application_reply_to],
+            join_application_mail_list,
+            reply_to=join_application_reply_to,
+            headers={'Message-ID': 'foss@amrita'},
+        )
+        email.send()
+
         return valid_form
 
 

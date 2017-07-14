@@ -12,7 +12,7 @@
                     <div class="card text-center">
                         <div class="card-block">
                             {% if user_info.profile_pic %}
-                                <img src="/media/{{ user_info.profile_pic }}" alt=""
+                                <img src="/static/media/{{ user_info.profile_pic }}" alt=""
                                      class="card-title profile-pic img-fluid rounded-circle">
                             {% else %}
                                 <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
@@ -81,14 +81,14 @@
                                 <p class="card-text col-md-10">{{ user_info.expertise }}</p>
                             {% endif %}
                             <div class="col-md-12 card-link">
-                                {% if request.user.is_authenticated %}
+                                {% ifequal request.user user_info.user %}
                                 <a href="{% url 'update_profile' user_info.user.id %}"
                                    class="btn btn-secondary">
                                     Update profile
                                 </a>
-                                {% endif %}
+                                {% endifequal %}
                                 {% if user_info.resume %}
-                                    <a href="/media/{{ user_info.resume }}"
+                                    <a href="/static/media/{{ user_info.resume }}"
                                        class="btn btn-secondary">
                                         Resume
                                     </a>
