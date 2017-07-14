@@ -92,7 +92,6 @@ class ProfileListView(ListView):
 
 class AddData(View):
 
-
     def get(self, request, **kwargs):
         template_name = 'registration/adduser.html'
         wb = xlrd.open_workbook('/Users/rahulk/projects/fosswebsite/registration/templates/registration/contributions.xls')

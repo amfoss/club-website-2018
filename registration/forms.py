@@ -114,7 +114,8 @@ class UserForm(forms.ModelForm):
                              widget=forms.EmailInput(attrs={'placeholder': 'Mail id'}), required=False)
 
     # user Info model
-    profile_pic = forms.ImageField(help_text='Select a profile pic or leave blank to keep the current one.',
+    profile_pic = forms.ImageField(help_text='Use a square pic(ex: 500 x 500px), ' +
+                                             'select a profile pic or leave blank to keep the current one.',
                                    widget=forms.FileInput(attrs={'placeholder': 'Profile pic'}), required=False)
     small_intro = forms.CharField(label="About you", help_text='About you in one line, max 16 words',
                                   widget=forms.TextInput(attrs={'placeholder': 'About you'}), required=True)
