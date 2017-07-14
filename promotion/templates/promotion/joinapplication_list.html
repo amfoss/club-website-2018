@@ -35,6 +35,10 @@
                             </tbody>
                         </table>
                         <p class="text-muted">{{ count }} unapproved applications.</p>
+                        <div class="buttons">
+                        <a href="{% url 'join_list' %}?list=approved"><button id="approve" class="btn btn-success card-link">Approved</button></a>
+                        <a href="{% url 'join_list' %}?list=rejected"><button id="reject" class="btn btn-danger card-link">Rejected</button></a>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -56,6 +60,10 @@
 
         .click {
             cursor: pointer;
+        }
+
+        .buttons {
+            margin-left:800px;
         }
     </style>
 {% endblock %}

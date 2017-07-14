@@ -8,7 +8,7 @@ from smtplib import SMTPException
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.sites.shortcuts import get_current_site
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views import View
@@ -30,6 +30,11 @@ class JoinApplicationListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(JoinApplicationListView, self).get_context_data(**kwargs)
         context['count'] = len(context['object_list'])
+        status = self.request.GET.get('list', None)
+        if status == "approved":
+            context['object_list'] = JoinApplication.objects.filter(is_approved=True).order_by('-date')
+        if status == "rejected":
+            context['object_list'] = JoinApplication.objects.filter(is_rejected=True).order_by('-date')
         return context
 
 
