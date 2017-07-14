@@ -129,9 +129,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 LOGIN_REDIRECT_URL = '/'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/static/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

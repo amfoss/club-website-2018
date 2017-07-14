@@ -92,7 +92,7 @@
                                                 onclick="window.location='{% url 'gsoc_detail' object.id %}';">
                                                 <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
                                                 <td>{{ object.organization }}</td>
-                                                <td>{{ object.title }}</td>
+                                                <td><a href="{{ object.url }}">{{ object.title }}</a></td>
                                                 <td>{{ object.mentors }}</td>
                                                 <td>{{ object.date }}</td>
                                             </tr>
