@@ -17,7 +17,7 @@
                         <input onkeyup="myFunction()" type="text" class="form-control" id="search" placeholder="Search">
                     </div>
 
-                    <div class="card-deck col-md-12">
+                    <div class="card-columns col-md-12">
 
                         {% for user_info in object_list %}
                             {% if user_info.user.is_active %}
@@ -26,7 +26,7 @@
                                     <div class="card-block">
                                         <a class="link" href="{% url 'profile' user_info.user.id %}">
                                             {% if user_info.profile_pic %}
-                                                <img src="/static/media/{{ user_info.profile_pic }}" alt=""
+                                                <img src="/media/{{ user_info.profile_pic }}" alt=""
                                                      class="card-title profile-pic img-fluid rounded-circle">
                                             {% else %}
                                                 <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
