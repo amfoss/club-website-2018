@@ -73,7 +73,7 @@ class AttendanceAddView(View):
         attendance_list = []
 
         for batch in batch_list:
-            user_info_list = UserInfo.objects.filter(year=batch)
+            user_info_list = UserInfo.objects.filter(year=batch).order_by('user__first_name')
             # display the current attendance for this date and batch
             attendance_list_batch = []
             for user_info in user_info_list:
@@ -88,7 +88,6 @@ class AttendanceAddView(View):
             # attendance list contains all the Attendance objects of the batch with date = d
             year = calculate_year(batch)
             attendance_list += [[attendance_list_batch, year], ]
-
         context = {'attendance_list': attendance_list, 'head': str(date)}
         return render(request, self.template_name, context)
 
