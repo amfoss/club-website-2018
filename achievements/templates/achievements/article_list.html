@@ -26,7 +26,7 @@
                             <tbody>
                             {% for object in object_list %}
                                 <tr class="click"
-                                    onclick="window.location='{% url 'contribution_detail' object.id %}';">
+                                    onclick="window.location='{% url 'article_detail' object.id %}';">
                                     <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
                                     <td>{{ object.magazine }}</td>
                                     <td>{{ object.title }}</td>
