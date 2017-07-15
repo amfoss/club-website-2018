@@ -9,6 +9,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .forms import *
 from .models import *
 
+
 color_list = [
             'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)',
             'rgb(153, 102, 255)', 'rgb(201, 203, 207)', '#f44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5',
@@ -18,12 +19,22 @@ color_list = [
             '#FF6F00', '#E65100', '#BF360C', '#3E2723', '#212121', '#263238'
         ]
 
+month = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September",
+         "October", "November", "December"]
+
+month_num = range(13)
 
 class ArticleListView(ListView):
     """
     list out all the articles as a table, article_list.html
     """
     model = Article
+
+    def get_context_data(self, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context["month"] = month
+        context["range"] = month_num
+        return context
 
 
 class ArticleDetailView(DetailView):
@@ -103,6 +114,8 @@ class ContributionListView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ContributionListView, self).get_context_data(**kwargs)
         context['contribution_list'] = Contribution.objects.all().order_by('-date')[:6]
+        context["month"] = month
+        context["range"] = month_num
 
         contribution_x = Contribution.objects.order_by().values_list('organisation').distinct()
         contribution_y = []
@@ -178,7 +191,8 @@ class GsocListView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(GsocListView, self).get_context_data(**kwargs)
         context['gsoc_list'] = Gsoc.objects.all().order_by('-date')[:6]
-
+        context["month"] = month
+        context["range"] = month_num
         gsoc_x = Gsoc.objects.order_by().values_list('organization').distinct()
         gsoc_y = []
 
@@ -251,6 +265,11 @@ class GsocDeleteView(DeleteView):
 class InternListView(ListView):
     model = Intern
 
+    def get_context_data(self, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context["month"] = month
+        context["range"] = month_num
+        return context
 
 class InternDetailView(DetailView):
     model = Intern
@@ -310,6 +329,11 @@ class InternDeleteView(DeleteView):
 class SpeakerListView(ListView):
     model = Speaker
 
+    def get_context_data(self, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context["month"] = month
+        context["range"] = month_num
+        return context
 
 class SpeakerDetailView(DetailView):
     model = Speaker
@@ -369,6 +393,11 @@ class SpeakerDeleteView(DeleteView):
 class ContestListView(ListView):
     model = Contest
 
+    def get_context_data(self, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context["month"] = month
+        context["range"] = month_num
+        return context
 
 class ContestDetailView(DetailView):
     model = Contest
@@ -453,7 +482,8 @@ class AchievementListView(TemplateView):
         context['gsoc_list'] = Gsoc.objects.all().order_by('-date')[:6]
         context['intern_list'] = Intern.objects.all().order_by('-date')[:6]
         context['speaker_list'] = Speaker.objects.all().order_by('-date')[:6]
-
+        context['month'] = month
+        context['range'] = month_num
         # contribution graph
 
         contribution_x = Contribution.objects.order_by().values_list('organisation').distinct()

@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block title %} Talk {% endblock %}
-
+{% load index %}
 {% block body %}
     {% include 'base/nav-bar.html' %}
     <div id="wrap">
@@ -30,7 +30,11 @@
                                     <td>{{ object.conference_name }}, {{ object.location }}</td>
                                     <td><a href="{{ object.url }}">{{ object.title }}</a></td>
                                     <td>{{ object.type }}</td>
-                                    <td>{{ object.date }}</td>
+                                    {% for i in range %}
+                                                    {% ifequal object.date.month i %}
+                                                    <td> {{ month|index:i }}, {{ object.date.year }}</td>
+                                                {% endifequal %}
+                                                    {% endfor %}
                                 </tr>
                             {% endfor %}
                             </tbody>

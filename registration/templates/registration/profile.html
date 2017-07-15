@@ -86,7 +86,15 @@
                                    class="btn btn-secondary">
                                     Update profile
                                 </a>
+
+                                <a href="/accounts/password_change"
+                                   class="btn btn-secondary">
+                                    Change password
+                                </a>
+                                {% endif %}
+
                                 {% endifequal %}
+
                                 {% if user_info.resume %}
                                     <a href="/static/media/{{ user_info.resume }}"
                                        class="btn btn-secondary">
