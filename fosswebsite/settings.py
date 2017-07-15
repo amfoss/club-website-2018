@@ -112,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Kolkata'
-TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -139,10 +138,17 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # No captcha
 NOCAPTCHA = True
 
-
 # application count notification
 
 TEMPLATES[0]['OPTIONS']['context_processors'].append("promotion.context_processors.application_processor")
+
+
+# bcc mail id for join application task mail
+join_application_mail_list = ['vipin.p@gmail.com', 'anuv.1994@gmail.com',
+                              'haritha.h20@gmail.com', 'akshayharidas006@gmail.com', 'bithin2007@gmail.com']
+
+# mail id to sent task and reply to
+join_application_reply_to = ['chirath.02@gmail.com']
 
 # Additional info like email configurations, passwords and secrete keys kept in separate file during development
 # from .local_settings import *

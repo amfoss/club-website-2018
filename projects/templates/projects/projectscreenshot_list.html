@@ -13,7 +13,7 @@
             <div class="row">
                 {% for object in object_list %}
                     <div class="col-md-6">
-                        <img class="img" src="/media/{{ object.image }}">
+                        <img class="img" src="/static/media/{{ object.image }}">
                         <div class="div2">
                             <form method="post" action="{% url "image_delete" object.id %}">
                             {% csrf_token %}
