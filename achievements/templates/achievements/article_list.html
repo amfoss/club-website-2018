@@ -31,7 +31,11 @@
                                     <td>{{ object.magazine }}</td>
                                     <td>{{ object.title }}</td>
                                     <td>{{ object.area }}</td>
-                                    <td>{{ object.date }}</td>
+                                    {% for i in range %}
+                                                    {% ifequal object.date.month i %}
+                                                    <td> {{ month|index:i }}, {{ object.date.year }}</td>
+                                                {% endifequal %}
+                                                    {% endfor %}
                                 </tr>
                             {% endfor %}
                             </tbody>

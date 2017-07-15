@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block title %} {% endblock %}
+{% load index %}
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
@@ -32,7 +33,11 @@
                                     <td>{{ object.ranking }}</td>
                                     <td>{{ object.contest_id }}</td>
                                     <td>{{ object.problems_solved }}</td>
-                                    <td>{{ object.date }}</td>
+                                    {% for i in range %}
+                                                    {% ifequal object.date.month i %}
+                                                    <td> {{ month|index:i }}, {{ object.date.year }}</td>
+                                                {% endifequal %}
+                                                    {% endfor %}
                                 </tr>
                             {% endfor %}
                             </tbody>
