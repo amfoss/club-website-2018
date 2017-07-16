@@ -230,7 +230,7 @@ class GsocUpdateView(UpdateView):
     fields = ['organization', 'title', 'mentors', 'url', 'description', 'date']
 
     def get(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(GsocUpdateView, self).get(request, *args, **kwargs)
 
@@ -239,7 +239,7 @@ class GsocUpdateView(UpdateView):
         return super(GsocUpdateView, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(GsocUpdateView, self).post(request, *args, **kwargs)
 
@@ -250,12 +250,12 @@ class GsocDeleteView(DeleteView):
     success_url = reverse_lazy('gsoc')
 
     def get(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(GsocDeleteView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(GsocDeleteView, self).post(request, *args, **kwargs)
 
@@ -295,7 +295,7 @@ class InternUpdateView(UpdateView):
     fields = ['organisation', 'title', 'location', 'type', 'date', 'description']
 
     def get(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(InternUpdateView, self).get(request, *args, **kwargs)
 
@@ -304,7 +304,7 @@ class InternUpdateView(UpdateView):
         return super(InternUpdateView, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(InternUpdateView, self).post(request, *args, **kwargs)
 
@@ -315,12 +315,12 @@ class InternDeleteView(DeleteView):
     success_url = reverse_lazy('intern')
 
     def get(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(InternDeleteView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(InternDeleteView, self).post(request, *args, **kwargs)
 

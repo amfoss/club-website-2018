@@ -129,9 +129,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 LOGIN_REDIRECT_URL = '/'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/static/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -144,7 +144,7 @@ TEMPLATES[0]['OPTIONS']['context_processors'].append("promotion.context_processo
 
 
 # bcc mail id for join application task mail
-join_application_mail_list = ['vipin.p@gmail.com', 'anuv.1994@gmail.com',
+join_application_mail_list = ['chirath.02@gmail.com', 'vipin.p@gmail.com', 'anuv.1994@gmail.com',
                               'haritha.h20@gmail.com', 'akshayharidas006@gmail.com', 'bithin2007@gmail.com']
 
 # mail id to sent task and reply to

@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-md-10">
                         <div class="card mb-3">
-                            <img class="card-img-top" src="{% static 'achievements/image/gsoc.png' %}"
+                            <img class="card-img-top img-fluid" src="{% static 'achievements/image/gsoc.png' %}"
                                  alt="Card image cap">
                             <div class="card-block">
                                 <h4 class="card-title"><a href="{{ object.url }}">{{ object.title }}</a></h4>
@@ -28,7 +28,9 @@
                                 <p class="card-text">{{ object.description }}</p>
                                 <p class="card-text">Mentors: {{ object.mentors }}</p>
                                 <p class="card-text">
-                                    <small class="text-muted">{{ object.user.first_name }} {{ object.user.last_name }}, {{ object.date }}</small>
+                                    <small class="text-muted">
+                                        {{ object.user.first_name }} {{ object.user.last_name }}, {{ object.date }}
+                                    </small>
                                 </p>
 
                                 {% if edit_permission %}

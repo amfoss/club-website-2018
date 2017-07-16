@@ -8,8 +8,9 @@ db.sqlite3
 
 # media files
 
-/media/
+/static/media/
 /static/
+/foss/
 
 # django
 
