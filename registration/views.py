@@ -7,12 +7,17 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, ListView, View
 import xlrd, datetime
-from clubManagement.models import Team
+
 from achievements.models import Contribution
+from clubManagement.models import Team
 from projects.models import Project
 from registration.forms import UserSignUpForm, UserForm
 from registration.models import UserInfo
 
+months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+         "October", "November", "December"]
+
+month_num = range(12)
 
 class UserSignUpView(CreateView):
     form_class = UserSignUpForm
@@ -89,21 +94,44 @@ class ProfileListView(ListView):
     template_name = 'registration/profile_list.html'
     queryset = UserInfo.objects.order_by('user__first_name')
 
-
 class AddData(View):
 
     def get(self, request, **kwargs):
         template_name = 'registration/adduser.html'
-        wb = xlrd.open_workbook('/Users/rahulk/projects/fosswebsite/registration/templates/registration/contributions.xls')
+        wb = xlrd.open_workbook('/Users/rahulk/projects/fosswebsite/registration/templates/registration/contribution.xlsx')
         wb.sheet_names()
         sh = wb.sheet_by_index(0)
-        name = sh.cell(7,0).value
-        bug_id = sh.cell(7,1).value
-        org = sh.cell(7,3).value
-        link = sh.cell(7,2).value
-        desc = sh.cell(7,4).value
-        title = 'Test'
-        date = datetime.date(year=2014, month=1, day=1)
-        Contribution(user=request.user,contribution_id=bug_id,title=title,organisation=org,url=link,description=desc,date=date).save()
+        rows = sh.nrows
+        for i in range(1, rows):
+            name = sh.cell(i, 7).value
+
+            org = sh.cell(i, 1).value
+            date = sh.cell(i, 2).value
+            title = sh.cell(i, 3).value
+            desc = sh.cell(i, 5).value
+            url = sh.cell(i, 6).value
+
+            c = date.count(" ")
+
+            if c == 1:
+                month, year = date.split()
+            else:
+                day, month, year = date.split()
+
+            for i in range(12):
+                if months[i] == month:
+                    month = i+1
+                    print month
+            dates =  datetime.date(year=int(year), month=month, day=1)
+
+            if User.objects.filter(first_name=name).exists():
+                user = User.objects.get(username=name)
+            else:
+
+                user = User.objects.create_user(name, 'foss@foss.com', 'qwerty123')
+                user.first_name = name
+                user.save()
+                UserInfo(user=user, year='2012').save()
+            Contribution(user=user, title=title, organisation=org, url=url, description=desc, date=dates).save()
 
         return render(request, template_name)
