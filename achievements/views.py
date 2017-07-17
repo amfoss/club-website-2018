@@ -31,7 +31,7 @@ class ArticleListView(ListView):
     model = Article
 
     def get_context_data(self, **kwargs):
-        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context = super(ArticleListView, self).get_context_data(**kwargs)
         context["month"] = month
         context["range"] = month_num
         return context
@@ -266,7 +266,7 @@ class InternListView(ListView):
     model = Intern
 
     def get_context_data(self, **kwargs):
-        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context = super(InternListView, self).get_context_data(**kwargs)
         context["month"] = month
         context["range"] = month_num
         return context
@@ -330,7 +330,7 @@ class SpeakerListView(ListView):
     model = Speaker
 
     def get_context_data(self, **kwargs):
-        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context = super(SpeakerListView, self).get_context_data(**kwargs)
         context["month"] = month
         context["range"] = month_num
         return context
@@ -394,7 +394,7 @@ class ContestListView(ListView):
     model = Contest
 
     def get_context_data(self, **kwargs):
-        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context = super(ContestListView, self).get_context_data(**kwargs)
         context["month"] = month
         context["range"] = month_num
         return context
