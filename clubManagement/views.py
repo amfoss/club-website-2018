@@ -170,10 +170,14 @@ class YearAttendanceReportView(View):
                             attendance=True
                         )
                     )
+                    total = len(
+                        user_info.user.attendance_set.all()
+                    )
+                    print total
                     total_att += att_month
 
                     month_att.append(att_month)
-                x = (float(total_att) / float(365)) * 100
+                x = (float(total_att) / float(total)) * 100
                 perc = float("{0:.2f}".format(x))
                 user_data.append([user_info.user, month_att, total_att, perc])
             year = calculate_year(batch)
@@ -207,7 +211,12 @@ class MonthAttendanceReportView(View):
                 )
             )
             total_att += att_month
-            x = float(att_month*100)/float(day)
+            total = len(user_info.user.attendance_set.filter(
+                    date__year=int(kwargs.get('year')),
+                    date__month=int(kwargs.get('month'))
+                )
+            )
+            x = float(att_month*100)/float(total)
             perc = float("{0:.2f}".format(x))
 
             data.append([user_info.user, att_month, perc])
