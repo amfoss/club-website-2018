@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'projects',
     'promotion',
     'captcha',
+    'timeline',
 ]
 
 MIDDLEWARE = [
