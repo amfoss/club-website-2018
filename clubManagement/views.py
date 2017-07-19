@@ -156,6 +156,8 @@ class YearAttendanceReportView(View):
     def get(self, request, **kwargs):
         batch_list = get_batch_list(kwargs)
         data_list = []
+        date = datetime.now()
+        date_start = datetime.date(year=2017, month=7, day=3)
         for batch in batch_list:
             user_info_list = UserInfo.objects.filter(year=batch)
             user_data = []
@@ -171,7 +173,7 @@ class YearAttendanceReportView(View):
                         )
                     )
                     total = len(
-                        user_info.user.attendance_set.all()
+                        user_info.user.attendance_set.filter(date__range=(date_start, date))
                     )
                     print total
                     total_att += att_month
@@ -195,6 +197,8 @@ class MonthAttendanceReportView(View):
     def get(self, request, **kwargs):
         user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
         data = []
+        date = datetime.now()
+        date_start = datetime.date(year=2017,month=7,day=3)
         day = 30
         if kwargs.get('month') in ['1','3','5','7','8','10','12']:
             day = 31
@@ -206,14 +210,15 @@ class MonthAttendanceReportView(View):
             att_month = len(
                 user_info.user.attendance_set.filter(
                     date__year=int(kwargs.get('year')),
-                    date__month=int(kwargs.get('month')),
+                    date__month=int(kwargs.get('month'), date__range=(date_start, date)),
                     attendance=True
                 )
             )
+            print att_month
             total_att += att_month
             total = len(user_info.user.attendance_set.filter(
                     date__year=int(kwargs.get('year')),
-                    date__month=int(kwargs.get('month'))
+                    date__month=int(kwargs.get('month'), date__range=(date_start, date))
                 )
             )
             x = float(att_month*100)/float(total)
