@@ -18,6 +18,11 @@
                                         <h2 id="head">Mail to all applicants</h2>
                                         <small class="form-text text-muted">Not approved applications only</small>
                                         <hr>
+                                        {% if error %}
+                                            <div class="alert alert-danger" role="alert">
+                                                <strong>Error!</strong> {{ error }}
+                                            </div>
+                                        {% endif %}
                                         <div class="form-group">
                                             <label for="to_list">To</label>
                                             <textarea rows="3" name="to_list" class="form-control"
@@ -66,7 +71,9 @@
                                             </small>
                                         </div>
                                         <button id="submit-btn" type="submit" class="btn btn-primary">Send</button>
-                                        <a href="{% url 'join_list' %}"><div class="btn btn-secondary">Cancel</div></a>
+                                        <a href="{% url 'join_list' %}">
+                                            <div class="btn btn-secondary">Cancel</div>
+                                        </a>
                                     </form>
                                 </div>
                             </div>
