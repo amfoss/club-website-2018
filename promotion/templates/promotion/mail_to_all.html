@@ -20,29 +20,37 @@
                                         <div class="form-group">
                                             <label for="to_list">To</label>
                                             <textarea rows="3" name="to_list" class="form-control"
-                                                      placeholder="Mail id list" id="to_list">
-                                                {{ to_list }}
-                                            </textarea>
+                                                      placeholder="Mail id list" id="to_list">{{ to_list }}</textarea>
+                                            <small class="form-text text-muted">
+                                                Individual mail will be sent to each applicant
+                                            </small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="cc_list">CC</label>
+                                            <textarea rows="3" name="cc_list" class="form-control"
+                                                      id="cc_list">{{ cc_list }}</textarea>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="bcc_list">BCC</label>
                                             <textarea rows="3" name="bcc_list" class="form-control"
-                                                      id="bcc_list">
-                                                {{ bcc_list }}
-                                            </textarea>
+                                                      id="bcc_list">{{ bcc_list }}</textarea>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="reply_to">Reply to</label>
                                             <input type="email" class="form-control" name="reply_to" id="reply_to"
                                                    value="{{ reply_to }}">
+                                            <small class="form-text text-muted">
+                                                Applicant will reply to this mail id
+                                            </small>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="subject">Subject</label>
                                             <input type="text" class="form-control" name="mail_subject" id="subject"
-                                                   value="{{ object.mail_subject }}" placeholder="Subject">
+                                                   value="{{ mail_subject }}" placeholder="Subject">
                                             <small class="form-text text-muted">
                                                 Subject of the mail
                                             </small>
@@ -51,9 +59,7 @@
                                         <div class="form-group">
                                             <label for="mail_content">Description</label>
                                             <textarea rows="10" name="mail_content" class="form-control"
-                                                      id="mail_content" rows="5">
-                                                {{ content }}
-                                            </textarea>
+                                                      id="mail_content" rows="5">{{ mail_content }}</textarea>
                                             <small class="form-text text-muted">
                                                 Content of the mail
                                             </small>

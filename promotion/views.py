@@ -180,8 +180,22 @@ class ContactView(View):
 class EmailAllApplicantsView(View):
     def get(self, request):
         template_name = 'promotion/mail_to_all.html'
+        to_list = ""
+        bcc_list = "vipin.p@gmail.com, "
+        cc_list = ""
 
-        context = {}
+        for application in JoinApplication.objects.filter(is_approved=False, is_rejected=False):
+            to_list += application.email + ", "
+
+        for user in User.objects.filter(is_superuser=True):
+            cc_list += user.email + ", "
+
+        reply_to = join_application_reply_to[0]
+        mail_subject = "FOSS@Amrita"
+        mail_content = "Content of the mail"
+
+        context = {'to_list': to_list, 'bcc_list': bcc_list, 'cc_list': cc_list,
+                   'reply_to': reply_to, 'mail_subject': mail_subject, 'mail_content': mail_content}
         return render(request, template_name, context)
 
     def post(self, request):
