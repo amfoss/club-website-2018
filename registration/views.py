@@ -121,7 +121,6 @@ class AddData(View):
             for i in range(12):
                 if months[i] == month:
                     month = i+1
-                    print month
             dates =  datetime.date(year=int(year), month=month, day=1)
 
             if User.objects.filter(first_name=name).exists():

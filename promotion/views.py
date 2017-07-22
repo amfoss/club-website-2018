@@ -175,3 +175,17 @@ class ContactView(View):
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
         return render(request, template_name='promotion/index.html', context={"is_success": 1})
+
+
+class EmailAllApplicantsView(View):
+    def get(self, request):
+        template_name = 'promotion/mail_to_all.html'
+
+        context = {}
+        return render(request, template_name, context)
+
+    def post(self, request):
+        template_name = 'promotion/mail_to_all.html'
+
+        context = {}
+        return render(request, template_name, context)
