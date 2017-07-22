@@ -192,14 +192,34 @@ class EmailAllApplicantsView(View):
 
         reply_to = join_application_reply_to[0]
         mail_subject = "FOSS@Amrita"
-        mail_content = "Content of the mail"
+        mail_content = "Namah Shivaya, \n\n"
 
         context = {'to_list': to_list, 'bcc_list': bcc_list, 'cc_list': cc_list,
                    'reply_to': reply_to, 'mail_subject': mail_subject, 'mail_content': mail_content}
         return render(request, template_name, context)
 
     def post(self, request):
-        template_name = 'promotion/mail_to_all.html'
+        template_name = 'promotion/mail_sent.html'
 
-        context = {}
+        to_list = request.POST['to_list']
+        bcc_list = request.POST['bcc_list']
+        cc_list = request.POST['cc_list']
+
+        reply_to = request.POST['reply_to']
+        mail_subject = request.POST['mail_subject']
+        mail_content = request.POST['mail_content']
+
+        # email = EmailMessage(
+        #     'Tasks to complete, FOSS@Amrita',
+        #     mail_content,
+        #     'amritapurifoss@gmail.com',
+        #     [form.cleaned_data.get('name'), join_application_reply_to],
+        #     join_application_mail_list,
+        #     reply_to=join_application_reply_to,
+        #     headers={'Message-ID': 'foss@amrita'},
+        # )
+
+        context = {'to_list': to_list, 'bcc_list': bcc_list, 'cc_list': cc_list,
+                   'reply_to': reply_to, 'mail_subject': mail_subject, 'mail_content': mail_content}
+
         return render(request, template_name, context)

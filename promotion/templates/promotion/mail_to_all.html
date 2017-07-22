@@ -16,7 +16,8 @@
                                     <form method="post" action="">
                                         {% csrf_token %}
                                         <h2 id="head">Mail to all applicants</h2>
-
+                                        <small class="form-text text-muted">Not approved applications only</small>
+                                        <hr>
                                         <div class="form-group">
                                             <label for="to_list">To</label>
                                             <textarea rows="3" name="to_list" class="form-control"
