@@ -211,11 +211,17 @@ class EmailAllApplicantsView(View):
     def post(self, request):
         template_name = 'promotion/mail_sent.html'
 
-        to_list = request.POST['to_list'].strip(",").strip()
-        bcc_list = request.POST['bcc_list'].strip(",").strip()
-        cc_list = request.POST['cc_list'].strip(",").strip()
+        to_list = request.POST['to_list'].strip()
+        bcc_list = request.POST['bcc_list'].strip()
+        cc_list = request.POST['cc_list'].strip()
 
-        reply_to = request.POST['reply_to'].strip(",").strip()
+        to_list = to_list.strip(",")
+        bcc_list = bcc_list.strip(",")
+        cc_list = cc_list.strip(",")
+
+        reply_to = request.POST['reply_to'].strip()
+        reply_to = reply_to.strip(",")
+
         mail_subject = request.POST['mail_subject'].strip()
         mail_content = request.POST['mail_content'].strip()
 
