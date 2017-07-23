@@ -219,9 +219,6 @@ class EmailAllApplicantsView(View):
         bcc_list = bcc_list.strip(",")
         cc_list = cc_list.strip(",")
 
-        reply_to = request.POST['reply_to'].strip()
-        reply_to = reply_to.strip(",")
-
         mail_subject = request.POST['mail_subject'].strip()
         mail_content = request.POST['mail_content'].strip()
 
@@ -248,17 +245,10 @@ class EmailAllApplicantsView(View):
             if not validate_mail(cc[i]):
                 error += "cc list: mail id not valid - " + cc[i]
 
-        reply = reply_to.split(",")
-        for i in range(len(reply)):
-            reply[i] = reply[i].strip()
-            if not validate_mail(reply[i]):
-                error += "reply to: mail id not valid - " + reply[i]
-
         context = {'to_list': to_list, 'bcc_list': bcc_list, 'cc_list': cc_list,
-                   'reply_to': reply_to, 'mail_subject': mail_subject, 'mail_content': mail_content}
+                   'mail_subject': mail_subject, 'mail_content': mail_content}
 
         if error != "":
-            print (error)
             context["error"] = error
             template_name = 'promotion/mail_to_all.html'
             return render(request, template_name, context)
@@ -272,12 +262,9 @@ class EmailAllApplicantsView(View):
                 'amritapurifoss@gmail.com',
                 mail_to,
                 bcc,
-                reply_to=reply,
                 headers={'Message-ID': 'foss@amrita'},
             )
 
-            email.send()
-
-
+            email.send(fail_silently=True)
 
         return render(request, template_name, context)
