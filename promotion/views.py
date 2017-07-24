@@ -175,3 +175,96 @@ class ContactView(View):
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
         return render(request, template_name='promotion/index.html', context={"is_success": 1})
+
+
+def validate_mail( email ):
+    from django.core.validators import validate_email
+    from django.core.exceptions import ValidationError
+    try:
+        validate_email(email)
+        return True
+    except ValidationError:
+        return False
+
+
+class EmailAllApplicantsView(View):
+    def get(self, request):
+        template_name = 'promotion/mail_to_all.html'
+        to_list = ""
+        bcc_list = "vipin.p@gmail.com, "
+        cc_list = ""
+
+        for application in JoinApplication.objects.filter(is_approved=False, is_rejected=False):
+            to_list += application.email + ", "
+
+        for user in User.objects.filter(is_superuser=True):
+            cc_list += user.email + ", "
+
+        reply_to = join_application_reply_to[0]
+        mail_subject = "FOSS@Amrita"
+        mail_content = "Namah Shivaya, \n\n"
+
+        context = {'to_list': to_list, 'bcc_list': bcc_list, 'cc_list': cc_list,
+                   'reply_to': reply_to, 'mail_subject': mail_subject, 'mail_content': mail_content}
+        return render(request, template_name, context)
+
+    def post(self, request):
+        template_name = 'promotion/mail_sent.html'
+
+        to_list = request.POST['to_list'].strip()
+        bcc_list = request.POST['bcc_list'].strip()
+        cc_list = request.POST['cc_list'].strip()
+
+        to_list = to_list.strip(",")
+        bcc_list = bcc_list.strip(",")
+        cc_list = cc_list.strip(",")
+
+        mail_subject = request.POST['mail_subject'].strip()
+        mail_content = request.POST['mail_content'].strip()
+
+        error = ""
+        # validation of all mail id
+
+        to = to_list.split(",")
+        for i in range(len(to)):
+            to[i] = to[i].strip()
+            if not validate_mail(to[i]):
+                print(to)
+                error += "to list: mail id not valid - " + to[i]
+
+        bcc = bcc_list.split(",")
+        for i in range(len(bcc)):
+            bcc[i] = bcc[i].strip()
+            if not validate_mail(bcc[i]):
+                print(bcc)
+                error += "bcc list: mail id not valid - " + bcc[i]
+
+        cc = cc_list.split(",")
+        for i in range(len(cc)):
+            cc[i] = cc[i].strip()
+            if not validate_mail(cc[i]):
+                error += "cc list: mail id not valid - " + cc[i]
+
+        context = {'to_list': to_list, 'bcc_list': bcc_list, 'cc_list': cc_list,
+                   'mail_subject': mail_subject, 'mail_content': mail_content}
+
+        if error != "":
+            context["error"] = error
+            template_name = 'promotion/mail_to_all.html'
+            return render(request, template_name, context)
+
+        for email in to:
+            mail_to = [email, ] + cc
+
+            email = EmailMessage(
+                mail_subject,
+                mail_content,
+                'amritapurifoss@gmail.com',
+                mail_to,
+                bcc,
+                headers={'Message-ID': 'foss@amrita'},
+            )
+
+            email.send(fail_silently=True)
+
+        return render(request, template_name, context)

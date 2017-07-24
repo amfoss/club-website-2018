@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div id="mail_form">
+                                    <form method="post" action="">
+                                        {% csrf_token %}
+                                        <h2 id="head">Mail to all applicants</h2>
+                                        <small class="form-text text-muted">Not approved applications only</small>
+                                        <hr>
+                                        {% if error %}
+                                            <div class="alert alert-danger" role="alert">
+                                                <strong>Error!</strong> {{ error }}
+                                            </div>
+                                        {% endif %}
+                                        <div class="form-group">
+                                            <label for="to_list">To</label>
+                                            <textarea rows="3" name="to_list" class="form-control"
+                                                      placeholder="Mail id list" id="to_list">{{ to_list }}</textarea>
+                                            <small class="form-text text-muted">
+                                                Individual mail will be sent to each applicant
+                                            </small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="cc_list">CC</label>
+                                            <textarea rows="3" name="cc_list" class="form-control"
+                                                      id="cc_list">{{ cc_list }}</textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="bcc_list">BCC</label>
+                                            <textarea rows="3" name="bcc_list" class="form-control"
+                                                      id="bcc_list">{{ bcc_list }}</textarea>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="subject">Subject</label>
+                                            <input type="text" class="form-control" name="mail_subject" id="subject"
+                                                   value="{{ mail_subject }}" placeholder="Subject">
+                                            <small class="form-text text-muted">
+                                                Subject of the mail
+                                            </small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="mail_content">Description</label>
+                                            <textarea rows="10" name="mail_content" class="form-control"
+                                                      id="mail_content" rows="5">{{ mail_content }}</textarea>
+                                            <small class="form-text text-muted">
+                                                Content of the mail
+                                            </small>
+                                        </div>
+                                        <button id="submit-btn" type="submit" class="btn btn-primary">Send</button>
+                                        <a href="{% url 'join_list' %}">
+                                            <div class="btn btn-secondary">Cancel</div>
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+        .card {
+            margin-top: 50px;
+        }
+    </style>
+    {% include 'base/footer.html' %}
+{% endblock %}
