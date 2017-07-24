@@ -171,13 +171,14 @@ class ContactView(View):
 
     def post(self, request):
         subject = 'Message from ' + request.POST.get('name')
-        content = request.POST.get('message')
+        content = "Message from : " + request.POST.get('name') + " <" + request.POST.get('email') + ">\n\n" +\
+                  request.POST.get('message')
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
-        return render(request, template_name='promotion/index.html', context={"is_success": 1})
+        return render(request, template_name='promotion/index.html', context={"is_success": True})
 
 
-def validate_mail( email ):
+def validate_mail(email):
     from django.core.validators import validate_email
     from django.core.exceptions import ValidationError
     try:
