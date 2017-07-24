@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
     <meta charset="UTF-8"/>
     <title>Timeline</title>
-
-
-
     <!-- Force to reload page on back button for firefox
     ================================================== -->
     <script>
-	window.name = "reloader" ;
-	window.onbeforeunload = function() {
-   		window.name = "reloader";
-	}
-	window.onunload = function(){};
-
+        window.name = "reloader";
+        window.onbeforeunload = function () {
+            window.name = "reloader";
+        }
+        window.onunload = function () {
+        };
     </script>
-
+       <a href="{% url 'home' %}"> <button type="button" class="icon-chevron-left navkey" style="margin-right: 1345px;background-color: Transparent;border:none;"></button>
+       </a>
+<h1 class="Font">Our Family</h1>
     <style type="text/css">
-img.wp-smiley,
-img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
-}
+        .Font{
+             text-align:center;
+            margin-bottom: 1px;
+            font-family:'Bellefair', serif;
+            font-size:3em;
+        }
+
+    </style>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
 
     </style>
     <link rel='stylesheet' id='contact-form-7-css'
@@ -101,44 +110,44 @@ img.emoji {
     </div>
 </div>
 <script>
-				'strict mode';
-				var slectloop = "loop";
-				var whait = 0;
-				var count = 2;
-				var total = 1;
-				var is_state = 1;
-				var var_string = 'a%3A61%3A%7Bs%3A13%3A%22category_name%22%3Bs%3A6%3A%22circle%22%3Bs%3A5%3A%22error%22%3Bs%3A0%3A%22%22%3Bs%3A1%3A%22m%22%3Bs%3A0%3A%22%22%3Bs%3A1%3A%22p%22%3Bi%3A0%3Bs%3A11%3A%22post_parent%22%3Bs%3A0%3A%22%22%3Bs%3A7%3A%22subpost%22%3Bs%3A0%3A%22%22%3Bs%3A10%3A%22subpost_id%22%3Bs%3A0%3A%22%22%3Bs%3A10%3A%22attachment%22%3Bs%3A0%3A%22%22%3Bs%3A13%3A%22attachment_id%22%3Bi%3A0%3Bs%3A4%3A%22name%22%3Bs%3A0%3A%22%22%3Bs%3A6%3A%22static%22%3Bs%3A0%3A%22%22%3Bs%3A8%3A%22pagename%22%3Bs%3A0%3A%22%22%3Bs%3A7%3A%22page_id%22%3Bi%3A0%3Bs%3A6%3A%22second%22%3Bs%3A0%3A%22%22%3Bs%3A6%3A%22minute%22%3Bs%3A0%3A%22%22%3Bs%3A4%3A%22hour%22%3Bs%3A0%3A%22%22%3Bs%3A3%3A%22day%22%3Bi%3A0%3Bs%3A8%3A%22monthnum%22%3Bi%3A0%3Bs%3A4%3A%22year%22%3Bi%3A0%3Bs%3A1%3A%22w%22%3Bi%3A0%3Bs%3A3%3A%22tag%22%3Bs%3A0%3A%22%22%3Bs%3A3%3A%22cat%22%3Bi%3A3%3Bs%3A6%3A%22tag_id%22%3Bs%3A0%3A%22%22%3Bs%3A6%3A%22author%22%3Bs%3A0%3A%22%22%3Bs%3A11%3A%22author_name%22%3Bs%3A0%3A%22%22%3Bs%3A4%3A%22feed%22%3Bs%3A0%3A%22%22%3Bs%3A2%3A%22tb%22%3Bs%3A0%3A%22%22%3Bs%3A5%3A%22paged%22%3Bi%3A0%3Bs%3A14%3A%22comments_popup%22%3Bs%3A0%3A%22%22%3Bs%3A8%3A%22meta_key%22%3Bs%3A0%3A%22%22%3Bs%3A10%3A%22meta_value%22%3Bs%3A0%3A%22%22%3Bs%3A7%3A%22preview%22%3Bs%3A0%3A%22%22%3Bs%3A1%3A%22s%22%3Bs%3A0%3A%22%22%3Bs%3A8%3A%22sentence%22%3Bs%3A0%3A%22%22%3Bs%3A6%3A%22fields%22%3Bs%3A0%3A%22%22%3Bs%3A10%3A%22menu_order%22%3Bs%3A0%3A%22%22%3Bs%3A12%3A%22category__in%22%3Ba%3A0%3A%7B%7Ds%3A16%3A%22category__not_in%22%3Ba%3A0%3A%7B%7Ds%3A13%3A%22category__and%22%3Ba%3A0%3A%7B%7Ds%3A8%3A%22post__in%22%3Ba%3A0%3A%7B%7Ds%3A12%3A%22post__not_in%22%3Ba%3A0%3A%7B%7Ds%3A7%3A%22tag__in%22%3Ba%3A0%3A%7B%7Ds%3A11%3A%22tag__not_in%22%3Ba%3A0%3A%7B%7Ds%3A8%3A%22tag__and%22%3Ba%3A0%3A%7B%7Ds%3A12%3A%22tag_slug__in%22%3Ba%3A0%3A%7B%7Ds%3A13%3A%22tag_slug__and%22%3Ba%3A0%3A%7B%7Ds%3A15%3A%22post_parent__in%22%3Ba%3A0%3A%7B%7Ds%3A19%3A%22post_parent__not_in%22%3Ba%3A0%3A%7B%7Ds%3A10%3A%22author__in%22%3Ba%3A0%3A%7B%7Ds%3A14%3A%22author__not_in%22%3Ba%3A0%3A%7B%7Ds%3A19%3A%22ignore_sticky_posts%22%3Bb%3A0%3Bs%3A16%3A%22suppress_filters%22%3Bb%3A0%3Bs%3A13%3A%22cache_results%22%3Bb%3A1%3Bs%3A22%3A%22update_post_term_cache%22%3Bb%3A1%3Bs%3A22%3A%22update_post_meta_cache%22%3Bb%3A1%3Bs%3A9%3A%22post_type%22%3Bs%3A0%3A%22%22%3Bs%3A14%3A%22posts_per_page%22%3Bi%3A10%3Bs%3A8%3A%22nopaging%22%3Bb%3A0%3Bs%3A17%3A%22comments_per_page%22%3Bs%3A2%3A%2250%22%3Bs%3A13%3A%22no_found_rows%22%3Bb%3A0%3Bs%3A5%3A%22order%22%3Bs%3A4%3A%22DESC%22%3B%7D';
+    'strict mode';
+    var slectloop = "loop";
+    var whait = 0;
+    var count = 2;
+    var total = 1;
+    var is_state = 1;
+    var var_string = 'a%3A61%3A%7Bs%3A13%3A%22category_name%22%3Bs%3A6%3A%22circle%22%3Bs%3A5%3A%22error%22%3Bs%3A0%3A%22%22%3Bs%3A1%3A%22m%22%3Bs%3A0%3A%22%22%3Bs%3A1%3A%22p%22%3Bi%3A0%3Bs%3A11%3A%22post_parent%22%3Bs%3A0%3A%22%22%3Bs%3A7%3A%22subpost%22%3Bs%3A0%3A%22%22%3Bs%3A10%3A%22subpost_id%22%3Bs%3A0%3A%22%22%3Bs%3A10%3A%22attachment%22%3Bs%3A0%3A%22%22%3Bs%3A13%3A%22attachment_id%22%3Bi%3A0%3Bs%3A4%3A%22name%22%3Bs%3A0%3A%22%22%3Bs%3A6%3A%22static%22%3Bs%3A0%3A%22%22%3Bs%3A8%3A%22pagename%22%3Bs%3A0%3A%22%22%3Bs%3A7%3A%22page_id%22%3Bi%3A0%3Bs%3A6%3A%22second%22%3Bs%3A0%3A%22%22%3Bs%3A6%3A%22minute%22%3Bs%3A0%3A%22%22%3Bs%3A4%3A%22hour%22%3Bs%3A0%3A%22%22%3Bs%3A3%3A%22day%22%3Bi%3A0%3Bs%3A8%3A%22monthnum%22%3Bi%3A0%3Bs%3A4%3A%22year%22%3Bi%3A0%3Bs%3A1%3A%22w%22%3Bi%3A0%3Bs%3A3%3A%22tag%22%3Bs%3A0%3A%22%22%3Bs%3A3%3A%22cat%22%3Bi%3A3%3Bs%3A6%3A%22tag_id%22%3Bs%3A0%3A%22%22%3Bs%3A6%3A%22author%22%3Bs%3A0%3A%22%22%3Bs%3A11%3A%22author_name%22%3Bs%3A0%3A%22%22%3Bs%3A4%3A%22feed%22%3Bs%3A0%3A%22%22%3Bs%3A2%3A%22tb%22%3Bs%3A0%3A%22%22%3Bs%3A5%3A%22paged%22%3Bi%3A0%3Bs%3A14%3A%22comments_popup%22%3Bs%3A0%3A%22%22%3Bs%3A8%3A%22meta_key%22%3Bs%3A0%3A%22%22%3Bs%3A10%3A%22meta_value%22%3Bs%3A0%3A%22%22%3Bs%3A7%3A%22preview%22%3Bs%3A0%3A%22%22%3Bs%3A1%3A%22s%22%3Bs%3A0%3A%22%22%3Bs%3A8%3A%22sentence%22%3Bs%3A0%3A%22%22%3Bs%3A6%3A%22fields%22%3Bs%3A0%3A%22%22%3Bs%3A10%3A%22menu_order%22%3Bs%3A0%3A%22%22%3Bs%3A12%3A%22category__in%22%3Ba%3A0%3A%7B%7Ds%3A16%3A%22category__not_in%22%3Ba%3A0%3A%7B%7Ds%3A13%3A%22category__and%22%3Ba%3A0%3A%7B%7Ds%3A8%3A%22post__in%22%3Ba%3A0%3A%7B%7Ds%3A12%3A%22post__not_in%22%3Ba%3A0%3A%7B%7Ds%3A7%3A%22tag__in%22%3Ba%3A0%3A%7B%7Ds%3A11%3A%22tag__not_in%22%3Ba%3A0%3A%7B%7Ds%3A8%3A%22tag__and%22%3Ba%3A0%3A%7B%7Ds%3A12%3A%22tag_slug__in%22%3Ba%3A0%3A%7B%7Ds%3A13%3A%22tag_slug__and%22%3Ba%3A0%3A%7B%7Ds%3A15%3A%22post_parent__in%22%3Ba%3A0%3A%7B%7Ds%3A19%3A%22post_parent__not_in%22%3Ba%3A0%3A%7B%7Ds%3A10%3A%22author__in%22%3Ba%3A0%3A%7B%7Ds%3A14%3A%22author__not_in%22%3Ba%3A0%3A%7B%7Ds%3A19%3A%22ignore_sticky_posts%22%3Bb%3A0%3Bs%3A16%3A%22suppress_filters%22%3Bb%3A0%3Bs%3A13%3A%22cache_results%22%3Bb%3A1%3Bs%3A22%3A%22update_post_term_cache%22%3Bb%3A1%3Bs%3A22%3A%22update_post_meta_cache%22%3Bb%3A1%3Bs%3A9%3A%22post_type%22%3Bs%3A0%3A%22%22%3Bs%3A14%3A%22posts_per_page%22%3Bi%3A10%3Bs%3A8%3A%22nopaging%22%3Bb%3A0%3Bs%3A17%3A%22comments_per_page%22%3Bs%3A2%3A%2250%22%3Bs%3A13%3A%22no_found_rows%22%3Bb%3A0%3Bs%3A5%3A%22order%22%3Bs%3A4%3A%22DESC%22%3B%7D';
 
-				window.initajax = function(){
+    window.initajax = function () {
 
-					if (count > total){
-						return false;
-					}else{
-						if(whait !=1){
-							loadArticle(count, is_state, var_string);
-							whait = 1
-						}else{
-						   return false;
-						}
-					}
-					count++;
-				}
-				function loadArticle(pageNumber, is_state, var_string){
-					jQuery('.inifiniteLoader').removeClass('fadeOutDown').addClass("fadeInUp");
-					jQuery('.numpostinfi').removeClass('fadeInUp').addClass("fadeOutDown");
-						jQuery.ajax({
-							url: "https://cray.bg/themes/time-travel/wp-admin/admin-ajax.php",
-							type:'POST',
-							data:"action=infinite_scroll&page_no="+ pageNumber + '&loop_file='+slectloop+'&is_state='+is_state+'&var_string='+var_string,
-							success: function(html){
-								jQuery('.inifiniteLoader').removeClass('fadeInUp').addClass("fadeOutDown");
-								jQuery('.numpostinfi').removeClass('fadeOutDown').addClass("fadeInUp");
-								jQuery("#articlehold").append(html);
-								whait = 0;
-							}
-						});
-					return false;
-				}
+        if (count > total) {
+            return false;
+        } else {
+            if (whait != 1) {
+                loadArticle(count, is_state, var_string);
+                whait = 1
+            } else {
+                return false;
+            }
+        }
+        count++;
+    }
+    function loadArticle(pageNumber, is_state, var_string) {
+        jQuery('.inifiniteLoader').removeClass('fadeOutDown').addClass("fadeInUp");
+        jQuery('.numpostinfi').removeClass('fadeInUp').addClass("fadeOutDown");
+        jQuery.ajax({
+            url: "https://cray.bg/themes/time-travel/wp-admin/admin-ajax.php",
+            type: 'POST',
+            data: "action=infinite_scroll&page_no=" + pageNumber + '&loop_file=' + slectloop + '&is_state=' + is_state + '&var_string=' + var_string,
+            success: function (html) {
+                jQuery('.inifiniteLoader').removeClass('fadeInUp').addClass("fadeOutDown");
+                jQuery('.numpostinfi').removeClass('fadeOutDown').addClass("fadeInUp");
+                jQuery("#articlehold").append(html);
+                whait = 0;
+            }
+        });
+        return false;
+    }
 
 </script>
 <header>
@@ -174,664 +183,691 @@ img.emoji {
     <div id="ss-container" class="ss-container    ">
         <div id="ytbgvideo"></div>
         <script>
-jQuery(document).ready(function($){
-	//check for voice recognition
-	//==================================================
-	if (!annyang) {
-		$('#tt-voice-c').css("display","none");
-	}
-		'use strict';
-	var
-	s,
-		selectedThemeIndex,
-		instructionsTimeout,
-		deck;
-	window.scrollinit = function(){
-		deck = bespoke.from('article');
-		initThemeSwitching();
-	};
+            jQuery(document).ready(function ($) {
+                //check for voice recognition
+                //==================================================
+                if (!annyang) {
+                    $('#tt-voice-c').css("display", "none");
+                }
+                'use strict';
+                var
+                    s,
+                    selectedThemeIndex,
+                    instructionsTimeout,
+                    deck;
+                window.scrollinit = function () {
+                    deck = bespoke.from('article');
+                    initThemeSwitching();
+                };
 
-	setTimeout(scrollinit,1000);
-	function initThemeSwitching() {
-		themes = [
-			'classictilt'
-		];
-		selectedThemeIndex = 0;
-		if(window.lastslide !==''){
-			deck.slide(window.lastslide-1);
-		}else{
-			deck.slide(0);
-		}
-		if(window.openfirst !== 1){
-			window.gokb='';
+                setTimeout(scrollinit, 1000);
+                function initThemeSwitching() {
+                    themes = [
+                        'classictilt'
+                    ];
+                    selectedThemeIndex = 0;
+                    if (window.lastslide !== '') {
+                        deck.slide(window.lastslide - 1);
+                    } else {
+                        deck.slide(0);
+                    }
+                    if (window.openfirst !== 1) {
+                        window.gokb = '';
 
-			if (annyang) {
-				//share on twitter
-				//==================================================
-				var commands = {
-					'tweet': function() {
-						 window.open($(".bespoke-active a.share-three").attr("rel"),'_blank', 'width=550,height=420');
-					},
-					//share on facebook
-					//==================================================
-					'share': function() {
-							 window.open($(".bespoke-active a.share-two").attr("rel"),'_blank', 'width=600,height=400');
-					},
-					//open big image
-					//==================================================
-					'show picture': function() {
-						if($(".bespoke-active a.voice-bigimage").attr("href")){
-						$().prettyPhoto()
-						  api_images = [$(".bespoke-active a.voice-bigimage").attr("href")];
-						  $.prettyPhoto.open(api_images);
-						}
-					},
-					//close big image
-					//==================================================
-					'close': function() {
-						$.prettyPhoto.close();
-					},
-					//next slide
-					//==================================================
-					'next': function() {
-					  deck.next();
-					},
-					//previous slide
-					//==================================================
-					'previous': function() {
-					  deck.prev();
-					},
-					//go to beginig of the timeline
-					//==================================================
-					'scroll back': function() {
-					  deck.slide(0);
-					},
-					//go to homepage
-					//==================================================
-					'home page': function() {
-						 window.open("https://cray.bg/themes/time-travel","_self");
-					},
-					//search
-					//==================================================
-					'search for *search':function(tag) {
-						window.open("https://cray.bg/themes/time-travel?s="+tag,"_self");
-					},
-					//open post
-					//==================================================
-					'open': function(){
-						var storyId = $('.bespoke-active a.read-more-init').attr('href');
-						selectactive(storyId);
-					},
-					//more from this category
-					//==================================================
-					'more from same category': function(){
-						if($('.bespoke-active a.voice-morefromthis').attr('href')){
-						var storyId = $('.bespoke-active a.voice-morefromthis').attr('href');
-						selectactive(storyId);
-						}
-					},
-					//read comments
-					//==================================================
-					'show comments': function(){
-						if($('.bespoke-active a.voice-readcomments').attr('href')){
-						var storyId = $('.bespoke-active a.voice-readcomments').attr('href');
-						selectactive(storyId);
-						}
-					}
-				};
-				//languige of the voice control listener
-				//==================================================
-				annyang.setLanguage('en');
-				annyang.init(commands);
-				annyang.debug();
+                        if (annyang) {
+                            //share on twitter
+                            //==================================================
+                            var commands = {
+                                'tweet': function () {
+                                    window.open($(".bespoke-active a.share-three").attr("rel"), '_blank', 'width=550,height=420');
+                                },
+                                //share on facebook
+                                //==================================================
+                                'share': function () {
+                                    window.open($(".bespoke-active a.share-two").attr("rel"), '_blank', 'width=600,height=400');
+                                },
+                                //open big image
+                                //==================================================
+                                'show picture': function () {
+                                    if ($(".bespoke-active a.voice-bigimage").attr("href")) {
+                                        $().prettyPhoto()
+                                        api_images = [$(".bespoke-active a.voice-bigimage").attr("href")];
+                                        $.prettyPhoto.open(api_images);
+                                    }
+                                },
+                                //close big image
+                                //==================================================
+                                'close': function () {
+                                    $.prettyPhoto.close();
+                                },
+                                //next slide
+                                //==================================================
+                                'next': function () {
+                                    deck.next();
+                                },
+                                //previous slide
+                                //==================================================
+                                'previous': function () {
+                                    deck.prev();
+                                },
+                                //go to beginig of the timeline
+                                //==================================================
+                                'scroll back': function () {
+                                    deck.slide(0);
+                                },
+                                //go to homepage
+                                //==================================================
+                                'home page': function () {
+                                    window.open("https://cray.bg/themes/time-travel", "_self");
+                                },
+                                //search
+                                //==================================================
+                                'search for *search': function (tag) {
+                                    window.open("https://cray.bg/themes/time-travel?s=" + tag, "_self");
+                                },
+                                //open post
+                                //==================================================
+                                'open': function () {
+                                    var storyId = $('.bespoke-active a.read-more-init').attr('href');
+                                    selectactive(storyId);
+                                },
+                                //more from this category
+                                //==================================================
+                                'more from same category': function () {
+                                    if ($('.bespoke-active a.voice-morefromthis').attr('href')) {
+                                        var storyId = $('.bespoke-active a.voice-morefromthis').attr('href');
+                                        selectactive(storyId);
+                                    }
+                                },
+                                //read comments
+                                //==================================================
+                                'show comments': function () {
+                                    if ($('.bespoke-active a.voice-readcomments').attr('href')) {
+                                        var storyId = $('.bespoke-active a.voice-readcomments').attr('href');
+                                        selectactive(storyId);
+                                    }
+                                }
+                            };
+                            //languige of the voice control listener
+                            //==================================================
+                            annyang.setLanguage('en');
+                            annyang.init(commands);
+                            annyang.debug();
 
-				//enable / disable voice control (using cookie)
-				//==================================================
-				var isone = ''
-				$(function() {
-					$("#tt-voice-c").click(function() {
-						if (readCookie("voiceon") == 'on') {
-							$('#vocie-control').removeClass('icon-microphone').addClass('icon-microphone-off');
-							isone='off';
-							 annyang.abort();
-						}
-						if (readCookie("voiceon") == 'off') {
-							$('#vocie-control').removeClass('icon-microphone-off').addClass('icon-microphone');
-							annyang.start();
-							isone='on';
-						}
-						createCookie("voiceon",isone);
-						return false;
-					});
+                            //enable / disable voice control (using cookie)
+                            //==================================================
+                            var isone = ''
+                            $(function () {
+                                $("#tt-voice-c").click(function () {
+                                    if (readCookie("voiceon") == 'on') {
+                                        $('#vocie-control').removeClass('icon-microphone').addClass('icon-microphone-off');
+                                        isone = 'off';
+                                        annyang.abort();
+                                    }
+                                    if (readCookie("voiceon") == 'off') {
+                                        $('#vocie-control').removeClass('icon-microphone-off').addClass('icon-microphone');
+                                        annyang.start();
+                                        isone = 'on';
+                                    }
+                                    createCookie("voiceon", isone);
+                                    return false;
+                                });
 
-					if( readCookie("voiceon") == null ){
-						 Opentip.tips[0].show();
-					}
-					if (readCookie("voiceon") == 'on') {
-						 annyang.start();
-						 $('#vocie-control').removeClass('icon-microphone-off').addClass('icon-microphone');
-						isone='on';
-					}
-					else if(readCookie("voiceon") == 'off' || readCookie("voiceon") == null ){
-						$('#vocie-control').removeClass('icon-microphone').addClass('icon-microphone-off');
-						annyang.abort();
-						isone='off';
+                                if (readCookie("voiceon") == null) {
+                                    Opentip.tips[0].show();
+                                }
+                                if (readCookie("voiceon") == 'on') {
+                                    annyang.start();
+                                    $('#vocie-control').removeClass('icon-microphone-off').addClass('icon-microphone');
+                                    isone = 'on';
+                                }
+                                else if (readCookie("voiceon") == 'off' || readCookie("voiceon") == null) {
+                                    $('#vocie-control').removeClass('icon-microphone').addClass('icon-microphone-off');
+                                    annyang.abort();
+                                    isone = 'off';
 
-					}
-					createCookie("voiceon",isone);
-				});
-				function createCookie(name,value,days) {
-					if (days) {
-						var date = new Date();
-						date.setTime(date.getTime()+(days*24*60*60*1000));
-						var expires = "; expires="+date.toGMTString();
-					}
-					else var expires = "";
-					document.cookie = name+"="+value+expires+"; path=/";
-				}
-				function readCookie(name) {
-					var nameEQ = name + "=";
-					var ca = document.cookie.split(';');
-					for(var i=0;i < ca.length;i++) {
-						var c = ca[i];
-						while (c.charAt(0)==' ') c = c.substring(1,c.length);
-						if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-					}
-					return null;
-				}
-				function eraseCookie(name) {
-					createCookie(name,"",-1);
-				}
-			}
-						var nmax = $("section").length -1;
-			window.openfirst = 1
-			window.gomouse();
-			deck.slide(0);
-		}
-		initKeys();
-		initButtons();
-		initSlideGestures();
-		initClickInactive();
-		loopreset();
-		var hash = window.location.hash;
-		var findme = "!slide-";
-		var n = $("section").length;
-		yourString = hash.replace ( /[^\d.]/g, '' );
-		if(yourString && hash.indexOf(findme) > -1){
+                                }
+                                createCookie("voiceon", isone);
+                            });
+                            function createCookie(name, value, days) {
+                                if (days) {
+                                    var date = new Date();
+                                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                    var expires = "; expires=" + date.toGMTString();
+                                }
+                                else var expires = "";
+                                document.cookie = name + "=" + value + expires + "; path=/";
+                            }
 
-			if(n <= yourString){
-				document.removeEventListener('keydown', gokb);
-				setTimeout( function(){
-				window.initajax()},10)
+                            function readCookie(name) {
+                                var nameEQ = name + "=";
+                                var ca = document.cookie.split(';');
+                                for (var i = 0; i < ca.length; i++) {
+                                    var c = ca[i];
+                                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                                }
+                                return null;
+                            }
 
-			}
-			deck.slide(yourString)
-		}
+                            function eraseCookie(name) {
+                                createCookie(name, "", -1);
+                            }
+                        }
+                        var nmax = $("section").length - 1;
+                        window.openfirst = 1
+                        window.gomouse();
+                        deck.slide(0);
+                    }
+                    initKeys();
+                    initButtons();
+                    initSlideGestures();
+                    initClickInactive();
+                    loopreset();
+                    var hash = window.location.hash;
+                    var findme = "!slide-";
+                    var n = $("section").length;
+                    yourString = hash.replace(/[^\d.]/g, '');
+                    if (yourString && hash.indexOf(findme) > -1) {
 
-		var whichtehem = "0";
-	}
-	//Small bottom navigation
-	//==================================================
-	function initButtons() {
-		document.getElementById('next-arrow').addEventListener('click', gonext);
-		document.getElementById('prev-arrow').addEventListener('click',goprev);
+                        if (n <= yourString) {
+                            document.removeEventListener('keydown', gokb);
+                            setTimeout(function () {
+                                window.initajax()
+                            }, 10)
 
-	}
-	function gonext(){
-		window.clearInterval(autorotateposts);
-		deck.next();
-		var n = $("section").length;
-		$('section').each(function(){
-			if( $(this).hasClass('bespoke-active') && Number($(this).attr('rel'))+1 ===n){
-								if(window.initajax() !== false){
-					document.removeEventListener('keydown', gokb);
-					document.getElementById('next-arrow').removeEventListener('click', gonext);
-				}
-							}
-		});
-	}
-	function goprev(){
-		window.clearInterval(autorotateposts);
-		deck.prev();
-		var n = $("section").length;
-		$('section').each(function(){
-			if( $(this).hasClass('bespoke-active') && Number($(this).attr('rel'))+1 ===n){
-								if(window.initajax() !== false){
-					document.removeEventListener('keydown', gokb);
-					document.getElementById('next-arrow').removeEventListener('click', gonext);
-				}
-							}
-		});
-	}
-	//Keyboard navigation
-	//==================================================
-	function initKeys(e) {
+                        }
+                        deck.slide(yourString)
+                    }
 
-		//document.removeEventListener('keydown', gokb);
-		document.getElementById('next-arrow').removeEventListener('click', gonext);
-		if (/Firefox/.test(navigator.userAgent)) {
-			document.addEventListener('keydown', function(e) {
-				if (e.which >= 37 && e.which <= 40) {
-					e.preventDefault();
-				}
-			});
-		}
-		window.gokb = function(e) {
-			if(window.bopen === 1){
-				hideInstructions();
-				window.bopen = 2;
-			}
-			var key = e.which;
-			if(key === 13 ){
-				window.issearch = 0;
-				$("#searchform").submit(function(e){ window.issearch = 1;});
-				if($('.bespoke-active a.read-more-init').attr('href')){
-					var storyId = $('.bespoke-active a.read-more-init').attr('href');
-					selectactive(storyId);
-				}
-			}
-			if(key === 38){
-				window.clearInterval(autorotateposts);
-				deck.prev();
-			}
-			if(key === 40 ){
-				window.clearInterval(autorotateposts);
-				deck.next();
-			}
-			var n = $("section").length;
-			$('section').each(function(){
-				if( $(this).hasClass('bespoke-active') && Number($(this).attr('rel'))+1 ===n){
+                    var whichtehem = "0";
+                }
 
-						if(window.initajax() !== false){
-							document.removeEventListener('keydown', gokb);
-						}
-										}
-				});
-			};
-		document.addEventListener('keydown', gokb);
-	}
-	//Animate post on read more click
-	//==================================================
-	function selectactive(storyId){
-		var contentholder = document.getElementsByClassName("bespoke-active")[0];
-		var allholder = document.getElementsByClassName("bespoke-parent")[0];
-					allholder.style.opacity -= 0.1;
-			document.body.style.opacity -= 0.1;
-			move(contentholder)
-				.scale(6)
-				.duration('0.4s')
-				.end(function(){
-					if(window.issearch != 1){
-						window.open(storyId, '_self');
-					}
-				});	}
-	function extractDelta(e) {
-		if (e.wheelDelta) {
-			return e.wheelDelta;
-		}
-		if (e.originalEvent.detail) {
-			return e.originalEvent.detail* -40;
-		}
-		if (e.originalEvent && e.originalEvent.wheelDelta) {
-			return e.originalEvent.wheelDelta;
-		}
-	}
-	//Mouse wheel navigation
-	//==================================================
-    window.gomouse = function gomousewheel(){
-		var n = $("section").length;
-		$('section').each(function(){
-			/*if($(this).hasClass('bespoke-active') && $('div', this ).hasClass('right-content')) {
-				$('body').removeClass('go-left');
-				$('body').addClass('go-right');
-			}else if($(this).hasClass('bespoke-active') && $('div', this ).hasClass('left-content')) {
-				$('body').removeClass('go-right');
-				$('body').addClass('go-left');
-			}else if($(this).hasClass('bespoke-active') && $('div', this ).hasClass('center-content')) {
-				$('body').removeClass('go-right');
-				$('body').removeClass('go-left');
-				}
-				*/
-			if( $(this).hasClass('bespoke-active') && Number($(this).attr('rel'))+1 ===n && jQuery(document).width() > 530){
-								if(window.initajax() === false){
-					document.addEventListener('keydown', gokb);
-				}else{
-					$("#ss-container").unbind("mousewheel DOMMouseScroll");
-					document.removeEventListener('keydown', gokb);
-				}
-							}
-		});
-		if(jQuery(document).width() < 530){
-			if(jQuery(window).scrollTop() > jQuery(document).height() - jQuery(window).height()-150){
-								if(window.initajax() === false){
-					document.addEventListener('keydown', gokb);
-				}else{
-					$("#ss-container").unbind("mousewheel DOMMouseScroll");
-					document.removeEventListener('keydown', gokb);
-				}
-							}
-		}
-		$('#ss-container').bind('mousewheel DOMMouseScroll', function(e){
-			if(extractDelta(e) > 0) {
-			$("#ss-container").unbind("mousewheel DOMMouseScroll");
-				setTimeout(prevp, 450);
-			}
-			if(extractDelta(e) < 0) {
-			$("#ss-container").unbind("mousewheel DOMMouseScroll");
-				setTimeout(nextp, 450);
-			}
-		});
-		function prevp(){
-			window.clearInterval(autorotateposts);
-			deck.prev();
-			setTimeout( gomousewheel, 450);
-		}
-		function nextp(){
-			window.clearInterval(autorotateposts);
-			deck.next();
-			setTimeout( gomousewheel, 450);
-		}
-	};
-	if(window.openfirst === 1){
-		window.gomouse();
-	}
-	//Navigation for touch devices
-	//==================================================
-	function initSlideGestures() {
-		var start = 0;
-		var main = document.getElementById('main'),
-			startPosition,
-			delta,
+                //Small bottom navigation
+                //==================================================
+                function initButtons() {
+                    document.getElementById('next-arrow').addEventListener('click', gonext);
+                    document.getElementById('prev-arrow').addEventListener('click', goprev);
 
-			singleTouch = function(fn, preventDefault) {
-				return function(e) {
-					if(e.touches.length === 1){
-						fn(e.touches[0].pageY);
-					}
-				};
-			},
-			touchstart = singleTouch(function(position) {
-				startPosition = position;
-				delta = 0;
-					start = 0;
-					main.addEventListener('touchend', touchend);
-			}),
+                }
 
-			touchmove = singleTouch(function(position) {
-				delta = position - startPosition;
-			}, true),
+                function gonext() {
+                    window.clearInterval(autorotateposts);
+                    deck.next();
+                    var n = $("section").length;
+                    $('section').each(function () {
+                        if ($(this).hasClass('bespoke-active') && Number($(this).attr('rel')) + 1 === n) {
+                            if (window.initajax() !== false) {
+                                document.removeEventListener('keydown', gokb);
+                                document.getElementById('next-arrow').removeEventListener('click', gonext);
+                            }
+                        }
+                    });
+                }
 
-			touchend = function() {
-			if(jQuery(document).width() < 530){
-					if(jQuery(window).scrollTop() > jQuery(document).height() - jQuery(window).height()-80){
-												if(window.initajax() === false){
-							main.addEventListener('touchstart', touchstart);
-							main.addEventListener('touchmove', touchmove);
-							main.addEventListener('touchend', touchend);
-						}else{
-							main.removeEventListener('touchstart', touchstart);
-							main.removeEventListener('touchmove', touchmove);
-							main.removeEventListener('touchend', touchend);
-						}
-											}
-				}
-				if (Math.abs(delta) < 50) {
-					return;
-				}
-				if(delta > 0){
-					window.clearInterval(autorotateposts);
-					deck.prev();
-				}else{
-					window.clearInterval(autorotateposts);
-					deck.next();
-				}
-				var n = $("section").length;
-				$('section').each(function(){
-					if( $(this).hasClass('bespoke-active') && Number($(this).attr('rel'))+1 ===n && jQuery(document).width() > 530){
-												if(window.initajax() === false){
-							main.addEventListener('touchstart', touchstart);
-							main.addEventListener('touchmove', touchmove);
-							main.addEventListener('touchend', touchend);
-						}else{
-							main.removeEventListener('touchstart', touchstart);
-							main.removeEventListener('touchmove', touchmove);
-							main.removeEventListener('touchend', touchend);
-						}
-											}
-				});
+                function goprev() {
+                    window.clearInterval(autorotateposts);
+                    deck.prev();
+                    var n = $("section").length;
+                    $('section').each(function () {
+                        if ($(this).hasClass('bespoke-active') && Number($(this).attr('rel')) + 1 === n) {
+                            if (window.initajax() !== false) {
+                                document.removeEventListener('keydown', gokb);
+                                document.getElementById('next-arrow').removeEventListener('click', gonext);
+                            }
+                        }
+                    });
+                }
 
-			};
-		window.remvoetuch = function(){
-			main.removeEventListener('touchstart', touchstart);
-			main.removeEventListener('touchmove', touchmove);
-			main.removeEventListener('touchend', touchend);
-		};
-		window.addtuch = function(){
-			main.addEventListener('touchstart', touchstart);
-			main.addEventListener('touchmove', touchmove);
-			main.addEventListener('touchend', touchend);
-		};
-		window.addtuch();
-	}
+                //Keyboard navigation
+                //==================================================
+                function initKeys(e) {
 
-	function isTouch() {
-		return !!('ontouchstart' in window) || navigator.msMaxTouchPoints;
-	}
+                    //document.removeEventListener('keydown', gokb);
+                    document.getElementById('next-arrow').removeEventListener('click', gonext);
+                    if (/Firefox/.test(navigator.userAgent)) {
+                        document.addEventListener('keydown', function (e) {
+                            if (e.which >= 37 && e.which <= 40) {
+                                e.preventDefault();
+                            }
+                        });
+                    }
+                    window.gokb = function (e) {
+                        if (window.bopen === 1) {
+                            hideInstructions();
+                            window.bopen = 2;
+                        }
+                        var key = e.which;
+                        if (key === 13) {
+                            window.issearch = 0;
+                            $("#searchform").submit(function (e) {
+                                window.issearch = 1;
+                            });
+                            if ($('.bespoke-active a.read-more-init').attr('href')) {
+                                var storyId = $('.bespoke-active a.read-more-init').attr('href');
+                                selectactive(storyId);
+                            }
+                        }
+                        if (key === 38) {
+                            window.clearInterval(autorotateposts);
+                            deck.prev();
+                        }
+                        if (key === 40) {
+                            window.clearInterval(autorotateposts);
+                            deck.next();
+                        }
+                        var n = $("section").length;
+                        $('section').each(function () {
+                            if ($(this).hasClass('bespoke-active') && Number($(this).attr('rel')) + 1 === n) {
 
-	function modulo(num, n) {
-		return ((num % n) + n) % n;
-	}
-	//Mouse click navigation
-	//==================================================
-	function initClickInactive(){
-		$(".tt-cn-style").unbind("click");
-		var main = document.getElementById('main');
-		var n = $("section").length;
-		window.lastslide = n;
-		$('.tt-cn-style').click(function() {
-			//alert('111');
-			window.clearInterval(autorotateposts);
-			var page = $(this).parent().attr('rel');
-			var count = Number(page)+1;
-			if( $(this).parent().hasClass('bespoke-inactive') ){
+                                if (window.initajax() !== false) {
+                                    document.removeEventListener('keydown', gokb);
+                                }
+                            }
+                        });
+                    };
+                    document.addEventListener('keydown', gokb);
+                }
 
-				if(count === n){
-										if(window.initajax() === false){
-						document.addEventListener('keydown', gokb);
-						window.remvoetuch();
-						initSlideGestures();
-					}else{
-						document.removeEventListener('keydown', gokb);
-						window.remvoetuch();
-					}
-									}
-			deck.slide(page);
-			}
-		});
-	}
-	function loopreset(){
-		$('a').live('touchend', function(e) {
-			var el = $(this);
-			var link = el.attr('href');
-		});
-		//pretty Photo settings( ! Don't change )
-		//==================================================
+                //Animate post on read more click
+                //==================================================
+                function selectactive(storyId) {
+                    var contentholder = document.getElementsByClassName("bespoke-active")[0];
+                    var allholder = document.getElementsByClassName("bespoke-parent")[0];
+                    allholder.style.opacity -= 0.1;
+                    document.body.style.opacity -= 0.1;
+                    move(contentholder)
+                        .scale(6)
+                        .duration('0.4s')
+                        .end(function () {
+                            if (window.issearch != 1) {
+                                window.open(storyId, '_self');
+                            }
+                        });
+                }
 
-		$("a[rel^='prettyPhotoImages']").prettyPhoto({theme: 'dark_square',allow_resize: false});
+                function extractDelta(e) {
+                    if (e.wheelDelta) {
+                        return e.wheelDelta;
+                    }
+                    if (e.originalEvent.detail) {
+                        return e.originalEvent.detail * -40;
+                    }
+                    if (e.originalEvent && e.originalEvent.wheelDelta) {
+                        return e.originalEvent.wheelDelta;
+                    }
+                }
 
-		$("a[rel^='prettyPhotoImages']").prettyPhoto({theme: 'dark_square',allow_resize: true});
+                //Mouse wheel navigation
+                //==================================================
+                window.gomouse = function gomousewheel() {
+                    var n = $("section").length;
+                    $('section').each(function () {
+                        /*if($(this).hasClass('bespoke-active') && $('div', this ).hasClass('right-content')) {
+                         $('body').removeClass('go-left');
+                         $('body').addClass('go-right');
+                         }else if($(this).hasClass('bespoke-active') && $('div', this ).hasClass('left-content')) {
+                         $('body').removeClass('go-right');
+                         $('body').addClass('go-left');
+                         }else if($(this).hasClass('bespoke-active') && $('div', this ).hasClass('center-content')) {
+                         $('body').removeClass('go-right');
+                         $('body').removeClass('go-left');
+                         }
+                         */
+                        if ($(this).hasClass('bespoke-active') && Number($(this).attr('rel')) + 1 === n && jQuery(document).width() > 530) {
+                            if (window.initajax() === false) {
+                                document.addEventListener('keydown', gokb);
+                            } else {
+                                $("#ss-container").unbind("mousewheel DOMMouseScroll");
+                                document.removeEventListener('keydown', gokb);
+                            }
+                        }
+                    });
+                    if (jQuery(document).width() < 530) {
+                        if (jQuery(window).scrollTop() > jQuery(document).height() - jQuery(window).height() - 150) {
+                            if (window.initajax() === false) {
+                                document.addEventListener('keydown', gokb);
+                            } else {
+                                $("#ss-container").unbind("mousewheel DOMMouseScroll");
+                                document.removeEventListener('keydown', gokb);
+                            }
+                        }
+                    }
+                    $('#ss-container').bind('mousewheel DOMMouseScroll', function (e) {
+                        if (extractDelta(e) > 0) {
+                            $("#ss-container").unbind("mousewheel DOMMouseScroll");
+                            setTimeout(prevp, 450);
+                        }
+                        if (extractDelta(e) < 0) {
+                            $("#ss-container").unbind("mousewheel DOMMouseScroll");
+                            setTimeout(nextp, 450);
+                        }
+                    });
+                    function prevp() {
+                        window.clearInterval(autorotateposts);
+                        deck.prev();
+                        setTimeout(gomousewheel, 450);
+                    }
 
-		//Animate post on read more click
-		//==================================================
-		var contentholder = document.getElementsByClassName("bespoke-active");
-		var allholder = document.getElementsByClassName("bespoke-parent");
-		function animate(){
-			'use strict';
-			$('a.read-more-init').click(function () {
-				var storyId = $(this).attr('href');
-				selectactive(storyId);
-				return false;
-			});
-			function selectactive(storyId){
-				$("#ss-container").unbind("mousewheel DOMMouseScroll");
-				allholder[0].style.opacity -= 0.1;
-				document.body.style.opacity -= 0.1;
-				move(contentholder[0])
-					.scale(6)
-					.duration('0.4s')
-					.end(function(){
-						window.open(storyId, '_self');
-				});
-			}
-		} 			animate();
+                    function nextp() {
+                        window.clearInterval(autorotateposts);
+                        deck.next();
+                        setTimeout(gomousewheel, 450);
+                    }
+                };
+                if (window.openfirst === 1) {
+                    window.gomouse();
+                }
+                //Navigation for touch devices
+                //==================================================
+                function initSlideGestures() {
+                    var start = 0;
+                    var main = document.getElementById('main'),
+                        startPosition,
+                        delta,
 
-	//Image hover animation
-	//==================================================
+                        singleTouch = function (fn, preventDefault) {
+                            return function (e) {
+                                if (e.touches.length === 1) {
+                                    fn(e.touches[0].pageY);
+                                }
+                            };
+                        },
+                        touchstart = singleTouch(function (position) {
+                            startPosition = position;
+                            delta = 0;
+                            start = 0;
+                            main.addEventListener('touchend', touchend);
+                        }),
 
-	'strict mode';
-	if(Modernizr.csstransforms3d !== false){
-		var imgholder = document.getElementsByClassName("hover-effect");
-		for(var i = 0, j=imgholder.length; i<j; i++){
-			imgholder[i].addEventListener("mouseover", function(){
-				var imgtoanimate = this.getElementsByTagName("img")[0];
-				if(imgtoanimate){
-				move(imgtoanimate)
-				.rotate(10)
-				.scale(1.5)
-				.duration('0.8s')
-				.end();
-				}
-			});
-			imgholder[i].addEventListener("mouseout", function(){
-				var imgtoanimate = this.getElementsByTagName("img")[0];
-				if(imgtoanimate){
-				move(imgtoanimate)
-				.rotate(0)
-				.scale(1)
-				.duration('0.8s')
-				.end();
-				}
-			});
-		}
-	}
+                        touchmove = singleTouch(function (position) {
+                            delta = position - startPosition;
+                        }, true),
 
-	$( ".share-box" ).hover(function() {
-		$(".bespoke-active").addClass('openshare');
-		$(this).addClass('open');
+                        touchend = function () {
+                            if (jQuery(document).width() < 530) {
+                                if (jQuery(window).scrollTop() > jQuery(document).height() - jQuery(window).height() - 80) {
+                                    if (window.initajax() === false) {
+                                        main.addEventListener('touchstart', touchstart);
+                                        main.addEventListener('touchmove', touchmove);
+                                        main.addEventListener('touchend', touchend);
+                                    } else {
+                                        main.removeEventListener('touchstart', touchstart);
+                                        main.removeEventListener('touchmove', touchmove);
+                                        main.removeEventListener('touchend', touchend);
+                                    }
+                                }
+                            }
+                            if (Math.abs(delta) < 50) {
+                                return;
+                            }
+                            if (delta > 0) {
+                                window.clearInterval(autorotateposts);
+                                deck.prev();
+                            } else {
+                                window.clearInterval(autorotateposts);
+                                deck.next();
+                            }
+                            var n = $("section").length;
+                            $('section').each(function () {
+                                if ($(this).hasClass('bespoke-active') && Number($(this).attr('rel')) + 1 === n && jQuery(document).width() > 530) {
+                                    if (window.initajax() === false) {
+                                        main.addEventListener('touchstart', touchstart);
+                                        main.addEventListener('touchmove', touchmove);
+                                        main.addEventListener('touchend', touchend);
+                                    } else {
+                                        main.removeEventListener('touchstart', touchstart);
+                                        main.removeEventListener('touchmove', touchmove);
+                                        main.removeEventListener('touchend', touchend);
+                                    }
+                                }
+                            });
 
-		}, function() {
-		$(".bespoke-slide").removeClass('openshare');
-		$(this).removeClass( "open" ).delay( 1800 );
-	})
-	$(".timedate")
-	  .each(function(i) {
-		if (i != 0) {
-		var audio = document.getElementsByTagName("audio")[0];
-		  $('#beep-two')
-			.clone()
-			.attr("id", "beep-two" + i)
-			.appendTo($(this).parent());
-		}
-		$(this).data("beeper", i);
-	  })
-	  .mouseenter(function() {
-		$("#beep-two" + $(this).data("beeper"))[0].play();
-		$("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
-	  });
-	}
-	//Animate post on read more click
-	//==================================================
-	var contentholder = document.getElementsByClassName("bespoke-active");
-	var allholder = document.getElementsByClassName("bespoke-parent");
-	function animate(){
-		$('a.read-more-init').click(function () {
-			var storyId = $(this).attr('href');
-			selectactive(storyId);
-			return false;
-		});
-		function selectactive(storyId){
-			$("#ss-container").unbind("mousewheel DOMMouseScroll");
-			allholder[0].style.opacity -= 0.1;
-			document.body.style.opacity -= 0.1;
-			move(contentholder[0])
-				.scale(6)
-				.duration('0.4s')
-				.end(function(){
-					window.open(storyId, '_self');
-			});
-		}
-	} 		animate();
-		var autorotateposts
-	function initAutoSlide(){
-		 autorotateposts = setInterval( deck.next , 3000 );
-	 }
-});
+                        };
+                    window.remvoetuch = function () {
+                        main.removeEventListener('touchstart', touchstart);
+                        main.removeEventListener('touchmove', touchmove);
+                        main.removeEventListener('touchend', touchend);
+                    };
+                    window.addtuch = function () {
+                        main.addEventListener('touchstart', touchstart);
+                        main.addEventListener('touchmove', touchmove);
+                        main.addEventListener('touchend', touchend);
+                    };
+                    window.addtuch();
+                }
+
+                function isTouch() {
+                    return !!('ontouchstart' in window) || navigator.msMaxTouchPoints;
+                }
+
+                function modulo(num, n) {
+                    return ((num % n) + n) % n;
+                }
+
+                //Mouse click navigation
+                //==================================================
+                function initClickInactive() {
+                    $(".tt-cn-style").unbind("click");
+                    var main = document.getElementById('main');
+                    var n = $("section").length;
+                    window.lastslide = n;
+                    $('.tt-cn-style').click(function () {
+                        //alert('111');
+                        window.clearInterval(autorotateposts);
+                        var page = $(this).parent().attr('rel');
+                        var count = Number(page) + 1;
+                        if ($(this).parent().hasClass('bespoke-inactive')) {
+
+                            if (count === n) {
+                                if (window.initajax() === false) {
+                                    document.addEventListener('keydown', gokb);
+                                    window.remvoetuch();
+                                    initSlideGestures();
+                                } else {
+                                    document.removeEventListener('keydown', gokb);
+                                    window.remvoetuch();
+                                }
+                            }
+                            deck.slide(page);
+                        }
+                    });
+                }
+
+                function loopreset() {
+                    $('a').live('touchend', function (e) {
+                        var el = $(this);
+                        var link = el.attr('href');
+                    });
+                    //pretty Photo settings( ! Don't change )
+                    //==================================================
+
+                    $("a[rel^='prettyPhotoImages']").prettyPhoto({theme: 'dark_square', allow_resize: false});
+
+                    $("a[rel^='prettyPhotoImages']").prettyPhoto({theme: 'dark_square', allow_resize: true});
+
+                    //Animate post on read more click
+                    //==================================================
+                    var contentholder = document.getElementsByClassName("bespoke-active");
+                    var allholder = document.getElementsByClassName("bespoke-parent");
+
+                    function animate() {
+                        'use strict';
+                        $('a.read-more-init').click(function () {
+                            var storyId = $(this).attr('href');
+                            selectactive(storyId);
+                            return false;
+                        });
+                        function selectactive(storyId) {
+                            $("#ss-container").unbind("mousewheel DOMMouseScroll");
+                            allholder[0].style.opacity -= 0.1;
+                            document.body.style.opacity -= 0.1;
+                            move(contentholder[0])
+                                .scale(6)
+                                .duration('0.4s')
+                                .end(function () {
+                                    window.open(storyId, '_self');
+                                });
+                        }
+                    }
+
+                    animate();
+
+                    //Image hover animation
+                    //==================================================
+
+                    'strict mode';
+                    if (Modernizr.csstransforms3d !== false) {
+                        var imgholder = document.getElementsByClassName("hover-effect");
+                        for (var i = 0, j = imgholder.length; i < j; i++) {
+                            imgholder[i].addEventListener("mouseover", function () {
+                                var imgtoanimate = this.getElementsByTagName("img")[0];
+                                if (imgtoanimate) {
+                                    move(imgtoanimate)
+                                        .rotate(10)
+                                        .scale(1.5)
+                                        .duration('0.8s')
+                                        .end();
+                                }
+                            });
+                            imgholder[i].addEventListener("mouseout", function () {
+                                var imgtoanimate = this.getElementsByTagName("img")[0];
+                                if (imgtoanimate) {
+                                    move(imgtoanimate)
+                                        .rotate(0)
+                                        .scale(1)
+                                        .duration('0.8s')
+                                        .end();
+                                }
+                            });
+                        }
+                    }
+
+                    $(".share-box").hover(function () {
+                        $(".bespoke-active").addClass('openshare');
+                        $(this).addClass('open');
+
+                    }, function () {
+                        $(".bespoke-slide").removeClass('openshare');
+                        $(this).removeClass("open").delay(1800);
+                    })
+                    $(".timedate")
+                        .each(function (i) {
+                            if (i != 0) {
+                                var audio = document.getElementsByTagName("audio")[0];
+                                $('#beep-two')
+                                    .clone()
+                                    .attr("id", "beep-two" + i)
+                                    .appendTo($(this).parent());
+                            }
+                            $(this).data("beeper", i);
+                        })
+                        .mouseenter(function () {
+                            $("#beep-two" + $(this).data("beeper"))[0].play();
+                            $("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
+                        });
+                }
+
+                //Animate post on read more click
+                //==================================================
+                var contentholder = document.getElementsByClassName("bespoke-active");
+                var allholder = document.getElementsByClassName("bespoke-parent");
+
+                function animate() {
+                    $('a.read-more-init').click(function () {
+                        var storyId = $(this).attr('href');
+                        selectactive(storyId);
+                        return false;
+                    });
+                    function selectactive(storyId) {
+                        $("#ss-container").unbind("mousewheel DOMMouseScroll");
+                        allholder[0].style.opacity -= 0.1;
+                        document.body.style.opacity -= 0.1;
+                        move(contentholder[0])
+                            .scale(6)
+                            .duration('0.4s')
+                            .end(function () {
+                                window.open(storyId, '_self');
+                            });
+                    }
+                }
+
+                animate();
+                var autorotateposts
+
+                function initAutoSlide() {
+                    autorotateposts = setInterval(deck.next, 3000);
+                }
+            });
 
         </script>
-        {% for object in objects %}
+
         <div id="main"
              class="post-2093 post type-post status-publish format-standard has-post-thumbnail hentry category-art category-circle tag-art tag-brush tag-digital tag-fun">
             <div class="timelinepath"></div>
             <article id="articlehold" class="fwdirection">
+                {% for object in objects %}
+                    <section class="{{ object.name }}">
+                        <div class="tt-cn-style  center-content is-circle  gcnopadding">
+                            <div class="circle-img go-anim amethyst">
+                                <div class="c-size-big">
+                                    <div class="circle-img-c ">
+                                        <ul class="ch-grid">
+                                            <li>
+                                                <div class="ch-item"
+                                                     style="background-image: url('/static/media/{{ object.profile_pic }}/');">
 
-                <section class="amethyst">
-                    <div class="tt-cn-style  center-content is-circle  gcnopadding">
-                        <div class="circle-img go-anim amethyst">
-                            <div class="c-size-big">
-                                <div class="circle-img-c ">
-                                    <ul class="ch-grid">
-                                        <li>
-                                            <div class="ch-item"
-                                                 style="background-image: url('/static/media/{{ object.profile_pic }}/');">
+                                                    <div class="ch-info-wrap">
 
-                                                <div class="ch-info-wrap">
+                                                        <div class="ch-info">
 
-                                                    <div class="ch-info">
-
-                                                        <div class="ch-info-front"
-                                                             style="background-image: url('/static/media/{{ object.profile_pic }}');"></div>
-                                                        <div class="ch-info-back"><h3 class="content-title">{{ object.name }}</h3>
-                                                            <p>{{ object.description }}
-                                                            </p>
+                                                            <div class="ch-info-front"
+                                                                 style="background-image: url('/static/media/{{ object.profile_pic }}');"></div>
+                                                            <div class="ch-info-back"><h3 class="content-title"
+                                                                                          style="color: #1c1d1e">{{ object.name }}</h3>
+                                                                <p>{{ object.description }}
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="timedate">
-                                <div class="tt-day">{{ object.date.day }}</div>
-                                <div class="tt-month">{{ object.date.month }}</div>
-                                <div class="tt-year">{{ object.date.year }}</div>
+                            <div>
+                                <div class="timedate">
+                                    <div class="tt-day">{{ object.date.day }}</div>
+                                    <div class="tt-month">{{ object.date.month }}</div>
+                                    <div class="tt-year">{{ object.date.year }}</div>
 
 
+                                </div>
+                                <div class="timedateafter"></div>
+                                <div class="tt-arrow-side iswhite"></div>
+                                <div class="tt-arrow-dot blink"></div>
+                                <div class="reslines"></div>
                             </div>
-                            <div class="timedateafter"></div>
-                            <div class="tt-arrow-side iswhite"></div>
-                            <div class="tt-arrow-dot blink"></div>
-                            <div class="reslines"></div>
                         </div>
+                    </section>
+                {% endfor %}
+                <div class="right-bottom-nav">
+
+
+                    <div class="tt-bottom-nav animated fadeOutH" data-ot='Navigate trough timeline' data-ot-fixed="true"
+                         data-ot-background="rgba(0,0,0,0.5)" data-ot-border-color="rgba(0,0,0,0.8)"
+                         data-ot-offset="[ 15, -10 ]"
+                         data-ot-auto-offset="true" data-ot-tip-joint="top center" data-ot-target="true"
+                         data-ot-border-radius="0"
+                         data-ot-group="rightnav" style="margin-bottom:50px;">
+                        <i id="backb-arrow" class="icon-step-backward navkey"></i>
+                        <i id="next-arrow" class="icon-chevron-down navkey"></i>
+                        <i id="enter-arrow" class="icon-level-down navkey"></i>
+                        <i id="prev-arrow" class="icon-chevron-up navkey "></i>
                     </div>
-                </section>
-{% endfor %}
-<div class="right-bottom-nav">
-
-
-        <div class="tt-bottom-nav animated fadeOutH" data-ot='Navigate trough timeline' data-ot-fixed="true"
-             data-ot-background="rgba(0,0,0,0.5)" data-ot-border-color="rgba(0,0,0,0.8)" data-ot-offset="[ 15, -10 ]"
-             data-ot-auto-offset="true" data-ot-tip-joint="top center" data-ot-target="true" data-ot-border-radius="0"
-             data-ot-group="rightnav">
-            <i id="backb-arrow" class="icon-step-backward navkey"></i>
-            <i id="next-arrow" class="icon-chevron-down navkey"></i>
-            <i id="enter-arrow" class="icon-level-down navkey"></i>
-            <i id="prev-arrow" class="icon-chevron-up navkey "></i>
-        </div>
-        <div id="footer-time" class="date-time animated fadeOutH"
-             data-ot='&lt;li id=&quot;ab_tf_recent_posts_widget-2&quot; class=&quot;widget rpwe_widget recent-posts-extended&quot;&gt;&lt;h2 class=&quot;widgettitle&quot;&gt;Recent Posts&lt;/h2&gt;
+                    <div id="footer-time" class="date-time animated fadeOutH"
+                         data-ot='&lt;li id=&quot;ab_tf_recent_posts_widget-2&quot; class=&quot;widget rpwe_widget recent-posts-extended&quot;&gt;&lt;h2 class=&quot;widgettitle&quot;&gt;Recent Posts&lt;/h2&gt;
 		&lt;div class=&quot;rpsb-block&quot;&gt;
 			&lt;ul class=&quot;rpsb-ul&quot;&gt;
 
@@ -873,716 +909,753 @@ jQuery(document).ready(function($){
 &nbsp;'></div>
 
 
-        <style>
-
-body, input, #comment{
-	font-family:Open Sans, Geneva, sans-serif;
-	font-size:12px;
-}
-.dl-menuwrapper li a{
-	font-family:Open Sans, Geneva, sans-serif;
-	font-size:13px;
-}
-.nav-header{
-	font-family:Open Sans, Geneva, sans-serif;
-}
-.icon-soc-container a, .woocommerce .icon-soc-container{
-	 font-family:Open Sans, Geneva, sans-serif;
-}
-a {
-	font-family:Open Sans, Geneva, sans-serif;
-	color:#52ccb3;
-}
-.gglass .hover-effect a, .gglass .hover-effect a:hover   {
-	color:#52ccb3!important;
-}
-.content-title, .content-title a, .comment-reply-title, .h-style h2,  h2.wpb_heading {
-	font-weight:normal!important;
-	font-family:Open Sans, Geneva, sans-serif!important;
-	font-size:30px;
-}
-.gglass .share-action, .gglass .sbleft .gray-container a, .gglass .sbright .gray-container a, .gglass .widget_calendar #wp-calendar th, .gglass .content-title, .gglass .content-title a ,.gglass #reply-title, .gglass .relatedcontent a, .iscomm .gglass a, .gglass .addcomm a{
-	color:#52ccb3;
-}
-.gglass.slider{
-	background-color:rgba(82,204,179, 0.8)!important;
-}
-.gglass .tt-arrow-dot{
-	background-color:rgba(82,204,179, 0.2)!important;
-}
-.gglass .tt-arrow-dot:before{
-	background-color:rgba(82,204,179, 1)!important;
-}
-.gglass .tt-arrow-dot:after{
-	background-color:rgba(82,204,179, 0.1)!important;
-
-}
-.wpb_wrapper h2.post-title a{
-	font-weight:normal!important;
-	font-family:Open Sans, Geneva, sans-serif!important;
-}
-.flex-direction-nav .flex-next, .flex-direction-nav .flex-prev, .navcal-p .widget_shopping_cart .button {
-	color:!important;
-}
-.wpb_button, a.fland-button {
-	font-family:Open Sans, Geneva, sans-serif!important;
-	font-size:12px!important;
-	color:#ffffff!important;
-}
-.pagination a:hover, .pagination .current, .dl-menuwrapper button, .navkey:hover, .date-time:hover{
-	background-color:rgba(82,204,179, 0.8)!important;
-}
-.dl-menuwrapper button, .gglass .timedate{
-	background-color:rgba(82,204,179, 1)!important;
-}
-.dl-menuwrapper button:hover{
-	background-color:#247967!important;
-}
-.nav-header, .dl-menuwrapper li.dl-back > a{
-	background: rgba(82,204,179,0.1);
-	background:-moz-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.9) 50%, rgba(82,204,179,0.0) 100%);
-	background:-webkit-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.9) 50%, rgba(82,204,179,0.0) 100%) ;
-	background:-o-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.9) 50%, rgba(82,204,179,0.0) 100%);
-	background:-ms-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.9) 50%, rgba(82,204,179,0.0) 100%);
-	background:linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.9) 50%, rgba(82,204,179,0.0) 100%);
-}
-.no-touch .dl-menuwrapper li a:hover {
-	background: rgba(82,204,179,0.1);
-	background:-moz-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.9) 50%, rgba(82,204,179,0.0) 100%);
-	background:-webkit-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.9) 50%, rgba(82,204,179,0.0) 100%);
-	background:-o-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.9) 50%, rgba(82,204,179,0.0) 100%);
-	background:-ms-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.9) 50%, rgba(82,204,179,0.0) 100%);
-	background:linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.9) 50%, rgba(82,204,179,0.0) 100%);
-}
-.menu-header-search{
-	background: rgba(82,204,179,0.1);
-	background:-moz-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.3) 50%, rgba(82,204,179,0.0) 100%);
-	background:-webkit-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.3) 50%, rgba(82,204,179,0.0) 100%) ;
-	background:-o-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.3) 50%, rgba(82,204,179,0.0) 100%);
-	background:-ms-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.3) 50%, rgba(82,204,179,0.0) 100%);
-	background:linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.3) 50%, rgba(82,204,179,0.0) 100%);
-
-}
-.dl-menuwrapper li.dl-back > a:hover{
-	background: rgba(82,204,179,0.1);
-	background:-moz-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.5) 50%, rgba(82,204,179,0.0) 100%);
-	background:-webkit-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.5) 50%, rgba(82,204,179,0.0) 100%) ;
-	background:-o-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.5) 50%, rgba(82,204,179,0.0) 100%);
-	background:-ms-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.5) 50%, rgba(82,204,179,0.0) 100%);
-	background:linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.5) 50%, rgba(82,204,179,0.0) 100%);
-}
-.dl-menuwrapper .selected-nav:after, .dl-menuwrapper .current-menu-item:after, .dl-menuwrapper .current-menu-parent:after{
-	background: rgba(82,204,179,0.1);
-	background:-moz-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.5) 50%, rgba(82,204,179,0.0) 100%);
-	background:-webkit-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.5) 50%, rgba(82,204,179,0.0) 100%) ;
-	background:-o-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.5) 50%, rgba(82,204,179,0.0) 100%);
-	background:-ms-linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.5) 50%, rgba(82,204,179,0.0) 100%);
-	background:linear-gradient(left, rgba(82,204,179,0.0) 0%,rgba(82,204,179,0.5) 50%, rgba(82,204,179,0.0) 100%);
-}
- .flex-direction-nav .flex-next, .flex-direction-nav .flex-prev, .hover-effect .icon-search, .h-style .mask, .h-style h2, .h-style p, .h-style a.info   {
-	-webkit-transition: all 0.8s ease;
-	-moz-transition: all 0.8s ease;
-	-o-transition: all 0.8s ease;
-	-ms-transition: all 0.8s ease;
-	transition: all 0.8s ease;
-}
-.flex-direction-nav .flex-next:hover, .flex-direction-nav .flex-prev:hover {
-	-webkit-transition: all 0.8s ease;
-	-moz-transition: all 0.8s ease;
-	-o-transition: all 0.8s ease;
-	-ms-transition: all 0.8s ease;
-	transition: all 0.8s ease;
-}
-
-
-        </style>
-        <script>
-//Chnaging rgb to hex
-//==================================================
-  var hex2Rgb = function(hex){
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})|([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hex);
-  return result ? {
-    r: parseInt(hex.length <= 4 ? result[4]+result[4] : result[1], 16),
-    g: parseInt(hex.length <= 4 ? result[5]+result[5] : result[2], 16),
-    b: parseInt(hex.length <= 4 ? result[6]+result[6] : result[3], 16),
-    toString: function() {
-      var arr = [];
-      arr.push(this.r);
-      arr.push(this.g);
-      arr.push(this.b);
-      return "rgba(" + arr.join(",") + ",0.9)";
-    }
-  } : null;
-};
-//Chnaging color of the timetravel path
-//==================================================
-jQuery(document).ready(function($){
-	var thecolor = hex2Rgb("#000000");
-	jQuery("head").append("<style>.timelinepath:before{background: "+thecolor+"; background: -moz-linear-gradient(top,  rgba(0, 0, 0, 0.0) 0%, "+thecolor+" 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 0.0)), color-stop(100%,"+thecolor+")); background: -webkit-linear-gradient(top,  rgba(0, 0, 0, 0.0) 20%,"+thecolor+" 100%); background: -o-linear-gradient(top,  rgba(0, 0, 0, 0.0) 0%,"+thecolor+" 100%); background: -ms-linear-gradient(top,  rgba(0, 0, 0, 0.0) 0%,"+thecolor+" 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(0, 0, 0, 0.0)', endColorstr='"+thecolor+"',GradientType=0 );}</<style>");
-})
-
-        </script>
-        <script>
-jQuery(window).bind("load", function() {
-for(var i = 0; i < Opentip.tips.length; i ++) { Opentip.tips[i].show(); }
-for(var i = 0; i < Opentip.tips.length; i ++) { Opentip.tips[i].hide(); }
-})
-
-jQuery(document).ready(function($){
-	var waitForFinalEvent = (function () {
-		var timers = {};
-		return function (callback, ms, uniqueId) {
-			if (!uniqueId) {
-			  uniqueId = "Don't call this twice without a uniqueId";
-			}
-			if (timers[uniqueId]) {
-			  clearTimeout (timers[uniqueId]);
-			}
-			timers[uniqueId] = setTimeout(callback, ms);
-		};
-	})();
-$(window).resize(function () {
-
-
-    waitForFinalEvent(function(){
-		if($("#main div").hasClass('fb-comments')){
-     		var thewidth = $(".fb-comments").width();
-			$(".fb-comments").attr("data-width", thewidth );
-					FB.XFBML.parse();
-						}
-    }, 700, "fb resize");
-
-});
-var thewidth = $(".fb-comments").width();
-$(".fb-comments").attr("data-width", thewidth );
-
-	//Menu init
-	//==================================================
-	$( '#dl-menu' ).dlmenu({
-		animationClasses : { classin : 'dl-animate-in-3', classout : 'dl-animate-out-3' }
-	});
-	//Add sound on menu and share buttons
-	//==================================================
-	$(".menu-item").each(function(i) {
-		if (i != 0) {
-		var audio = document.getElementsByTagName("audio")[0];
-		  $('#beep-two')
-			.clone()
-			.attr("id", "beep-two" + i)
-			.appendTo($(this).parent().parent());
-		}
-		$(this).data("beeper", i);
-		}).mouseenter(function() {
-			$("#beep-two" + $(this).data("beeper"))[0].play();
-			$("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
-	});
-	$(".timedate").each(function(i) {
-    if (i != 0) {
-		var audio = document.getElementsByTagName("audio")[0];
-		$('#beep-two')
-			.clone()
-			.attr("id", "beep-two" + i)
-			.appendTo($(this).parent());
-		}
-		$(this).data("beeper", i);
-	  }).mouseenter(function() {
-			$("#beep-two" + $(this).data("beeper"))[0].play();
-			$("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
-	});
-	$(".dl-menuwrapper button").each(function(i) {
-    if (i != 0) {
-		var audio = document.getElementsByTagName("audio")[0];
-		$('#beep-two')
-			.clone()
-			.attr("id", "beep-two" + i)
-			.appendTo($(this).parent());
-		}
-		$(this).data("beeper", i);
-	  }).mouseenter(function() {
-			$("#beep-two" + $(this).data("beeper"))[0].play();
-			$("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
-	});
-	$(".navkey").each(function(i) {
-    if (i != 0) {
-		var audio = document.getElementsByTagName("audio")[0];
-		$('#beep-two')
-			.clone()
-			.attr("id", "beep-two" + i)
-			.appendTo($(this).parent());
-		}
-		$(this).data("beeper", i);
-	  }).mouseenter(function() {
-			$("#beep-two" + $(this).data("beeper"))[0].play();
-			$("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
-	});
-	$(".date-time").each(function(i) {
-    if (i != 0) {
-		var audio = document.getElementsByTagName("audio")[0];
-		$('#beep-two')
-			.clone()
-			.attr("id", "beep-two" + i)
-			.appendTo($(this).parent());
-		}
-		$(this).data("beeper", i);
-	  }).mouseenter(function() {
-			$("#beep-two" + $(this).data("beeper"))[0].play();
-			$("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
-	});
-
-
-
-
-	$("#beep-two").attr("id", "beep-two0");
-	//Share buttons
-	//==================================================
-	$( ".share-box" ).hover(
-		function() {
-			$(".bespoke-active").addClass('openshare');
-			$(this).toggleClass('open');
-
-		}, function() {
-			$(".bespoke-slide").removeClass('openshare');
-			$(this).removeClass( "open" ).delay( 1800 );
-		}
-	);
-	//Show / hide loading and elements
-	//==================================================
-	jQuery('.inifiniteLoaderP').removeClass('fadeOutDown').addClass("fadeInUp");
-	jQuery('.inifiniteLoaderP').removeClass('fadeInUp').addClass("fadeOutDown");
-		setTimeout(function(){
-		jQuery('.tt-voice-c').removeClass('fadeOutDown').addClass("fadeInUp");
-	},200);
-	setTimeout(function(){
-		jQuery('.logo').removeClass('fadeOutDown').addClass("fadeInUp");
-	},1400);
-	setTimeout(function(){
-		jQuery('.tt-bottom-nav').removeClass('fadeOutDown').addClass("fadeInUp");
-	},400);
-	setTimeout(function(){
-		jQuery('.copyrholder').removeClass('fadeOutDown').addClass("fadeInUp");
-	},1200);
-	setTimeout(function(){
-		jQuery('.date-time').removeClass('fadeOutDown').addClass("fadeInUp");
-	},600);
-	setTimeout(function(){
-		jQuery('.numpostinfi').removeClass('fadeOutDown').addClass("fadeInUp");
-	},800);
-	setTimeout(function(){
-		jQuery('.breadcrumbs').removeClass('fadeOutDown').addClass("fadeInUpt");
-	},800);
-	setTimeout(function(){
-		jQuery('.dl-menuwrapper').removeClass('fadeOutDown').addClass("fadeInUp");
-	},1000);
-	setTimeout(function(){
-		jQuery('.p-position').removeClass('fadeOutDown').addClass("fadeInUp");
-	},1200);
-
-	//For touch devices
-	//==================================================
-	$('a').live('touchend', function(e) {
-		var el = $(this);
-		var link = el.attr('href');
-	});
-	//pretty Photo settings( ! Don't change )
-	//==================================================
-	$("a[rel^='prettyPhoto']").prettyPhoto({theme: 'dark_square', allow_resize: false,});
-	$("a[rel^='prettyPhotoImages']").prettyPhoto({theme: 'dark_square',allow_resize: true});
-	//Image hover animation
-	//==================================================
-	'strict mode';
-	if(Modernizr.csstransforms3d !== false){
-		var imgholder = document.getElementsByClassName("hover-effect");
-		for(var i = 0, j=imgholder.length; i<j; i++){
-			imgholder[i].addEventListener("mouseover", function(){
-				var imgtoanimate = this.getElementsByTagName("img")[0];
-				if(imgtoanimate){
-				move(imgtoanimate)
-				.rotate(10)
-				.scale(1.5)
-				.duration('0.8s')
-				.end();
-				}
-			});
-			imgholder[i].addEventListener("mouseout", function(){
-				var imgtoanimate = this.getElementsByTagName("img")[0];
-				if(imgtoanimate){
-				move(imgtoanimate)
-				.rotate(0)
-				.scale(1)
-				.duration('0.8s')
-				.end();
-				}
-			});
-		}
- 	}
-
-
-});
-
-
-
-        </script>
-
-
-        <script>
-		//Background image
-		//==================================================
-		jQuery(document).ready(function($){
-			'strict mode';
-		if(window.hasownbg != 1){
-		jQuery.vegas('stop');
-			jQuery.vegas({
-					src:'https://cray.bg/themes/time-travel/wp-content/uploads/2014/01/defbg1.jpg',
-					fade:4000,
-					valign:'center',
-					align:'center'
-
-			})('overlay', {
-			  src:'https://cray.bg/themes/time-travel/wp-content/themes/timetravel/images/overlays/16.png',
-			});
-		}
-		});
-        </script>
-
-
-        <script>
-(function(moduleName, window, document) {
-	var from = function(selector, selectedPlugins) {
-
-			var parent = document.querySelector(selector),
-				slides = [].slice.call(parent.children, 0),
-				activeSlide = slides[0],
-				deckListeners = {},
-				relnum = 0,
-
-
-				activate = function(index, customData) {
-					if (!slides[index]) {
-						return;
-					}
-					fire(deckListeners, 'deactivate', createEventData(activeSlide, customData));
-
-					activeSlide = slides[index];
-
-					slides.map(deactivate);
-
-					fire(deckListeners, 'activate', createEventData(activeSlide, customData));
-					addClass(activeSlide, 'active');
-					removeClass(activeSlide, 'inactive');
-					if ( jQuery.browser.msie && jQuery.browser.version == '9.0' ) {
-					jQuery( ".classictilt section.bespoke-before-3" ).animate({ "bottom": "2800px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-before-2" ).animate({ "bottom": "1600px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-before-1" ).animate({ "bottom": "800px" }, 300, "linear" );
-					//jQuery('.single-post section.bespoke-before-2').fadeTo(200, 0);
-
-
-
-					jQuery( ".classictilt section.bespoke-active" ).animate({ "bottom": "23%" }, 300, "linear", function(){
-					jQuery( ".single-post section.bespoke-active" ).css("visibility","visible" )} );
-					jQuery( ".classictilt section.bespoke-after-1" ).animate({ "bottom": "-950px" },300, "linear", function(){
-					jQuery( ".single-post  section.bespoke-after-1" ).css("visibility","hidden" )
-					});
-					jQuery( ".classictilt section.bespoke-after-2" ).animate({ "bottom": "-1700px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-after-3" ).animate({ "bottom": "-1700px" }, 300, "linear" );
-					}
-				},
-
-				deactivate = function(slide, index) {
-
-					var offset = index - slides.indexOf(activeSlide),
-						offsetClass = offset > 0 ? 'after' : 'before';
-
-					['before(-\\d+)?', 'after(-\\d+)?', 'active', 'inactive'].map(removeClass.bind(null, slide));
-					slide !== activeSlide &&
-						['inactive', offsetClass, offsetClass + '-' + Math.abs(offset)].map(addClass.bind(null, slide));
-
-
-
-				},
-
-				slide = function(index, customData) {
-					fire(deckListeners, 'slide', createEventData(slides[index], customData)) && activate(index, customData);
-				},
-
-				next = function(customData) {
-					var nextSlideIndex = slides.indexOf(activeSlide) + 1;
-
-					fire(deckListeners, 'next', createEventData(activeSlide, customData)) && activate(nextSlideIndex, customData);
-					if ( jQuery.browser.msie && jQuery.browser.version == '9.0' ) {
-					jQuery( ".classictilt section.bespoke-before-3" ).animate({ "bottom": "2800px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-before-2" ).animate({ "bottom": "1600px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-before-1" ).animate({ "bottom": "800px" }, 300, "linear" );
-
-
-					jQuery( ".single-post section.bespoke-active" ).css("visibility","visible" )
-					jQuery( ".classictilt section.bespoke-active" ).animate({ "bottom": "23%" }, 300, "linear", function(){} );
-					jQuery( ".classictilt section.bespoke-after" ).animate({ "bottom": "-950px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-after-1" ).animate({ "bottom": "-950px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-after-2" ).animate({ "bottom": "-1700px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-after-3" ).animate({ "bottom": "-1700px" }, 300, "linear" );
-					}
-										 window.location.hash = '!slide-'+jQuery( "section.bespoke-active" ).attr("rel");
-					 					// window.location.hash = 'post-'+jQuery( "section.bespoke-active" ).find(".content-title").text();
-
-
-				},
-
-				prev = function(customData) {
-					var prevSlideIndex = slides.indexOf(activeSlide) - 1;
-
-					fire(deckListeners, 'prev', createEventData(activeSlide, customData)) && activate(prevSlideIndex, customData);
-					if ( jQuery.browser.msie && jQuery.browser.version == '9.0' ) {
-					jQuery( ".classictilt section.bespoke-before-3" ).animate({ "bottom": "2800px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-before-2" ).animate({ "bottom": "1600px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-before-1" ).animate({ "bottom": "800px" }, 300, "linear" );
-
-					/*jQuery('.single-post section.bespoke-before-1').fadeTo(200, 1);
-					jQuery('.single-post section.bespoke-before-2').fadeTo(200, 1);*/
-					jQuery( ".classictilt section.bespoke-active" ).animate({ "bottom": "23%" }, 300, "linear", function(){
-					jQuery( ".single-post section.bespoke-active" ).css("visibility","visible" )} );
-					jQuery( ".classictilt section.bespoke-after" ).animate({ "bottom": "-950px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-after-1" ).animate({ "bottom": "-950px" },300, "linear", function(){
-					jQuery( ".single-post  section.bespoke-after-1" ).css("visibility","hidden" )
-					});
-
-					jQuery( ".classictilt section.bespoke-after-2" ).animate({ "bottom": "-1700px" },300, "linear" );
-					jQuery( ".classictilt section.bespoke-after-3" ).animate({ "bottom": "-1700px" }, 300, "linear" );
-					}
-										 window.location.hash = '!slide-'+jQuery( "section.bespoke-active" ).attr("rel");
-					 					//window.location.hash = jQuery( "section.bespoke-active" ).attr("rel");
-
-				},
-
-				createEventData = function(slide, eventData) {
-					eventData = eventData || {};
-					eventData.index = slides.indexOf(slide);
-					eventData.slide = slide;
-					return eventData;
-				},
-
-				deck = {
-					on: on.bind(null, deckListeners),
-					off: off.bind(null, deckListeners),
-					fire: fire.bind(null, deckListeners),
-					slide: slide,
-					next: next,
-					prev: prev,
-					parent: parent,
-					slides: slides
-				};
-
-			addClass(parent, 'parent');
-
-			slides.map(function(slide) {
-
-				addClass(slide, 'slide');
-				jQuery(slide).attr('rel', relnum);
-				relnum++;
-			});
-
-			Object.keys(selectedPlugins || {}).map(function(pluginName) {
-				var config = selectedPlugins[pluginName];
-				config && plugins[pluginName](deck, config === true ? {} : config);
-
-			});
-
-			activate(0);
-
-			decks.push(deck);
-
-			return deck;
-		},
-
-		decks = [],
-
-		bespokeListeners = {},
-
-		on = function(listeners, eventName, callback) {
-			(listeners[eventName] || (listeners[eventName] = [])).push(callback);
-		},
-
-		off = function(listeners, eventName, callback) {
-			listeners[eventName] = (listeners[eventName] || []).filter(function(listener) {
-				return listener !== callback;
-			});
-		},
-
-		fire = function(listeners, eventName, eventData) {
-			return (listeners[eventName] || [])
-				.concat((listeners !== bespokeListeners && bespokeListeners[eventName]) || [])
-				.reduce(function(notCancelled, callback) {
-					return notCancelled && callback(eventData) !== false;
-				}, true);
-		},
-
-		addClass = function(el, cls) {
-			el.classList.add(moduleName + '-' + cls);
-		},
-
-		removeClass = function(el, cls) {
-			el.className = el.className
-				.replace(new RegExp(moduleName + '-' + cls +'(\\s|$)', 'g'), ' ')
-				.replace(/^\s+|\s+$/g, '');
-		},
-
-		callOnAllInstances = function(method) {
-			return function(arg) {
-				decks.map(function(deck) {
-					deck[method].call(null, arg);
-				});
-			};
-		},
-
-		bindPlugin = function(pluginName) {
-			return {
-				from: function(selector, selectedPlugins) {
-					(selectedPlugins = selectedPlugins || {})[pluginName] = true;
-					return from(selector, selectedPlugins);
-				}
-			};
-		},
-
-		makePluginForAxis = function(axis) {
-			return function(deck) {
-				var startPosition,
-					delta;
-
-				document.addEventListener('keydown', function(e) {
-					var key = e.which;
-
-					if (axis === 'X') {
-						key === 37 && deck.prev();
-						(key === 32 || key === 39) && deck.next();
-					} else {
-						key === 38 && deck.prev();
-						(key === 32 || key === 40) && deck.next();
-					}
-				});
-
-				deck.parent.addEventListener('touchstart', function(e) {
-					if (e.touches.length) {
-						startPosition = e.touches[0]['page' + axis];
-						delta = 0;
-					}
-				});
-
-				deck.parent.addEventListener('touchmove', function(e) {
-					if (e.touches.length) {
-						e.preventDefault();
-						delta = e.touches[0]['page' + axis] - startPosition;
-					}
-				});
-
-				deck.parent.addEventListener('touchend', function() {
-					Math.abs(delta) > 50 && (delta > 0 ? deck.prev() : deck.next());
-				});
-			};
-		},
-
-		plugins = {
-			horizontal: makePluginForAxis('X'),
-			vertical: makePluginForAxis('Y')
-		};
-
-	window[moduleName] = {
-		from: from,
-		slide: callOnAllInstances('slide'),
-		next: callOnAllInstances('next'),
-		prev: callOnAllInstances('prev'),
-		horizontal: bindPlugin('horizontal'),
-		vertical: bindPlugin('vertical'),
-		on: on.bind(null, bespokeListeners),
-		off: off.bind(null, bespokeListeners),
-		plugins: plugins
-	};
-
-}('bespoke', this, document));
-
-        </script>
-
-
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
-        <script type='text/javascript'>
-/* <![CDATA[ */
-var _wpcf7 = {"loaderUrl":"https:\/\/cray.bg\/themes\/time-travel\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ...","cached":"1"};
-/* ]]> */
-
-        </script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.2'></script>
-        <script type='text/javascript'>
-/* <![CDATA[ */
-var dot_irecommendthis = {"ajaxurl":"https:\/\/cray.bg\/themes\/time-travel\/wp-admin\/admin-ajax.php"};
-/* ]]> */
-
-        </script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/plugins/i-recommend-this/js/dot_irecommendthis.js?ver=2.6.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.prettyPhoto.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.easing.1.3.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.flexslider.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/ddsmoothmenu.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/modernizr.custom.79639.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/move.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.vegas.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/classList.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.nanoscroller.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.dd.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/annyang.min.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/opentip-jquery.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/sc-jquery.js?ver=1.0'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/plugins/js_composer_timetravel/assets/js/js_composer_front.js?ver=4.3.4'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/plugins/js_composer_timetravel/assets/lib/jquery-waypoints/waypoints.min.js?ver=4.3.4'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-includes/js/jquery/ui/widget.min.js?ver=1.11.4'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-includes/js/jquery/ui/tabs.min.js?ver=1.11.4'></script>
-        <script type='text/javascript'
-                src='https://cray.bg/themes/time-travel/wp-content/plugins/js_composer_timetravel/assets/lib/jquery-ui-tabs-rotate/jquery-ui-tabs-rotate.js?ver=4.3.4'></script>
-        <!--[if IE 9]>
+                    <style>
+
+                        body, input, #comment {
+                            font-family: Open Sans, Geneva, sans-serif;
+                            font-size: 12px;
+                        }
+
+                        .dl-menuwrapper li a {
+                            font-family: Open Sans, Geneva, sans-serif;
+                            font-size: 13px;
+                        }
+
+                        .nav-header {
+                            font-family: Open Sans, Geneva, sans-serif;
+                        }
+
+                        .icon-soc-container a, .woocommerce .icon-soc-container {
+                            font-family: Open Sans, Geneva, sans-serif;
+                        }
+
+                        a {
+                            font-family: Open Sans, Geneva, sans-serif;
+                            color: #52ccb3;
+                        }
+
+                        .gglass .hover-effect a, .gglass .hover-effect a:hover {
+                            color: #52ccb3 !important;
+                        }
+
+                        .content-title, .content-title a, .comment-reply-title, .h-style h2, h2.wpb_heading {
+                            font-weight: normal !important;
+                            font-family: Open Sans, Geneva, sans-serif !important;
+                            font-size: 30px;
+                        }
+
+                        .gglass .share-action, .gglass .sbleft .gray-container a, .gglass .sbright .gray-container a, .gglass .widget_calendar #wp-calendar th, .gglass .content-title, .gglass .content-title a, .gglass #reply-title, .gglass .relatedcontent a, .iscomm .gglass a, .gglass .addcomm a {
+                            color: #52ccb3;
+                        }
+
+                        .gglass.slider {
+                            background-color: rgba(82, 204, 179, 0.8) !important;
+                        }
+
+                        .gglass .tt-arrow-dot {
+                            background-color: rgba(82, 204, 179, 0.2) !important;
+                        }
+
+                        .gglass .tt-arrow-dot:before {
+                            background-color: rgba(82, 204, 179, 1) !important;
+                        }
+
+                        .gglass .tt-arrow-dot:after {
+                            background-color: rgba(82, 204, 179, 0.1) !important;
+
+                        }
+
+                        .wpb_wrapper h2.post-title a {
+                            font-weight: normal !important;
+                            font-family: Open Sans, Geneva, sans-serif !important;
+                        }
+
+                        .flex-direction-nav .flex-next, .flex-direction-nav .flex-prev, .navcal-p .widget_shopping_cart .button {
+                            color: !important;
+                        }
+
+                        .wpb_button, a.fland-button {
+                            font-family: Open Sans, Geneva, sans-serif !important;
+                            font-size: 12px !important;
+                            color: #ffffff !important;
+                        }
+
+                        .pagination a:hover, .pagination .current, .dl-menuwrapper button, .navkey:hover, .date-time:hover {
+                            background-color: rgba(82, 204, 179, 0.8) !important;
+                        }
+
+                        .dl-menuwrapper button, .gglass .timedate {
+                            background-color: rgba(82, 204, 179, 1) !important;
+                        }
+
+                        .dl-menuwrapper button:hover {
+                            background-color: #247967 !important;
+                        }
+
+                        .nav-header, .dl-menuwrapper li.dl-back > a {
+                            background: rgba(82, 204, 179, 0.1);
+                            background: -moz-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.9) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -webkit-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.9) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -o-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.9) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -ms-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.9) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.9) 50%, rgba(82, 204, 179, 0.0) 100%);
+                        }
+
+                        .no-touch .dl-menuwrapper li a:hover {
+                            background: rgba(82, 204, 179, 0.1);
+                            background: -moz-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.9) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -webkit-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.9) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -o-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.9) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -ms-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.9) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.9) 50%, rgba(82, 204, 179, 0.0) 100%);
+                        }
+
+                        .menu-header-search {
+                            background: rgba(82, 204, 179, 0.1);
+                            background: -moz-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.3) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -webkit-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.3) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -o-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.3) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -ms-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.3) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.3) 50%, rgba(82, 204, 179, 0.0) 100%);
+
+                        }
+
+                        .dl-menuwrapper li.dl-back > a:hover {
+                            background: rgba(82, 204, 179, 0.1);
+                            background: -moz-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.5) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -webkit-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.5) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -o-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.5) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -ms-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.5) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.5) 50%, rgba(82, 204, 179, 0.0) 100%);
+                        }
+
+                        .dl-menuwrapper .selected-nav:after, .dl-menuwrapper .current-menu-item:after, .dl-menuwrapper .current-menu-parent:after {
+                            background: rgba(82, 204, 179, 0.1);
+                            background: -moz-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.5) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -webkit-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.5) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -o-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.5) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: -ms-linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.5) 50%, rgba(82, 204, 179, 0.0) 100%);
+                            background: linear-gradient(left, rgba(82, 204, 179, 0.0) 0%, rgba(82, 204, 179, 0.5) 50%, rgba(82, 204, 179, 0.0) 100%);
+                        }
+
+                        .flex-direction-nav .flex-next, .flex-direction-nav .flex-prev, .hover-effect .icon-search, .h-style .mask, .h-style h2, .h-style p, .h-style a.info {
+                            -webkit-transition: all 0.8s ease;
+                            -moz-transition: all 0.8s ease;
+                            -o-transition: all 0.8s ease;
+                            -ms-transition: all 0.8s ease;
+                            transition: all 0.8s ease;
+                        }
+
+                        .flex-direction-nav .flex-next:hover, .flex-direction-nav .flex-prev:hover {
+                            -webkit-transition: all 0.8s ease;
+                            -moz-transition: all 0.8s ease;
+                            -o-transition: all 0.8s ease;
+                            -ms-transition: all 0.8s ease;
+                            transition: all 0.8s ease;
+                        }
+
+
+                    </style>
+                    <script>
+                        //Chnaging rgb to hex
+                        //==================================================
+                        var hex2Rgb = function (hex) {
+                            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})|([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hex);
+                            return result ? {
+                                r: parseInt(hex.length <= 4 ? result[4] + result[4] : result[1], 16),
+                                g: parseInt(hex.length <= 4 ? result[5] + result[5] : result[2], 16),
+                                b: parseInt(hex.length <= 4 ? result[6] + result[6] : result[3], 16),
+                                toString: function () {
+                                    var arr = [];
+                                    arr.push(this.r);
+                                    arr.push(this.g);
+                                    arr.push(this.b);
+                                    return "rgba(" + arr.join(",") + ",0.9)";
+                                }
+                            } : null;
+                        };
+                        //Chnaging color of the timetravel path
+                        //==================================================
+                        jQuery(document).ready(function ($) {
+                            var thecolor = hex2Rgb("#000000");
+                            jQuery("head").append("<style>.timelinepath:before{background: " + thecolor + "; background: -moz-linear-gradient(top,  rgba(0, 0, 0, 0.0) 0%, " + thecolor + " 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 0.0)), color-stop(100%," + thecolor + ")); background: -webkit-linear-gradient(top,  rgba(0, 0, 0, 0.0) 20%," + thecolor + " 100%); background: -o-linear-gradient(top,  rgba(0, 0, 0, 0.0) 0%," + thecolor + " 100%); background: -ms-linear-gradient(top,  rgba(0, 0, 0, 0.0) 0%," + thecolor + " 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(0, 0, 0, 0.0)', endColorstr='" + thecolor + "',GradientType=0 );}</<style>");
+                        })
+
+                    </script>
+                    <script>
+                        jQuery(window).bind("load", function () {
+                            for (var i = 0; i < Opentip.tips.length; i++) {
+                                Opentip.tips[i].show();
+                            }
+                            for (var i = 0; i < Opentip.tips.length; i++) {
+                                Opentip.tips[i].hide();
+                            }
+                        })
+
+                        jQuery(document).ready(function ($) {
+                            var waitForFinalEvent = (function () {
+                                var timers = {};
+                                return function (callback, ms, uniqueId) {
+                                    if (!uniqueId) {
+                                        uniqueId = "Don't call this twice without a uniqueId";
+                                    }
+                                    if (timers[uniqueId]) {
+                                        clearTimeout(timers[uniqueId]);
+                                    }
+                                    timers[uniqueId] = setTimeout(callback, ms);
+                                };
+                            })();
+                            $(window).resize(function () {
+
+
+                                waitForFinalEvent(function () {
+                                    if ($("#main div").hasClass('fb-comments')) {
+                                        var thewidth = $(".fb-comments").width();
+                                        $(".fb-comments").attr("data-width", thewidth);
+                                        FB.XFBML.parse();
+                                    }
+                                }, 700, "fb resize");
+
+                            });
+                            var thewidth = $(".fb-comments").width();
+                            $(".fb-comments").attr("data-width", thewidth);
+
+                            //Menu init
+                            //==================================================
+                            $('#dl-menu').dlmenu({
+                                animationClasses: {classin: 'dl-animate-in-3', classout: 'dl-animate-out-3'}
+                            });
+                            //Add sound on menu and share buttons
+                            //==================================================
+                            $(".menu-item").each(function (i) {
+                                if (i != 0) {
+                                    var audio = document.getElementsByTagName("audio")[0];
+                                    $('#beep-two')
+                                        .clone()
+                                        .attr("id", "beep-two" + i)
+                                        .appendTo($(this).parent().parent());
+                                }
+                                $(this).data("beeper", i);
+                            }).mouseenter(function () {
+                                $("#beep-two" + $(this).data("beeper"))[0].play();
+                                $("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
+                            });
+                            $(".timedate").each(function (i) {
+                                if (i != 0) {
+                                    var audio = document.getElementsByTagName("audio")[0];
+                                    $('#beep-two')
+                                        .clone()
+                                        .attr("id", "beep-two" + i)
+                                        .appendTo($(this).parent());
+                                }
+                                $(this).data("beeper", i);
+                            }).mouseenter(function () {
+                                $("#beep-two" + $(this).data("beeper"))[0].play();
+                                $("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
+                            });
+                            $(".dl-menuwrapper button").each(function (i) {
+                                if (i != 0) {
+                                    var audio = document.getElementsByTagName("audio")[0];
+                                    $('#beep-two')
+                                        .clone()
+                                        .attr("id", "beep-two" + i)
+                                        .appendTo($(this).parent());
+                                }
+                                $(this).data("beeper", i);
+                            }).mouseenter(function () {
+                                $("#beep-two" + $(this).data("beeper"))[0].play();
+                                $("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
+                            });
+                            $(".navkey").each(function (i) {
+                                if (i != 0) {
+                                    var audio = document.getElementsByTagName("audio")[0];
+                                    $('#beep-two')
+                                        .clone()
+                                        .attr("id", "beep-two" + i)
+                                        .appendTo($(this).parent());
+                                }
+                                $(this).data("beeper", i);
+                            }).mouseenter(function () {
+                                $("#beep-two" + $(this).data("beeper"))[0].play();
+                                $("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
+                            });
+                            $(".date-time").each(function (i) {
+                                if (i != 0) {
+                                    var audio = document.getElementsByTagName("audio")[0];
+                                    $('#beep-two')
+                                        .clone()
+                                        .attr("id", "beep-two" + i)
+                                        .appendTo($(this).parent());
+                                }
+                                $(this).data("beeper", i);
+                            }).mouseenter(function () {
+                                $("#beep-two" + $(this).data("beeper"))[0].play();
+                                $("#beep-two" + $(this).data("beeper"))[0].volume = 0.4;
+                            });
+
+
+                            $("#beep-two").attr("id", "beep-two0");
+                            //Share buttons
+                            //==================================================
+                            $(".share-box").hover(
+                                function () {
+                                    $(".bespoke-active").addClass('openshare');
+                                    $(this).toggleClass('open');
+
+                                }, function () {
+                                    $(".bespoke-slide").removeClass('openshare');
+                                    $(this).removeClass("open").delay(1800);
+                                }
+                            );
+                            //Show / hide loading and elements
+                            //==================================================
+                            jQuery('.inifiniteLoaderP').removeClass('fadeOutDown').addClass("fadeInUp");
+                            jQuery('.inifiniteLoaderP').removeClass('fadeInUp').addClass("fadeOutDown");
+                            setTimeout(function () {
+                                jQuery('.tt-voice-c').removeClass('fadeOutDown').addClass("fadeInUp");
+                            }, 200);
+                            setTimeout(function () {
+                                jQuery('.logo').removeClass('fadeOutDown').addClass("fadeInUp");
+                            }, 1400);
+                            setTimeout(function () {
+                                jQuery('.tt-bottom-nav').removeClass('fadeOutDown').addClass("fadeInUp");
+                            }, 400);
+                            setTimeout(function () {
+                                jQuery('.copyrholder').removeClass('fadeOutDown').addClass("fadeInUp");
+                            }, 1200);
+                            setTimeout(function () {
+                                jQuery('.date-time').removeClass('fadeOutDown').addClass("fadeInUp");
+                            }, 600);
+                            setTimeout(function () {
+                                jQuery('.numpostinfi').removeClass('fadeOutDown').addClass("fadeInUp");
+                            }, 800);
+                            setTimeout(function () {
+                                jQuery('.breadcrumbs').removeClass('fadeOutDown').addClass("fadeInUpt");
+                            }, 800);
+                            setTimeout(function () {
+                                jQuery('.dl-menuwrapper').removeClass('fadeOutDown').addClass("fadeInUp");
+                            }, 1000);
+                            setTimeout(function () {
+                                jQuery('.p-position').removeClass('fadeOutDown').addClass("fadeInUp");
+                            }, 1200);
+
+                            //For touch devices
+                            //==================================================
+                            $('a').live('touchend', function (e) {
+                                var el = $(this);
+                                var link = el.attr('href');
+                            });
+                            //pretty Photo settings( ! Don't change )
+                            //==================================================
+                            $("a[rel^='prettyPhoto']").prettyPhoto({theme: 'dark_square', allow_resize: false,});
+                            $("a[rel^='prettyPhotoImages']").prettyPhoto({theme: 'dark_square', allow_resize: true});
+                            //Image hover animation
+                            //==================================================
+                            'strict mode';
+                            if (Modernizr.csstransforms3d !== false) {
+                                var imgholder = document.getElementsByClassName("hover-effect");
+                                for (var i = 0, j = imgholder.length; i < j; i++) {
+                                    imgholder[i].addEventListener("mouseover", function () {
+                                        var imgtoanimate = this.getElementsByTagName("img")[0];
+                                        if (imgtoanimate) {
+                                            move(imgtoanimate)
+                                                .rotate(10)
+                                                .scale(1.5)
+                                                .duration('0.8s')
+                                                .end();
+                                        }
+                                    });
+                                    imgholder[i].addEventListener("mouseout", function () {
+                                        var imgtoanimate = this.getElementsByTagName("img")[0];
+                                        if (imgtoanimate) {
+                                            move(imgtoanimate)
+                                                .rotate(0)
+                                                .scale(1)
+                                                .duration('0.8s')
+                                                .end();
+                                        }
+                                    });
+                                }
+                            }
+
+
+                        });
+
+
+                    </script>
+
+
+                    <script>
+                        //Background image
+                        //==================================================
+                        jQuery(document).ready(function ($) {
+                            'strict mode';
+                            if (window.hasownbg != 1) {
+                                jQuery.vegas('stop');
+                                jQuery.vegas({
+                                    src: 'https://cray.bg/themes/time-travel/wp-content/uploads/2014/01/defbg1.jpg',
+                                    fade: 4000,
+                                    valign: 'center',
+                                    align: 'center'
+
+                                })('overlay', {
+                                    src: 'https://cray.bg/themes/time-travel/wp-content/themes/timetravel/images/overlays/16.png',
+                                });
+                            }
+                        });
+                    </script>
+
+
+                    <script>
+                        (function (moduleName, window, document) {
+                            var from = function (selector, selectedPlugins) {
+
+                                    var parent = document.querySelector(selector),
+                                        slides = [].slice.call(parent.children, 0),
+                                        activeSlide = slides[0],
+                                        deckListeners = {},
+                                        relnum = 0,
+
+
+                                        activate = function (index, customData) {
+                                            if (!slides[index]) {
+                                                return;
+                                            }
+                                            fire(deckListeners, 'deactivate', createEventData(activeSlide, customData));
+
+                                            activeSlide = slides[index];
+
+                                            slides.map(deactivate);
+
+                                            fire(deckListeners, 'activate', createEventData(activeSlide, customData));
+                                            addClass(activeSlide, 'active');
+                                            removeClass(activeSlide, 'inactive');
+                                            if (jQuery.browser.msie && jQuery.browser.version == '9.0') {
+                                                jQuery(".classictilt section.bespoke-before-3").animate({"bottom": "2800px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-before-2").animate({"bottom": "1600px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-before-1").animate({"bottom": "800px"}, 300, "linear");
+                                                //jQuery('.single-post section.bespoke-before-2').fadeTo(200, 0);
+
+
+                                                jQuery(".classictilt section.bespoke-active").animate({"bottom": "23%"}, 300, "linear", function () {
+                                                    jQuery(".single-post section.bespoke-active").css("visibility", "visible")
+                                                });
+                                                jQuery(".classictilt section.bespoke-after-1").animate({"bottom": "-950px"}, 300, "linear", function () {
+                                                    jQuery(".single-post  section.bespoke-after-1").css("visibility", "hidden")
+                                                });
+                                                jQuery(".classictilt section.bespoke-after-2").animate({"bottom": "-1700px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-after-3").animate({"bottom": "-1700px"}, 300, "linear");
+                                            }
+                                        },
+
+                                        deactivate = function (slide, index) {
+
+                                            var offset = index - slides.indexOf(activeSlide),
+                                                offsetClass = offset > 0 ? 'after' : 'before';
+
+                                            ['before(-\\d+)?', 'after(-\\d+)?', 'active', 'inactive'].map(removeClass.bind(null, slide));
+                                            slide !== activeSlide &&
+                                            ['inactive', offsetClass, offsetClass + '-' + Math.abs(offset)].map(addClass.bind(null, slide));
+
+
+                                        },
+
+                                        slide = function (index, customData) {
+                                            fire(deckListeners, 'slide', createEventData(slides[index], customData)) && activate(index, customData);
+                                        },
+
+                                        next = function (customData) {
+                                            var nextSlideIndex = slides.indexOf(activeSlide) + 1;
+
+                                            fire(deckListeners, 'next', createEventData(activeSlide, customData)) && activate(nextSlideIndex, customData);
+                                            if (jQuery.browser.msie && jQuery.browser.version == '9.0') {
+                                                jQuery(".classictilt section.bespoke-before-3").animate({"bottom": "2800px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-before-2").animate({"bottom": "1600px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-before-1").animate({"bottom": "800px"}, 300, "linear");
+
+
+                                                jQuery(".single-post section.bespoke-active").css("visibility", "visible")
+                                                jQuery(".classictilt section.bespoke-active").animate({"bottom": "23%"}, 300, "linear", function () {
+                                                });
+                                                jQuery(".classictilt section.bespoke-after").animate({"bottom": "-950px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-after-1").animate({"bottom": "-950px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-after-2").animate({"bottom": "-1700px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-after-3").animate({"bottom": "-1700px"}, 300, "linear");
+                                            }
+                                            window.location.hash = '!slide-' + jQuery("section.bespoke-active").attr("rel");
+                                            // window.location.hash = 'post-'+jQuery( "section.bespoke-active" ).find(".content-title").text();
+
+
+                                        },
+
+                                        prev = function (customData) {
+                                            var prevSlideIndex = slides.indexOf(activeSlide) - 1;
+
+                                            fire(deckListeners, 'prev', createEventData(activeSlide, customData)) && activate(prevSlideIndex, customData);
+                                            if (jQuery.browser.msie && jQuery.browser.version == '9.0') {
+                                                jQuery(".classictilt section.bespoke-before-3").animate({"bottom": "2800px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-before-2").animate({"bottom": "1600px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-before-1").animate({"bottom": "800px"}, 300, "linear");
+
+                                                /*jQuery('.single-post section.bespoke-before-1').fadeTo(200, 1);
+                                                 jQuery('.single-post section.bespoke-before-2').fadeTo(200, 1);*/
+                                                jQuery(".classictilt section.bespoke-active").animate({"bottom": "23%"}, 300, "linear", function () {
+                                                    jQuery(".single-post section.bespoke-active").css("visibility", "visible")
+                                                });
+                                                jQuery(".classictilt section.bespoke-after").animate({"bottom": "-950px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-after-1").animate({"bottom": "-950px"}, 300, "linear", function () {
+                                                    jQuery(".single-post  section.bespoke-after-1").css("visibility", "hidden")
+                                                });
+
+                                                jQuery(".classictilt section.bespoke-after-2").animate({"bottom": "-1700px"}, 300, "linear");
+                                                jQuery(".classictilt section.bespoke-after-3").animate({"bottom": "-1700px"}, 300, "linear");
+                                            }
+                                            window.location.hash = '!slide-' + jQuery("section.bespoke-active").attr("rel");
+                                            //window.location.hash = jQuery( "section.bespoke-active" ).attr("rel");
+
+                                        },
+
+                                        createEventData = function (slide, eventData) {
+                                            eventData = eventData || {};
+                                            eventData.index = slides.indexOf(slide);
+                                            eventData.slide = slide;
+                                            return eventData;
+                                        },
+
+                                        deck = {
+                                            on: on.bind(null, deckListeners),
+                                            off: off.bind(null, deckListeners),
+                                            fire: fire.bind(null, deckListeners),
+                                            slide: slide,
+                                            next: next,
+                                            prev: prev,
+                                            parent: parent,
+                                            slides: slides
+                                        };
+
+                                    addClass(parent, 'parent');
+
+                                    slides.map(function (slide) {
+
+                                        addClass(slide, 'slide');
+                                        jQuery(slide).attr('rel', relnum);
+                                        relnum++;
+                                    });
+
+                                    Object.keys(selectedPlugins || {}).map(function (pluginName) {
+                                        var config = selectedPlugins[pluginName];
+                                        config && plugins[pluginName](deck, config === true ? {} : config);
+
+                                    });
+
+                                    activate(0);
+
+                                    decks.push(deck);
+
+                                    return deck;
+                                },
+
+                                decks = [],
+
+                                bespokeListeners = {},
+
+                                on = function (listeners, eventName, callback) {
+                                    (listeners[eventName] || (listeners[eventName] = [])).push(callback);
+                                },
+
+                                off = function (listeners, eventName, callback) {
+                                    listeners[eventName] = (listeners[eventName] || []).filter(function (listener) {
+                                        return listener !== callback;
+                                    });
+                                },
+
+                                fire = function (listeners, eventName, eventData) {
+                                    return (listeners[eventName] || [])
+                                        .concat((listeners !== bespokeListeners && bespokeListeners[eventName]) || [])
+                                        .reduce(function (notCancelled, callback) {
+                                            return notCancelled && callback(eventData) !== false;
+                                        }, true);
+                                },
+
+                                addClass = function (el, cls) {
+                                    el.classList.add(moduleName + '-' + cls);
+                                },
+
+                                removeClass = function (el, cls) {
+                                    el.className = el.className
+                                        .replace(new RegExp(moduleName + '-' + cls + '(\\s|$)', 'g'), ' ')
+                                        .replace(/^\s+|\s+$/g, '');
+                                },
+
+                                callOnAllInstances = function (method) {
+                                    return function (arg) {
+                                        decks.map(function (deck) {
+                                            deck[method].call(null, arg);
+                                        });
+                                    };
+                                },
+
+                                bindPlugin = function (pluginName) {
+                                    return {
+                                        from: function (selector, selectedPlugins) {
+                                            (selectedPlugins = selectedPlugins || {})[pluginName] = true;
+                                            return from(selector, selectedPlugins);
+                                        }
+                                    };
+                                },
+
+                                makePluginForAxis = function (axis) {
+                                    return function (deck) {
+                                        var startPosition,
+                                            delta;
+
+                                        document.addEventListener('keydown', function (e) {
+                                            var key = e.which;
+
+                                            if (axis === 'X') {
+                                                key === 37 && deck.prev();
+                                                (key === 32 || key === 39) && deck.next();
+                                            } else {
+                                                key === 38 && deck.prev();
+                                                (key === 32 || key === 40) && deck.next();
+                                            }
+                                        });
+
+                                        deck.parent.addEventListener('touchstart', function (e) {
+                                            if (e.touches.length) {
+                                                startPosition = e.touches[0]['page' + axis];
+                                                delta = 0;
+                                            }
+                                        });
+
+                                        deck.parent.addEventListener('touchmove', function (e) {
+                                            if (e.touches.length) {
+                                                e.preventDefault();
+                                                delta = e.touches[0]['page' + axis] - startPosition;
+                                            }
+                                        });
+
+                                        deck.parent.addEventListener('touchend', function () {
+                                            Math.abs(delta) > 50 && (delta > 0 ? deck.prev() : deck.next());
+                                        });
+                                    };
+                                },
+
+                                plugins = {
+                                    horizontal: makePluginForAxis('X'),
+                                    vertical: makePluginForAxis('Y')
+                                };
+
+                            window[moduleName] = {
+                                from: from,
+                                slide: callOnAllInstances('slide'),
+                                next: callOnAllInstances('next'),
+                                prev: callOnAllInstances('prev'),
+                                horizontal: bindPlugin('horizontal'),
+                                vertical: bindPlugin('vertical'),
+                                on: on.bind(null, bespokeListeners),
+                                off: off.bind(null, bespokeListeners),
+                                plugins: plugins
+                            };
+
+                        }('bespoke', this, document));
+
+                    </script>
+
+
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+                    <script type='text/javascript'>
+                        /* <![CDATA[ */
+                        var _wpcf7 = {
+                            "loaderUrl": "https:\/\/cray.bg\/themes\/time-travel\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif",
+                            "sending": "Sending ...",
+                            "cached": "1"
+                        };
+                        /* ]]> */
+
+                    </script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.2'></script>
+                    <script type='text/javascript'>
+                        /* <![CDATA[ */
+                        var dot_irecommendthis = {"ajaxurl": "https:\/\/cray.bg\/themes\/time-travel\/wp-admin\/admin-ajax.php"};
+                        /* ]]> */
+
+                    </script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/plugins/i-recommend-this/js/dot_irecommendthis.js?ver=2.6.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.prettyPhoto.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.easing.1.3.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.flexslider.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/ddsmoothmenu.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/modernizr.custom.79639.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/move.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.vegas.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/classList.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.nanoscroller.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/jquery.dd.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/annyang.min.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/opentip-jquery.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/js/sc-jquery.js?ver=1.0'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/plugins/js_composer_timetravel/assets/js/js_composer_front.js?ver=4.3.4'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/plugins/js_composer_timetravel/assets/lib/jquery-waypoints/waypoints.min.js?ver=4.3.4'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-includes/js/jquery/ui/widget.min.js?ver=1.11.4'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-includes/js/jquery/ui/tabs.min.js?ver=1.11.4'></script>
+                    <script type='text/javascript'
+                            src='https://cray.bg/themes/time-travel/wp-content/plugins/js_composer_timetravel/assets/lib/jquery-ui-tabs-rotate/jquery-ui-tabs-rotate.js?ver=4.3.4'></script>
+                    <!--[if IE 9]>
         <link rel="stylesheet" type="text/css"
               href="https://cray.bg/themes/time-travel/wp-content/themes/timetravel/css/styleIE.css"/>
         <![endif]-->
 
-        <!-- <div class="sc-option last"><a href="http://storyline.flasherland.com/?wptheme=Storyline%20Board%20-%20video">
-         Youtube video whit audo background</a></div>
-       <div class="sc-option last">  Press <i class="icon-arrow-up "></i> and <i class="icon-arrow-down"></i> arrows to change scroll effects</div>-->
-        <div class="sc-option last">
-            <!-- <br />
-             <a class="wpb_button_a" href="http://themeforest.net/item/time-travel-timeline-wordpress-theme/6639517?ref=bilbo_b"><span class="wpb_button  wpb_btn-info wpb_btn-large" style="background-color:rgba(101,177,255, 1);">BUY NOW</span></a>-->
+                    <!-- <div class="sc-option last"><a href="http://storyline.flasherland.com/?wptheme=Storyline%20Board%20-%20video">
+                     Youtube video whit audo background</a></div>
+                   <div class="sc-option last">  Press <i class="icon-arrow-up "></i> and <i class="icon-arrow-down"></i> arrows to change scroll effects</div>-->
+                    <div class="sc-option last">
+                        <!-- <br />
+                         <a class="wpb_button_a" href="http://themeforest.net/item/time-travel-timeline-wordpress-theme/6639517?ref=bilbo_b"><span class="wpb_button  wpb_btn-info wpb_btn-large" style="background-color:rgba(101,177,255, 1);">BUY NOW</span></a>-->
 
 
-        </div>
+                    </div>
 
-        <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                    <script>
+                        (function (i, s, o, g, r, a, m) {
+                            i['GoogleAnalyticsObject'] = r;
+                            i[r] = i[r] || function () {
+                                    (i[r].q = i[r].q || []).push(arguments)
+                                }, i[r].l = 1 * new Date();
+                            a = s.createElement(o),
+                                m = s.getElementsByTagName(o)[0];
+                            a.async = 1;
+                            a.src = g;
+                            m.parentNode.insertBefore(a, m)
+                        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-37727335-10', 'auto');
-  ga('send', 'pageview');
+                        ga('create', 'UA-37727335-10', 'auto');
+                        ga('send', 'pageview');
 
 
-        </script>
+                    </script>
 </body>
 </html>
 <!-- Dynamic page generated in 0.284 seconds. -->

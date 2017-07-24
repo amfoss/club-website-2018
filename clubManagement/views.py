@@ -171,9 +171,8 @@ class YearAttendanceReportView(View):
                         )
                     )
                     total = len(
-                        UserInfo.user.attendance_set.all()
+                        user_info.user.attendance_set.filter(date__range=["2017-07-03", datetime.now().date()])
                     )
-                    print total
                     total_att += att_month
 
                     month_att.append(att_month)
