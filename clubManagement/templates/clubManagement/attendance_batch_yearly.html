@@ -14,12 +14,10 @@
                         <h3 class="col-md-12 col-xs-12">{{ data.2 }}</h3>
                         {% for user_info in data.0 %}
 
-                            <div class="col-xs-6 col-sm-4 col-md-2 btn names btn-success">
-
+                            <div class="col-xs-6 col-sm-4 col-md-2 btn names btn-success" style="white-space: normal">
                                 <a class="link" href="{% url 'attendance_report_year' head user_info.0.id %}">
-                                <p>{{ user_info.0.first_name }} {{ user_info.0.last_name }} - {{ user_info.3 }}%</p>
+                                    {{ user_info.0.first_name }} {{ user_info.0.last_name }} - {{ user_info.3 }}%
                                 </a>
-
                             </div>
 
                         {% endfor %}
@@ -55,7 +53,11 @@
         }
 
         .link {
+            height: 100%;
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .link:hover {

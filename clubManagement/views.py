@@ -223,7 +223,10 @@ class MonthAttendanceReportView(View):
                 )
             )
 
-            x = float(att_month*100)/float(total)
+            if total > 0:
+                x = float(att_month*100)/float(total)
+            else:
+                x = 0
             percentage = float("{0:.2f}".format(x))
 
             data.append([user_info.user, att_month, percentage])
