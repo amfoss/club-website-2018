@@ -135,7 +135,14 @@ class YearStudentAttendanceReportView(View):
         if len(att) > 0:
             month_att = []
             for i in month_num:
-                month_att.append(len(att.filter(date__month=(i + 1))))
+                month_att.append(
+                    len(att.filter(
+                        date__year=int(kwargs.get('year')),
+                        date__month=(i + 1),
+                        attendance=True
+                    )
+                    )
+                )
             context = {'user': user, 'month_att': month_att, 'month': month, 'month_num': month_num,
                        'year': kwargs.get('year')}
         else:
@@ -159,6 +166,7 @@ class YearAttendanceReportView(View):
         for batch in batch_list:
             user_info_list = UserInfo.objects.filter(year=batch)
             user_data = []
+
             for user_info in user_info_list:
                 month_att = []
                 total_att = 0
@@ -170,12 +178,14 @@ class YearAttendanceReportView(View):
                             attendance=True
                         )
                     )
-                    total = len(
-                        user_info.user.attendance_set.all()
-                    )
                     total_att += att_month
-
                     month_att.append(att_month)
+                # get the total attendance for that year
+                total = len(
+                    user_info.user.attendance_set.filter(
+                        date__year=int(kwargs.get('year')),
+                    )
+                )
                 if total > 0:
                     x = (float(total_att) / float(total)) * 100
                 else:
