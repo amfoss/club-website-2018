@@ -176,9 +176,12 @@ class YearAttendanceReportView(View):
                     total_att += att_month
 
                     month_att.append(att_month)
-                x = (float(total_att) / float(total)) * 100
-                perc = float("{0:.2f}".format(x))
-                user_data.append([user_info.user, month_att, total_att, perc])
+                if total > 0:
+                    x = (float(total_att) / float(total)) * 100
+                else:
+                    x = 0
+                percentage = float("{0:.2f}".format(x))
+                user_data.append([user_info.user, month_att, total_att, percentage])
             year = calculate_year(batch)
             if len(user_data) > 0:
                 data_list.append([user_data, year, ''])
