@@ -207,14 +207,8 @@ class MonthAttendanceReportView(View):
     def get(self, request, **kwargs):
         user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
         data = []
-        day = 30
-        if kwargs.get('month') in ['1','3','5','7','8','10','12']:
-            day = 31
 
-        elif kwargs.get('month') is '2':
-            day = 29
         for user_info in user_info_list:
-            total_att = 0
             att_month = len(
                 user_info.user.attendance_set.filter(
                     date__year=int(kwargs.get('year')),
@@ -222,19 +216,21 @@ class MonthAttendanceReportView(View):
                     attendance=True
                 )
             )
-            total_att += att_month
+
             total = len(user_info.user.attendance_set.filter(
                     date__year=int(kwargs.get('year')),
                     date__month=int(kwargs.get('month'))
                 )
             )
-            x = float(att_month*100)/float(total)
-            perc = float("{0:.2f}".format(x))
 
-            data.append([user_info.user, att_month, perc])
+            x = float(att_month*100)/float(total)
+            percentage = float("{0:.2f}".format(x))
+
+            data.append([user_info.user, att_month, percentage])
+
         if len(data) > 0:
             context = {'data': data, 'head': calculate_year(int(kwargs.get('batch'))) + " - " +
-                                             month[int(kwargs.get('month')) - 1] + ", " + kwargs.get('year')}
+                       month[int(kwargs.get('month')) - 1] + ", " + kwargs.get('year')}
         else:
             context = {'errors': 'No data found'}
         return render(request, self.template_name, context)
