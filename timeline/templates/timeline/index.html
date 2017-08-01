@@ -2,6 +2,7 @@
 <html lang="en-US">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
+
     <meta charset="UTF-8"/>
     <title>Timeline</title>
     <!-- Force to reload page on back button for firefox
@@ -808,9 +809,18 @@
              class="post-2093 post type-post status-publish format-standard has-post-thumbnail hentry category-art category-circle tag-art tag-brush tag-digital tag-fun">
             <div class="timelinepath"></div>
             <article id="articlehold" class="fwdirection">
-                {% for object in objects %}
+                {% for  object,i in data %}
+
                     <section class="{{ object.name }}">
+                        {% ifequal i 1 %}
                         <div class="tt-cn-style  center-content is-circle  gcnopadding">
+                        {% endifequal %}
+                    {% ifequal i 2 %}
+                        <div class="tt-cn-style  left-content is-circle  gcnopadding">
+                        {% endifequal %}
+                    {% ifequal i 0 %}
+                        <div class="tt-cn-style  right-content is-circle  gcnopadding">
+                        {% endifequal %}
                             <div class="circle-img go-anim amethyst">
                                 <div class="c-size-big">
                                     <div class="circle-img-c ">
@@ -856,8 +866,7 @@
                 {% endfor %}
                 <div class="right-bottom-nav">
 
-
-                    <div class="tt-bottom-nav animated fadeOutH" data-ot='Navigate trough timeline' data-ot-fixed="true"
+                    <div class="tt-bottom-nav animated fadeOutH" data-ot='Navigate through timeline' data-ot-fixed="true"
                          data-ot-background="rgba(0,0,0,0.5)" data-ot-border-color="rgba(0,0,0,0.8)"
                          data-ot-offset="[ 15, -10 ]"
                          data-ot-auto-offset="true" data-ot-tip-joint="top center" data-ot-target="true"
