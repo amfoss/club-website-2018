@@ -178,6 +178,11 @@ class YearAttendanceReportView(View):
                             attendance=True
                         )
                     )
+
+                    total = len(
+                        user_info.user.attendance_set.filter(date__range=["2017-07-03", datetime.now().date()])
+                    )
+
                     total_att += att_month
                     month_att.append(att_month)
                 # get the total attendance for that year
@@ -203,11 +208,10 @@ class YearAttendanceReportView(View):
 
 class MonthAttendanceReportView(View):
     template_name = 'clubManagement/attendance_monthly.html'
-
     def get(self, request, **kwargs):
         user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
         data = []
-
+        total_att = 0
         for user_info in user_info_list:
             att_month = len(
                 user_info.user.attendance_set.filter(
@@ -216,6 +220,8 @@ class MonthAttendanceReportView(View):
                     attendance=True
                 )
             )
+            print att_month
+            total_att += att_month
 
             total = len(user_info.user.attendance_set.filter(
                     date__year=int(kwargs.get('year')),
