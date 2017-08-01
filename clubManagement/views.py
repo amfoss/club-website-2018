@@ -211,6 +211,7 @@ class MonthAttendanceReportView(View):
     def get(self, request, **kwargs):
         user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
         data = []
+
         total_att = 0
         for user_info in user_info_list:
             att_month = len(
@@ -220,6 +221,7 @@ class MonthAttendanceReportView(View):
                     attendance=True
                 )
             )
+
             print att_month
             total_att += att_month
 
