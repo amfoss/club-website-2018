@@ -12,11 +12,9 @@
                 <div class="row">
                     <h2 class="header col-md-12">{{ head }}</h2>
                     {% for user_info in data %}
-                        <div class="col-xs-6 col-sm-4 col-md-2 btn names btn-success">
+                        <div class="col-xs-6 col-sm-4 col-md-2 btn names btn-success" style="white-space: normal">
 
-                          
-
-                            <p>{{ user_info.0.first_name }} {{ user_info.0.last_name }} - {{ user_info.2 }} %</p>
+                            <p class="link">{{ user_info.0.first_name }} {{ user_info.0.last_name }} - {{ user_info.2 }}%</p>
 
                         </div>
                     {% endfor %}
@@ -47,12 +45,17 @@
             height: 80px;
         }
 
-        .names p {
-            margin: 16px 0;
-        }
 
         .form {
             margin: 30px 0;
+        }
+
+        .link {
+            height: 100%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
 </style>

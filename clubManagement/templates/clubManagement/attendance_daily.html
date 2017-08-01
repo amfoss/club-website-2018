@@ -11,8 +11,9 @@
                 <div class="row form">
                 {% csrf_token %}
                     {% for att in attendance_list %}
-                        <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}" id="{{ att.user.username }}_div">
-                            <p>{{ att.user.first_name }} {{ att.user.last_name }}</p>
+                        <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}"
+                             id="{{ att.user.username }}_div" style="white-space: normal">
+                            <p class="link">{{ att.user.first_name }} {{ att.user.last_name }}</p>
                         </div>
                     {% endfor %}
                     <p class="col-xs-12 col-md-12"></p>
@@ -36,9 +37,7 @@
             height: 80px;
         }
 
-        .names p {
-            margin: 16px 0;
-        }
+
 
         .form {
             margin: 30px 0;
@@ -46,6 +45,14 @@
         .header {
             padding-top: 20px;
             text-align: center;
+        }
+
+        .link {
+            height: 100%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 {% endblock %}

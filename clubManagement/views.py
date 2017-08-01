@@ -135,7 +135,14 @@ class YearStudentAttendanceReportView(View):
         if len(att) > 0:
             month_att = []
             for i in month_num:
-                month_att.append(len(att.filter(date__month=(i + 1))))
+                month_att.append(
+                    len(att.filter(
+                        date__year=int(kwargs.get('year')),
+                        date__month=(i + 1),
+                        attendance=True
+                    )
+                    )
+                )
             context = {'user': user, 'month_att': month_att, 'month': month, 'month_num': month_num,
                        'year': kwargs.get('year')}
         else:
@@ -159,6 +166,7 @@ class YearAttendanceReportView(View):
         for batch in batch_list:
             user_info_list = UserInfo.objects.filter(year=batch)
             user_data = []
+
             for user_info in user_info_list:
                 month_att = []
                 total_att = 0
@@ -170,15 +178,25 @@ class YearAttendanceReportView(View):
                             attendance=True
                         )
                     )
+
                     total = len(
                         user_info.user.attendance_set.filter(date__range=["2017-07-03", datetime.now().date()])
                     )
-                    total_att += att_month
 
+                    total_att += att_month
                     month_att.append(att_month)
-                x = (float(total_att) / float(total)) * 100
-                perc = float("{0:.2f}".format(x))
-                user_data.append([user_info.user, month_att, total_att, perc])
+                # get the total attendance for that year
+                total = len(
+                    user_info.user.attendance_set.filter(
+                        date__year=int(kwargs.get('year')),
+                    )
+                )
+                if total > 0:
+                    x = (float(total_att) / float(total)) * 100
+                else:
+                    x = 0
+                percentage = float("{0:.2f}".format(x))
+                user_data.append([user_info.user, month_att, total_att, percentage])
             year = calculate_year(batch)
             if len(user_data) > 0:
                 data_list.append([user_data, year, ''])
@@ -190,18 +208,11 @@ class YearAttendanceReportView(View):
 
 class MonthAttendanceReportView(View):
     template_name = 'clubManagement/attendance_monthly.html'
-
     def get(self, request, **kwargs):
         user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
         data = []
-        day = 30
-        if kwargs.get('month') in ['1','3','5','7','8','10','12']:
-            day = 31
-
-        elif kwargs.get('month') is '2':
-            day = 29
+        total_att = 0
         for user_info in user_info_list:
-            total_att = 0
             att_month = len(
                 user_info.user.attendance_set.filter(
                     date__year=int(kwargs.get('year')),
@@ -211,18 +222,24 @@ class MonthAttendanceReportView(View):
             )
             print att_month
             total_att += att_month
+
             total = len(user_info.user.attendance_set.filter(
                     date__year=int(kwargs.get('year')),
                     date__month=int(kwargs.get('month'))
                 )
             )
-            x = float(att_month*100)/float(total)
-            perc = float("{0:.2f}".format(x))
 
-            data.append([user_info.user, att_month, perc])
+            if total > 0:
+                x = float(att_month*100)/float(total)
+            else:
+                x = 0
+            percentage = float("{0:.2f}".format(x))
+
+            data.append([user_info.user, att_month, percentage])
+
         if len(data) > 0:
             context = {'data': data, 'head': calculate_year(int(kwargs.get('batch'))) + " - " +
-                                             month[int(kwargs.get('month')) - 1] + ", " + kwargs.get('year')}
+                       month[int(kwargs.get('month')) - 1] + ", " + kwargs.get('year')}
         else:
             context = {'errors': 'No data found'}
         return render(request, self.template_name, context)
