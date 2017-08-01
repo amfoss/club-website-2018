@@ -16,4 +16,15 @@ class AlumniListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(AlumniListView, self).get_context_data(**kwargs)
         context['objects'] = AlumniInfo.objects.all()
+        num = []
+        for i in context['objects']:
+            if i.id % 3 == 0:
+                num.append(0)
+            elif i.id % 3 == 1:
+                num.append(1)
+            elif i.id % 3 == 2:
+                num.append(2)
+
+        context['num'] = num
+        context['data'] = zip(context['objects'], num)
         return context
