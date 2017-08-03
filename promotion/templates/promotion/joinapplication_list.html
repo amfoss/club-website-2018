@@ -2,14 +2,53 @@
 
 {% block title %} Application {% endblock %}
 
+
+
+
+
+
 {% block body %}
     {% include 'base/nav-bar.html' %}
+
+<script>
+    function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+    <br>
+
+    <div class="dropdown" >
+<button onclick="myFunction()" class="dropbtn"><i class="fa fa-calendar-o"></i> Year <span class="fa fa-caret-down"></span></button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#">Year</a>
+      <span class="empty">&nbsp;</span>
+      <a href="{% url 'join_list' %}?year=1">1st year</a>
+    <a href="{% url 'join_list' %}?year=2">2nd year</a>
+
+
+  </div>
+</div>
     <div id="wrap">
-        <div id="main">
+
+        <div id="main" style="position: absolute;">
             <!-- content goes here -->
-            <div class="container-fluid">
+            <div class="container-fluid"    >
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" >
                         <h1 id="page-header">Applications</h1>
                     </div>
                     <div class="col-md-12 table-responsive">
@@ -49,6 +88,7 @@
 {% endblock %}
 
 {% block css %}
+
     <style>
         #page-header {
             margin: 30px;
@@ -66,5 +106,62 @@
         .buttons {
             margin-left:800px;
         }
+    body{
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:14px;
+}
+.dropbtn {
+    padding: 10px 16px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    outline: none;
+    font-family: inherit;
+    color: #ffffff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    color: #ffffff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+.dropdown {
+    position: inherit;
+    display: inline-block;
+    margin-left: 1170px;
+}
+
+.dropdown-content {
+    display: none;
+    position: inherit;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+}
+
+.dropdown-content a {
+	color: #424242;
+	padding: 6px 16px;
+	text-decoration: none;
+	display: block;
+}
+.empty{
+	display: block;
+	border-bottom: 1px solid #ccc;
+	padding: 0;
+	line-height: 0;
+}
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
     </style>
 {% endblock %}
+
