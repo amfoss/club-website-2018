@@ -37,11 +37,25 @@ class JoinApplicationListView(ListView):
         context = super(JoinApplicationListView, self).get_context_data(**kwargs)
         context['count'] = len(context['object_list'])
         status = self.request.GET.get('list', None)
+        year = self.request.GET.get('year', None)
+        if year == '1':
+            context['object_list'] = JoinApplication.objects.filter(batch="1st year").order_by('-date')
+            context['count'] = len(context['object_list'])
+
+        if year == '2':
+            context['object_list'] = JoinApplication.objects.filter(batch="2nd year").order_by('-date')
+            context['count'] = len(context['object_list'])
+
         if status == "approved":
             context['object_list'] = JoinApplication.objects.filter(is_approved=True).order_by('-date')
+            context['count'] = len(context['object_list'])
+
         if status == "rejected":
             context['object_list'] = JoinApplication.objects.filter(is_rejected=True).order_by('-date')
+            context['count'] = len(context['object_list'])
+
         return context
+
 
 
 class JoinApplicationDetailView(DetailView):
@@ -102,7 +116,7 @@ class JoinApplicationCreateView(CreateView):
             'Tasks to complete, FOSS@Amrita',
             mail_content,
             'amritapurifoss@gmail.com',
-            [form.cleaned_data.get('name'), join_application_reply_to],
+            [form.cleaned_data.get('email'), join_application_reply_to],
             join_application_mail_list,
             reply_to=join_application_reply_to,
             headers={'Message-ID': 'foss@amrita'},
