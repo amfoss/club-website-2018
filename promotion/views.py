@@ -111,18 +111,18 @@ class JoinApplicationCreateView(CreateView):
                        "If you have any queries feel free to reply to this mail." + \
                        "\n\n[1] http://foss.amrita.ac.in/foss/#sixth\n[2] https://www.hackerrank.com/" + \
                        "\n[3] http://cs50.tv/2016/fall/\n\nWith regards, \n\nFOSS@Amrita"
-        join_application_reply_to.append(form.cleaned_data.get('email'))
+        to_address_list = join_application_reply_to
+        to_address_list.append(form.cleaned_data.get('email'))
         email = EmailMessage(
             'Tasks to complete, FOSS@Amrita',
             mail_content,
             'amritapurifoss@gmail.com',
-            [form.cleaned_data.get('email'), join_application_reply_to],
+            to_address_list,
             join_application_mail_list,
             reply_to=join_application_reply_to,
             headers={'Message-ID': 'foss@amrita'},
         )
         email.send()
-        join_application_reply_to.remove(form.cleaned_data.get('email'))
         return valid_form
 
 
