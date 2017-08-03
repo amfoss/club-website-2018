@@ -22,8 +22,8 @@ from promotion.models import JoinApplication
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
 
 approve_mail_content = ',\\n\\nWe are excited to inform that you are selected for the interview. Be there at ' + \
-                        'ground floor computer lab by 5PM. \n\nIf you have any queries contact : Chirath, 8547801861' \
-                        '\n\nThank you, \n\nFOSS@Amrita'
+                        'ground floor computer lab by 5PM. \\n\\nIf you have any queries contact : Chirath,'+ \
+                        ' 8547801861 \\n\\nThank you, \\n\\nFOSS@Amrita'
 
 reject_mail_content = ',\\n\\nWe are sorry to inform that you are not selected for the interview. Please try again ' \
                       'next time.'
@@ -53,9 +53,7 @@ class JoinApplicationListView(ListView):
         if status == "rejected":
             context['object_list'] = JoinApplication.objects.filter(is_rejected=True).order_by('-date')
             context['count'] = len(context['object_list'])
-
         return context
-
 
 
 class JoinApplicationDetailView(DetailView):
