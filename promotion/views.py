@@ -81,6 +81,7 @@ class JoinApplicationCreateView(CreateView):
                   str(datetime.datetime.now()) + '. \n\nPlease visit ' + list_url + ' for more details.'
 
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
+
         # sent mail when application is submitted
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
 
@@ -96,7 +97,7 @@ class JoinApplicationCreateView(CreateView):
                        "If you have any queries feel free to reply to this mail." + \
                        "\n\n[1] http://foss.amrita.ac.in/foss/#sixth\n[2] https://www.hackerrank.com/" + \
                        "\n[3] http://cs50.tv/2016/fall/\n\nWith regards, \n\nFOSS@Amrita"
-
+        join_application_reply_to.append(form.cleaned_data.get('email'))
         email = EmailMessage(
             'Tasks to complete, FOSS@Amrita',
             mail_content,
@@ -107,7 +108,7 @@ class JoinApplicationCreateView(CreateView):
             headers={'Message-ID': 'foss@amrita'},
         )
         email.send()
-
+        join_application_reply_to.remove(form.cleaned_data.get('email'))
         return valid_form
 
 
