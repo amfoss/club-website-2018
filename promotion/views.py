@@ -121,6 +121,7 @@ class JoinApplicationCreateView(CreateView):
             headers={'Message-ID': 'foss@amrita'},
         )
         email.send()
+        to_address_list.remove(form.cleaned_data.get('email'))
         return valid_form
 
 
