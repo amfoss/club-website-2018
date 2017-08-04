@@ -222,7 +222,10 @@ class MonthAttendanceReportView(View):
                 )
             )
 
+
             print att_month
+
+
             total_att += att_month
 
             total = len(user_info.user.attendance_set.filter(

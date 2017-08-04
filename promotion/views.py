@@ -22,8 +22,8 @@ from promotion.models import JoinApplication
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
 
 approve_mail_content = ',\\n\\nWe are excited to inform that you are selected for the interview. Be there at ' + \
-                        'ground floor computer lab by 5PM. \n\nIf you have any queries contact : Chirath, 8547801861' \
-                        '\n\nThank you, \n\nFOSS@Amrita'
+                        'ground floor computer lab by 5PM. \\n\\nIf you have any queries contact : Chirath,'+ \
+                        ' 8547801861 \\n\\nThank you, \\n\\nFOSS@Amrita'
 
 reject_mail_content = ',\\n\\nWe are sorry to inform that you are not selected for the interview. Please try again ' \
                       'next time.'
@@ -37,10 +37,22 @@ class JoinApplicationListView(ListView):
         context = super(JoinApplicationListView, self).get_context_data(**kwargs)
         context['count'] = len(context['object_list'])
         status = self.request.GET.get('list', None)
+        year = self.request.GET.get('year', None)
+        if year == '1':
+            context['object_list'] = JoinApplication.objects.filter(batch="1st year").order_by('-date')
+            context['count'] = len(context['object_list'])
+
+        if year == '2':
+            context['object_list'] = JoinApplication.objects.filter(batch="2nd year").order_by('-date')
+            context['count'] = len(context['object_list'])
+
         if status == "approved":
             context['object_list'] = JoinApplication.objects.filter(is_approved=True).order_by('-date')
+            context['count'] = len(context['object_list'])
+
         if status == "rejected":
             context['object_list'] = JoinApplication.objects.filter(is_rejected=True).order_by('-date')
+            context['count'] = len(context['object_list'])
         return context
 
 
@@ -81,6 +93,7 @@ class JoinApplicationCreateView(CreateView):
                   str(datetime.datetime.now()) + '. \n\nPlease visit ' + list_url + ' for more details.'
 
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
+
         # sent mail when application is submitted
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
 
@@ -96,18 +109,18 @@ class JoinApplicationCreateView(CreateView):
                        "If you have any queries feel free to reply to this mail." + \
                        "\n\n[1] http://foss.amrita.ac.in/foss/#sixth\n[2] https://www.hackerrank.com/" + \
                        "\n[3] http://cs50.tv/2016/fall/\n\nWith regards, \n\nFOSS@Amrita"
-
+        to_address_list = join_application_reply_to
+        to_address_list.append(form.cleaned_data.get('email'))
         email = EmailMessage(
             'Tasks to complete, FOSS@Amrita',
             mail_content,
             'amritapurifoss@gmail.com',
-            [form.cleaned_data.get('name'), join_application_reply_to],
+            to_address_list,
             join_application_mail_list,
             reply_to=join_application_reply_to,
             headers={'Message-ID': 'foss@amrita'},
         )
         email.send()
-
         return valid_form
 
 

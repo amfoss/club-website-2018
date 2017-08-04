@@ -13,7 +13,9 @@
                         <div class="card">
                             <div class="card-block">
                                 <h1 class="card-title">{{ object.name }}</h1>
-                                <h4 class="card-subtitle mb-2">{{ object.batch }}, <span style="font-size:20px" class="text-muted">{{ object.email }}</span></h4>
+                                <h4 class="card-subtitle mb-2">{{ object.batch }}, <span style="font-size:20px"
+                                                                                         class="text-muted">{{ object.email }}</span>
+                                </h4>
                                 <hr>
                                 <h4>Why do you want to join?</h4>
                                 <p class="card-text">{{ object.motivation }}</p>
@@ -21,7 +23,9 @@
                                 <p class="card-text">{{ object.cs_background }}</p>
                                 <h4>Interests</h4>
                                 <p class="card-text">{{ object.interests }}</p>
-                                <p class="card-text"><small class="text-muted">{{ object.date }}</small></p>
+                                <p class="card-text">
+                                    <small class="text-muted">{{ object.date }}</small>
+                                </p>
                                 {% if object.is_approved %}
                                     <hr>
                                     <div class="alert alert-success" role="alert">
@@ -37,8 +41,12 @@
                                 {% ifequal object.is_rejected object.is_approved %}
                                     <div id="buttons">
                                         <hr>
-                                        <button id="approve" onclick="control(1)" class="btn btn-success card-link">Approve</button>
-                                        <button id="reject" onclick="control(2)" class="btn btn-danger card-link">Reject</button>
+                                        <button id="approve" onclick="control(1)" class="btn btn-success card-link">
+                                            Approve
+                                        </button>
+                                        <button id="reject" onclick="control(2)" class="btn btn-danger card-link">
+                                            Reject
+                                        </button>
                                     </div>
                                 {% endifequal %}
                                 {% if mail_error %}
@@ -72,7 +80,7 @@
                                                 {{ object.mail_content }}
                                             </textarea>
                                             <small class="form-text text-muted">
-                                                    Content of the mail
+                                                Content of the mail
                                             </small>
                                         </div>
                                         <button id="submit-btn" type="submit" class=""></button>
@@ -94,9 +102,9 @@
         }
 
         .card {
-                margin: 70px 5% 0 5%;
-                padding: 0;
-            }
+            margin: 70px 5% 0 5%;
+            padding: 0;
+        }
 
         @media (min-width: 768px) {
             /* Desktops */
@@ -104,10 +112,12 @@
                 margin: 70px 13% 0 13%;
                 padding: 40px;
             }
+
             .card-text {
                 margin: 10px 20px 20px 0;
             }
         }
+
         h4 {
             margin: 20px 0;
         }
@@ -120,7 +130,7 @@
             }
         }
     </style>
-         <script>
+    <script>
         function control(selection) {
             var form, head, option, subject, content, btns;
             form = document.getElementById('mail_form');
@@ -135,7 +145,7 @@
 
             console.log(selection);
 
-            if(selection === 3) {
+            if (selection === 3) {
                 // cancel
                 form.style.display = 'none';
                 btns.style.display = 'block';
