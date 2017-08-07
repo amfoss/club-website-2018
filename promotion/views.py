@@ -8,7 +8,8 @@ from smtplib import SMTPException
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.sites.shortcuts import get_current_site
-from django.http import HttpResponse, request
+from django.forms.utils import ErrorList
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views import View
@@ -18,7 +19,6 @@ from django.core.mail import EmailMessage
 
 from promotion.forms import JoinApplicationForm
 from promotion.models import JoinApplication
-
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
 
 approve_mail_content = ',\\n\\nWe are excited to inform that you are selected for the interview. Be there at ' + \
@@ -82,6 +82,18 @@ class JoinApplicationCreateView(CreateView):
         return context
 
     def form_valid(self, form):
+
+        try:
+            application = JoinApplication.objects.filter(email=form.cleaned_data.get('email'))
+        except JoinApplication.DoesNotExist:
+            application = None
+
+        if application.exists():
+            form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
+                u'Your application is already submitted'
+            ])
+            return self.form_invalid(form)
+
         valid_form = super(JoinApplicationCreateView, self).form_valid(form)
 
         # generate urls
@@ -95,9 +107,9 @@ class JoinApplicationCreateView(CreateView):
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
 
         # sent mail when application is submitted
-        send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
+        send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
 
-        mail_content = "Hi " + form.cleaned_data.get('name')+ ", \n\n" + \
+        mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
                        "Great to know that you are interested in being a part of the FOSS club at Amritapuri. " + \
                        "We got your application, please complete the " + \
                        "tasks at [1] and complete at least 25 Hackerrank[2] problems or " + \
@@ -120,7 +132,7 @@ class JoinApplicationCreateView(CreateView):
             reply_to=join_application_reply_to,
             headers={'Message-ID': 'foss@amrita'},
         )
-        email.send()
+        email.send(fail_silently=False)
         to_address_list.remove(form.cleaned_data.get('email'))
         return valid_form
 
@@ -144,10 +156,8 @@ class JoinApplicationUpdateView(UpdateView):
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             return redirect('permission_denied')
-
         errors = None
         form = EmailForm(request.POST)
-
         if form.is_valid():
             # mail id of all the admins and the mail id from the form
             to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
@@ -282,7 +292,5 @@ class EmailAllApplicantsView(View):
                 bcc,
                 headers={'Message-ID': 'foss@amrita'},
             )
-
             email.send(fail_silently=True)
-
         return render(request, template_name, context)
