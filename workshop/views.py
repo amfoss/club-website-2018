@@ -6,7 +6,7 @@ from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 from django.forms.utils import ErrorList
 from django.urls import reverse
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, ListView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
@@ -32,13 +32,13 @@ class WorkshopDetailView(DetailView):
         return context
 
 
-class WorkshopRegisterView(CreateView):
+class WorkshopRegisterFormView(CreateView):
     form_class = WorkshopRegistrationForm
     template_name = 'base/form.html'
     success_url = '/workshop/success/'
 
     def get_context_data(self, **kwargs):
-        context = super(WorkshopRegisterView, self).get_context_data(**kwargs)
+        context = super(WorkshopRegisterFormView, self).get_context_data(**kwargs)
         context['heading'] = Workshop.objects.get(id=self.kwargs.get('workshop_id', None)).name
         return context
 
@@ -57,7 +57,7 @@ class WorkshopRegisterView(CreateView):
             ])
             return self.form_invalid(form)
 
-        valid_form = super(WorkshopRegisterView, self).form_valid(form)
+        valid_form = super(WorkshopRegisterFormView, self).form_valid(form)
 
         # generate urls
         list_url = ''.join(['http://', get_current_site(self.request).domain, reverse('join_list')])
@@ -100,3 +100,7 @@ class WorkshopRegisterView(CreateView):
         self.object.save()
 
         return valid_form
+
+
+class WorkshopRegistrationListView(ListView):
+    model = WorkshopRegistration
