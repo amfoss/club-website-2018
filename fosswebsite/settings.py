@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'promotion',
     'captcha',
     'timeline',
+    'workshop',
 ]
 
 MIDDLEWARE = [
