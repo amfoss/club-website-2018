@@ -14,3 +14,14 @@ class Workshop(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class WorkshopRegistration(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    roll_number = models.CharField(max_length=100)
+    batch = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name + ' ' + self.batch

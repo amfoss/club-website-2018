@@ -19,6 +19,7 @@ months = ["January", "February", "March", "April", "May", "June", "July", "Augus
 
 month_num = range(12)
 
+
 class UserSignUpView(CreateView):
     form_class = UserSignUpForm
     template_name = 'registration/signup.html'
@@ -93,6 +94,7 @@ class ProfileListView(ListView):
     model = UserInfo
     template_name = 'registration/profile_list.html'
     queryset = UserInfo.objects.order_by('user__first_name')
+
 
 class AddData(View):
 
