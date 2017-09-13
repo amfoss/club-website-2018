@@ -33,5 +33,8 @@ urlpatterns = [
     url(r'^documents/', include('documents.urls')),
     url(r'^project/', include('projects.urls')),
     url(r'^timeline/', include('timeline.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
-              + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^workshop/', include('workshop.urls')),
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
