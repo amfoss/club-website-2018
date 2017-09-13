@@ -30,10 +30,11 @@
                                 <p class="card-text">{{ object.overview }}</p>
                                 <p class="card-text">{{ object.course_details }}</p>
                                 <p class="card-text">{{ object.project }}</p>
+                                <p class="card-text">{{ object.other_info }}</p>
                                 <p class="card-text">{{ object.start_date_time }} to {{ object.end_date_time }}</p>
                                 <hr>
                                 <h5 class="card-text">Rs. {{ object.price }}</h5>
-                                <p><small>Pay the amount after registration at FOSS club, ground floor lab after 4:30pm
+                                <p><small>Register and pay the amount at FOSS club, ground floor lab after 4:30pm
                                  on or before {{ object.start_date_time }} Please make sure you pay the amount as soon
                                     as possible so that your seat gets confirmed.</small></p>
                                 <p><small>Contact: 8547801861, 7034890948, 703400210</small></p>
@@ -42,9 +43,20 @@
                                         seats remaining : {{ no_of_seats_left }}
                                     </small>
                                 </p>
+                                {% if seats_left %}
                                     <a href="{% url 'workshop_register' object.id %}">
                                         <button type="submit" class="btn btn-primary add-btn">Register now</button>
                                     </a>
+                                {% else %}
+                                    <a >
+                                        <button type="submit" class="btn add-btn">No seat left</button>
+                                    </a>
+                                    <p class="card-text">
+                                    <small class="text-muted">
+                                        <a href="{% url 'foss_intro' %}#seventh">Contact us</a> to check for more seats.
+                                    </small>
+                                </p>
+                                {% endif %}
                             </div>
                         </div>
 

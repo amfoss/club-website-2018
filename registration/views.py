@@ -35,6 +35,8 @@ def login(request,  *args, **kwargs):  # view to handle remember me and login
     if request.method == 'POST':
         if not request.POST.get('remember_me'):
             request.session.set_expiry(0)
+        else:
+            request.session.set_expiry(1000)
     if request.method == 'GET' and request.user.is_authenticated:
         return redirect('already_logged_in')
     return auth_views.login(request, *args, **kwargs)
@@ -123,7 +125,7 @@ class AddData(View):
             for i in range(12):
                 if months[i] == month:
                     month = i+1
-            dates =  datetime.date(year=int(year), month=month, day=1)
+            dates = datetime.date(year=int(year), month=month, day=1)
 
             if User.objects.filter(first_name=name).exists():
                 user = User.objects.get(username=name)

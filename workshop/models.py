@@ -8,8 +8,9 @@ class Workshop(models.Model):
     name = models.CharField(max_length=500)
     user = models.ForeignKey(User)
     overview = models.TextField()
-    course_details = models.TextField()
-    project = models.TextField()
+    course_details = models.TextField(blank=True)
+    project = models.TextField(blank=True)
+    other_info = models.TextField(blank=True)
     level = models.CharField(blank=True, max_length=100)
     number_of_seats = models.IntegerField()
     poster = models.ImageField(upload_to='workshop/poster/', null=True, blank=True)
@@ -22,7 +23,7 @@ class Workshop(models.Model):
 
 
 class WorkshopRegistration(models.Model):
-    workshop = models.ForeignKey(Workshop)
+    workshop = models.ForeignKey(Workshop, blank=True, null=True)
     name = models.CharField(max_length=200)
     email = models.EmailField()
     roll_number = models.CharField(max_length=100)
