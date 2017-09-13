@@ -25,8 +25,9 @@ class WorkshopDetailView(DetailView):
         print(len(registrations))
         no_of_seats_left = self.get_object().number_of_seats - len(registrations)
         context['seats_left'] = True
-        if no_of_seats_left == 0:
+        if no_of_seats_left <= 0:
             context['seats_left'] = False
+            no_of_seats_left = 0
         context['no_of_seats_left'] = no_of_seats_left
         return context
 
@@ -34,7 +35,7 @@ class WorkshopDetailView(DetailView):
 class WorkshopRegisterView(CreateView):
     form_class = WorkshopRegistrationForm
     template_name = 'base/form.html'
-    success_url = '/'
+    success_url = '/workshop/success/'
 
     def get_context_data(self, **kwargs):
         context = super(WorkshopRegisterView, self).get_context_data(**kwargs)
@@ -72,13 +73,14 @@ class WorkshopRegisterView(CreateView):
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
 
         mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
-                       "Great to know that you are interested in " + workshop.name + " workshop conducted by" \
+                       "Great to know that you are interested in '" + workshop.name + "' workshop conducted by" \
                        "FOSS@Amrita. We got your application and it's being processed. " + \
                        "We will get back to you once your payment process is is complete.\n\n" \
                        "Please pay Rs" + str(workshop.price) + " at FOSS club, ground floor lab after 4:30pm on or " + \
-                       "before " + str(workshop.start_date_time.date) + " or contact us at 8547801861, 7034890948, " + \
-                       "703400210 during breaks. \n\nNote: Payment has to completed before the last date." + \
-                       "You should show the confirmation e-mail to attend the workshop. \n\nThank you, \n\nFOSS@Amrita"
+                       "before " + str(workshop.start_date_time.date()) + " or contact us at " + \
+                       "8547801861, 7034890948, 703400210 during breaks. \n\nNote: Payment has to completed " + \
+                       "before the last date. You should show the confirmation e-mail to attend the workshop." + \
+                       " \n\nThank you, \n\nFOSS@Amrita"
 
         to_address_list = join_application_reply_to
         to_address_list.append(form.cleaned_data.get('email'))
