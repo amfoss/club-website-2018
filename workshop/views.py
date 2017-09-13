@@ -5,8 +5,9 @@ from django.contrib.auth.models import User
 from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 from django.forms.utils import ErrorList
+from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import DetailView, CreateView, ListView
+from django.views.generic import DetailView, CreateView, ListView, UpdateView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
@@ -106,8 +107,39 @@ class WorkshopRegistrationListView(ListView):
     model = WorkshopRegistration
 
     def get_context_data(self, **kwargs):
+        paid = str(self.request.GET.get('paid', None))
         workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
         context = super(WorkshopRegistrationListView, self).get_context_data(**kwargs)
-        context['object'] = WorkshopRegistration.objects.filter(workshop=workshop)
+        if paid == 'True':
+            context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, paid=True)
+        elif paid == 'False':
+            context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, paid=False)
+        else:
+            context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop)
+        context['workshop_id'] = workshop.id
         return context
 
+
+class WorkshopRegistrationUpdateView(UpdateView):
+    model = WorkshopRegistration
+
+    def post(self, request, *args, **kwargs):
+        workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
+        workshop_registration_list = WorkshopRegistration.objects.filter(workshop=workshop)
+        for workshop_registration in workshop_registration_list:
+            workshop_registration.paid = False
+            workshop_registration.save()
+        for key, value in request.POST.items():
+            try:
+                workshop_registration_id = int(key)
+            except ValueError as verr:
+                workshop_registration_id = None  # do job to handle: s does not contain anything convertible to int
+            except Exception as ex:
+                workshop_registration_id = None  # do job to handle: Exception occurred while converting to int
+
+            if workshop_registration_id and value == 'on':
+                workshop_registration = WorkshopRegistration.objects.get(id=workshop_registration_id)
+                workshop_registration.paid = True
+                workshop_registration.save()
+
+        return redirect(reverse('workshop_list', kwargs={'workshop_id': kwargs.get('workshop_id', None)}))

@@ -15,7 +15,7 @@
                         <h1 id="page-header">Workshop registration</h1>
                     </div>
                     <div class="col-md-12 table-responsive">
-                    <form action="" method="POST">
+                    <form id="myform" action="{% url 'workshop_update' workshop_id %}" method="POST">
                     {% csrf_token %}
                         <table class="table table-bordered table-hover">
                             <thead class="thead-default">
@@ -38,7 +38,7 @@
                                     <td>{{ object.roll_number }}</td>
                                     <td>{{ object.phone_number }}</td>
                                     <td>
-                                        <input type="checkbox" value="object.id" {% if object.paid %}checked{% endif %}>
+                                        <input type="checkbox" name="{{ object.id }}" {% if object.paid %}checked{% endif %}>
                                         {% if object.paid %}Yes{% endif %}
                                     </td>
                                 </tr>
@@ -46,9 +46,20 @@
                             </tbody>
                         </table>
 
-                         <input type="submit" class="btn btn-primary" value="Save">
+
+
 
                     </form>
+                    <input type="submit"  form="myform" class="btn btn-primary" value="Save">
+                    <a href="{% url 'workshop_list' workshop_id %}?paid=True">
+                        <button id="approve" class="btn btn-success card-link">Paid only</button>
+                    </a>
+                    <a href="{% url 'workshop_list' workshop_id %}?paid=False">
+                        <button id="reject" class="btn btn-danger card-link">Unpaid only</button>
+                    </a>
+                    <a href="{% url 'workshop_list' workshop_id %}">
+                        <button id="reject" class="btn btn-primary card-link">All</button>
+                    </a>
                     </div>
                 </div>
             </div>
