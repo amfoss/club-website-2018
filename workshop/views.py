@@ -104,3 +104,10 @@ class WorkshopRegisterFormView(CreateView):
 
 class WorkshopRegistrationListView(ListView):
     model = WorkshopRegistration
+
+    def get_context_data(self, **kwargs):
+        workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
+        context = super(WorkshopRegistrationListView, self).get_context_data(**kwargs)
+        context['object'] = WorkshopRegistration.objects.filter(workshop=workshop)
+        return context
+
