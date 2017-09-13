@@ -61,7 +61,8 @@ class WorkshopRegisterFormView(CreateView):
         valid_form = super(WorkshopRegisterFormView, self).form_valid(form)
 
         # generate urls
-        list_url = ''.join(['http://', get_current_site(self.request).domain, reverse('join_list')])
+        list_url = ''.join(['http://', get_current_site(self.request).domain,
+                            reverse('workshop_list', kwargs={'workshop_id': workshop.id})])
 
         # mail data
         subject = 'Registration for ' + workshop.name + ' - ' + form.cleaned_data.get('name')
@@ -116,6 +117,7 @@ class WorkshopRegistrationListView(ListView):
             context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, paid=False)
         else:
             context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop)
+        context['object_list'] = context['object_list'].order_by('-date')
         context['workshop_id'] = workshop.id
         return context
 

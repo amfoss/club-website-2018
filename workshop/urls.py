@@ -3,11 +3,12 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 
-from workshop.views import WorkshopRegistrationListView, WorkshopDetailView, WorkshopRegistrationUpdateView
+from workshop.views import WorkshopRegistrationListView, WorkshopDetailView, WorkshopRegistrationUpdateView, \
+    WorkshopRegisterFormView
 
 urlpatterns = [
     url(r'^(?P<workshop_id>[0-9]+)/$', WorkshopDetailView.as_view(), name='workshop_detail'),
-    url(r'^(?P<workshop_id>[0-9]+)/register/$', WorkshopRegistrationListView.as_view(), name='workshop_register'),
+    url(r'^(?P<workshop_id>[0-9]+)/register/$', WorkshopRegisterFormView.as_view(), name='workshop_register'),
     url(r'^(?P<workshop_id>[0-9]+)/register/list/$',
         login_required(WorkshopRegistrationListView.as_view()), name='workshop_list'),
     url(r'^(?P<workshop_id>[0-9]+)/register/update/$',
