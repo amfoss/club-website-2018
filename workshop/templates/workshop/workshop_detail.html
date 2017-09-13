@@ -1,0 +1,182 @@
+<!-- Created by Navaneeth S, navisk13@gmail.com -->
+{% extends 'base/base.html' %}
+
+{% block title %} {{ object.name }} {% endblock %}
+
+{% load static %}
+
+{% block script %}
+    <!-- Latest compiled and minified JavaScript -->
+{% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+
+            <div class="container">
+                <div class="row">
+                    <h1 class="head col-md-12">{{ object.name }}</h1>
+                    <div class="col-md-12">
+                        <div class="card mb-3">
+                            {% if object.poster %}
+                                <img class="card-img-top img-fluid" src="{% static 'workshop/default.png' %}">
+                            {% else %}
+                                <img class="card-img-top img-fluid" src="{% static 'workshop/default.png' %}">
+                            {% endif %}
+                            <div class="card-block">
+                                <h4 class="card-title">{{ object.name }}</h4>
+                                <p class="card-text">{{ object.overview }}</p>
+                                <p class="card-text">{{ object.course_details }}</p>
+                                <p class="card-text">{{ object.project }}</p>
+                                <p class="card-text">{{ object.start_date_time }} to {{ object.end_date_time }}</p>
+                                <hr>
+                                <h5 class="card-text">Rs. {{ object.price }}</h5>
+                                <p><small>Pay the amount after registration at FOSS club, ground floor lab after 4:30pm
+                                 on or before {{ object.start_date_time }} Please make sure you pay the amount as soon
+                                    as possible so that your seat gets confirmed.</small></p>
+                                <p><small>Contact: 8547801861, 7034890948, 703400210</small></p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        seats remaining : {{ no_of_seats_left }}
+                                    </small>
+                                </p>
+                                    <a href="{% url 'workshop_register' object.id %}">
+                                        <button type="submit" class="btn btn-primary add-btn">Register now</button>
+                                    </a>
+                            </div>
+                        </div>
+
+{#                        <div class="card student-form" id="student-form" style="display: none">#}
+{#                            <div class="card-block">#}
+{#                                <form class="form-group col-md-6" action="" method="post">#}
+{#                                    {% csrf_token %}#}
+{#                                    <label for="exampleInputEmail1"><h4>Add Student</h4></label>#}
+{#                                    <div class="dropdown">#}
+{#                                        <input id="search" onkeyup="myFunction()" class="form-control"#}
+{#                                               data-toggle="dropdown" placeholder="Search..." autocomplete="off">#}
+{#                                        <input type="hidden" id="search-id" name="user_id">#}
+{#                                        <div class="dropdown-menu" id="search-results">#}
+{#                                            {% for user in all_users %}#}
+{#                                                <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"#}
+{#                                                   class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>#}
+{#                                            {% endfor %}#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <small id="emailHelp" class="form-text text-muted">Search for a student above.#}
+{#                                    </small>#}
+{#                                    <button type="submit" class="btn btn-secondary add-btn">Add</button>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                        </div>#}
+                    </div>
+{##}
+{#                    <ul class="list-group col-md-4">#}
+{#                            <div class="margin-20"></div>#}
+{#                            <li class="list-group-item justify-content-between">#}
+{#                                <h5>Project members</h5>#}
+{#                                <span class="badge badge-default badge-pill">{{ user_count }}</span>#}
+{#                              </li>#}
+{#                            {% for project in project_list %}#}
+{#                              <li class="list-group-item justify-content-between">#}
+{#                                {{ project.user.first_name }}  {{ project.user.last_name }}#}
+{#                                  <form method="post" action="{% url "project_member_delete" project.id %}">#}
+{#                                       {% csrf_token %}#}
+{#                                      <button type="submit" class="close">×</button>#}
+{#                                  </form>#}
+{#                              </li>#}
+{#                            {% endfor %}#}
+{#                            {% if edit_permission %}#}
+{#                            <div onclick="showForm()" class="col-md-1 offset-md-3">#}
+{#                                <button class="btn btn-secondary add-btn">#}
+{#                                    Add student#}
+{#                                </button>#}
+{#                            </div>#}
+{#                            {% endif %}#}
+{#                            <li style="margin-top: 20px " class="list-group-item justify-content-between">#}
+{#                                <h5>Languages & Frameworks</h5>#}
+{#                            </li>#}
+{#                                {% for i in languages %}#}
+{##}
+{#                                <li class="list-group-item justify-content-between">#}
+{#                                <h6>{{ i.language }}</h6><br>#}
+{#                                <form method="post" action="{% url "language_delete" i.id %}">#}
+{#                                       {% csrf_token %}#}
+{#                                      <button type="submit" class="close">×</button>#}
+{#                                </form>#}
+{#                                {% endfor %}#}
+{#                                </li>#}
+{#                            <div class="col-md-6 offset-md-3">#}
+{#                                <a href="{% url 'language_create' object.id %}"><button class="btn btn-secondary add-btn">Add Language</button></a>#}
+{#                            </div>#}
+{#                    </ul>#}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+    <style>
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .add-btn {
+            margin-top: 20px;
+        }
+
+        .margin-20 {
+            margin: 24px;
+        }
+
+        .head {
+            margin: 30px 0;
+        }
+
+        .link {
+            text-decoration: none !important;
+            color:black;
+        }
+    </style>
+
+    <script>
+        function showForm() {
+            var form = document.getElementById('student-form');
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+            }
+            else {
+                form.style.display = 'none';
+            }
+        }
+
+        function myFunction() {
+            // Declare variables
+            var input, filter, items, i;
+            input = document.getElementById('search');
+            filter = input.value.toUpperCase();
+            items = document.getElementsByClassName('dropdown-item');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < items.length; i++) {
+                if (items[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        function addText(id, name) {
+            var inp1 = document.getElementById('search');
+            var inp2 = document.getElementById('search-id');
+            inp1.value = name;
+            inp2.value = id;
+        }
+    </script>
+{% endblock %}
+

@@ -15,6 +15,7 @@ class Workshop(models.Model):
     poster = models.ImageField(upload_to='workshop/poster/', null=True, blank=True)
     start_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
     end_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
+    price = models.FloatField(default=0)
 
     def __str__(self):
         return self.name
