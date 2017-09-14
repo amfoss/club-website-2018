@@ -4,9 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 
 from workshop.views import WorkshopRegistrationListView, WorkshopDetailView, WorkshopRegistrationUpdateView, \
-    WorkshopRegisterFormView
+    WorkshopRegisterFormView, WorkshopListView
 
 urlpatterns = [
+    url(r'^$', WorkshopListView.as_view(), name='workshop'),
     url(r'^(?P<workshop_id>[0-9]+)/$', WorkshopDetailView.as_view(), name='workshop_detail'),
     url(r'^(?P<workshop_id>[0-9]+)/register/$', WorkshopRegisterFormView.as_view(), name='workshop_register'),
     url(r'^(?P<workshop_id>[0-9]+)/register/list/$',

@@ -25,7 +25,9 @@
                                 <th>Batch</th>
                                 <th>Roll number</th>
                                 <th>Phone</th>
-                                <th>Paid</th>
+                                <th>Course</th>
+                                <th>hostel_details</th>
+                                <th>course, section</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -37,6 +39,8 @@
                                     <td>{{ object.batch }}</td>
                                     <td>{{ object.roll_number }}</td>
                                     <td>{{ object.phone_number }}</td>
+                                    <td>{{ object.hostel_details }}</td>
+                                    <td>{{ object.course }} {{ object.section }}</td>
                                     <td>
                                         <input type="checkbox" name="{{ object.id }}" {% if object.paid %}checked{% endif %}>
                                         {% if object.paid %}Yes{% endif %}

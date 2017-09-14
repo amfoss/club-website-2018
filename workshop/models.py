@@ -28,6 +28,9 @@ class WorkshopRegistration(models.Model):
     batch = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=50)
     paid = models.BooleanField(default=False)
+    hostel_details = models.CharField(max_length=200, blank=True)
+    course = models.CharField(max_length=50, blank=True)
+    section = models.CharField(max_length=50, blank=True)
     date = models.DateTimeField(auto_now=False, auto_now_add=True)
 
     def __str__(self):

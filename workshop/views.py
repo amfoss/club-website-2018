@@ -145,3 +145,7 @@ class WorkshopRegistrationUpdateView(UpdateView):
                 workshop_registration.save()
 
         return redirect(reverse('workshop_list', kwargs={'workshop_id': kwargs.get('workshop_id', None)}))
+
+
+class WorkshopListView(ListView):
+    model = Workshop

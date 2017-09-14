@@ -30,6 +30,15 @@ class WorkshopRegistrationForm(forms.ModelForm):
     phone_number = forms.CharField(label="Phone number", help_text='Enter your phone number',
                                    widget=forms.TextInput(attrs={'placeholder': '+911234567890'}))
 
+    hostel_details = forms.CharField(label="Hostel details", help_text='Hostel name and Room number',
+                                     widget=forms.TextInput(attrs={'placeholder': 'Nila hostel, 305'}))
+
+    course = forms.CharField(label="Course", help_text='Enter your course',
+                             widget=forms.TextInput(attrs={'placeholder': 'CSE, ECE, EEE, MEC....'}))
+
+    section = forms.CharField(label="Section", help_text='Enter your class section',
+                              widget=forms.TextInput(attrs={'placeholder': 'A, B or C..'}))
+
     captcha = ReCaptchaField(attrs={
         'theme': 'clean',
     })
@@ -41,4 +50,4 @@ class WorkshopRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = WorkshopRegistration
-        fields = ['name', 'email', 'batch', 'roll_number', 'phone_number']
+        fields = ['name', 'email', 'batch', 'roll_number', 'phone_number', 'hostel_details', 'course', 'section']
