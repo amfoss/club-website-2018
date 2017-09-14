@@ -72,7 +72,7 @@ class WorkshopRegisterFormView(CreateView):
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
 
         # sent mail when application is submitted
-        send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
+        # send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
 
         mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
                        "Great to know that you are interested in '" + workshop.name + "' workshop conducted by" \
