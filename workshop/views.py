@@ -61,15 +61,15 @@ class WorkshopRegisterFormView(CreateView):
         valid_form = super(WorkshopRegisterFormView, self).form_valid(form)
 
         # generate urls
-        list_url = ''.join(['http://', get_current_site(self.request).domain,
-                            reverse('workshop_list', kwargs={'workshop_id': workshop.id})])
-
-        # mail data
-        subject = 'Registration for ' + workshop.name + ' - ' + form.cleaned_data.get('name')
-        content = form.cleaned_data.get('name') + ' registered for ' + workshop.name + ' at ' + \
-                  str(datetime.datetime.now()) + '. \n\nPlease visit ' + list_url + ' for more details.'
-
-        to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
+        # list_url = ''.join(['http://', get_current_site(self.request).domain,
+        #                     reverse('workshop_list', kwargs={'workshop_id': workshop.id})])
+        #
+        # # mail data
+        # subject = 'Registration for ' + workshop.name + ' - ' + form.cleaned_data.get('name')
+        # content = form.cleaned_data.get('name') + ' registered for ' + workshop.name + ' at ' + \
+        #           str(datetime.datetime.now()) + '. \n\nPlease visit ' + list_url + ' for more details.'
+        #
+        # to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
 
         # sent mail when application is submitted
         # send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
@@ -84,8 +84,7 @@ class WorkshopRegisterFormView(CreateView):
                        "before the last date. You should show the confirmation e-mail to attend the workshop." + \
                        " \n\nThank you, \n\nFOSS@Amrita"
 
-        to_address_list = join_application_reply_to
-        to_address_list.append(form.cleaned_data.get('email'))
+        to_address_list = ['chirath.02@gmail.com', form.cleaned_data.get('email')]
         email = EmailMessage(
             workshop.name + ' registartion',
             mail_content,

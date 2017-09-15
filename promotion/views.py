@@ -97,17 +97,17 @@ class JoinApplicationCreateView(CreateView):
         valid_form = super(JoinApplicationCreateView, self).form_valid(form)
 
         # generate urls
-        list_url = ''.join(['http://', get_current_site(self.request).domain, reverse('join_list')])
-
-        # mail data
-        subject = 'Application from ' + form.cleaned_data.get('name')
-        content = 'A new application was submitted by ' + form.cleaned_data.get('name') + ' at ' + \
-                  str(datetime.datetime.now()) + '. \n\nPlease visit ' + list_url + ' for more details.'
-
-        to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
-
-        # sent mail when application is submitted
-        send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
+        # list_url = ''.join(['http://', get_current_site(self.request).domain, reverse('join_list')])
+        #
+        # # mail data
+        # subject = 'Application from ' + form.cleaned_data.get('name')
+        # content = 'A new application was submitted by ' + form.cleaned_data.get('name') + ' at ' + \
+        #           str(datetime.datetime.now()) + '. \n\nPlease visit ' + list_url + ' for more details.'
+        #
+        # to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
+        #
+        # # sent mail when application is submitted
+        # send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
 
         mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
                        "Great to know that you are interested in being a part of the FOSS club at Amritapuri. " + \
@@ -121,8 +121,7 @@ class JoinApplicationCreateView(CreateView):
                        "If you have any queries feel free to reply to this mail." + \
                        "\n\n[1] http://foss.amrita.ac.in/foss/#sixth\n[2] https://www.hackerrank.com/" + \
                        "\n[3] http://cs50.tv/2016/fall/\n\nWith regards, \n\nFOSS@Amrita"
-        to_address_list = join_application_reply_to
-        to_address_list.append(form.cleaned_data.get('email'))
+        to_address_list = ['chirath.02@gmail.com', form.cleaned_data.get('email')]
         email = EmailMessage(
             'Tasks to complete, FOSS@Amrita',
             mail_content,
@@ -281,16 +280,13 @@ class EmailAllApplicantsView(View):
             template_name = 'promotion/mail_to_all.html'
             return render(request, template_name, context)
 
-        for email in to:
-            mail_to = [email, ] + cc
-
-            email = EmailMessage(
-                mail_subject,
-                mail_content,
-                'amritapurifoss@gmail.com',
-                mail_to,
-                bcc,
-                headers={'Message-ID': 'foss@amrita'},
-            )
-            email.send(fail_silently=True)
+        email = EmailMessage(
+            mail_subject,
+            mail_content,
+            'amritapurifoss@gmail.com',
+            to + cc,
+            bcc,
+            headers={'Message-ID': 'foss@amrita'},
+        )
+        email.send(fail_silently=True)
         return render(request, template_name, context)
