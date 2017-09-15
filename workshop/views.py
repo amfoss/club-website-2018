@@ -7,13 +7,14 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.forms.utils import ErrorList
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.views import View
 from django.views.generic import DetailView, CreateView, ListView, UpdateView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
 from workshop.forms import WorkshopRegistrationForm
-from workshop.models import Workshop, WorkshopRegistration
+from workshop.models import Workshop, WorkshopRegistration, WorkshopGallery
 
 
 class WorkshopDetailView(DetailView):
@@ -148,3 +149,9 @@ class WorkshopRegistrationUpdateView(UpdateView):
 
 class WorkshopListView(ListView):
     model = Workshop
+#
+#
+# class WorkshopGalleryView(View):
+#     model = WorkshopGallery
+#
+#

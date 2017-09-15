@@ -35,3 +35,12 @@ class WorkshopRegistration(models.Model):
 
     def __str__(self):
         return self.name + ' ' + self.batch
+
+
+class WorkshopGallery(models.Model):
+    workshop = models.ForeignKey(Workshop)
+    image = models.ImageField(upload_to='workshop/images/')
+    date = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+    def __str__(self):
+        return self.workshop.name
