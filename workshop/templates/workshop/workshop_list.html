@@ -1,0 +1,3 @@
+{% for workshop in object_list %}
+    <a href="{% url 'workshop_detail' workshop.id %}">{{ workshop.name }}</a>
+{% endfor %}

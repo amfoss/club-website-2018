@@ -19,6 +19,7 @@ months = ["January", "February", "March", "April", "May", "June", "July", "Augus
 
 month_num = range(12)
 
+
 class UserSignUpView(CreateView):
     form_class = UserSignUpForm
     template_name = 'registration/signup.html'
@@ -34,6 +35,8 @@ def login(request,  *args, **kwargs):  # view to handle remember me and login
     if request.method == 'POST':
         if not request.POST.get('remember_me'):
             request.session.set_expiry(0)
+        else:
+            request.session.set_expiry(1000)
     if request.method == 'GET' and request.user.is_authenticated:
         return redirect('already_logged_in')
     return auth_views.login(request, *args, **kwargs)
@@ -94,6 +97,7 @@ class ProfileListView(ListView):
     template_name = 'registration/profile_list.html'
     queryset = UserInfo.objects.order_by('user__first_name')
 
+
 class AddData(View):
 
     def get(self, request, **kwargs):
@@ -121,7 +125,7 @@ class AddData(View):
             for i in range(12):
                 if months[i] == month:
                     month = i+1
-            dates =  datetime.date(year=int(year), month=month, day=1)
+            dates = datetime.date(year=int(year), month=month, day=1)
 
             if User.objects.filter(first_name=name).exists():
                 user = User.objects.get(username=name)

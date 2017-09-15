@@ -1,0 +1,158 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Workshop registrations {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+
+    <div id="wrap">
+
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 id="page-header">Workshop registration</h1>
+                    </div>
+                    <div class="col-md-12 table-responsive">
+                    <form id="myform" action="{% url 'workshop_update' workshop_id %}" method="POST">
+                    {% csrf_token %}
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-default">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Batch</th>
+                                <th>Roll number</th>
+                                <th>Phone</th>
+                                <th>Course</th>
+                                <th>hostel_details</th>
+                                <th>course, section</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for object in object_list %}
+                                <tr class="click"
+                                    onclick="">
+                                    <th scope="row">{{ object.name }}</th>
+                                    <td>{{ object.email }}</td>
+                                    <td>{{ object.batch }}</td>
+                                    <td>{{ object.roll_number }}</td>
+                                    <td>{{ object.phone_number }}</td>
+                                    <td>{{ object.hostel_details }}</td>
+                                    <td>{{ object.course }} {{ object.section }}</td>
+                                    <td>
+                                        <input type="checkbox" name="{{ object.id }}" {% if object.paid %}checked{% endif %}>
+                                        {% if object.paid %}Yes{% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </form>
+                    <input type="submit"  form="myform" class="btn btn-primary" value="Save">
+                    <a href="{% url 'workshop_list' workshop_id %}?paid=True">
+                        <button id="approve" class="btn btn-success card-link">Paid only</button>
+                    </a>
+                    <a href="{% url 'workshop_list' workshop_id %}?paid=False">
+                        <button id="reject" class="btn btn-danger card-link">Unpaid only</button>
+                    </a>
+                    <a href="{% url 'workshop_list' workshop_id %}">
+                        <button id="reject" class="btn btn-primary card-link">All</button>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block css %}
+
+    <style>
+        #page-header {
+            margin: 30px;
+            text-align: center;
+        }
+
+        .container-fluid {
+            margin: 0 6%;
+        }
+
+        .click {
+            cursor: pointer;
+        }
+
+        .buttons {
+            margin-left: 800px;
+        }
+
+        body {
+            font-family: Tahoma, Geneva, sans-serif;
+            font-size: 14px;
+        }
+
+        .dropbtn {
+            padding: 10px 16px;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+            outline: none;
+            font-family: inherit;
+            color: #ffffff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+
+        .dropbtn:hover, .dropbtn:focus {
+            color: #ffffff;
+            background-color: #286090;
+            border-color: #204d74;
+        }
+
+        .dropdown {
+            position: inherit;
+            display: inline-block;
+            margin-left: 0px;
+
+        }
+
+        .dropdown-content {
+            display: none;
+            position: inherit;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            border: 1px solid #DCDCDC;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: #424242;
+            padding: 6px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .empty {
+            display: block;
+            border-bottom: 1px solid #ccc;
+            padding: 0;
+            line-height: 0;
+        }
+
+        .dropdown a:hover {
+            background-color: #f1f1f1
+        }
+
+        .show {
+            display: block;
+        }
+
+    </style>
+{% endblock %}
+

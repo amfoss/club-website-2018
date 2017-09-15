@@ -1,0 +1,105 @@
+<!-- Created by Navaneeth S, navisk13@gmail.com -->
+{% extends 'base/base.html' %}
+
+{% block title %} {{ object.name }} {% endblock %}
+
+{% load static %}
+
+{% block script %}
+    <!-- Latest compiled and minified JavaScript -->
+{% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+
+            <div class="container">
+                <div class="row">
+                    <h1 class="head col-md-12">{{ object.name }}</h1>
+                    <div class="col-md-12">
+                        <div class="card mb-3">
+                            {% if object.poster %}
+                                <img class="card-img-top img-fluid" src="/static/media/{{ object.poster }}">
+                            {% else %}
+                                <img class="card-img-top img-fluid" src="{% static 'workshop/default.png' %}">
+                            {% endif %}
+                            <div class="card-block">
+                                <h4 class="card-title">{{ object.name }}</h4>
+                                <p class="card-text">{{ object.overview }}</p>
+                                <p class="card-text">{{ object.course_details }}</p>
+                                <p class="card-text">{{ object.project }}</p>
+                                <p class="card-text">{{ object.other_info }}</p>
+                                <p class="card-text">{{ object.start_date_time }} to {{ object.end_date_time }}</p>
+                                <hr>
+                                <h5 class="card-text">Rs. {{ object.price }}</h5>
+                                <p>
+                                    <small>Register and pay the amount at FOSS club, ground floor lab after 4:30pm
+                                        on or before {{ object.start_date_time }} Please make sure you pay the amount as
+                                        soon as possible so that your seat gets confirmed.
+                                    </small>
+                                </p>
+                                <p>
+                                    <small>Contact: 8547801861, 7034890948, 703400210</small>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        seats remaining : {{ no_of_seats_left }}
+                                    </small>
+                                </p>
+                                {% if seats_left %}
+                                    <a href="{% url 'workshop_register' object.id %}">
+                                        <button type="submit" class="btn btn-primary add-btn">Register now</button>
+                                    </a>
+                                {% else %}
+                                    <a>
+                                        <button type="submit" class="btn add-btn">No seat left</button>
+                                    </a>
+                                    <p class="card-text">
+                                        <small class="text-muted">
+                                            <a href="{% url 'foss_intro' %}#seventh">Contact us</a> to check for more
+                                            seats.
+                                        </small>
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+    <style>
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .add-btn {
+            margin-top: 20px;
+        }
+
+        .margin-20 {
+            margin: 24px;
+        }
+
+        .head {
+            margin: 30px 0;
+        }
+
+        .link {
+            text-decoration: none !important;
+            color: black;
+        }
+    </style>
+
+
+{% endblock %}
+
