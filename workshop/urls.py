@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 
 from workshop.views import WorkshopRegistrationListView, WorkshopDetailView, WorkshopRegistrationUpdateView, \
-    WorkshopRegisterFormView, WorkshopListView, WorkshopFeedbackCreateView
+    WorkshopRegisterFormView, WorkshopListView, WorkshopFeedbackCreateView, WorkshopGalleryCreateView, \
+    WorkshopGalleryListView, WorkshopGalleryDeleteView
 
 urlpatterns = [
     url(r'^$', WorkshopListView.as_view(), name='workshop'),
@@ -17,7 +18,10 @@ urlpatterns = [
     url(r'^success/$',
         TemplateView.as_view(template_name='workshop/success.html'), name='workshop_registration_success'),
     url(r'^(?P<workshop_id>[0-9]+)/feedback/$', WorkshopFeedbackCreateView.as_view(), name='workshop_feedback'),
-url(r'^feedback/success/$',
+    url(r'^feedback/success/$',
         TemplateView.as_view(template_name='workshop/success_feedback.html'), name='feedback_success'),
+    url(r'^(?P<pk>[0-9]+)/add-image/$', login_required(WorkshopGalleryCreateView.as_view()), name='image_create'),
+    url(r'^(?P<pk>[0-9]+)/gallery/$', WorkshopGalleryListView.as_view(), name='image_list'),
+    url(r'^image/(?P<pk>[0-9]+)/delete/$', login_required(WorkshopGalleryDeleteView.as_view()), name='image_delete'),
 ]
 
