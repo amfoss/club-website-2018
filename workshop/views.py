@@ -149,6 +149,17 @@ class WorkshopRegistrationUpdateView(UpdateView):
 
 class WorkshopListView(ListView):
     model = Workshop
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopListView, self).get_context_data(**kwargs)
+        workshop = Workshop.objects.all()
+        workshops = []
+        for i in workshop:
+            reg = WorkshopRegistration.objects.filter(workshop=i)
+            workshops.append([i, i.number_of_seats - len(reg)])
+
+        context['workshops'] = workshops
+        return context
 #
 #
 # class WorkshopGalleryView(View):
