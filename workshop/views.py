@@ -31,6 +31,8 @@ class WorkshopDetailView(DetailView):
             context['seats_left'] = False
             no_of_seats_left = 0
         context['no_of_seats_left'] = no_of_seats_left
+        feedback = WorkshopFeedback.objects.filter(workshop=self.get_object())
+        context['feedback'] = feedback
         return context
 
 
