@@ -8,7 +8,7 @@ from django.forms.utils import ErrorList
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views import View
-from django.views.generic import DetailView, CreateView, ListView, UpdateView
+from django.views.generic import DetailView, CreateView, ListView, UpdateView, DeleteView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
@@ -169,10 +169,41 @@ class WorkshopFeedbackCreateView(CreateView):
         return valid_form
 
 
+class WorkshopGalleryListView(ListView):
+    model = WorkshopGallery
 
-#
-#
-# class WorkshopGalleryView(View):
-#     model = WorkshopGallery
-#
-#
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopGalleryListView, self).get_context_data(**kwargs)
+        context['id'] = self.kwargs['pk']
+        return context
+
+
+class WorkshopGalleryCreateView(CreateView):
+    model = WorkshopGallery
+    fields = ['workshop', 'image']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        response = super(WorkshopGalleryCreateView, self).form_valid(form)
+        return response
+
+    def post(self, request, *args, **kwargs):
+        workshop = Workshop.objects.get(id=self.kwargs['pk'])
+        image = request.FILES.get('image')
+        WorkshopGallery(workshop=workshop, image=image).save()
+        return redirect('image_list', self.kwargs['pk'])
+
+
+class WorkshopGalleryDeleteView(DeleteView):
+    model = WorkshopGallery
+
+    def get_success_url(self):
+        return reverse('image_list', kwargs={'pk': self.object.workshop.id})
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(WorkshopGalleryDeleteView, self).post(request, *args, **kwargs)
+
+
+
