@@ -47,7 +47,7 @@ class WorkshopGallery(models.Model):
 
 
 class WorkshopFeedback(models.Model):
-    workshop = models.ForeignKey(Workshop)
+    workshop = models.ForeignKey(Workshop, null=True)
     name = models.CharField(max_length=100, blank=True)
     comment = models.CharField(max_length=100)
 
