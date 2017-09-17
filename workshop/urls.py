@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 
 from workshop.views import WorkshopRegistrationListView, WorkshopDetailView, WorkshopRegistrationUpdateView, \
-    WorkshopRegisterFormView, WorkshopListView
+    WorkshopRegisterFormView, WorkshopListView, WorkshopFeedbackCreateView
 
 urlpatterns = [
     url(r'^$', WorkshopListView.as_view(), name='workshop'),
@@ -16,5 +16,8 @@ urlpatterns = [
         login_required(WorkshopRegistrationUpdateView.as_view()), name='workshop_update'),
     url(r'^success/$',
         TemplateView.as_view(template_name='workshop/success.html'), name='workshop_registration_success'),
+    url(r'^(?P<workshop_id>[0-9]+)/feedback/$', WorkshopFeedbackCreateView.as_view(), name='workshop_feedback'),
+url(r'^feedback/success/$',
+        TemplateView.as_view(template_name='workshop/success_feedback.html'), name='feedback_success'),
 ]
 

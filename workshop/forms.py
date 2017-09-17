@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from captcha.fields import ReCaptchaField
 from django import forms
 
-from workshop.models import WorkshopRegistration
+from workshop.models import WorkshopRegistration, WorkshopFeedback
 
 batch_choices = (
     ('1st year', '1st year'),
@@ -51,3 +51,20 @@ class WorkshopRegistrationForm(forms.ModelForm):
     class Meta:
         model = WorkshopRegistration
         fields = ['name', 'email', 'batch', 'roll_number', 'phone_number', 'hostel_details', 'course', 'section']
+
+
+class FeedbackForm(forms.ModelForm):
+    name = forms.CharField(label='Name', help_text="Enter your full name",
+                           widget=forms.TextInput(attrs={'placeholder': 'Full name'}), required=False)
+
+    comment = forms.CharField(label="Feedback", help_text='What did you feel about the workshop?',
+                              widget=forms.Textarea(attrs={'placeholder': 'feedback'}))
+
+    def __init__(self, *args, **kwargs):
+        super(FeedbackForm, self).__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({'class': 'form-control'})
+
+    class Meta:
+        model = WorkshopFeedback
+        fields = ['name', 'comment']

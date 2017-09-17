@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h2 class="card-title col-md-12">Thank You for your feedback! <i class="fa fa-check"></i> </h2>
+
+                                    <p class="card-text col-md-8">
+                                        You can read more about the club
+                                        <a href="{% url 'foss_intro' %}">here</a>, or take a look at our achievements
+                                        <a href="{% url 'achievements' %}">here</a>.
+                                    </p>
+                                    <div class="col-md-12">
+                                        <a href="{% url 'foss_intro' %}" class="card-link">About us</a>
+                                        <a href="{% url 'achievements' %}" class="card-link">Achievements</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+    <style>
+        .card {
+            margin: 50px 0;
+        }
+        .card-text {
+            margin: 20px 0;
+        }
+        .card-title {
+            color: #38c100;
+        }
+    </style>
+
+{% endblock %}

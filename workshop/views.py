@@ -13,8 +13,8 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
-from workshop.forms import WorkshopRegistrationForm
-from workshop.models import Workshop, WorkshopRegistration, WorkshopGallery
+from workshop.forms import WorkshopRegistrationForm, FeedbackForm
+from workshop.models import Workshop, WorkshopRegistration, WorkshopGallery, WorkshopFeedback
 
 
 class WorkshopDetailView(DetailView):
@@ -149,6 +149,27 @@ class WorkshopRegistrationUpdateView(UpdateView):
 
 class WorkshopListView(ListView):
     model = Workshop
+
+
+class WorkshopFeedbackCreateView(CreateView):
+    form_class = FeedbackForm
+    template_name = 'base/form.html'
+    success_url = '/workshop/feedback/success'
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopFeedbackCreateView, self).get_context_data(**kwargs)
+        context['heading'] = 'Feedback Form'
+        return context
+
+    def form_valid(self, form):
+        workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
+        valid_form = super(WorkshopFeedbackCreateView, self).form_valid(form)
+        self.object.workshop = workshop
+        self.object.save()
+        return valid_form
+
+
+
 #
 #
 # class WorkshopGalleryView(View):
