@@ -70,7 +70,23 @@
 
                 </div>
             </div>
+        <div class="container">
+        <h2 class="head col-md-12">Feedback</h2>
 
+{% for i in feedback %}
+<div class="card">
+  <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+          {% if i.name %}
+          <strong>{{ i.name }}</strong>
+          {% else %}
+          <strong>Anonymous</strong>
+          {% endif %}
+          :{{ i.comment }}</li>
+  </ul>
+</div>
+        {% endfor %}
+        </div>
         </div>
     </div>
 

@@ -31,6 +31,8 @@ class WorkshopDetailView(DetailView):
             context['seats_left'] = False
             no_of_seats_left = 0
         context['no_of_seats_left'] = no_of_seats_left
+        feedback = WorkshopFeedback.objects.filter(workshop=self.get_object())
+        context['feedback'] = feedback
         return context
 
 
@@ -150,6 +152,17 @@ class WorkshopRegistrationUpdateView(UpdateView):
 class WorkshopListView(ListView):
     model = Workshop
 
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopListView, self).get_context_data(**kwargs)
+        workshop = Workshop.objects.all()
+        workshops = []
+        for i in workshop:
+            reg = WorkshopRegistration.objects.filter(workshop=i)
+            workshops.append([i, i.number_of_seats - len(reg)])
+
+        context['workshops'] = workshops
+        return context
+
 
 class WorkshopFeedbackCreateView(CreateView):
     form_class = FeedbackForm
@@ -204,6 +217,7 @@ class WorkshopGalleryDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(WorkshopGalleryDeleteView, self).post(request, *args, **kwargs)
+
 
 
 
