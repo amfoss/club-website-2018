@@ -29,7 +29,7 @@ class WorkshopRegistration(models.Model):
     batch = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=50)
     paid = models.BooleanField(default=False)
-    male_or_female = models.CharField(max_length=20)
+    male_or_female = models.CharField(max_length=20, blank=True)
     hostel_details = models.CharField(max_length=200, blank=True)
     course = models.CharField(max_length=50, blank=True)
     section = models.CharField(max_length=50, blank=True)
