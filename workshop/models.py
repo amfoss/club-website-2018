@@ -12,7 +12,7 @@ class Workshop(models.Model):
     level = models.CharField(blank=True, max_length=100)
     number_of_seats = models.IntegerField()
     poster = models.ImageField(upload_to='workshop/poster/', null=True, blank=True)
-    contact_info = models.CharField(max_length=200, blank=True)
+    contact_info = models.CharField(max_length=200, blank=True, null=True)
     start_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
     end_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
     price = models.FloatField(default=0)
