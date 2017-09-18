@@ -20,9 +20,10 @@ class CategoryForm(forms.ModelForm):
 
 class LinksForm(forms.ModelForm):
     name = forms.CharField(label='Link name', help_text='Enter a name to show for the link',
-                           widget={'placeholder': 'Link name'})
+                           widget=forms.TextInput(attrs={'placeholder': 'Link name'}))
 
-    link = forms.URLField(label='Url', help_text='Enter the url', widget={'placeholder': 'https://www.....'})
+    link = forms.URLField(label='Url', help_text='Enter the url',
+                          widget=forms.URLInput(attrs={'placeholder': 'https://www.....'}))
 
     class Meta:
         model = Links
@@ -30,8 +31,8 @@ class LinksForm(forms.ModelForm):
 
 
 class FilesForm(forms.ModelForm):
-    name = forms.CharField(label='Link name', help_text='Enter a name to show for the link',
-                           widget={'placeholder': 'Link name'})
+    name = forms.CharField(label='File name', help_text='Enter a name to show for the File',
+                           widget=forms.TextInput(attrs={'placeholder': 'File name'}))
 
     file = forms.FileField(label='Select file', help_text='Select a file')
 
