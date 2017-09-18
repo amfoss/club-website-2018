@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -11,6 +12,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'pk': self.pk})
+
 
 class Links(models.Model):
     category = models.ForeignKey(Category)
@@ -20,6 +24,9 @@ class Links(models.Model):
     def __str__(self):
         return self.category.name + '-' + self.name
 
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'pk': self.category.pk})
+
 
 class Files(models.Model):
     category = models.ForeignKey(Category)
@@ -28,3 +35,6 @@ class Files(models.Model):
 
     def __str__(self):
         return self.category.name + '-' + self.name
+
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'pk': self.category.pk})

@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^project/', include('projects.urls')),
     url(r'^timeline/', include('timeline.urls')),
     url(r'^workshop/', include('workshop.urls')),
-    url(r'^workshop/', include('technical_resources.urls')),
+    url(r'^resources/', include('technical_resources.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
