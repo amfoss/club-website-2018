@@ -2,26 +2,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block title %} Status {% endblock %}
-{% block css %}
-    <script src="{% static 'base/js/tinymce/tinymce.min.js' %}"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            height: 300,
-            menubar: false,
-            entity_encoding: "raw",
-            plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table contextmenu paste code'
-            ],
-            toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | link image',
-            statusbar: false,
-            branding: false
-        });
-    </script>
-{% endblock %}
+
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
@@ -117,7 +98,24 @@
             background-color: #fcfcfc;
         }
     </style>
-
+   <script src="{% static 'base/js/tinymce/tinymce.min.js' %}"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            height: 300,
+            menubar: false,
+            entity_encoding: "raw",
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code'
+            ],
+            toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | link image',
+            statusbar: false,
+            branding: false
+        });
+    </script>
 
 
 {% endblock %}
