@@ -19,6 +19,6 @@ class CategoryDetailView(DetailView):
         context['links'] = files
         return context
 
-
+#
 # class CategoryCreateView(CreateView):
-#     model = 
+#

@@ -24,7 +24,7 @@ class Links(models.Model):
 class Files(models.Model):
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=300)
-    image = models.ImageField(upload_to='technical_resource/files/')
+    file = models.FileField(upload_to='technical_resource/files/')
 
     def __str__(self):
         return self.category.name + '-' + self.name
