@@ -19,7 +19,7 @@ class Category(models.Model):
 class Links(models.Model):
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=300)
-    link = models.URLField()
+    link = models.URLField(blank=True)
 
     def __str__(self):
         return self.category.name + '-' + self.name
@@ -31,7 +31,7 @@ class Links(models.Model):
 class Files(models.Model):
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=300)
-    file = models.FileField(upload_to='technical_resource/files/')
+    file = models.FileField(upload_to='technical_resource/files/', blank=True)
 
     def __str__(self):
         return self.category.name + '-' + self.name

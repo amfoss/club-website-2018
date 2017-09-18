@@ -46,3 +46,12 @@ class WorkshopGallery(models.Model):
 
     def __str__(self):
         return self.workshop.name
+
+
+class WorkshopFeedback(models.Model):
+    workshop = models.ForeignKey(Workshop, null=True)
+    name = models.CharField(max_length=100, blank=True)
+    comment = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.name + ' ' + self.workshop.name

@@ -8,13 +8,13 @@ from django.forms.utils import ErrorList
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views import View
-from django.views.generic import DetailView, CreateView, ListView, UpdateView
+from django.views.generic import DetailView, CreateView, ListView, UpdateView, DeleteView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
-from workshop.forms import WorkshopRegistrationForm
-from workshop.models import Workshop, WorkshopRegistration, WorkshopGallery
+from workshop.forms import WorkshopRegistrationForm, FeedbackForm
+from workshop.models import Workshop, WorkshopRegistration, WorkshopGallery, WorkshopFeedback
 
 
 class WorkshopDetailView(DetailView):
@@ -31,6 +31,8 @@ class WorkshopDetailView(DetailView):
             context['seats_left'] = False
             no_of_seats_left = 0
         context['no_of_seats_left'] = no_of_seats_left
+        feedback = WorkshopFeedback.objects.filter(workshop=self.get_object())
+        context['feedback'] = feedback
         return context
 
 
@@ -149,9 +151,73 @@ class WorkshopRegistrationUpdateView(UpdateView):
 
 class WorkshopListView(ListView):
     model = Workshop
-#
-#
-# class WorkshopGalleryView(View):
-#     model = WorkshopGallery
-#
-#
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopListView, self).get_context_data(**kwargs)
+        workshop = Workshop.objects.all()
+        workshops = []
+        for i in workshop:
+            reg = WorkshopRegistration.objects.filter(workshop=i)
+            workshops.append([i, i.number_of_seats - len(reg)])
+
+        context['workshops'] = workshops
+        return context
+
+
+class WorkshopFeedbackCreateView(CreateView):
+    form_class = FeedbackForm
+    template_name = 'base/form.html'
+    success_url = '/workshop/feedback/success'
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopFeedbackCreateView, self).get_context_data(**kwargs)
+        context['heading'] = 'Feedback Form'
+        return context
+
+    def form_valid(self, form):
+        workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
+        valid_form = super(WorkshopFeedbackCreateView, self).form_valid(form)
+        self.object.workshop = workshop
+        self.object.save()
+        return valid_form
+
+
+class WorkshopGalleryListView(ListView):
+    model = WorkshopGallery
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopGalleryListView, self).get_context_data(**kwargs)
+        context['id'] = self.kwargs['pk']
+        return context
+
+
+class WorkshopGalleryCreateView(CreateView):
+    model = WorkshopGallery
+    fields = ['workshop', 'image']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        response = super(WorkshopGalleryCreateView, self).form_valid(form)
+        return response
+
+    def post(self, request, *args, **kwargs):
+        workshop = Workshop.objects.get(id=self.kwargs['pk'])
+        image = request.FILES.get('image')
+        WorkshopGallery(workshop=workshop, image=image).save()
+        return redirect('image_list', self.kwargs['pk'])
+
+
+class WorkshopGalleryDeleteView(DeleteView):
+    model = WorkshopGallery
+
+    def get_success_url(self):
+        return reverse('image_list', kwargs={'pk': self.object.workshop.id})
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(WorkshopGalleryDeleteView, self).post(request, *args, **kwargs)
+
+
+
+
