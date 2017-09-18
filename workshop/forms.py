@@ -50,4 +50,5 @@ class WorkshopRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = WorkshopRegistration
-        fields = ['name', 'email', 'batch', 'roll_number', 'phone_number', 'hostel_details', 'course', 'section']
+        fields = ['name', 'email', 'batch', 'roll_number', 'phone_number', 'hostel_details', 'course', 'section',
+                  'male_or_female']
