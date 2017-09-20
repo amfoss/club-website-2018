@@ -146,7 +146,7 @@ class WorkshopRegisterFormView(CreateView):
                        "We will get back to you once your payment process is is complete.\n\n" \
                        "Please pay Rs" + str(workshop.price) + " at FOSS club, ground floor lab after 4:30pm on or " + \
                        "before " + str(workshop.start_date_time.date()) + " or contact us at " + \
-                       "8547801861, 7034890948, 703400210 during breaks. \n\nNote: Payment has to completed " + \
+                       str(workshop.contact_info) + " during breaks. \n\nNote: Payment has to completed " + \
                        "before the last date. You should show the confirmation e-mail to attend the workshop." + \
                        " \n\nThank you, \n\nFOSS@Amrita"
 
