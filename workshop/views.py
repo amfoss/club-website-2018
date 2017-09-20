@@ -142,7 +142,7 @@ class WorkshopRegisterFormView(CreateView):
 
         mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
                        "Great to know that you are interested in '" + workshop.name + "' workshop conducted by" \
-                       "FOSS@Amrita. We got your application and it's being processed. " + \
+                                                                                      "FOSS@Amrita. We got your application and it's being processed. " + \
                        "We will get back to you once your payment process is is complete.\n\n" \
                        "Please pay Rs" + str(workshop.price) + " at FOSS club, ground floor lab after 4:30pm on or " + \
                        "before " + str(workshop.start_date_time.date()) + " or contact us at " + \
@@ -229,7 +229,10 @@ class WorkshopListView(ListView):
         workshops = []
         for i in workshop:
             reg = WorkshopRegistration.objects.filter(workshop=i)
-            workshops.append([i, i.number_of_seats - len(reg)])
+            num = i.number_of_seats - len(reg)
+            if num < 0:
+                num = 0
+            workshops.append([i, num])
 
         context['workshops'] = workshops
         return context
@@ -288,7 +291,3 @@ class WorkshopGalleryDeleteView(DeleteView):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(WorkshopGalleryDeleteView, self).post(request, *args, **kwargs)
-
-
-
-
