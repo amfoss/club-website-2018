@@ -21,7 +21,8 @@
                     {% for link in links %}
                         <div class="col-md-6    ">
                             <a href="{{ link.link }}" target="_blank" class="link-file btn btn-secondary">
-                               {{ link.name }} <small>(link)</small>
+                                {{ link.name }}
+                                <small>(link)</small>
                             </a>
                         </div>
                     {% endfor %}
@@ -29,10 +30,29 @@
                     {% for file in files %}
                         <div class="col-md-6">
                             <a href="{{ file.file }}" target="_blank" class="link-file btn btn-secondary">
-                                {{ file.name }} <small>(file)</small>
+                                {{ file.name }}
+                                <small>(file)</small>
                             </a>
                         </div>
                     {% endfor %}
+
+                    {% if request.user.is_authenticated %}
+
+                        <div class="col-md-6">
+                            <a href="{% url 'file_create' object.id %}" target="_blank" class="link-file btn btn-secondary">
+                                Add a new file
+                                <small>(file)</small>
+                            </a>
+                        </div>
+
+                        <div class="col-md-6">
+                            <a href="{% url 'link_create' object.id %}" target="_blank" class="link-file btn btn-secondary">
+                                Add a new link
+                                <small>(file)</small>
+                            </a>
+                        </div>
+
+                    {% endif %}
                 </div>
             </div>
 
@@ -48,14 +68,17 @@
             filter: blur(5px);
             filter: brightness(.7);
         }
+
         .card-text {
             font-weight: bold;
             color: white !important;
         }
+
         .card-title {
             font-weight: bold;
             color: white !important;
         }
+
         .card {
             margin-top: 40px;
         }
