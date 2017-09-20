@@ -8,6 +8,7 @@ class Workshop(models.Model):
     overview = models.TextField()
     course_details = models.TextField(blank=True)
     project = models.TextField(blank=True)
+    link = models.URLField(blank=True)
     other_info = models.TextField(blank=True)
     level = models.CharField(blank=True, max_length=100)
     number_of_seats = models.IntegerField()
@@ -42,7 +43,6 @@ class WorkshopRegistration(models.Model):
 class WorkshopGallery(models.Model):
     workshop = models.ForeignKey(Workshop)
     image = models.ImageField(upload_to='workshop/images/')
-    date = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
         return self.workshop.name

@@ -6,14 +6,14 @@ from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 from django.forms.utils import ErrorList
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import DetailView, CreateView, ListView, UpdateView, DeleteView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
-from workshop.forms import WorkshopRegistrationForm, FeedbackForm
+from workshop.forms import WorkshopRegistrationForm, FeedbackForm, WorkshopForm
 from workshop.models import Workshop, WorkshopRegistration, WorkshopGallery, WorkshopFeedback
 
 
@@ -34,6 +34,69 @@ class WorkshopDetailView(DetailView):
         feedback = WorkshopFeedback.objects.filter(workshop=self.get_object())
         context['feedback'] = feedback
         return context
+
+
+class WorkshopCreateView(CreateView):
+    form_class = WorkshopForm
+    template_name = 'base/form.html'
+    success_url = '/workshop'
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(WorkshopCreateView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopCreateView, self).get_context_data(**kwargs)
+        context['heading'] = 'New Workshop'
+        context['title'] = 'Workshops'
+        return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(WorkshopCreateView, self).form_valid(form)
+
+
+class WorkshopUpdateView(UpdateView):
+    form_class = WorkshopForm
+    template_name = 'base/form.html'
+    model = Workshop
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(WorkshopUpdateView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopUpdateView, self).get_context_data(**kwargs)
+        context['heading'] = 'Update Workshop'
+        context['title'] = 'Workshops'
+        return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(WorkshopUpdateView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(WorkshopUpdateView, self).post(request, *args, **kwargs)
+
+
+class WorkshopDeleteView(DeleteView):
+    model = Workshop
+    template_name = 'workshop/confirm_delete.html'
+    success_url = reverse_lazy('workshop')
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(WorkshopDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(WorkshopDeleteView, self).post(request, *args, **kwargs)
 
 
 class WorkshopRegisterFormView(CreateView):
