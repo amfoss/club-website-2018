@@ -19,7 +19,8 @@
                                     <div class="col-md-6">
                                         <div class="card">
                                             {% if object.image %}
-                                                <img class="card-img-top img-fluid" src="/static/media/{{ object.image }}">
+                                                <img class="card-img-top img-fluid"
+                                                     src="/static/media/{{ object.image }}">
                                             {% else %}
                                                 <img class="card-img-top img-fluid"
                                                      src="{% static 'technical_resource/images/default.png' %}">
@@ -37,13 +38,13 @@
 
                                 {% if request.user.is_authenticated %}
 
-                                <div class="col-md-12">
-                                    <div class="container">
-                                        <a href="{% url 'project_create' %}">
-                                            <button class="btn btn-secondary">Add new</button>
-                                        </a>
+                                    <div class="col-md-12">
+                                        <div class="container">
+                                            <a href="{% url 'project_create' %}">
+                                                <button class="btn btn-secondary">Add new</button>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
 
                                 {% endif %}
 

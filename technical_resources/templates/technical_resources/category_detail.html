@@ -1,13 +1,71 @@
 {% extends 'base/base.html' %}
 
-{% block title %} {% endblock %}
+{% block title %} {{ object.name }} {% endblock %}
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
-        <div id="wrap">
-            <div id="main">
+    <div id="wrap">
+        <div id="main">
             <!-- content goes here -->
+            <div class="container">
+                <div class="card card-inverse">
+                    <img class="card-img" src="/static/technical_resources/image/default.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h1 class="card-title">{{ object.name }}</h1>
+                        <p class="card-text">{{ object.description }}</p>
+                    </div>
+                </div>
+
+
+                <div class="row files-links">
+                    {% for link in links %}
+                        <div class="col-md-6    ">
+                            <a href="{{ link.link }}" target="_blank" class="link-file btn btn-secondary">
+                               {{ link.name }} <small>(link)</small>
+                            </a>
+                        </div>
+                    {% endfor %}
+
+                    {% for file in files %}
+                        <div class="col-md-6">
+                            <a href="{{ file.file }}" target="_blank" class="link-file btn btn-secondary">
+                                {{ file.name }} <small>(file)</small>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
+
         </div>
+
+    </div>
     {% include 'base/footer.html' %}
+{% endblock %}
+
+{% block css %}
+    <style>
+        .card-img {
+            filter: blur(5px);
+            filter: brightness(.7);
+        }
+        .card-text {
+            font-weight: bold;
+            color: white !important;
+        }
+        .card-title {
+            font-weight: bold;
+            color: white !important;
+        }
+        .card {
+            margin-top: 40px;
+        }
+
+        .files-links {
+            margin-top: 40px;
+        }
+
+        .link-file {
+            width: 100%;
+        }
+    </style>
 {% endblock %}

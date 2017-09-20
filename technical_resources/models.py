@@ -16,8 +16,8 @@ class Category(models.Model):
         return reverse('category_detail', kwargs={'pk': self.pk})
 
 
-class Links(models.Model):
-    category = models.ForeignKey(Category)
+class Link(models.Model):
+    category = models.ForeignKey(Category, null=True)
     name = models.CharField(max_length=300)
     link = models.URLField(blank=True)
 
@@ -28,8 +28,8 @@ class Links(models.Model):
         return reverse('category_detail', kwargs={'pk': self.category.pk})
 
 
-class Files(models.Model):
-    category = models.ForeignKey(Category)
+class File(models.Model):
+    category = models.ForeignKey(Category, null=True)
     name = models.CharField(max_length=300)
     file = models.FileField(upload_to='technical_resource/files/', blank=True)
 

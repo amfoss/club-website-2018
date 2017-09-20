@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from technical_resources.models import Category, Link, File
+
+
+admin.site.register(Category)
+admin.site.register(Link)
+admin.site.register(File)

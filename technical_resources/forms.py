@@ -1,7 +1,7 @@
 # created by Chirath R <chirath.02@gmail.com>
 from django import forms
 
-from technical_resources.models import Category, Files, Links
+from technical_resources.models import Category, File, Link
 
 
 class CategoryForm(forms.ModelForm):
@@ -36,7 +36,7 @@ class LinksForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({'class': 'form-control'})
 
     class Meta:
-        model = Links
+        model = Link
         fields = ['name', 'link']
 
 
@@ -52,5 +52,5 @@ class FilesForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({'class': 'form-control'})
 
     class Meta:
-        model = Files
+        model = File
         fields = ['name', 'file']
