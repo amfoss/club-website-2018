@@ -174,14 +174,22 @@ class WorkshopRegistrationListView(ListView):
 
     def get_context_data(self, **kwargs):
         paid = str(self.request.GET.get('paid', None))
+        gender = str(self.request.GET.get('gender', None))
         workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
         context = super(WorkshopRegistrationListView, self).get_context_data(**kwargs)
+        save = False
         if paid == 'True':
             context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, paid=True)
         elif paid == 'False':
             context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, paid=False)
+        elif gender == 'male':
+            context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, male_or_female='Male')
+        elif gender == 'female':
+            context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, male_or_female='Female')
         else:
             context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop)
+            save = True
+        context['save'] = save
         context['object_list'] = context['object_list'].order_by('-date')
         context['workshop_id'] = workshop.id
         return context
@@ -209,7 +217,7 @@ class WorkshopRegistrationUpdateView(UpdateView):
                 workshop_registration.paid = True
                 workshop_registration.save()
 
-        return redirect(reverse('workshop_list', kwargs={'workshop_id': kwargs.get('workshop_id', None)}))
+        return redirect(reverse('workshop_registration_list', kwargs={'workshop_id': kwargs.get('workshop_id', None)}))
 
 
 class WorkshopListView(ListView):

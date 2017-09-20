@@ -12,6 +12,11 @@ batch_choices = (
     ('1st year', '1st year'),
 )
 
+male_or_female_choices = (
+    ('Male', 'Male'),
+    ('Female', 'Female'),
+)
+
 
 class WorkshopRegistrationForm(forms.ModelForm):
     name = forms.CharField(label='Name', help_text="Enter your full name",
@@ -38,6 +43,9 @@ class WorkshopRegistrationForm(forms.ModelForm):
 
     section = forms.CharField(label="Section", help_text='Enter your class section',
                               widget=forms.TextInput(attrs={'placeholder': 'A, B or C..'}))
+
+    male_or_female = forms.ChoiceField(label="Gender", choices=male_or_female_choices,
+                                       help_text="Enter your Gender.")
 
     captcha = ReCaptchaField(attrs={
         'theme': 'clean',

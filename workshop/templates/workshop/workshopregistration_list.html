@@ -26,8 +26,9 @@
                                 <th>Roll number</th>
                                 <th>Phone</th>
                                 <th>Course</th>
-                                <th>hostel_details</th>
-                                <th>course, section</th>
+                                <th>Hostel_details</th>
+                                <th>Gender</th>
+                                <th>Paid?</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,8 +40,9 @@
                                     <td>{{ object.batch }}</td>
                                     <td>{{ object.roll_number }}</td>
                                     <td>{{ object.phone_number }}</td>
-                                    <td>{{ object.hostel_details }}</td>
                                     <td>{{ object.course }} {{ object.section }}</td>
+                                    <td>{{ object.hostel_details }}</td>
+                                    <td>{{ object.male_or_female }}</td>
                                     <td>
                                         <input type="checkbox" name="{{ object.id }}" {% if object.paid %}checked{% endif %}>
                                         {% if object.paid %}Yes{% endif %}
@@ -51,15 +53,24 @@
                         </table>
 
                     </form>
+                    {% if save %}
                     <input type="submit"  form="myform" class="btn btn-primary" value="Save">
-                    <a href="{% url 'workshop_list' workshop_id %}?paid=True">
+                    {% else %}
+                        <a href="{% url 'workshop_registration_list' workshop_id %}">
+                            <button id="reject" class="btn btn-primary card-link">All</button>
+                        </a>
+                    {% endif %}
+                    <a href="{% url 'workshop_registration_list' workshop_id %}?paid=True">
                         <button id="approve" class="btn btn-success card-link">Paid only</button>
                     </a>
-                    <a href="{% url 'workshop_list' workshop_id %}?paid=False">
+                    <a href="{% url 'workshop_registration_list' workshop_id %}?paid=False">
                         <button id="reject" class="btn btn-danger card-link">Unpaid only</button>
                     </a>
-                    <a href="{% url 'workshop_list' workshop_id %}">
-                        <button id="reject" class="btn btn-primary card-link">All</button>
+                    <a href="{% url 'workshop_registration_list' workshop_id %}?gender=male">
+                        <button id="reject" class="btn btn-primary card-link">Male</button>
+                    </a>
+                    <a href="{% url 'workshop_registration_list' workshop_id %}?gender=female">
+                        <button id="reject" class="btn btn-primary card-link">Female</button>
                     </a>
                     </div>
                 </div>
