@@ -1,4 +1,5 @@
 django
 pillow
 django-recaptcha
+xlrd
 bootstrap3_datetime
