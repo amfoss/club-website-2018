@@ -17,7 +17,6 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.decorators import login_required
 
 from fosswebsite import settings
 from .views import Home
@@ -34,6 +33,7 @@ urlpatterns = [
     url(r'^project/', include('projects.urls')),
     url(r'^timeline/', include('timeline.urls')),
     url(r'^workshop/', include('workshop.urls')),
+    url(r'^resources/', include('technical_resources.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
