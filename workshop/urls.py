@@ -8,14 +8,14 @@ from workshop.views import WorkshopRegistrationListView, WorkshopDetailView, Wor
     WorkshopGalleryListView, WorkshopGalleryDeleteView, WorkshopCreateView, WorkshopUpdateView, WorkshopDeleteView
 
 urlpatterns = [
-    url(r'^$', WorkshopListView.as_view(), name='workshop'),
+    url(r'^$', WorkshopListView.as_view(), name='workshop_list'),
     url(r'^create/$', login_required(WorkshopCreateView.as_view()), name='workshop_create'),
     url(r'^(?P<workshop_id>[0-9]+)/$', WorkshopDetailView.as_view(), name='workshop_detail'),
     url(r'^(?P<pk>[0-9]+)/update/$', login_required(WorkshopUpdateView.as_view()), name='workshop_update'),
     url(r'^(?P<pk>[0-9]+)/delete/$', login_required(WorkshopDeleteView.as_view()), name='workshop_delete'),
     url(r'^(?P<workshop_id>[0-9]+)/register/$', WorkshopRegisterFormView.as_view(), name='workshop_register'),
     url(r'^(?P<workshop_id>[0-9]+)/register/list/$',
-        login_required(WorkshopRegistrationListView.as_view()), name='workshop_list'),
+        login_required(WorkshopRegistrationListView.as_view()), name='workshop_registration_list'),
     url(r'^(?P<workshop_id>[0-9]+)/register/update/$',
         login_required(WorkshopRegistrationUpdateView.as_view()), name='workshop_update'),
     url(r'^success/$',

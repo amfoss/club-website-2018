@@ -3,67 +3,78 @@
 {% block title %} Workshops {% endblock %}
 {% load index %}
 {% block body %}
-{% include 'base/nav-bar.html' %}
-<div id="wrap">
-    <div id="main">
-        <!-- content goes here -->
-        <div class="container">
-            <div class="row">
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
 
 
-                <div class="card-block">
-                    <h1 class="card-title">Workshops</h1>
-                    <hr>
-                    <div class="row">
-                        {% for workshop in workshops %}
-                        <div class="col-md-4">
-                            <div class="card" {% ifequal workshop.1 0 %} style="background-color: #b4b4b4" {% endifequal %}>
+                    <div class="card-block">
+                        <h1 class="card-title">Workshops</h1>
+                        <hr>
+                        <div class="row">
+                            {% for workshop in workshops %}
+                                <div class="col-md-4">
+                                    <div class="card" {% ifequal workshop.1 0 %}
+                                         style="background-color: #b4b4b4" {% endifequal %}>
 
-                                {% if workshop.0.image %}
-                                <img class="card-img-top img-fluid" src="/static/media/{{ workshop.0.poster }}">
-                                {% else %}
-                                <img class="card-img-top img-fluid"
-                                     src="{% static 'workshop/default.png' %}">
-                                {% endif %}
-                                <div class="card-block">
-                                    <h3 class="card-title">{{ workshop.0.name }}</h3>
-                                    <p class="card-text">{{ workshop.0.overview }}</p>
-                                    <p>
-                                        Seats available: {{ workshop.1 }}
-                                    </p>
+                                        {% if workshop.0.poster %}
+                                            <img class="card-img-top img-fluid img-{{ workshop.0.id }}"
+                                                 src="/static/media/{{ workshop.0.poster }}">
+                                        {% else %}
+                                            <img class="card-img-top img-fluid"
+                                                 src="{% static 'workshop/default.png' %}">
+                                        {% endif %}
+                                        <div class="card-block">
+                                            <h3 class="card-title">{{ workshop.0.name }}</h3>
+                                            <p class="card-text">{{ workshop.0.overview }}</p>
+                                            <p>
+                                                Seats available: {{ workshop.1 }}
+                                            </p>
 
-                                    <a href="{% url 'workshop_detail' workshop.0.id %}"
-                                       class="btn btn-primary">More info
-                                    </a>
-                                    {% ifequal workshop.1 0 %}
-                                    <a class="btn btn-secondary" style="background-color: grey">Seats filled
-                                    </a>
-                                    {% endifequal %}
+                                            <a href="{% url 'workshop_detail' workshop.0.id %}"
+                                               class="btn btn-primary">More info
+                                            </a>
+                                            {% ifequal workshop.1 0 %}
+                                                <a class="btn btn-danger">Closed</a>
+                                            {% else %}
+                                                <a class="btn btn-success">
+                                                    Open</a>
+                                            {% endifequal %}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        {% endfor %}
+                                {% ifequal workshop.1 0 %}
+                                    <style>
+                                        .img{{ workshop.0.pk }} {
+                                            filter: blur(1px) brightness(0.8);
+                                        }
+                                    </style>
+                                {% endifequal %}
+                            {% endfor %}
 
+
+                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-{% include 'base/footer.html' %}
+    {% include 'base/footer.html' %}
 
-<style>
-    .card {
-        margin: 10px;
-    }
+    <style>
+        .card {
+            margin: 10px;
+        }
 
-    .container {
-        margin-top: 50px;
-    }
-</style>
+        .container {
+            margin-top: 50px;
+        }
+    </style>
 {% endblock %}
 
 

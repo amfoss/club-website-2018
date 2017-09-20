@@ -17,7 +17,7 @@
                     <div class="inner">
                         <h3 onclick="arrow_click()" class="masthead-brand">FOSS@Amrita <i id="arrow" class="fa fa-angle-down"></i> </h3>
                         <nav class="nav nav-masthead" id="nav-list">
-                            <a class="nav-link" href="{% url 'workshop_detail' 1 %}">Workshops</a>
+                            <a class="nav-link" href="{% url 'workshop_list' %}">Workshops</a>
                             <a class="nav-link" href="{% url 'achievements' %}">Achievements</a>
                             <a class="nav-link" href="{% url 'profile_list' %}">Members</a>
                             {% if request.user.is_authenticated %}
