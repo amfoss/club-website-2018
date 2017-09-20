@@ -41,3 +41,47 @@ class CategoryUpdateView(UpdateView):
         context['title'] = self.get_object().name
         context['heading'] = 'Category'
         return context
+
+
+class LinkCreateView(CreateView):
+    form_class = LinksForm
+    template_name = 'base/form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LinkCreateView, self).get_context_data(**kwargs)
+        context['title'] = 'New Link'
+        context['heading'] = 'New Link'
+        return context
+
+
+class LinkUpdateView(UpdateView):
+    form_class = LinksForm
+    template_name = 'base/form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LinkUpdateView, self).get_context_data(**kwargs)
+        context['title'] = self.get_object().name
+        context['heading'] = 'Link'
+        return context
+
+
+class FileCreateView(CreateView):
+    form_class = FilesForm
+    template_name = 'base/form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(FileCreateView, self).get_context_data(**kwargs)
+        context['title'] = 'New File'
+        context['heading'] = 'New File'
+        return context
+
+
+class FileUpdateView(UpdateView):
+    form_class = FilesForm
+    template_name = 'base/form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(FileUpdateView, self).get_context_data(**kwargs)
+        context['title'] = self.get_object().name
+        context['heading'] = 'File'
+        return context
