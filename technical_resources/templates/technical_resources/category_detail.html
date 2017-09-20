@@ -16,10 +16,9 @@
                     </div>
                 </div>
 
-
                 <div class="row files-links">
                     {% for link in links %}
-                        <div class="col-md-6    ">
+                        <div class="col-md-6">
                             <a href="{{ link.link }}" target="_blank" class="link-file btn btn-secondary">
                                 {{ link.name }}
                                 <small>(link)</small>
@@ -39,14 +38,14 @@
                     {% if request.user.is_authenticated %}
 
                         <div class="col-md-6">
-                            <a href="{% url 'file_create' object.id %}" target="_blank" class="link-file btn btn-secondary">
+                            <a href="{% url 'file_create' object.id %}" class="link-file btn btn-primary">
                                 Add a new file
                                 <small>(file)</small>
                             </a>
                         </div>
 
                         <div class="col-md-6">
-                            <a href="{% url 'link_create' object.id %}" target="_blank" class="link-file btn btn-secondary">
+                            <a href="{% url 'link_create' object.id %}" class="link-file btn btn-primary">
                                 Add a new link
                                 <small>(file)</small>
                             </a>
@@ -65,8 +64,7 @@
 {% block css %}
     <style>
         .card-img {
-            filter: blur(5px);
-            filter: brightness(.7);
+            filter: blur(1.2px) brightness(.7);
         }
 
         .card-text {
@@ -84,11 +82,12 @@
         }
 
         .files-links {
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
         .link-file {
             width: 100%;
+            margin-top: 10px;
         }
     </style>
 {% endblock %}
