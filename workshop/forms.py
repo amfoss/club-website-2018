@@ -141,4 +141,4 @@ class WorkshopForm(forms.ModelForm):
     class Meta:
         model = Workshop
         fields = ['name', 'overview', 'course_details', 'project', 'link', 'other_info',
-                  'level', 'number_of_seats', 'poster', 'contact_info','start_date_time', 'end_date_time', 'price']
+                  'level', 'number_of_seats', 'poster', 'contact_info', 'start_date_time', 'end_date_time', 'price']
