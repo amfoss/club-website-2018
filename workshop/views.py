@@ -104,6 +104,12 @@ class WorkshopRegisterFormView(CreateView):
     template_name = 'base/form.html'
     success_url = '/workshop/success/'
 
+    def get(self, request, *args, **kwargs):
+        workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
+        if len(Workshop.objects.filter(workshop=workshop)) >= workshop.number_of_seats:
+            return redirect(reverse('workshop_detail', kwargs={'workshop_id', workshop.pk}))
+        return super(WorkshopRegisterFormView, self).get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(WorkshopRegisterFormView, self).get_context_data(**kwargs)
         context['heading'] = Workshop.objects.get(id=self.kwargs.get('workshop_id', None)).name
