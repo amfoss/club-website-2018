@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
-from django.views.generic import CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 
+from noticeBoard.forms import NoticeCreateForm
 from noticeBoard.models import Notice
 
 
 class NoticeCreateView(CreateView):
+    form_class = NoticeCreateForm
     template_name = 'base/form.html'
     model = Notice
 
@@ -24,5 +27,34 @@ class NoticeCreateView(CreateView):
         self.object.user = user
         self.object.save()
         return form
+
+
+class NoticeUpdateView(UpdateView):
+    form_class = NoticeCreateForm
+    template_name = 'base/form.html'
+    model = Notice
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(NoticeUpdateView, self).get(request, *args, **kwargs)
+
+
+class NoticeDeleteView(DeleteView):
+    model = Notice
+    success_url = reverse_lazy('notices')
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(NoticeDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(NoticeDeleteView, self).post(request, *args, **kwargs)
+
+class NoticeListView(ListView):
+    model = Notice
 
 
