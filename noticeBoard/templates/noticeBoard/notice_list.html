@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Notices {% endblock %}
+{% load index %}
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+<div id="wrap">
+    <div id="main">
+    <br>
+    <div class="col-md-12">
+        {% for object in object_list %}
+        <div class="list-group col-md-4">
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ object.title }}</h5>
+      <small>{{ objct.startdate }} to {{ object.enddate }}</small>
+    </div>
+    <p class="mb-1">{{ object.message }}</p>
+    <small>link:{{ object.url }}</small>
+  </a>
+        </div>
+            <br>
+        {% endfor %}
+    </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 
-{% block title %} Registration {% endblock %}
+{% block title %} {% endblock %}
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
@@ -13,10 +13,10 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <h2 class="card-title col-md-12">Registration successful <i class="fa fa-check"></i> </h2>
-                                    <h5 class="card-subtitle col-md-12 mb-2 text-muted">
-                                        Please check your mail for more instructions, Thank you</h5>
-                                    <p class="col-md-8">
+                                    <h2 class="card-title col-md-12">Successfully added <i class="fa fa-check"></i> </h2>
+                                    <h5 class="card-subtitle col-md-12 mb-2 text-muted">Thank you</h5>
+                                    <p class="card-text col-md-8">
+                                        Please check your mail for more details.
                                         You can read more about the club
                                         <a href="{% url 'foss_intro' %}">here</a>, or take a look at our achievements
                                         <a href="{% url 'achievements' %}">here</a>.

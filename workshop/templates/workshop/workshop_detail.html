@@ -40,10 +40,9 @@
                                         soon as possible so that your seat gets confirmed.
                                     </small>
                                 </p>
+                                <p>Contact: {{ object.contact_info }}</p>
+                                <p>Resource link: <a href="{{ object.link }}">{{ object.link }}</a> </p>
                                 <p>
-                                    <small>Contact: 8547801861, 7034890948, 703400210</small>
-                                </p>
-                                <p class="card-text">
                                     <small class="text-muted">
                                         seats remaining : {{ no_of_seats_left }}
                                     </small>
@@ -56,7 +55,7 @@
                                     <a>
                                         <button type="submit" class="btn add-btn">No seat left</button>
                                     </a>
-                                    <p class="card-text">
+                                    <p>
                                         <small class="text-muted">
                                             <a href="{% url 'foss_intro' %}#seventh">Contact us</a> to check for more
                                             seats.

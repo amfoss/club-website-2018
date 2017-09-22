@@ -6,14 +6,14 @@ from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 from django.forms.utils import ErrorList
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import DetailView, CreateView, ListView, UpdateView
+from django.views.generic import DetailView, CreateView, ListView, UpdateView, DeleteView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
-from workshop.forms import WorkshopRegistrationForm, FeedbackForm
+from workshop.forms import WorkshopRegistrationForm, FeedbackForm, WorkshopForm
 from workshop.models import Workshop, WorkshopRegistration, WorkshopGallery, WorkshopFeedback
 
 
@@ -34,6 +34,69 @@ class WorkshopDetailView(DetailView):
         feedback = WorkshopFeedback.objects.filter(workshop=self.get_object())
         context['feedback'] = feedback
         return context
+
+
+class WorkshopCreateView(CreateView):
+    form_class = WorkshopForm
+    template_name = 'base/form.html'
+    success_url = '/workshop'
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(WorkshopCreateView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopCreateView, self).get_context_data(**kwargs)
+        context['heading'] = 'New Workshop'
+        context['title'] = 'Workshops'
+        return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(WorkshopCreateView, self).form_valid(form)
+
+
+class WorkshopUpdateView(UpdateView):
+    form_class = WorkshopForm
+    template_name = 'base/form.html'
+    model = Workshop
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(WorkshopUpdateView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopUpdateView, self).get_context_data(**kwargs)
+        context['heading'] = 'Update Workshop'
+        context['title'] = 'Workshops'
+        return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(WorkshopUpdateView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(WorkshopUpdateView, self).post(request, *args, **kwargs)
+
+
+class WorkshopDeleteView(DeleteView):
+    model = Workshop
+    template_name = 'workshop/confirm_delete.html'
+    success_url = reverse_lazy('workshop')
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(WorkshopDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(WorkshopDeleteView, self).post(request, *args, **kwargs)
 
 
 class WorkshopRegisterFormView(CreateView):
@@ -79,11 +142,11 @@ class WorkshopRegisterFormView(CreateView):
 
         mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
                        "Great to know that you are interested in '" + workshop.name + "' workshop conducted by" \
-                       "FOSS@Amrita. We got your application and it's being processed. " + \
+                                                                                      "FOSS@Amrita. We got your application and it's being processed. " + \
                        "We will get back to you once your payment process is is complete.\n\n" \
                        "Please pay Rs" + str(workshop.price) + " at FOSS club, ground floor lab after 4:30pm on or " + \
                        "before " + str(workshop.start_date_time.date()) + " or contact us at " + \
-                       "8547801861, 7034890948, 703400210 during breaks. \n\nNote: Payment has to completed " + \
+                       str(workshop.contact_info) + " during breaks. \n\nNote: Payment has to completed " + \
                        "before the last date. You should show the confirmation e-mail to attend the workshop." + \
                        " \n\nThank you, \n\nFOSS@Amrita"
 
@@ -111,14 +174,22 @@ class WorkshopRegistrationListView(ListView):
 
     def get_context_data(self, **kwargs):
         paid = str(self.request.GET.get('paid', None))
+        gender = str(self.request.GET.get('gender', None))
         workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
         context = super(WorkshopRegistrationListView, self).get_context_data(**kwargs)
+        save = False
         if paid == 'True':
             context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, paid=True)
         elif paid == 'False':
             context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, paid=False)
+        elif gender == 'male':
+            context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, male_or_female='Male')
+        elif gender == 'female':
+            context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop, male_or_female='Female')
         else:
             context['object_list'] = WorkshopRegistration.objects.filter(workshop=workshop)
+            save = True
+        context['save'] = save
         context['object_list'] = context['object_list'].order_by('-date')
         context['workshop_id'] = workshop.id
         return context
@@ -146,7 +217,7 @@ class WorkshopRegistrationUpdateView(UpdateView):
                 workshop_registration.paid = True
                 workshop_registration.save()
 
-        return redirect(reverse('workshop_list', kwargs={'workshop_id': kwargs.get('workshop_id', None)}))
+        return redirect(reverse('workshop_registration_list', kwargs={'workshop_id': kwargs.get('workshop_id', None)}))
 
 
 class WorkshopListView(ListView):
@@ -158,7 +229,10 @@ class WorkshopListView(ListView):
         workshops = []
         for i in workshop:
             reg = WorkshopRegistration.objects.filter(workshop=i)
-            workshops.append([i, i.number_of_seats - len(reg)])
+            num = i.number_of_seats - len(reg)
+            if num < 0:
+                num = 0
+            workshops.append([i, num])
 
         context['workshops'] = workshops
         return context
@@ -182,9 +256,38 @@ class WorkshopFeedbackCreateView(CreateView):
         return valid_form
 
 
-#
-#
-# class WorkshopGalleryView(View):
-#     model = WorkshopGallery
-#
-#
+class WorkshopGalleryListView(ListView):
+    model = WorkshopGallery
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkshopGalleryListView, self).get_context_data(**kwargs)
+        context['id'] = self.kwargs['pk']
+        return context
+
+
+class WorkshopGalleryCreateView(CreateView):
+    model = WorkshopGallery
+    fields = ['workshop', 'image']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        response = super(WorkshopGalleryCreateView, self).form_valid(form)
+        return response
+
+    def post(self, request, *args, **kwargs):
+        workshop = Workshop.objects.get(id=self.kwargs['pk'])
+        image = request.FILES.get('image')
+        WorkshopGallery(workshop=workshop, image=image).save()
+        return redirect('image_list', self.kwargs['pk'])
+
+
+class WorkshopGalleryDeleteView(DeleteView):
+    model = WorkshopGallery
+
+    def get_success_url(self):
+        return reverse('image_list', kwargs={'pk': self.object.workshop.id})
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+            redirect('permission_denied')
+        return super(WorkshopGalleryDeleteView, self).post(request, *args, **kwargs)

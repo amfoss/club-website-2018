@@ -108,9 +108,11 @@
                                 </form>
                                 {% endfor %}
                                 </li>
+                            {% if edit_permission %}
                             <div class="col-md-6 offset-md-3">
                                 <a href="{% url 'language_create' object.id %}"><button class="btn btn-secondary add-btn">Add Language</button></a>
                             </div>
+                            {% endif %}
                     </ul>
                 </div>
             </div>
