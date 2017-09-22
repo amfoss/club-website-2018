@@ -106,8 +106,8 @@ class WorkshopRegisterFormView(CreateView):
 
     def get(self, request, *args, **kwargs):
         workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
-        if len(Workshop.objects.filter(workshop=workshop)) >= workshop.number_of_seats:
-            return redirect(reverse('workshop_detail', kwargs={'workshop_id', workshop.pk}))
+        if len(WorkshopRegistration.objects.filter(workshop=workshop)) >= workshop.number_of_seats:
+            return redirect(reverse('workshop_detail', kwargs={'workshop_id': kwargs.get('workshop_id', None)}))
         return super(WorkshopRegisterFormView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
