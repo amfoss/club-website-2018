@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Notices {% endblock %}
+{% load index %}
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+    <br>
+
+    {% for object in object_list %}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="width: 200px;height: 40px; margin-left: 30px;" >
+{{ object.title }}
+<small>by {{ object.user }}</small>
+</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ object.title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<p>{{ object.message }} from {{ object.startdate }} to {{ object.enddate }}</p>
+        Click here:  <a href="{{ object.url }}">{{ object.url }}</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          {% if edit_permission %}
+
+
+                          <a href="{% url "edit_notice" object.id %}"> <button type="submit" class="btn btn-outline-primary">Edit</button></a>
+
+              <form method="post" action="{% url "delete_notice" object.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+
+          {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+    <br>
+    <br>
+
+        <div class="col-md-6">
+                                 <a href="{% url "add_notice" %}"> <button type="submit" class="btn ">Add</button></a>
+
+        </div>
+        </div></div>
+        {% include 'base/footer.html' %}
+{% endblock %}

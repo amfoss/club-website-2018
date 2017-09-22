@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'captcha',
     'timeline',
     'workshop',
+    'noticeBoard',
     'technical_resources',
 ]
 
