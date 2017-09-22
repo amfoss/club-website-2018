@@ -83,7 +83,7 @@ class WorkshopForm(forms.ModelForm):
     name = forms.CharField(label='Name', help_text="Name of the workshop",
                            widget=forms.TextInput(attrs={'placeholder': 'Name'}))
 
-    overview = forms.CharField(label="Overview", help_text="A brief idea about what the workshop is about",
+    overview = forms.CharField(label="Overview", help_text="A brief idea about the workshop",
                                widget=forms.Textarea(attrs={'placeholder': 'overview'}))
 
     course_details = forms.CharField(label="Details", help_text="Further Details",
@@ -106,6 +106,9 @@ class WorkshopForm(forms.ModelForm):
 
     poster = forms.ImageField(label='Poster',
                               widget=forms.FileInput())
+
+    contact_info = forms.CharField(label='Contact',
+                           widget=forms.TextInput(attrs={'placeholder': 'Contact'}))
 
     start_date_time = forms.DateField(label='From:',
                                       widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm",
@@ -138,4 +141,4 @@ class WorkshopForm(forms.ModelForm):
     class Meta:
         model = Workshop
         fields = ['name', 'overview', 'course_details', 'project', 'link', 'other_info',
-                  'level', 'number_of_seats', 'poster', 'start_date_time', 'end_date_time', 'price']
+                  'level', 'number_of_seats', 'poster', 'contact_info', 'start_date_time', 'end_date_time', 'price']
