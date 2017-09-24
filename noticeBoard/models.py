@@ -9,10 +9,11 @@ from django.db import models
 
 class Notice(models.Model):
     user = models.ForeignKey(User)
-    startdate = models.DateTimeField(auto_now=False, auto_now_add=False)
-    enddate = models.DateTimeField(auto_now=False, auto_now_add=False)
+    title = models.CharField(max_length=500, null=True)
+    start_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    end_date = models.DateTimeField(auto_now=False, auto_now_add=False)
     message = models.TextField(null=True)
-    title = models.CharField(max_length=150, null=True)
     url = models.URLField(null=True)
 
-
+    def __str__(self):
+        return self.title
