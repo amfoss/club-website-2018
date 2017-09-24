@@ -27,10 +27,10 @@
                             {% endif %}
                             <div class="card-block">
                                 <h4 class="card-title">{{ object.name }}</h4>
-                                <p class="card-text">{{ object.overview }}</p>
-                                <p class="card-text">{{ object.course_details }}</p>
-                                <p class="card-text">{{ object.project }}</p>
-                                <p class="card-text">{{ object.other_info }}</p>
+                                <p class="card-text preserve-contents">{{ object.overview }}</p>
+                                <p class="card-text preserve-contents">{{ object.course_details }}</p>
+                                <p class="card-text preserve-contents">{{ object.project }}</p>
+                                <p class="card-text preserve-contents">{{ object.other_info }}</p>
                                 <p class="card-text">{{ object.start_date_time }} to {{ object.end_date_time }}</p>
                                 <hr>
                                 <h5 class="card-text">Rs. {{ object.price }}</h5>
