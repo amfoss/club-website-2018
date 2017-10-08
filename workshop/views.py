@@ -120,13 +120,13 @@ class WorkshopRegisterFormView(CreateView):
         workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
 
         try:
-            application = WorkshopRegistration.objects.filter(email=form.cleaned_data.get('email'))
+            application = WorkshopRegistration.objects.filter(workshop=workshop , email=form.cleaned_data.get('email'))
         except WorkshopRegistration.DoesNotExist:
             application = None
 
         if application.exists():
             form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
-                u'Your are already registered'
+                u'You are already registered'
             ])
             return self.form_invalid(form)
 
