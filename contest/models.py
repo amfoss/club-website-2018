@@ -6,7 +6,7 @@ from django.db import models
 
 class Contest(models.Model):
     name = models.CharField(max_length=500)
-    user = models.ForeignKey(User)
+    # created_by = models.ForeignKey(User, related_name="created_by")
     overview = models.TextField()
     description = models.TextField(blank=True)
     more_info = models.TextField(blank=True)
