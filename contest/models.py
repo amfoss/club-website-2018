@@ -1,0 +1,21 @@
+from django.contrib.auth.models import User
+from django.db import models
+
+# Create your models here.
+
+
+class Contest(models.Model):
+    name = models.CharField(max_length=500)
+    user = models.ForeignKey(User)
+    overview = models.TextField()
+    description = models.TextField(blank=True)
+    more_info = models.TextField(blank=True)
+    link = models.URLField(blank=True)
+    image = models.ImageField(upload_to='contest/poster/', null=True, blank=True)
+    contact_info = models.CharField(max_length=200, blank=True, null=True)
+    start_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
+    end_date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
+    prize = models.TextField(max_length=500)
+
+    def __str__(self):
+        return self.name
