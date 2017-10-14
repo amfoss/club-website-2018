@@ -19,3 +19,12 @@ class Contest(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ContestComment(models.Model):
+    contest = models.ForeignKey(Contest)
+    full_name = models.CharField(max_length=300)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.full_name + self.contest.name
