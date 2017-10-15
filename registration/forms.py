@@ -104,14 +104,14 @@ class UserSignUpForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-
+#i have just changed the 'First name' to 'Firstname' and 'Last name' to 'Lastname' and 'Mail id' to 'Mailid'
     # user model
     first_name = forms.CharField(help_text='Enter your first name',
-                                 widget=forms.TextInput(attrs={'placeholder': 'First name'}), required=False)
+                                 widget=forms.TextInput(attrs={'placeholder': 'Firstname'}), required=False)
     last_name = forms.CharField(help_text='Enter your last name',
-                                widget=forms.TextInput(attrs={'placeholder': 'Last name'}), required=False)
+                                widget=forms.TextInput(attrs={'placeholder': 'Lastname'}), required=False)
     email = forms.EmailField(help_text='Enter your email id',
-                             widget=forms.EmailInput(attrs={'placeholder': 'Mail id'}), required=False)
+                             widget=forms.EmailInput(attrs={'placeholder': 'Mailid'}), required=False)
 
     # user Info model
     profile_pic = forms.ImageField(help_text='Use a square pic(ex: 500 x 500px), ' +
