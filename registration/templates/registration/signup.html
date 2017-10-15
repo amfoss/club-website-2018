@@ -41,32 +41,32 @@
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="first_name">First Name</label>
+                                        <label for="first_name">FirstName</label>
                                         <input type="text" class="form-control" name="first_name" id="first_name"
                                                value="{{ form.first_name.value|default_if_none:"" }}"
-                                               placeholder="First name">
+                                               placeholder="Firstname">
                                         <small class="form-text text-muted">
-                                            First name
+                                            Firstname
                                         </small>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="last_name">Last Name</label>
+                                        <label for="last_name">LastName</label>
                                         <input type="text" class="form-control" name="last_name" id="last_name"
                                                value="{{ form.last_name.value|default_if_none:"" }}"
-                                               placeholder="Last name">
+                                               placeholder="Lastname">
                                         <small class="form-text text-muted">
-                                            Last name
+                                            Lastname
                                         </small>
                                     </div>
 
 
                                     <div class="form-group col-md-8">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" name="email" id="email"
-                                               value="{{ form.email.value|default_if_none:"" }}" placeholder="email">
+                                        <label for="Email">Email</label>
+                                        <input type="Email" class="form-control" name="Email" id="Email"
+                                               value="{{ form.email.value|default_if_none:"" }}" placeholder="Email">
                                         <small class="form-text text-muted">
-                                            Enter your email id
+                                            Enter your Email id
                                         </small>
                                     </div>
 
