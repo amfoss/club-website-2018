@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from django.views.generic import CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 from events.forms import EventCreateForm
 from events.models import Event
@@ -49,3 +50,19 @@ class EventUpdateView(UpdateView):
         if not (request.user.is_superuser or request.user == self.get_object().user):
             redirect('permission_denied')
         return super(EventUpdateView, self).post(request, *args, **kwargs)
+
+class EventDeleteView(DeleteView):
+    model = Event
+    template_name = 'event/confirm_delete.html'
+    success_url = reverse_lazy('events')
+
+    def get(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(EventUpdateView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not (request.user.is_superuser or request.user == self.get_object().user):
+            redirect('permission_denied')
+        return super(EventUpdateView, self).post(request, *args, **kwargs)
+
