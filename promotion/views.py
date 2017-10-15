@@ -113,7 +113,7 @@ class JoinApplicationCreateView(CreateView):
                        "Great to know that you are interested in being a part of the FOSS club at Amritapuri. " + \
                        "We got your application, please complete the " + \
                        "tasks at [1] and complete at least 25 Hackerrank[2] problems or " + \
-                       "if you are not familiar with programing complete cs50.tv[3] till week 3 " + \
+                       "if you are not familiar with programming complete cs50.tv[3] till week 3 " + \
                        "before " + str(datetime.date.today() + datetime.timedelta(days=20)) + ".\n\n" + \
                        "Let us know when you are done with the Hackerrank problems, so that we can have a one on " + \
                        "one interview. We won't be testing your skills but would ask about the problems you have " + \
