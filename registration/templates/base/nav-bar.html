@@ -37,6 +37,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'project' %}">Projects</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'category_list' %}">Resources</a>
+            </li>
             {% if request.user.is_superuser %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'join_list' %}">
@@ -59,7 +62,7 @@
             {% else %}
                 {%  ifequal request.path '/accounts/login/' %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
+                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
                     </li>
                 {% else %}
                     <li class="nav-item">

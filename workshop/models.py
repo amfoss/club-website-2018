@@ -23,7 +23,7 @@ class Workshop(models.Model):
 
 
 class WorkshopRegistration(models.Model):
-    workshop = models.ForeignKey(Workshop, blank=True, null=True)
+    workshop = models.ForeignKey(Workshop, null=True)
     name = models.CharField(max_length=200)
     email = models.EmailField()
     roll_number = models.CharField(max_length=100)
