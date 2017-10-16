@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^workshop/', include('workshop.urls')),
     url(r'^notices/', include('noticeBoard.urls')),
     url(r'^resources/', include('technical_resources.urls')),
+    url(r'^events/', include('events.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
