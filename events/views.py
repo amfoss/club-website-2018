@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
 from events.forms import EventCreateForm, EventImageForm
 from events.models import Event, EventImage
@@ -101,3 +101,18 @@ class EventImageDeleteView(DeleteView):
     model = EventImage
     template_name = 'events/confirm_delete.html'
     success_url = reverse_lazy('events')
+
+
+class EventListView(ListView):
+    model = Event
+
+class EventDetailView(DetailView):
+    model = Event
+
+    def get_context_data(self, **kwargs):
+        context = super(EventDetailView, self).get_context_data(**kwargs)
+        if self.request.user.is_superuser or self.request.user == self.get_object().user:
+            context['edit_permission'] = True
+        else:
+            context['edit_permission'] = False
+        return context

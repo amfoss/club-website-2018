@@ -1,0 +1,93 @@
+<!-- Created by Navaneeth S, navisk13@gmail.com -->
+{% extends 'base/base.html' %}
+
+{% block title %} {{ object.name }} {% endblock %}
+
+{% load static %}
+
+{% block script %}
+    <!-- Latest compiled and minified JavaScript -->
+{% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+
+            <div class="container">
+                <div class="row">
+                    <h1 class="head col-md-12">{{ object.name }}</h1>
+                    <div class="col-md-12">
+                        <div class="card mb-3">
+                            <div class="card-block">
+                                <p class="card-text preserve-contents">{{ object.description }}</p>
+                                <p class="card-text preserve-contents">Venue: {{ object.venue }}</p>
+                                <p class="card-text">{{ object.start_date }} to {{ object.end_date }}</p>
+                                <hr>
+                                <p>
+                                    <small>{{ object.trainer_bio }}
+                                    </small>
+                                </p>
+                                <p>Level: {{ object.level }}</p>
+                                <p>Prerequisites: {{ object.prerequisites }}</p>
+                                <p>
+                                    <small class="text-muted">
+                                        Participants : {{ object.no_of_participants }}
+                                    </small>
+                                </p>
+                                <p>Travel: {{ object.travel }}</p>
+                                <p>Accomodation: {{ object.accomodation }}</p>
+                                <p>Expense: {{ object.expense }}</p>
+                                <p>Lab Requirements: {{ object.lab_requirements }}</p>
+                                <p>ICTS Support: {{ object.icts_support }}</p>
+                                {%  if edit_permission %}
+                                  <a href="{% url 'workshopdetail_update' object.id %}">
+                                        <button type="submit" class="btn btn-success add-btn">Update</button>
+                                    </a>
+                            {% endif %}
+                                    {% if edit_permission %}
+                                  <a href="{% url 'workshop_delete' object.id %}">
+                                        <button type="submit" class="btn btn-danger add-btn">Delete</button>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+    <style>
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .add-btn {
+            margin-top: 20px;
+        }
+
+        .margin-20 {
+            margin: 24px;
+        }
+
+        .head {
+            margin: 30px 0;
+        }
+
+        .link {
+            text-decoration: none !important;
+            color: black;
+        }
+    </style>
+
+
+{% endblock %}
+
