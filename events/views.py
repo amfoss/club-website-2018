@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 
 from events.forms import EventCreateForm, EventImageForm
-from events.models import Event
+from events.models import Event, EventImage
 
 
 class EventCreateView(CreateView):
@@ -95,3 +95,9 @@ class EventImageUpdateView(UpdateView):
         if not (request.user.is_superuser or request.user == self.get_object().event.user):
             redirect('permission_denied')
         return super(EventImageUpdateView, self).post(request, *args, **kwargs)
+
+
+class EventImageDeleteView(DeleteView):
+    model = EventImage
+    template_name = 'events/confirm_delete.html'
+    success_url = reverse_lazy('events')

@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Delete {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <!-- content goes here -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="card" action="" method="post">
+                            <div class="card-block">
+                                {% csrf_token %}
+                                <h2>Delete {{ object.name }}?</h2>
+                                <button type="submit" class="btn btn-danger">Yes, continue</button>
+                            </div>
+                        </form>
+                        {% ifequal title "Events" %}
+                        <a href="{% url 'events_list' %}"><button class="btn btn-info">No, take me out of here</button></a>
+                        {% endifequal %}
+                        {% ifequal title "Images" %}.
+                     <a href="{% url 'eventsimage_list' %}"><button class="btn btn-info">No, take me out of here</button></a>
+                        {% endifequal %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'base/footer.html' %}
+
+    <style>
+        .container {
+            margin-top: 80px;
+        }
+
+        .btn {
+            margin-right: 10px;
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}
+
+
