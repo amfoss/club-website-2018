@@ -41,4 +41,16 @@ class Event(models.Model):
 
 class EventImage(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='events/')
+    image = models.ImageField(upload_to='events/images/')
+
+    def __str__(self):
+        return self.event.name
+
+
+class EventComment(models.Model):
+    event = models.ForeignKey(Event)
+    full_name = models.CharField(max_length=200)
+    description = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.full_name + ' ' + self.event.name

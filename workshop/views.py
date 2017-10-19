@@ -33,6 +33,8 @@ class WorkshopDetailView(DetailView):
         context['no_of_seats_left'] = no_of_seats_left
         feedback = WorkshopFeedback.objects.filter(workshop=self.get_object())
         context['feedback'] = feedback
+        if self.request.user.is_superuser or self.request.user == self.get_object().user:
+            context['edit_permission'] = True
         return context
 
 
@@ -86,7 +88,7 @@ class WorkshopUpdateView(UpdateView):
 class WorkshopDeleteView(DeleteView):
     model = Workshop
     template_name = 'workshop/confirm_delete.html'
-    success_url = reverse_lazy('workshop')
+    success_url = reverse_lazy('workshop_list')
 
     def get(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().user):
@@ -120,13 +122,13 @@ class WorkshopRegisterFormView(CreateView):
         workshop = Workshop.objects.get(id=self.kwargs.get('workshop_id', None))
 
         try:
-            application = WorkshopRegistration.objects.filter(email=form.cleaned_data.get('email'))
+            application = WorkshopRegistration.objects.filter(workshop=workshop , email=form.cleaned_data.get('email'))
         except WorkshopRegistration.DoesNotExist:
             application = None
 
         if application.exists():
             form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
-                u'Your are already registered'
+                u'You are already registered'
             ])
             return self.form_invalid(form)
 
