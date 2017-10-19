@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', Home.as_view(), name='home'),
     url(r'^accounts/', include('registration.urls')),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),#this file is invisible
     url(r'^club/', include('clubManagement.urls')),
     url(r'^foss/', include('promotion.urls')),
     url(r'^achievements/', include('achievements.urls')),
