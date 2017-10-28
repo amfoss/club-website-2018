@@ -28,3 +28,27 @@ class ContestComment(models.Model):
 
     def __str__(self):
         return self.full_name + self.contest.name
+
+class ContestSubmission(models.Model):
+    contest = models.ForeignKey(Contest)
+    full_name = models.CharField(max_length=300)
+    roll_no = models.CharField(max_length=50)
+    course = models.CharField(max_length=300)
+    start_date_time = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    def __str__(self):
+        return self.full_name + self.contest.name
+
+
+ #submission
+# contest
+#name
+#rno
+#class
+#date
+
+
+# contest submission file
+
+#submission
+#file
