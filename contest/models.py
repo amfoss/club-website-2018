@@ -40,7 +40,15 @@ class ContestSubmission(models.Model):
         return self.full_name + self.contest.name
 
 
- #submission
+class ContestFileSubmission(models.Model):
+    submission = models.ForeignKey(ContestSubmission)
+    file = models.fileField(upload_to='contest/submissions/', null=True, blank=True)
+
+    def __str__(self):
+        return self.submission.full_name
+
+    
+#submission
 # contest
 #name
 #rno
