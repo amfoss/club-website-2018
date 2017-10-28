@@ -1,6 +1,6 @@
 from django import forms
 
-from events.models import Event
+from events.models import Event, EventImage
 
 LEVEL_CHOICES = (('beginner', 'Beginner'),
                  ('intermediate', 'Intermediate'),
@@ -36,3 +36,18 @@ class EventCreateForm(forms.ModelForm):
         model = Event
         fields = ['name', 'start_date', 'end_date', 'description', 'venue', 'trainer_bio', 'no_of_participants',
                   'level', 'prerequisite', 'travel', 'accommodation', 'expense', 'lab_requirements', 'icts_support']
+
+
+class EventImageForm(forms.ModelForm):
+    event = forms.ModelChoiceField(queryset=Event.objects.all(), label='Event', help_text='Select event')
+    image = forms.ImageField(label='images',
+                             widget=forms.FileInput())
+
+    def __init__(self, *args, **kwargs):
+        super(EventImageForm, self).__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({'class': 'form-control'})
+
+    class Meta:
+        model = EventImage
+        fields = ['event', 'image']

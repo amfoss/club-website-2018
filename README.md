@@ -35,11 +35,11 @@ These features are successfully implemented
 * Password reset
 * Password change
 
-## promotion
+## Promotion
 * Membership application
 * Review application
 
-## projects
+## Projects
 * Manage project details
 
 ## Documents
