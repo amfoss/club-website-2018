@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'technical_resources',
     'contest',
     'Home',
+    'BlogFeedAggregator',
 
 ]
 
