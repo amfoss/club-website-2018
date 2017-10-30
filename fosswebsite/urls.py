@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^events/', include('events.urls')),
     url(r'^home/', include('Home.urls')),
     url(r'^$', include('Home.urls')),
-
+    url(r'^BlogFeedAggregator/', include('BlogFeedAggregator.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
