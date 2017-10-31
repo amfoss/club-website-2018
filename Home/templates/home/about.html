@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>FOSS@Amrita. Code | Share | Grow</title>
+
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="{% static 'home/assets/images/favicon.png' %}">
+	<link rel="apple-touch-icon" href="{% static 'home/assets/images/apple-touch-icon.png' %}">
+	<link rel="apple-touch-icon" sizes="72x72" href="{% static 'home/assets/images/apple-touch-icon-72x72.png' %}">
+	<link rel="apple-touch-icon" sizes="114x114" href="{% static 'home/assets/images/apple-touch-icon-114x114.png' %}">
+
+	<!-- Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,400italic,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
+
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'home/assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+	<!-- Icon Fonts -->
+	<link href="{% static 'home/assets/css/font-awesome.min.css' %}" rel="stylesheet">
+	<link href="{% static 'home/assets/css/et-line-font.min.css' %}" rel="stylesheet">
+
+	<!-- Plugins -->
+	<link href="{% static 'home/assets/css/magnific-popup.css' %}" rel="stylesheet">
+	<link href="{% static 'home/assets/css/owl.carousel.css' %}" rel="stylesheet">
+	<link href="{% static 'home/assets/css/superslides.css' %}" rel="stylesheet">
+	<link href="{% static 'home/assets/css/vertical.min.css' %}" rel="stylesheet">
+
+	<!-- Template core CSS -->
+	<link href="{% static 'home/assets/css/template.css' %}" rel="stylesheet">
+</head>
+<body>
+
+	<!-- PRELOADER -->
+	<div class="page-loader">
+		<div class="loader">Loading...</div>
+	</div>
+	<!-- /PRELOADER -->
+
+	<!-- Incudes navigation bar.  -->
+	{% include 'home/side-nav.html' %}
+
+	<!-- WRAPPER -->
+	<div class="wrapper">
+
+		<!-- HERO -->
+		<section id="hero" class="module-hero bg-dark-30 js-fullheight" data-background="{% static 'home/assets/images/aboutbg.jpg' %}">
+
+			<!-- HERO TEXT -->
+			<div class="hero-caption">
+				<div class="hero-text">
+					<h1 class="hero-title">FOSS@Amrita</h1>
+					<p class="hero-subtitle font-serif m-t-40">Your freedom begins here. <br>
+																										Converge your obssesion into something great. For the greater cause.</p>
+				</div>
+			</div>
+			<!-- /HERO TEXT -->
+
+		</section>
+		<!-- /HERO -->
+
+		<!-- SERVICES -->
+		<section class="module">
+			<div class="container-fluid container-custom">
+
+				<!-- MODULE TITLE -->
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3">
+						<h2 class="module-title font-alt">Our Notion</h2>
+						<p class="module-subtitle">"Leadership is about Empathy."</p>
+					</div>
+				</div>
+				<!-- /MODULE TITLE -->
+
+				<!-- <div class="row">
+					<div class="col-sm-12">
+						<div class="text-center m-b-60">
+
+					</div>
+				</div> -->
+
+				<div class="row multi-columns-row">
+
+					<!-- ICONBOX -->
+					<div class="col-sm-3 col-md-3 col-lg-3">
+						<div class="iconbox">
+							<div class="iconbox-icon">
+								<span class="icon-mobile"></span>
+							</div>
+							<div class="iconbox-header">
+								<h4 class="iconbox-title font-alt">Design</h4>
+							</div>
+							<div class="iconbox-content">
+								<p>Human-centered design is a philosophy, not a precise set of methods, but one that assumes that innovation should start by getting close to users and observing their activities.</p>
+							</div>
+						</div>
+					</div>
+					<!-- /ICONBOX -->
+
+					<!-- ICONBOX -->
+					<div class="col-sm-3 col-md-3 col-lg-3">
+						<div class="iconbox">
+							<div class="iconbox-icon">
+								<span class="icon-linegraph"></span>
+							</div>
+							<div class="iconbox-header">
+								<h4 class="iconbox-title font-alt">Engineering</h4>
+							</div>
+							<div class="iconbox-content">
+								<p>Our vision is to rediscover the spirit of the Renaissance, create a new discipline where engineering for cultural heritage is actually a symbol of blending art and science together.</p>
+							</div>
+						</div>
+					</div>
+					<!-- /ICONBOX -->
+
+					<!-- ICONBOX -->
+					<div class="col-sm-3 col-md-3 col-lg-3">
+						<div class="iconbox">
+							<div class="iconbox-icon">
+								<span class="icon-strategy"></span>
+							</div>
+							<div class="iconbox-header">
+								<h4 class="iconbox-title font-alt">Leadership</h4>
+							</div>
+							<div class="iconbox-content">
+								<p>Leadership is about empathy. It is about having the ability to relate to and connect with people for the purpose of inspiring and empowering thier lives</p>
+							</div>
+						</div>
+					</div>
+					<!-- /ICONBOX -->
+
+					<!-- ICONBOX -->
+					<div class="col-sm-3 col-md-3 col-lg-3">
+						<div class="iconbox">
+							<div class="iconbox-icon">
+								<span class="icon-layers"></span>
+							</div>
+							<div class="iconbox-header">
+								<h4 class="iconbox-title font-alt">Creative</h4>
+							</div>
+							<div class="iconbox-content">
+								<p>When you show deep empathy toward others, their defensive energy goes down, and positive energy replaces it. That's when you can get more creative in solving problems.</p>
+							</div>
+						</div>
+					</div>
+					<!-- /ICONBOX -->
+
+				</div>
+
+			</div>
+		</section>
+		<!-- /SERVICES -->
+
+		<!-- Short note section -->
+		<section class="module bg-dark-30" data-background="{% static 'home/assets/images/module-5.jpg' %}">
+			<div class="container-fluid container-custom">
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3">
+						<h2 class="module-title font-alt">A short note..!</h2>
+					</div>
+					<!-- text area -->
+					<div class="col-md-12">
+						<div class="counter text-light">
+							<p>FOSS@Amrita is one of the most active student communities on the campus, living and breathing on the motto of Code | Share | Grow . We are a community of students who support and guide each other towards making open source contributions, and  the usage of free software. Here we encourage, support and mentor students to improve their technical and social skills through contributing to open source. We aim at helping students to embrace the free and open source approach that is fast gaining momentum. We develop ideas, learn to build new things, be it Computer Science or social skills which are an essentiality today. </p>
+							<p>We have regular sessions, talks and presentations on recent technologies and how it’s important to us, given by our own students and Alumni placed at prestigious institutions. We try to give the students as much a exposure and experience that we can give to prepare them on how the industry works, and what is expected of them in a real workspace. Hackathons conducted by MediaWiki and Drupal are examples of the wide array of  opportunities that the FOSS club provides the students to learn, grow and work with the industry, and get a feel of how they can apply what they learn sitting in classrooms. We have students working for Free and open source communities, working on Android development, Web development and much more.</p>
+							<p>We take part in programs such as GSoC, KDE-SoK, RSoC which all are different Summer of Code programs conducted by different communities. In the year of 2016, we had 16 selects for GSoC ( with 11 from Amritapuri - 10 GSoC + 1 Outreach ), also 5 selectees at 2017 which clearly shows the enthusiasm  and dedication of the Amritapuri Campus. Being a student community, there are no biases, since learning comes from our fellow peers and seniors. It becomes super fun when we stay late in labs working on things which we love and are interested in. If you are thinking that FOSS is all about academics and work, We think this would help you clear your mind. We have weekly activities like debates, gardening, lightning talks, vedic chanting, sports sessions and many more to supplement our growth as a whole. We work together as a team. And apart from all of these FOSS Club is a great learning platform for anyone who is really interested in hacking into the crest and trough of Computer science. We also focus on extracurricular activities which will in turn lead you to better future and a wholesome life.Students in FOSS club have a complete growth and the foresight to survive and succeed in the outside world, given the constraints and work environment. We are not a bunch  of “geeks” who sit and stare at the computer screens, but a family of happy to go lucky people who are just ready to take on whatever life has in store for us!!:)
+							</p>
+						</div>
+					</div>
+					<!-- /text area -->
+				</div>
+			</div>
+		</section>
+		<!-- /Short note section -->
+
+		<!-- TEAM -->
+		<section class="module">
+			<div class="container-fluid container-custom">
+
+				<!-- MODULE TITLE -->
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3">
+						<h2 class="module-title font-alt">Meet with <br> our creative team</h2>
+					</div>
+				</div>
+				<!-- /MODULE TITLE -->
+
+				<div class="row">
+
+
+					<!-- TEAM MEMBER -->
+					<div class="col-sm-3">
+						<div class="team-item m-b-sm-40">
+							<img src="{% static 'home/assets/images/team-4.jpeg' %}" alt="Aniketh Girish">
+							<div class="team-inner">
+								<h4 class="team-name font-alt">Aniketh Girish</h4>
+								<span class="team-role font-serif">Designer / Front-end Developer</span>
+							</div>
+						</div>
+					</div>
+					<!-- /TEAM MEMBER -->
+
+					<!-- TEAM MEMBER -->
+					<div class="col-sm-3">
+						<div class="team-item m-b-sm-40">
+							<img src="{% static 'home/assets/images/team-2.jpeg' %}" alt="Chirath R">
+							<div class="team-inner">
+								<h4 class="team-name font-alt">Chirath R</h4>
+								<span class="team-role font-serif">Full Stack Developer</span>
+							</div>
+						</div>
+					</div>
+					<!-- /TEAM MEMBER -->
+
+					<!-- TEAM MEMBER -->
+					<div class="col-sm-3">
+						<div class="team-item m-b-sm-40">
+							<img src="{% static 'home/assets/images/team-1.jpeg' %}" alt="Navaneeth S">
+							<div class="team-inner">
+								<h4 class="team-name font-alt">Navaneeth S</h4>
+								<span class="team-role font-serif">Back-End Developer</span>
+							</div>
+						</div>
+					</div>
+					<!-- /TEAM MEMBER -->
+
+					<!-- TEAM MEMBER -->
+					<div class="col-sm-3">
+						<div class="team-item m-b-sm-40">
+							<img src="{% static 'home/assets/images/team-3.jpeg' %}" alt="Rahul K">
+							<div class="team-inner">
+								<h4 class="team-name font-alt">Rahul K</h4>
+								<span class="team-role font-serif">Back-End Developer</span>
+							</div>
+						</div>
+					</div>
+					<!-- /TEAM MEMBER -->
+
+			</div>
+		</section>
+		<!-- /TEAM -->
+
+		<hr class="divider">
+
+		<!-- Footer section -->
+		{% include 'home/footer.html' %}
+
+	</div>
+	<!-- /WRAPPER -->
+
+	<!-- JAVASCRIPT FILES -->
+	<script src="{% static 'home/assets/js/jquery-2.1.4.min.js' %}"></script>
+	<script src="{% static 'home/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/jquery.superslides.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/imagesloaded.pkgd.js' %}"></script>
+	<script src="{% static 'home/assets/js/isotope.pkgd.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/jquery.fitvids.js' %}"></script>
+	<script src="{% static 'home/assets/js/jqBootstrapValidation.js' %}"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="{% static 'home/assets/js/gmap3.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/appear.js' %}"></script>
+	<script src="{% static 'home/assets/js/smoothscroll.js' %}"></script>
+	<script src="{% static 'home/assets/js/submenu-fix.js' %}"></script>
+	<script src="{% static 'home/assets/js/contact.js' %}"></script>
+	<script src="{% static 'home/assets/js/custom.js' %}"></script>
+
+</body>
+</html>
