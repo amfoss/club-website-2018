@@ -78,40 +78,27 @@
 					<div class="col-sm-8 col-sm-offset-2">
 
 
-						{% for article in articles %}
-
 						<!-- POST -->
 						<article class="post">
 							<div class="post-thumbnail">
 								<img src="assets/images/blog-1.jpg" alt="">
 							</div>
 							<div class="post-header">
-								<h2 class="post-title font-alt"><a href="{{article.url}}"> →{{ article.title }}</a></h2>
-								<div class="post-meta">
-									By <a href="#">Hovik Eduard</a> on November 12, 2015
-								</div>
+								<h2 class="post-title font-alt">All the Blog RSS feeds</h2>
 							</div>
 							<div class="post-content">
-								<p>{{article.description | safe}}</p>
-								<a class="post-more" href="{{article.url}}" target="_blank">Read more →</a>
+								<form method="post">
+									{% csrf_token %}
+									{{form.as_p}}
+									<button type="submit" class="btn btn-primary">Save</button>
+								</form>
+
+								<ul id="filters" class="filters font-alt">
+									<li><a href="{% url 'feed_new' %}" class="current">Add feed</a></li>
+								</ul>
 							</div>
 						</article>
 						<!-- POST -->
-
-						{% endfor %}
-
-						<!-- PAGINATION -->
-						<div class="pagination font-alt">
-							<ul class="pagination">
-								<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-								<li><a href="#">1</a></li>
-								<li class="active"><span>2</span></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-							</ul>
-						</div>
-						<!-- /PAGINATION -->
 
 					</div>
 					<!-- .col-* -->
