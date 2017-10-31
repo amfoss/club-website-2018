@@ -30,6 +30,12 @@
             <li><a href="{% url 'club' %}">Club</a></li>
             <li><a href="{% url 'document' %}">Documents</a></li>
             <li><a href="{% url 'achievements' %}">Achievements</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools</a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{% url 'feeds_list' %}">Add Feeds/RSS</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
 
@@ -54,13 +60,14 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inside FOSS</a>
           <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'foss_intro' %}">Join us</a></li>
             <li><a href="{% url 'about' %}">About Us</a></li>
             <li><a href="{% url 'team' %}">Teams</a></li>
             <li><a href="{% url 'profile_list' %}">Members</a></li>
           </ul>
         </li>
 
-      <li><a href="{% url 'foss_intro' %}">Join us</a></li>
+        <li><a href="/BlogFeedAggregator">blog posts</a></li>
 
         {% if request.user.is_authenticated %}
         <li class="dropdown">
@@ -68,13 +75,11 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="{% url 'profile' request.user.id %}">Profile</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
-            {% else %}
-                {%  ifequal request.path '/accounts/login/' %}
+            {% else %} {% ifequal request.path '/accounts/login/' %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
             {% else %}
-                 <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
-                 {% endifequal %}
-             {% endif %}
+            <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+            {% endifequal %} {% endif %}
           </ul>
         </li>
 
