@@ -14,6 +14,7 @@ class Feed(models.Model):
 class Article(models.Model):
     feed = models.ForeignKey(Feed)
     title = models.CharField(max_length=200)
+    author = models.CharField(null=True, max_length=200)
     url = models.URLField()
     description = models.TextField()
     publication_date = models.DateTimeField()

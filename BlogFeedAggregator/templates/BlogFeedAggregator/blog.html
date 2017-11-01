@@ -85,15 +85,11 @@
 							<div class="post-header">
 								<h2 class="post-title font-alt"><a href="{{article.url}}"> →{{ article.title }}</a></h2>
 								<div class="post-meta">
-									Published on <a href="#"> {{article.feed}}</a> at {{article.publication_date}}
+									Published by <a href="#"> {{article.author}}</a> at {{article.publication_date}}
 								</div>
 							</div>
 							<div class="post-content">
 								<p>{{article.description | safe}}</p>
-
-								{# Bug fix: Image url not defined properly to render into the Aggregator Here images could be the featured image or any other.#}
-								<img src="{{article.href}}">
-
 							</div>
 						</article>
 						<!-- POST -->

@@ -24,6 +24,7 @@ def new_feed(request):
             feed = form.save(commit=False)
 
             existingFeed = Feed.objects.filter(url = feed.url)
+
             if len(existingFeed) == 0:
                 feedData = feedparser.parse(feed.url)
 
@@ -31,15 +32,14 @@ def new_feed(request):
                 feed.title = feedData.feed.title
                 feed.save()
 
+                l = blogLink.find(".com")
+
                 for entry in feedData.entries:
                     article = Article()
                     article.title = entry.title
                     article.url = entry.link
                     article.description = entry.description
-
-                    # Image section views created
-
-                    article.href = entry.href.link
+                    article.author = entry.author_detail.name
 
                     d = datetime.datetime(*(entry.published_parsed[0:6]))
                     dateString = d.strftime('%Y-%m-%d %H:%M:%S')
