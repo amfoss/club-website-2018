@@ -93,6 +93,10 @@
 							</div>
 							<div class="post-content">
 								<p>{{article.description | safe}}</p>
+
+								{# Bug fix: Image url not defined properly to render into the Aggregator Here images could be the featured image or any other.#}
+								<img src="{{article.href}}">
+
 							</div>
 						</article>
 						<!-- POST -->

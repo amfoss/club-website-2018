@@ -37,6 +37,10 @@ def new_feed(request):
                     article.url = entry.link
                     article.description = entry.description
 
+                    # Image section views created
+
+                    article.href = entry.href.link
+
                     d = datetime.datetime(*(entry.published_parsed[0:6]))
                     dateString = d.strftime('%Y-%m-%d %H:%M:%S')
 
