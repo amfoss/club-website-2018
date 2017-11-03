@@ -88,14 +88,14 @@
 							</div>
 							<div class="post-content">
 								<ul>
-                  {% for feed in feeds %}
-                  <li><a href="{{feed.url}}">{{feed.title}}</a></li>
-                  {% endfor %}
-                </ul>
+									{% for feed in feeds %}
+									<li><a href="{{feed.url}}">{{feed.title}}</a></li>
+									{% endfor %}
+								</ul>
 
 
 								<ul class="filters font-alt">
-										<li><a href="{% url 'feed_new' %}" class="current">Add feed</a></li>
+									<li><a href="{% url 'feed_new' %}" class="current">Add feed</a></li>
 								</ul>
 
 							</div>
