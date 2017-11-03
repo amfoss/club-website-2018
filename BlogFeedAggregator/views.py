@@ -5,9 +5,17 @@ from django.shortcuts import render
 from .models import Article, Feed
 from .forms import FeedForm
 from django.shortcuts import redirect
+from django.views.generic.list import ListView
 
 import feedparser
 import datetime
+
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'BlogFeedAggregator/blog.html'
+    context_object_name = 'article'
+    paginate_by = 10    
+    queryset = Article.objects.all()
 
 def article_list(request):
     articles = Article.objects.all()
