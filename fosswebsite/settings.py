@@ -49,8 +49,6 @@ INSTALLED_APPS = [
     'noticeBoard',
     'technical_resources',
     'contest',
-    'Home',
-
 ]
 
 MIDDLEWARE = [
