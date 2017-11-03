@@ -1,0 +1,105 @@
+{% load static %}
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+  <nav class="navbar navbar-custom font-alt">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <!-- YOU LOGO HERE -->
+      <a class="navbar-brand" href={% url 'home' %}>
+        <img class="light-logo" src="{% static 'home/assets/images/logo.png' %}" width="95" alt="">
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="custom-collapse">
+
+      <ul class="nav navbar-nav">
+
+        {% if request.user.is_authenticated %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'club' %}">Club</a></li>
+            <li><a href="{% url 'document' %}">Documents</a></li>
+            <li><a href="{% url 'achievements' %}">Achievements</a></li>
+          </ul>
+        </li>
+
+        {% else %}
+
+        <li><a href="{% url 'home' %}">Home</a></li>
+
+        {% endif %}
+
+        <!-- What we Do -->
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">What we Do</a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'project' %}">Projects</a></li>
+            <li><a href="{% url 'category_list' %}">Resources</a></li>
+          </ul>
+        </li>
+
+        <!-- Who are we -->
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inside FOSS</a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'team' %}">Teams</a></li>
+            <li><a href="{% url 'profile_list' %}">Members</a></li>
+          </ul>
+        </li>
+
+      <li><a href="{% url 'foss_intro' %}">Join us</a></li>
+
+        {% if request.user.is_authenticated %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.username }}</a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'profile' request.user.id %}">Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                {%  ifequal request.path '/accounts/login/' %}
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% else %}
+                 <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+                 {% endifequal %}
+             {% endif %}
+          </ul>
+        </li>
+
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+
+      </ul>
+    </div>
+
+  </nav>
+
+  <!-- SOCIAL LINKS -->
+  <div class="copyright">
+    <div class="social-icons m-b-20">
+      <a href="https://www.facebook.com/FossatAmrita" target="_blank" class="fa fa-facebook facebook"></a>
+      <a href="https://twitter.com/amritafoss" target="_blank" class="fa fa-twitter twitter"></a>
+      <a href="https://www.instagram.com/foss_at_amrita/?hl=en" target="_blank" class="fa fa-instagram instagram"></a>
+      <a href="https://plus.google.com/107405104458420547482" target="_blank" class="fa fa-google-plus google-plus"></a>
+      <a href="linkedin.com/amfoss" target="_blank" class="fa fa-linkedin linkedin"></a>
+      <a href="https://github.com/amfoss" target="_blank" class="fa fa-github github"></a>
+
+    </div>
+
+    <p>© 2017 FOSS@Amrita</p>
+  </div>
+  <!-- /SOCIAL LINKS -->
+
+</div>
+<!-- /SIDEBAR -->

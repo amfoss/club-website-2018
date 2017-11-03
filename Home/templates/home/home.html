@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>FOSS@Amrita. Code | Share | Grow</title>
+
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="{% static 'home/assets/images/favicon.png' %}">
+	<link rel="apple-touch-icon" href="{% static 'home/assets/images/apple-touch-icon.png' %}">
+	<link rel="apple-touch-icon" sizes="72x72" href="{% static 'home/assets/images/apple-touch-icon-72x72.png' %}">
+	<link rel="apple-touch-icon" sizes="114x114" href="{% static 'home/assets/images/apple-touch-icon-114x114.png' %}">
+
+	<!-- Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,400italic,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
+
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'home/assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+	<!-- Icon Fonts -->
+	<link href="{% static 'home/assets/css/font-awesome.min.css' %}" rel="stylesheet">
+	<link href="{% static 'home/assets/css/et-line-font.min.css' %}" rel="stylesheet">
+
+	<!-- Plugins -->
+	<link href="{% static 'home/assets/css/magnific-popup.css' %}" rel="stylesheet">
+	<link href="{% static 'home/assets/css/owl.carousel.css' %}" rel="stylesheet">
+	<link href="{% static 'home/assets/css/superslides.css' %}" rel="stylesheet">
+	<link href="{% static 'home/assets/css/vertical.min.css' %}" rel="stylesheet">
+
+	<!-- Template core CSS -->
+	<link href="{% static 'home/assets/css/template.css' %}" rel="stylesheet">
+</head>
+<body>
+
+	<!-- PRELOADER -->
+	<div class="page-loader">
+		<div class="loader">Loading...</div>
+	</div>
+	<!-- /PRELOADER -->
+
+	<!-- Incudes navigation bar.  -->
+	{% include 'home/side-nav.html' %}
+
+	<!-- WRAPPER -->
+	<div class="wrapper">
+
+		<!-- HERO -->
+		<section id="hero" class="module-hero bg-dark-30 js-fullheight" data-background="{% static 'home/assets/images/mainbg.jpg' %}">
+
+			<!-- HERO TEXT -->
+			<div class="hero-caption">
+				<div class="hero-text">
+					<h3 class="m-b-60">FOSS@Amrita</h1>
+					<h6 class="m-b-60">Code | Share | Grow</h6>
+					<a href="#portfolio" class="btn btn-dark anim-scroll">Learn More</a>
+				</div>
+			</div>
+			<!-- /HERO TEXT -->
+
+		</section>
+		<!-- /HERO -->
+
+		<!-- PORTFOLIO -->
+		<section id="portfolio" class="module-sm">
+			<div class="container-fluid">
+				<!-- FILTERS -->
+				<div class="row">
+					<div class="col-sm-12">
+
+						<ul id="filters" class="filters font-alt">
+							<li><a href="#" class="current" data-filter=".fashion">Mentors</a></li>
+							<li><a href="#" data-filter=".travel">Areas</a></li>
+							<!-- <li><a href="#" data-filter=".music">Music</a></li> -->
+							<li><a href="#" data-filter=".video">Interests</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /FILTERS -->
+
+			<div class="works-grid-wrapper">
+
+					<div id="works-grid" class="works-grid works-grid-gutter">
+
+						<!-- Mentor Section -->
+						<article class="work-item fashion">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="{% static 'home/assets/images/vipin1.jpg' %}" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">VIPIN P</h3>
+									<span class="work-category font-serif"><a href="#">Chief Mentor</a></span>
+								</div>
+								<a href="#" class="work-link"></a>
+							</div>
+						</article>
+
+						<article class="work-item fashion">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="{% static 'home/assets/images/bithin1.jpg' %}" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">BITHIN ALANGOT</h3>
+									<span class="work-category font-serif"><a href="#">Mentor</a></span>
+								</div>
+								<a href="#" class="work-link"></a>
+							</div>
+						</article>
+
+						<article class="work-item fashion">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="{% static 'home/assets/images/arvind.jpg' %}" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">ARVIND S RAJ</h3>
+									<span class="work-category font-serif"><a href="#">Mentor</a></span>
+								</div>
+								<a href="#" class="work-link"></a>
+							</div>
+						</article>
+						<!-- /Mentor Section -->
+
+						<!-- PORTFOLIO ITEM -->
+						<!-- <article class="work-item music">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="{% static 'home/assets/images/portfolio-2.jpg' %}" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">Pink Lips</h3>
+									<span class="work-category font-serif"><a href="#">Music</a></span>
+								</div>
+								<a href="portfolio-single-1.html" class="work-link"></a>
+							</div>
+						</article> -->
+						<!-- /PORTFOLIO ITEM -->
+
+						<!-- Areas Section -->
+						<article class="work-item travel">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="{% static 'home/assets/images/webdev.jpg' %}" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">Web Development</h3>
+									<span class="work-category font-serif"><a href="#">Full stack web application development</a></span>
+								</div>
+								<a href="portfolio-single-1.html" class="work-link"></a>
+							</div>
+						</article>
+						<!-- /PORTFOLIO ITEM -->
+
+						<!-- PORTFOLIO ITEM -->
+						<article class="work-item travel">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="{% static 'home/assets/images/soft.jpg' %}" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">Desktop Application Development</h3>
+									<span class="work-category font-serif"><a href="#">Unix/ Linux Application development</a></span>
+								</div>
+								<a href="portfolio-single-1.html" class="work-link"></a>
+							</div>
+						</article>
+						<!-- /PORTFOLIO ITEM -->
+
+						<!-- PORTFOLIO ITEM -->
+						<article class="work-item travel">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="{% static 'home/assets/images/androiddev.png' %}" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">Andriod Development</h3>
+									<span class="work-category font-serif"><a href="#"></a></span>
+								</div>
+								<a href="portfolio-single-1.html" class="work-link"></a>
+							</div>
+						</article>
+						<!-- /Areas Section -->
+
+						<!-- Interests Section -->
+						<article class="work-item video">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="{% static 'home/assets/images/iot-2.jpg' %}" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">Internet of Things</h3>
+									<span class="work-category font-serif"><a href="#"></a></span>
+								</div>
+								<a href="portfolio-single-1.html" class="work-link"></a>
+							</div>
+						</article>
+						<!-- /PORTFOLIO ITEM -->
+
+						<!-- PORTFOLIO ITEM -->
+						<article class="work-item video">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="{% static 'home/assets/images/Data-Science.jpg' %}" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">Data Science</h3>
+									<span class="work-category font-serif"><a href="#"></a></span>
+								</div>
+								<a href="portfolio-single-1.html" class="work-link"></a>
+							</div>
+						</article>
+						<!-- /PORTFOLIO ITEM -->
+
+						<!-- PORTFOLIO ITEM -->
+						<article class="work-item video">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="{% static 'home/assets/images/blockchain.png' %}" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">Crypto Currency</h3>
+									<span class="work-category font-serif"><a href="#"></a></span>
+								</div>
+								<a href="portfolio-single-1.html" class="work-link"></a>
+							</div>
+						</article>
+						<!-- /Interests Section -->
+
+						<!-- PORTFOLIO ITEM -->
+						<!-- <article class="work-item music">
+							<div class="work-wrapper">
+								<div class="work-thumbnail">
+									<img src="assets/images/portfolio-5.jpg" alt="">
+								</div>
+								<div class="work-caption">
+									<h3 class="work-title font-alt">Workshop</h3>
+									<span class="work-category font-serif"><a href="#">Music</a></span>
+								</div>
+								<a href="portfolio-single-1.html" class="work-link"></a>
+							</div>
+						</article> -->
+						<!-- /PORTFOLIO ITEM -->
+
+
+					</div>
+
+				</div><!-- works-grid-wrapper -->
+
+				<!-- SHOW MORE -->
+				<!-- <div class="row">
+					<div class="col-sm-12">
+
+						<div class="m-t-70 text-center">
+							<button id="show-more" class="btn btn-dark show-more">More works</button>
+						</div>
+
+					</div>
+				</div> -->
+				<!-- /SHOW MORE -->
+
+			</div>
+		</section>
+		<!-- /PORTFOLIO -->
+
+		<hr class="divider">
+
+		<!-- Footer section -->
+		{% include 'home/footer.html' %}
+
+	</div>
+	<!-- /WRAPPER -->
+
+	<!-- JAVASCRIPT FILES -->
+	<script src="{% static 'home/assets/js/jquery-2.1.4.min.js' %}"></script>
+	<script src="{% static 'home/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/jquery.superslides.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/imagesloaded.pkgd.js' %}"></script>
+	<script src="{% static 'home/assets/js/isotope.pkgd.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/jquery.fitvids.js' %}"></script>
+	<script src="{% static 'home/assets/js/jqBootstrapValidation.js' %}"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="{% static 'home/assets/js/gmap3.min.js' %}"></script>
+	<script src="{% static 'home/assets/js/appear.js' %}"></script>
+	<script src="{% static 'home/assets/js/smoothscroll.js' %}"></script>
+	<script src="{% static 'home/assets/js/submenu-fix.js' %}"></script>
+	<script src="{% static 'home/assets/js/contact.js' %}"></script>
+	<script src="{% static 'home/assets/js/custom.js' %}"></script>
+
+</body>
+</html>
