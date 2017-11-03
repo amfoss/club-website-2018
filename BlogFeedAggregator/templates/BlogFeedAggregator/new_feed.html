@@ -56,11 +56,11 @@
 
 		<!-- HERO -->
 		<section id="hero" class="module-hero bg-dark-30" data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
-			
+
 			<!-- HERO TEXT -->
 			<div class="hero-caption">
 				<div class="hero-text">
-					<h1 class="hero-title font-alt">Blog posts</h1>
+					<h1 class="hero-title font-alt">Add Blog posts</h1>
 					<p class="hero-subtitle font-serif">Our latest news &amp; articles of all the foss members</p>
 				</div>
 			</div>
@@ -77,28 +77,20 @@
 
 					<div class="col-sm-8 col-sm-offset-2">
 
-
-						<!-- POST -->
-						<article class="post">
-							<div class="post-thumbnail">
-								<img src="assets/images/blog-1.jpg" alt="">
-							</div>
+						<article class="post" align="center">
 							<div class="post-header">
-								<h2 class="post-title font-alt">All the Blog RSS feeds</h2>
+								<h2 class="post-title font-alt">Add the Blog RSS feeds</h2>
 							</div>
 							<div class="post-content">
 								<form method="post">
 									{% csrf_token %}
 									{{form.as_p}}
-									<button type="submit" class="btn btn-primary">Save</button>
+									<center><ul id="filters" class="filters font-alt">
+									<button type="submit">Save</button>
+								</ul></center>
 								</form>
-
-								<ul id="filters" class="filters font-alt">
-									<li><a href="{% url 'feed_new' %}" class="current">Add feed</a></li>
-								</ul>
 							</div>
 						</article>
-						<!-- POST -->
 
 					</div>
 					<!-- .col-* -->

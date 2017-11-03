@@ -1517,6 +1517,17 @@ blockquote cite{
 	border-color:#111;
 }
 
+.filters button {
+	border:solid transparent;
+	font-weight:700;
+	font-size:11px;
+	padding:5px 25px;
+	/*margin-left: -500px;*/
+	background:#111;
+	color:#fff;
+	border-color:#111;
+}
+
 .works-grid-wrapper{
 	margin-left: -8px;
 	margin-right:-8px;
