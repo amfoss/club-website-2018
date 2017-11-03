@@ -32,8 +32,6 @@ def new_feed(request):
                 feed.title = feedData.feed.title
                 feed.save()
 
-                l = blogLink.find(".com")
-
                 for entry in feedData.entries:
                     article = Article()
                     article.title = entry.title
