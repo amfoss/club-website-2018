@@ -8,8 +8,8 @@ Function views
     1. Add an import:  from my_app import views
     2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
 Class-based views
-    1. Add an import:  from other_app.views import home
-    2. Add a URL to urlpatterns:  url(r'^$', home.as_view(), name='home')
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
@@ -23,6 +23,7 @@ from .views import Home
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', Home.as_view(), name='home'),
     url(r'^accounts/', include('registration.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),#this file is invisible
     url(r'^club/', include('clubManagement.urls')),
@@ -35,9 +36,6 @@ urlpatterns = [
     url(r'^notices/', include('noticeBoard.urls')),
     url(r'^resources/', include('technical_resources.urls')),
     url(r'^events/', include('events.urls')),
-    url(r'^home/', include('Home.urls')),
-    url(r'^$', include('Home.urls')),
-
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
