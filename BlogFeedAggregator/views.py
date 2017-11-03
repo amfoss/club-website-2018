@@ -39,7 +39,11 @@ def new_feed(request):
                     article = Article()
                     article.title = entry.title
                     article.url = entry.link
-                    article.description = entry.description
+                    try:
+                        article.description = entry.description[:entry.description.find('<img ')]
+                    except:
+                        article.description = entry.description
+
                     article.author = entry.author_detail.name
 
                     d = datetime.datetime(*(entry.published_parsed[0:6]))
