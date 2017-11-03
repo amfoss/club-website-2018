@@ -28,9 +28,9 @@ def new_feed(request):
             if len(existingFeed) == 0:
                 feedData = feedparser.parse(feed.url)
 
-                # Fields
-                feed.title = feedData.feed.title
-                feed.save()
+                # Example usage of the feedparser python API for crawling blog Data.
+                # feed.title = feedData.feed.title
+                # feed.save()
 
                 for entry in feedData.entries:
                     article = Article()
