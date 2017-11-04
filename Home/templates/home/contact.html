@@ -73,20 +73,20 @@
 
 					<div class="col-sm-8">
 
-						<form id="contact-form" role="form" novalidate>
+						<form id="contact-form" role="form"  method="post">
 							<div class="form-group">
 								{% csrf_token %}
-								<label class="sr-only" for="cname">Name</label>
-								<input type="text" id="name" class="form-control" name="cname" placeholder="Name*" required="" data-validation-required-message="Please enter your name.">
+								<label class="sr-only" for="name">Name</label>
+								<input type="text" id="name" class="form-control" name="name" placeholder="Name*" required="" >
 								<p class="help-block text-danger"></p>
 							</div>
 							<div class="form-group">
-								<label class="sr-only" for="cemail">Your Email</label>
-								<input type="email" id="email" name="cemail" class="form-control" placeholder="Your E-mail*" required="" data-validation-required-message="Please enter your email address.">
+								<label class="sr-only" for="email">Your Email</label>
+								<input type="email" id="email" name="email" class="form-control" placeholder="Your E-mail*" required="">
 								<p class="help-block text-danger"></p>
 							</div>
 							<div class="form-group">
-								<textarea class="form-control" id="message" name="cmessage" rows="7" placeholder="Message*" required="" data-validation-required-message="Please enter your message."></textarea>
+								<textarea class="form-control" id="message" name="message" rows="7" placeholder="Message*" required="" ></textarea>
 								<p class="help-block text-danger"></p>
 							</div>
 							<div class="text-center">
@@ -95,10 +95,11 @@
 						</form>
 						{% if is_success %}
 								Thank you!!
-								<script>alert("Thank you! Message sent.")</script>
+								<script>alert("Thank you! Message sent.")
+                                </script>
+                            <meta http-equiv="refresh" content="0.1; URL=/home">
+<meta name="keywords" content="automatic redirection">
 						{% endif %}
-						<!-- Ajax response -->
-						<div id="contact-response" class="ajax-response font-alt"></div>
 
 					</div><!-- .col-* -->
 
@@ -160,7 +161,6 @@
 	<script src="{% static 'home/assets/js/appear.js' %}"></script>
 	<script src="{% static 'home/assets/js/smoothscroll.js' %}"></script>
 	<script src="{% static 'home/assets/js/submenu-fix.js' %}"></script>
-	<script src="{% static 'home/assets/js/contact.js' %}"></script>
 	<script src="{% static 'home/assets/js/custom.js' %}"></script>
 
 </body>
