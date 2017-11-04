@@ -11,11 +11,10 @@ import feedparser
 import datetime
 
 class ArticleListView(ListView):
-    model = Article
     template_name = 'BlogFeedAggregator/blog.html'
     context_object_name = 'article'
     paginate_by = 10    
-    queryset = Article.objects.all()
+    queryset = Article.objects.all().order_by("-publication_date")
 
 def article_list(request):
     articles = Article.objects.all()
