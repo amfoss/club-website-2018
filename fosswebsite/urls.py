@@ -20,7 +20,7 @@ from django.contrib import admin
 
 from fosswebsite import settings
 from .views import Home
-
+# given below are the urls for all the links in foss website home page
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', Home.as_view(), name='home'),
