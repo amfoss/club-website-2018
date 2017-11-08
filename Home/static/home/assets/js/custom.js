@@ -86,7 +86,8 @@
 
         var filters = $('#filters'),
             worksgrid = $('#works-grid');
-
+               worksgrid.isotope({
+                 filter: '.fashion'});
         $('a', filters).on('click', function() {
             var selector = $(this).attr('data-filter');
             $('.current', filters).removeClass('current');
