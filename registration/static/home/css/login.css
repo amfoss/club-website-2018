@@ -1,5 +1,10 @@
 html {
     box-sizing: border-box;
+
+}
+
+body {
+    background: url('../../registration/../home/img/abstract-wallpapers.jpg') transparent;
 }
 
 *, *:before, *:after {
@@ -11,6 +16,7 @@ html {
     position: fixed;
     top: 0;
     right: 0;
+    padding-left: 50px;
     bottom: 0;
     left: 0;
     opacity: 1;
