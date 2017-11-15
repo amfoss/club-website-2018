@@ -78,10 +78,11 @@
             {% else %} {% ifequal request.path '/accounts/login/' %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
             {% else %}
-            <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
-            {% endifequal %} {% endif %}
+                 <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+                 {% endifequal %}
           </ul>
         </li>
+        {% endif %}
 
         <li><a href="{% url 'contact' %}">Contact</a></li>
       </ul>
