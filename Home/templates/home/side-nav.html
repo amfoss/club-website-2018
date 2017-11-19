@@ -34,6 +34,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{% url 'feeds_list' %}">Add Feeds/RSS</a></li>
+                                    <li><a href="{% url 'join_list' %}">Application</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -69,6 +70,7 @@
                 </li>
 
                 <li><a href="/BlogFeedAggregator">blog posts</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
 
                 {% if request.user.is_authenticated %}
                     <li class="dropdown">
@@ -84,8 +86,6 @@
                         </ul>
                     </li>
                 {% endif %}
-
-                <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
         </div>
 
