@@ -30,7 +30,7 @@ ul {
     display: flex;
     -ms-flex-flow: column wrap;
     flex-flow: column wrap;
-    height: 85vh;
+    height: 90vh;
     -webkit-transform: translate(0, -100%);
     transform: translate(0, -100%);
     -webkit-transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -86,7 +86,7 @@ ul {
 }
 
 .burger {
-    height: 15vh;
+    height: 10vh;
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
