@@ -1,4 +1,4 @@
-from promotion.models import JoinApplication
+from admissions.models import JoinApplication
 
 
 def get_application_count():

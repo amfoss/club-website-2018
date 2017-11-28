@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'documents',
     'events',
     'projects',
-    'promotion',
+    'admissions',
     'captcha',
     'timeline',
     'workshop',
@@ -149,7 +149,7 @@ NOCAPTCHA = True
 
 # application count notification
 
-TEMPLATES[0]['OPTIONS']['context_processors'].append("promotion.context_processors.application_processor")
+TEMPLATES[0]['OPTIONS']['context_processors'].append("admissions.context_processors.application_processor")
 
 
 # bcc mail id for join application task mail
@@ -160,4 +160,4 @@ join_application_mail_list = ['chirath.02@gmail.com', 'vipin.p@gmail.com', 'anuv
 join_application_reply_to = ['chirath.02@gmail.com']
 
 # Additional info like email configurations, passwords and secrete keys kept in separate file during development
-from .local_settings import *
+# from .local_settings import *
