@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),#this file is invisible
     url(r'^club/', include('clubManagement.urls')),
-    url(r'^foss/', include('promotion.urls')),
+    url(r'^foss/', include('admissions.urls')),
     url(r'^achievements/', include('achievements.urls')),
     url(r'^documents/', include('documents.urls')),
     url(r'^project/', include('projects.urls')),

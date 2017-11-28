@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
+    {% load static %}
+        <link href="{% static 'timeline/css/Bellefair.css' %}" rel="stylesheet">
 
     <meta charset="UTF-8"/>
     <title>Timeline</title>
@@ -17,7 +18,6 @@
     </script>
        <a href="{% url 'home' %}"> <button type="button" class="icon-chevron-left navkey" style="margin-right: 98.5%;background-color: Transparent;border:none;"></button>
        </a>
-<h1 class="Font">Our Family</h1>
     <style type="text/css">
         .Font{
 
@@ -45,7 +45,7 @@
 
     </style>
     <link rel='stylesheet' id='contact-form-7-css'
-          href='https://cray.bg/themes/time-travel/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.2'
+          href='{% static 'timeline/css/contact_form7.css' %}'
           type='text/css' media='all'/>
     <link rel='stylesheet' id='ab_tf_fontawesome-css'
           href='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/css/font-awesome/css/font-awesome.css?ver=4.2.13'
@@ -54,53 +54,39 @@
           href='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/style.css?ver=4.2.13' type='text/css'
           media='all'/>
     <link rel='stylesheet' id='ab_tf_prettyPhoto-css'
-          href='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/css/prettyPhoto.css?ver=4.2.13'
+          href='{% static 'timeline/css/prettyphoto.css' %}'
           type='text/css' media='all'/>
     <link rel='stylesheet' id='ab_tf_flexslider-css'
-          href='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/css/flexslider.css?ver=4.2.13'
+          href='{% static 'timeline/css/flexslider.css' %}'
           type='text/css' media='all'/>
     <link rel='stylesheet' id='ab_tf_customdropdowncss-css'
-          href='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/functions/adminanddropdown.css?ver=4.2.13'
+          href='{% static 'timeline/css/customdropdown.css' %}'
           type='text/css' media='all'/>
     <link rel='stylesheet' id='ab_tf_vegas-css'
-          href='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/css/jquery.vegas.css?ver=4.2.13'
+          href='{% static 'timeline/css/vegas.css' %}'
           type='text/css' media='all'/>
     <link rel='stylesheet' id='ab_tf_opentipcss-css'
           href='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/css/opentip.css?ver=4.2.13'
           type='text/css' media='all'/>
     <link rel='stylesheet' id='ab_tf_responsive-css'
-          href='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/css/responsive.css?ver=4.2.13'
+          href='{% static 'timeline/css/responsive.css' %}'
           type='text/css' media='all'/>
-    <!--[if IE 9]>
-    <link rel='stylesheet' id='ab_tf_timetravel-ie9-css'
-          href='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/css/styleIE.css?ver=1.6' type='text/css'
-          media='all'/>
-    <![endif]-->
     <link rel='stylesheet' id='opc-css'
           href='https://cray.bg/themes/time-travel/wp-content/themes/timetravel/css/settings.css?ver=4.2.13'
           type='text/css' media='all'/>
     <link rel='stylesheet' id='options_typography_Open+Sans-css'
-          href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css' media='all'/>
+          href='{% static 'timeline/css/opensans.css' %}' type='text/css' media='all'/>
     <link rel='stylesheet' id='timetravel_opensans-css'
-          href='https://fonts.googleapis.com/css?family=Open+Sans&#038;ver=4.2.13' type='text/css' media='all'/>
+          href='{% static 'timeline/css/opensans38.css' %}' type='text/css' media='all'/>
     <link rel='stylesheet' id='js_composer_front-css'
-          href='https://cray.bg/themes/time-travel/wp-content/plugins/js_composer_timetravel/assets/css/js_composer.css?ver=4.3.4'
+          href='{% static 'timeline/css/composer.css' %}'
           type='text/css' media='all'/>
-    <link rel='stylesheet' id='js_composer_custom_css-css'
-          href='https://cray.bg/themes/time-travel/wp-content/uploads/js_composer/custom.css?ver=4.3.4' type='text/css'
-          media='screen'/>
+
     <script type='text/javascript'
             src='https://cray.bg/themes/time-travel/wp-includes/js/jquery/jquery.js?ver=1.11.2'></script>
     <script type='text/javascript'
             src='https://cray.bg/themes/time-travel/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-    <link rel="EditURI" type="application/rsd+xml" title="RSD"
-          href="https://cray.bg/themes/time-travel/xmlrpc.php?rsd"/>
-    <link rel="wlwmanifest" type="application/wlwmanifest+xml"
-          href="https://cray.bg/themes/time-travel/wp-includes/wlwmanifest.xml"/>
-    <!--[if IE 8]>
-    <link rel="stylesheet" type="text/css"
-          href="https://cray.bg/themes/time-travel/wp-content/plugins/js_composer_timetravel/assets/css/vc-ie8.css"
-          media="screen"><![endif]--></head>
+</head>
 
 <body class="archive category category-circle category-3 classictilt wpb-js-composer js-comp-ver-4.3.4 vc_responsive">
 
@@ -138,50 +124,10 @@
     function loadArticle(pageNumber, is_state, var_string) {
         jQuery('.inifiniteLoader').removeClass('fadeOutDown').addClass("fadeInUp");
         jQuery('.numpostinfi').removeClass('fadeInUp').addClass("fadeOutDown");
-        jQuery.ajax({
-            url: "https://cray.bg/themes/time-travel/wp-admin/admin-ajax.php",
-            type: 'POST',
-            data: "action=infinite_scroll&page_no=" + pageNumber + '&loop_file=' + slectloop + '&is_state=' + is_state + '&var_string=' + var_string,
-            success: function (html) {
-                jQuery('.inifiniteLoader').removeClass('fadeInUp').addClass("fadeOutDown");
-                jQuery('.numpostinfi').removeClass('fadeOutDown').addClass("fadeInUp");
-                jQuery("#articlehold").append(html);
-                whait = 0;
-            }
-        });
         return false;
     }
 
 </script>
-<header>
-    <div class="support-note"><!-- let's check browser support with modernizr -->
-        <!--span class="no-cssanimations">CSS animations are not supported in your browser</span-->
-        <!--span class="no-csstransforms">CSS transforms are not supported in your browser</span-->
-        <!--span class="no-csstransforms3d">CSS 3D transforms are not supported in your browser</span-->
-        <!--span class="no-csstransitions">CSS transitions are not supported in your browser</span-->
-        <span class="note-ie"><br>We are apologize for the inconvenience but you need to download <br> more modern browser in order to be able to browse our page<br/>
-
-                    <p class="support-note-ico ">
-                        <a href="http://support.apple.com/kb/DL1531?viewlocale=en_US&amp;locale=en_US"><img
-                                src="https://cray.bg/themes/time-travel/wp-content/themes/timetravel/images/support/safari.png"
-                                alt="Download Safari" width="50" height="50"/> <br>Download Safari
-                        </a>
-                        <a href="https://www.google.com/intl/en/chrome/browser/"><img
-                                src="https://cray.bg/themes/time-travel/wp-content/themes/timetravel/images/support/chrome.png"
-                                alt="Download Chrome" width="50" height="50"/> <br>Download Chrome
-                        </a>
-                        <a href="http://www.mozilla.org/en-US/firefox/new/"><img
-                                src="https://cray.bg/themes/time-travel/wp-content/themes/timetravel/images/support/firefox.png"
-                                alt="Download Firefox" width="50" height="50"/> <br>Download Firefox
-                        </a>
-                        <a href="http://windows.microsoft.com/en-us/internet-explorer/ie-10-worldwide-languages"><img
-                                src="https://cray.bg/themes/time-travel/wp-content/themes/timetravel/images/support/ie.png"
-                                alt="Download IE 10+" width="50" height="50"/> <br>Download IE 10+
-                        </a>
-                    </p>
-                  </span>
-    </div>
-</header>
 <div class="header-top-p">
     <div id="ss-container" class="ss-container    ">
         <div id="ytbgvideo"></div>
