@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from captcha.fields import ReCaptchaField
 from django import forms
 
-from promotion.models import JoinApplication
+from admissions.models import JoinApplication
 
 batch_choices = (
     ('1st year', '1st year'),

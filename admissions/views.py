@@ -17,8 +17,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
-from promotion.forms import JoinApplicationForm
-from promotion.models import JoinApplication
+from admissions.forms import JoinApplicationForm
+from admissions.models import JoinApplication
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
 
 approve_mail_content = ',\\n\\nWe are excited to inform that you are selected for the interview. Be there at ' + \
@@ -192,7 +192,7 @@ class JoinApplicationUpdateView(UpdateView):
 
 class ContactView(View):
     def get(self, request):
-        template_name = 'promotion/index.html'
+        template_name = 'admissions/index.html'
         return render(request, template_name)
 
     def post(self, request):
@@ -201,7 +201,7 @@ class ContactView(View):
                   request.POST.get('message')
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
-        return render(request, template_name='promotion/index.html', context={"is_success": True})
+        return render(request, template_name='admissions/index.html', context={"is_success": True})
 
 
 def validate_mail(email):
@@ -216,7 +216,7 @@ def validate_mail(email):
 
 class EmailAllApplicantsView(View):
     def get(self, request):
-        template_name = 'promotion/mail_to_all.html'
+        template_name = 'admissions/mail_to_all.html'
         to_list = ""
         bcc_list = "vipin.p@gmail.com, "
         cc_list = ""
@@ -236,7 +236,7 @@ class EmailAllApplicantsView(View):
         return render(request, template_name, context)
 
     def post(self, request):
-        template_name = 'promotion/mail_sent.html'
+        template_name = 'admissions/mail_sent.html'
 
         to_list = request.POST['to_list'].strip()
         bcc_list = request.POST['bcc_list'].strip()
@@ -277,7 +277,7 @@ class EmailAllApplicantsView(View):
 
         if error != "":
             context["error"] = error
-            template_name = 'promotion/mail_to_all.html'
+            template_name = 'admissions/mail_to_all.html'
             return render(request, template_name, context)
 
         email = EmailMessage(
