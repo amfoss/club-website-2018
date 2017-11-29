@@ -11,7 +11,7 @@ from timeline.models import AlumniInfo
 
 class AlumniListView(ListView):
     model = AlumniInfo
-    template_name = 'timeline/index.html'
+    template_name = 'timeline/timeline.html'
 
     def get_context_data(self, **kwargs):
         context = super(AlumniListView, self).get_context_data(**kwargs)
