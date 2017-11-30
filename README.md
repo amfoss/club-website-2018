@@ -1,13 +1,13 @@
-**# Project**
+# **Project**
 
 It’s been 10+ years now that FOSS@Amrita came into existence. We are a community of students who support and guide each other towards making open source contributions, which not only helps them to build their technical skills but also helps them to contribute back to the society. Being one of the most active student communities of the country, we have made our presence felt all over. We have been getting a lot of exposure & opportunities via different platforms such as conferences & social media to name a few. 
 
 **Idea / Goal of the club**: To be a better human being.
 
 
-**## How to Contribute?**
+## **How to Contribute?**
 
-###If you are a developer
+### If you are a developer
 
 * Get the code
 * Familiarize yourself with the code base.
@@ -38,7 +38,7 @@ Start by building the code, and testing all our new exciting features!!
 * If you're hoping to contribute in another way, let us know!
 
 
-**## Getting started**
+## **Getting started**
 
 Getting started with contributing to this is really easy with just one step away from contributing to foss@amrita. So let’s get you started,
 Fork the repository 
@@ -49,7 +49,7 @@ Do a direct clone, so that you can get familiarised with the code base. Moreover
 git clone [https://github.com/amfoss/fosswebsite.git]
 
 
-**## Pre-requisites**
+## **Pre-requisites**
 1. Install requirements:
   All the requirements are mentioned in the file
    `requirements.txt`
@@ -63,7 +63,7 @@ git clone [https://github.com/amfoss/fosswebsite.git]
             sudo -H pip install virtualenvwrapper`
 
 
-**##Installing**
+## **Installing**
 1. First, some initialization steps. Most of this only needs to be done one time. 
 Add the command to source:
            `/usr/local/bin/virtualenvwrapper.sh` to your shell startup file
@@ -99,7 +99,7 @@ Add the command to source:
 
 
 
-**##Built with:**
+## **Built with:**
 
 **Frontend**: HTML5, CSS3, JavaScript, jQuery
 **Backend/Framework:** 
@@ -111,7 +111,7 @@ Add the command to source:
 **Database:** Django In-built db support (sqlite3)
 
 
-**##Features implemented:**
+## **Features implemented:**
 
 **Achievements**
 * **Contributions**: A detailed account of the numerous contributions done by the club members in their respective Open Source organizations. 
@@ -202,7 +202,7 @@ Simply put, by far the best way to know our audience, Google Analytics primarily
 **An Alert Page:** alert for scheduled meetings, deadlines (GSoC, Contests) etc.
 **Blog Aggregator:** Service that aggregates data using RSS feeds of a blog and displays the latest posts ordered on the website.
 
-**##Contributors**
+## **Contributors**
 * Chirath R- fullstack developer
 * Rahul Krishnan- backend developer
 * Navaneeth S- backend developer
