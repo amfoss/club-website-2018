@@ -165,6 +165,7 @@ Currently, users(members of the club) can contribute to our website via giving t
 This section specifically aims to bridge the procedural/communicational gap between students and administrators, by means of a two-way correspondence between site users and admins. This attribute also serve as a means of sending crucial updates through push notifications or necessary alerts for scheduling important meetings, deadlines (GSoC, Contests) etc.
 
 Basically, any immediate suggestion/improvement is conveyed easily by an admin/mentor to the other members/students through this feature.    
+
 **Events**
 * Info about current and past events conducted by the club. All events can be handled in the same format, the data stored in a db and displayed on the webpage. 
 
@@ -192,7 +193,7 @@ It consists of all sorts of learning materials, links to different items, which 
 1. A short para with details on the work they did while they were in the club and a short note about them.
 2. An alumni enlisting: Current occupation, areas of expertise photos, resume, blog links.
 
-**Google Analytics**
+**Google Analytics**   
 Simply put, by far the best way to know our audience, Google Analytics primarily tracks and reports website traffic. Through Analytics, we can monitor how long users stay on our website, what pages/sections they are visiting the most, which page/section is causing the users to leave most often and much more. This would help in substantially improving the performance of the site and improve scalability from the end-user’s perspective.
  
 **Social OAuth integration** 
