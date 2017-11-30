@@ -101,13 +101,16 @@ Add the command to source:
 
 ## **Built with:**
 
-**Frontend**: HTML5, CSS3, JavaScript, jQuery
+**Frontend**: HTML5, CSS3, JavaScript, jQuery   
+
 **Backend/Framework:** 
 * Django 1.11
-* Media Query CSS for multi-device compatibility **(Mobile compatibility)**
+* Media Query CSS for multi-device compatibility **(Mobile compatibility)**   
+
 **Others:** 
 * Google Crawler
-* Google Calendar / Google APIs
+* Google Calendar / Google APIs   
+
 **Database:** Django In-built db support (sqlite3)
 
 
@@ -120,15 +123,15 @@ Add the command to source:
 * **RGSoC**: A timeline enlisting the details of students selected for RGSoC every year. 
 * **Talks**: Referencing to the talks and conferences given/attended by the students of the club.
 * **Internships**: Provides a brief outline of various internship programs enrolled in by the club members.
-* **Contests**: Gives out a detailed account of various contests participated and the rank obtained by the members of FOSS@Amrita.
-**Club Management**
+* **Contests**: Gives out a detailed account of various contests participated and the rank obtained by the members of FOSS@Amrita.   
+* **Club Management**
 There are various activities in-store to manage and keep up the work-environment. We list them below:
 * **Attendance management**: Reflects number of people present during lab working hours and their respective attendance percentage. 
 * **Responsibility**: Describes the individual responsibilities assigned to the club members.
 * **Teams**: Lists out the teams working on various projects simultaneously.
 * **Status updates**: Involvement of a mailing list for sending weekly status updates to keep up with our work and stay updated with current club activities.
 
-**Registration**
+**Registration**   
 _Social Oauths integrated to do registration and login._
 Social Oauth is part of the Social API. It provides a common interface for creating modules related to user registration/login through social networks' accounts.
 
@@ -142,10 +145,11 @@ The student can login and create profile  via a portal but has to be reviewed / 
 * Password Change.
 
 
-**Join Us**
+**Join Us**   
+
 Currently, users(members of the club) can contribute to our website via giving their feedback by filling a review application stating their experience with the current system and suggesting the proposed changes, which will help us to improve. For those who are yet to join(first year’s) can fill the Membership Application which in will help us in shortlisting them for the interview round.
-* **Membership Application**
-* **Review Application**
+* Membership Application
+* Review Application
 
 **Projects**
 * Consists of a detailed explanation of various ongoing projects under  a concerned mentor and the mentee(s) contributing to it. (Which includes all personal projects, GSoC projects, Final year projects by FOSS students and much more.) 
@@ -157,10 +161,10 @@ Currently, users(members of the club) can contribute to our website via giving t
 **Documents**
 * Managing important documents: Documents relating to important student information for restricted access by the student and their respective mentors will be catalogued carefully. These include: College specific documents: necessary for obtaining permission to attend conferences and to conduct workshops. Letter templates that would be useful for formal communications, Visa application letters etc.
 
-**Notice Board**
+**Notice Board**   
 This section specifically aims to bridge the procedural/communicational gap between students and administrators, by means of a two-way correspondence between site users and admins. This attribute also serve as a means of sending crucial updates through push notifications or necessary alerts for scheduling important meetings, deadlines (GSoC, Contests) etc.
 
-Basically, any immediate suggestion/improvement is conveyed easily by an admin/mentor to the other members/students through this feature. 
+Basically, any immediate suggestion/improvement is conveyed easily by an admin/mentor to the other members/students through this feature.    
 **Events**
 * Info about current and past events conducted by the club. All events can be handled in the same format, the data stored in a db and displayed on the webpage. 
 
@@ -199,7 +203,7 @@ Simply put, by far the best way to know our audience, Google Analytics primarily
 1. Artificial Intelligence.
 2. [api.ai]
 
-**An Alert Page:** alert for scheduled meetings, deadlines (GSoC, Contests) etc.
+**An Alert Page:** alert for scheduled meetings, deadlines (GSoC, Contests) etc.   
 **Blog Aggregator:** Service that aggregates data using RSS feeds of a blog and displays the latest posts ordered on the website.
 
 ## **Contributors**
