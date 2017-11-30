@@ -58,8 +58,10 @@
 <div class="wrapper">
     <ul class="timeline">
         {% for object in objects %}
+
         <li class="timeline-event">
             <label class="timeline-event-icon"></label>
+             <img style="margin-left: 300px; height: 25%; width: 25%;" src="/static/media/{{ object.profile_pic }}">
             <div class="timeline-event-copy">
                 <p class="timeline-event-thumbnail">{{ object.date.month }} {{ object.date.year }}</p>
                 <h3>{{ object.name }}</h3>
@@ -67,7 +69,11 @@
                 <strong>{{ object.position }}</strong>
                 <p><br>{{ object.description }}</p>
                 <a href="/static/media/{{ object.resume }}">
+
+              
+
                     <h6 class="btn btn-dark anim-scroll">Resume</h6>
+
                 </a>
             </div>
         </li>
