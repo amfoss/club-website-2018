@@ -64,7 +64,7 @@
         <br>
             <div class="card mb-3">
                 {% if object.image %}
-                    <img class="card-img-top img-fluid" src="/static/media/{{ object.image }}">
+                    <img class="card-img-top img-fluid" src="static/media/{{ object.image }}">
                 {% else %}
                     <img class="card-img-top img-fluid" src="{% static 'projects/images/default.png' %}">
                 {% endif %}
@@ -85,7 +85,7 @@
                         <a href="{% url 'project_delete' object.id %}">
                             <button type="submit" class="btn btn-danger add-btn">Delete</button>
                         </a>
-                        <a href="{% url 'image_list' object.id %}">
+                        <a href="{% url 'screenshot_list' object.id %}">
                             <button type="submit" class="btn btn-dark anim-scroll">View Screenshots</button>
                         </a>
                     {% endif %}
@@ -110,12 +110,15 @@
                         </div>
                         <small id="emailHelp" class="form-text text-muted">Search for a student above.
                         </small>
+                    <br>
+                    
+
                         <button type="submit" class="btn btn-secondary add-btn">Add</button>
                     </form>
                 </div>
             </div>
         <br><br>
-
+        </div>
             <div class="row">
             <div class="col-md-6">
             <ul class="list-group">
@@ -140,6 +143,7 @@
                             Add student
                         </button>
                     </div>
+
                 {% endif %}
             </ul>
             </div>
@@ -180,6 +184,38 @@
     {% include 'home/footer.html' %}
 
 </div>
+   <script>
+        function showForm() {
+            var form = document.getElementById('student-form');
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+            }
+            else {
+                form.style.display = 'none';
+            }
+        }
+        function myFunction() {
+            // Declare variables
+            var input, filter, items, i;
+            input = document.getElementById('search');
+            filter = input.value.toUpperCase();
+            items = document.getElementsByClassName('dropdown-item');
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < items.length; i++) {
+                if (items[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+        function addText(id, name) {
+            var inp1 = document.getElementById('search');
+            var inp2 = document.getElementById('search-id');
+            inp1.value = name;
+            inp2.value = id;
+        }
+    </script>
 <!-- /WRAPPER -->
 
 <!-- JAVASCRIPT FILES -->

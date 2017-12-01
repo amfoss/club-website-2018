@@ -155,14 +155,14 @@ class ProjectScreenShotCreateView(CreateView):
         project = Project.objects.get(id=self.kwargs['pk'])
         image = request.FILES.get('image')
         ProjectScreenShot(project=project, image=image).save()
-        return redirect('image_list', self.kwargs['pk'])
+        return redirect('screenshot_list', self.kwargs['pk'])
 
 
 class ProjectScreenShotDeleteView(DeleteView):
     model = ProjectScreenShot
 
     def get_success_url(self):
-        return reverse('image_list', kwargs={'pk': self.object.project.id})
+        return reverse('screenshot_list', kwargs={'pk': self.object.project.id})
 
     def post(self, request, *args, **kwargs):
         if not (request.user.is_superuser or request.user == self.get_object().created_by):
