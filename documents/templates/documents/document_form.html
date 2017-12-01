@@ -95,9 +95,11 @@
     <section class="module">
         <div class="container-fluid container-custom">
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 offset-md-2 card">
+            <div class="row">
+
+                <div class="col-sm-8 col-sm-offset-2">
+
+                    <article class="post" align="center">
                         <div class="card-block">
                             <h1 class="card-title">Add File</h1>
                             <hr>
@@ -116,21 +118,30 @@
                                 <div class="form-group">
                                     <input type="file" class="form-control" name="document" id="document">
                                 </div>
-                                <center><button type="submit" class="btn btn-dark anim-scroll">Submit</button></center>
+                                <center>
+                                    <button type="submit" class="btn btn-dark anim-scroll">Submit</button>
+                                </center>
                             </form>
                         </div>
-                    </div>
                 </div>
+                </article>
+
             </div>
+            <!-- .col-* -->
+
         </div>
-    </section>
-    <!-- /BLOG -->
+        <!-- .row -->
 
-    <hr class="divider">
+</div>
+</section>
+<!-- /BLOG -->
 
 
-    <!-- Footer section -->
-    {% include 'home/footer.html' %}
+<hr class="divider">
+
+
+<!-- Footer section -->
+{% include 'home/footer.html' %}
 
 </div>
 <!-- /WRAPPER -->
