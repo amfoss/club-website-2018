@@ -15,7 +15,7 @@
                     <div class="col-md-6">
                         <img class="img" src="/static/media/{{ object.image }}">
                         <div class="div2">
-                            <form method="post" action="{% url "image_delete" object.id %}">
+                            <form method="post" action="{% url "screenshot_delete" object.id %}">
                             {% csrf_token %}
                             <button type="submit" class="button">×</button>
                             </form>
@@ -23,7 +23,7 @@
                     </div>
                 {% endfor %}
                         <div class="col-md-12">
-                         <a href="{% url 'image_create' id %}">
+                         <a href="{% url 'screenshot_create' id %}">
                             <button type="submit" class="btn btn-primary add-btn">Add Image</button>
                          </a>
                         </div>

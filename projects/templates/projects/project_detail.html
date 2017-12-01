@@ -64,7 +64,7 @@
         <br>
             <div class="card mb-3">
                 {% if object.image %}
-                    <img class="card-img-top img-fluid" src="/static/media/{{ object.image }}">
+                    <img class="card-img-top img-fluid" src="static/media/{{ object.image }}">
                 {% else %}
                     <img class="card-img-top img-fluid" src="{% static 'projects/images/default.png' %}">
                 {% endif %}
@@ -85,7 +85,7 @@
                         <a href="{% url 'project_delete' object.id %}">
                             <button type="submit" class="btn btn-danger add-btn">Delete</button>
                         </a>
-                        <a href="{% url 'image_list' object.id %}">
+                        <a href="{% url 'screenshot_list' object.id %}">
                             <button type="submit" class="btn btn-dark anim-scroll">View Screenshots</button>
                         </a>
                     {% endif %}
