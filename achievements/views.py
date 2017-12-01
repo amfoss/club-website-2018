@@ -46,7 +46,7 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
         if self.request.user.is_superuser or self.request.user == self.get_object().user:
-            context['edit_permission'] = True   # To show update and delete button
+            context['edit_permission'] = True
         return context
 
 
@@ -59,7 +59,7 @@ class ArticleCreateView(CreateView):
     fields = ['title', 'area', 'description', 'magazine', 'date']
 
     def form_valid(self, form):
-        form.instance.user = self.request.user  # user foreign key has to be explicitly set with the logged in user
+        form.instance.user = self.request.user
         return super(ArticleCreateView, self).form_valid(form)
 
 

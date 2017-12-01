@@ -9,7 +9,7 @@ urlpatterns = [
     # Articles
     url(r'^article/$', ArticleListView.as_view(), name='article'),
     url(r'^article/create/$', login_required(ArticleCreateView.as_view()), name='article_create'),
-    url(r'^article/(?P<pk>[0-9]+)/', ArticleDetailView.as_view(), name='article_detail'),
+    url(r'^article/(?P<pk>[0-9]+)/$', ArticleDetailView.as_view(), name='article_detail'),
     url(r'^article/(?P<pk>[0-9]+)/update/$', login_required(ArticleUpdateView.as_view()), name='article_update'),
     url(r'^article/(?P<pk>[0-9]+)/delete/$', login_required(ArticleDeleteView.as_view()), name='article_delete'),
 
