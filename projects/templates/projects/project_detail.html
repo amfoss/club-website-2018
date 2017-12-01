@@ -130,9 +130,17 @@
                             {% csrf_token %}
                             <label for="exampleInputEmail1"><h4>Add Student</h4></label>
                             <div class="dropdown">
-                                <input id="search" onkeyup="myFunction()" class="form-control"
-                                       data-toggle="dropdown" placeholder="Search..." autocomplete="off">
-                                <input type="hidden" id="search-id" name="user_id">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <input id="search" onkeyup="myFunction()" class="form-control"
+                                               data-toggle="dropdown" placeholder="Search..." autocomplete="off">
+                                        <input type="hidden" id="search-id" name="user_id">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-dark anim-scroll">Add</button>
+                                    </div>
+                                </div>
+
                                 <div class="dropdown-menu" id="search-results">
                                     {% for user in all_users %}
                                         <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
@@ -142,9 +150,6 @@
                             </div>
                             <small id="emailHelp" class="form-text text-muted">Search for a student above.
                             </small>
-                            <br>
-
-                            <button type="submit" class="btn btn-dark anim-scroll">Add</button>
                         </form>
                     </div>
                 </div>
@@ -188,43 +193,11 @@
 {% include 'home/footer.html' %}
 
 </div>
-<script>
-    function showForm() {
-        var form = document.getElementById('student-form');
-        if (form.style.display === 'none') {
-            form.style.display = 'block';
-        }
-        else {
-            form.style.display = 'none';
-        }
-    }
-
-    function myFunction() {
-        // Declare variables
-        var input, filter, items, i;
-        input = document.getElementById('search');
-        filter = input.value.toUpperCase();
-        items = document.getElementsByClassName('dropdown-item');
-        // Loop through all list items, and hide those who don't match the search query
-        for (i = 0; i < items.length; i++) {
-            if (items[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                items[i].style.display = "";
-            } else {
-                items[i].style.display = "none";
-            }
-        }
-    }
-
-    function addText(id, name) {
-        var inp1 = document.getElementById('search');
-        var inp2 = document.getElementById('search-id');
-        inp1.value = name;
-        inp2.value = id;
-    }
-</script>
 <!-- /WRAPPER -->
 
 <!-- JAVASCRIPT FILES -->
+<script src="{% static 'projects/js/projectDetail.js' %}"></script>
+
 <script src="{% static 'home/assets/js/jquery-2.1.4.min.js' %}"></script>
 <script src="{% static 'home/assets/bootstrap/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'home/assets/js/jquery.superslides.min.js' %}"></script>
