@@ -1,14 +1,82 @@
-{% extends 'base/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 {% load static %}
-{% block title %} {{ object.title }} {% endblock %}
 {% load index %}
-{% block body %}
-    {% include 'base/nav-bar.html' %}
-    <div id="wrap">
-        <div id="main">
-            <!-- content goes here -->
-            <div class="container-fluid">
-                <div class="row">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FOSS@Amrita. Code | Share | Grow</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{% static 'home/assets/images/favicon.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'home/assets/images/apple-touch-icon.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'home/assets/images/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'home/assets/images/apple-touch-icon-114x114.png' %}">
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,400italic,700' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'home/assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Icon Fonts -->
+    <link href="{% static 'home/assets/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'home/assets/css/et-line-font.min.css' %}" rel="stylesheet">
+
+    <!-- Plugins -->
+    <link href="{% static 'home/assets/css/magnific-popup.css' %}" rel="stylesheet">
+    <link href="{% static 'home/assets/css/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'home/assets/css/superslides.css' %}" rel="stylesheet">
+    <link href="{% static 'home/assets/css/vertical.min.css' %}" rel="stylesheet">
+
+    <!-- Font awesome CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Template core CSS -->
+    <link href="{% static 'home/assets/css/template.css' %}" rel="stylesheet">
+    <link href="{% static 'achievements/css/table.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="page-loader">
+    <div class="loader">Loading...</div>
+</div>
+<!-- /PRELOADER -->
+
+<!-- Incudes navigation bar.  -->
+{% include 'home/side-nav.html' %}
+
+<!-- WRAPPER -->
+<div class="wrapper">
+    <!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+        <!-- HERO TEXT -->
+        <div class="hero-caption">
+            <div class="hero-text">
+                <h1 class="hero-title font-alt">Achievements</h1>
+                <p class="hero-subtitle font-serif"></p>
+            </div>
+        </div>
+        <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
+    <br><br>
+
+    <div class="container-fluid">
+        <div class="row">
                     <div class="contribution col-md-12">
 
                         <!-- Contributions -->
@@ -19,14 +87,14 @@
                         <div class="content col-md-12">
                             <div class="table-responsive">
                                 {% if contribution_list %}
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="thead-default">
+                                    <table>
+                                        <thead>
                                         <tr>
-                                            <th>Student</th>
-                                            <th>Organisation</th>
-                                            <th>Title</th>
-                                            <th>Bug id</th>
-                                            <th>Date</th>
+                                            <th scope="col">Student</th>
+                                            <th scope="col">Organisation</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Bug id</th>
+                                            <th scope="col">Date</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -48,9 +116,8 @@
                                         </tbody>
                                     </table>
                                     </div>
-
-                                    <canvas id="contribution-chart"></canvas>
-
+                                    <br>
+                                    <div style="margin-left: 300px">
                                     <a href="{% url 'contribution' %}">
                                         <button class="btn btn-secondary">All contributions</button>
                                     </a>
@@ -69,9 +136,10 @@
                                         </a>
                                     {% endif %}
                                 {% endif %}
-
+                                </div>
+                        <br>
+                        <br>
                         </div>
-
                         <hr> <!-- GSoC -->
 
                         <div class="heading col-md-12">
@@ -81,14 +149,14 @@
                         <div class="content col-md-12">
                             {% if gsoc_list %}
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="thead-default">
+                                    <table>
+                                        <thead>
                                         <tr>
-                                            <th>Student</th>
-                                            <th>Organisation</th>
-                                            <th>Title</th>
-                                            <th>Mentors</th>
-                                            <th>Date</th>
+                                            <th scope="col">Student</th>
+                                            <th scope="col">Organisation</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Mentors</th>
+                                            <th scope="col">Date</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -109,7 +177,8 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <canvas id="gsoc-chart"></canvas>
+                                <br>
+                                <div style="margin-left: 350px">
                                 <a href="{% url 'gsoc' %}">
                                     <button class="btn btn-secondary">All GSoCs</button>
                                 </a>
@@ -128,6 +197,9 @@
                                     </a>
                                 {% endif %}
                             {% endif %}
+                            </div>
+                            <br>
+                            <br>
                         </div>
 
                         <hr> <!-- Articles -->
@@ -135,17 +207,17 @@
                         <div class="heading col-md-12">
                             <h1><i class="fa fa-file-text"></i> Articles</h1>
                         </div>
-                        <div class="content col-md-12 table-responsive">
+                        <div class="content col-md-12">
                             {% if article_list %}
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="thead-default">
+                                    <table>
+                                        <thead>
                                         <tr>
-                                            <th>Student</th>
-                                            <th>Magazine</th>
-                                            <th>Title</th>
-                                            <th>Area</th>
-                                            <th>Date</th>
+                                            <th scope="col">Student</th>
+                                            <th scope="col">Magazine</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Area</th>
+                                            <th scope="col">Date</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -166,6 +238,8 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <br>
+                                <div style="margin-left: 350px">
                                 <a href="{% url 'article' %}">
                                     <button class="btn btn-secondary">All articles</button>
                                 </a>
@@ -184,6 +258,9 @@
                                     </a>
                                 {% endif %}
                             {% endif %}
+                            </div>
+                        <br>
+                        <br>
                         </div>
 
                         <hr> <!-- Interships -->
@@ -194,14 +271,14 @@
                         <div class="content col-md-12 table-responsive">
                             {% if intern_list %}
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="thead-default">
+                                    <table>
+                                        <thead>
                                         <tr>
-                                            <th>Student</th>
-                                            <th>Organisation</th>
-                                            <th>Title</th>
-                                            <th>Type</th>
-                                            <th>Date</th>
+                                            <th scope="col">Student</th>
+                                            <th scope="col">Organisation</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Date</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -222,6 +299,8 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <br>
+                                <div style="margin-left: 315px">
                                 <a href="{% url 'intern' %}">
                                     <button class="btn btn-secondary">All internships</button>
                                 </a>
@@ -240,6 +319,9 @@
                                     </a>
                                 {% endif %}
                             {% endif %}
+                            </div>
+                        <br>
+                        <br>
                         </div>
 
                         <hr> <!-- Speakers -->
@@ -250,14 +332,14 @@
                         <div class="content col-md-12 table-responsive">
                             {% if speaker_list %}
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="thead-default">
+                                    <table>
+                                        <thead>
                                         <tr>
-                                            <th>Student</th>
-                                            <th>Conference, location</th>
-                                            <th>Title</th>
-                                            <th>type</th>
-                                            <th>Date</th>
+                                            <th scope="col">Student</th>
+                                            <th scope="col">Conference, location</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">type</th>
+                                            <th scope="col">Date</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -278,6 +360,8 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <br>
+                                <div style="margin-left: 350px">
                                 <a href="{% url 'speaker' %}">
                                     <button class="btn btn-secondary">All talks</button>
                                 </a>
@@ -296,6 +380,9 @@
                                     </a>
                                 {% endif %}
                             {% endif %}
+                            </div>
+                            <br>
+                            <br>
                         </div>
 
                         <hr> <!-- Contests -->
@@ -306,19 +393,19 @@
                         <div class="content col-md-12 table-responsive">
                             {% if speaker_list %}
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="thead-default">
+                                    <table>
+                                        <thead>
                                         <tr>
-                                            <th>Student</th>
-                                            <th>Title</th>
-                                            <th>Rank</th>
-                                            <th>Contest Id</th>
-                                            <th>Solved problems</th>
-                                            <th>Date</th>
+                                            <th scope="col">Student</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Rank</th>
+                                            <th scope="col">Contest Id</th>
+                                            <th scope="col">Solved problems</th>
+                                            <th scope="col">Date</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for object in object_list %}
+                                        {% for object in contest_list %}
                                             <tr class="click"
                                                 onclick="window.location='{% url 'contest_detail' object.id %}';">
                                                 <th scope="row">{{ object.user.first_name }} {{ object.user.last_name }}</th>
@@ -336,6 +423,8 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <br>
+                                <div style="margin-left: 330px">
                                 <a href="{% url 'contest' %}">
                                     <button class="btn btn-secondary">All contests</button>
                                 </a>
@@ -354,143 +443,40 @@
                                     </a>
                                 {% endif %}
                             {% endif %}
+                            </div>
+                            <br>
+                            <br>
                         </div>
 
                     </div>
                 </div>
             </div>
-        </div>
+        <hr class="divider">
+
+        <!-- Footer section -->
+        {% include 'home/footer.html' %}
+
     </div>
-    {% include 'base/footer.html' %}
-{% endblock %}
+    <!-- /WRAPPER -->
 
-{% block script %}
-    <script src="{% static 'base/js/chart-bundle.js' %}"></script>
-    <script>
-        var config = {
-            type: 'pie',
-            data: {
-                datasets: [{
-                    data: [
-                        {% for i in contribution_y %}
-                            {{ i }},
-                        {% endfor %}
-                    ],
-                    backgroundColor: [
-                        {% for i in color_list %}
-                            '{{ i }}',
-                        {% endfor %}
-                    ],
-                    label: 'Organisations'
-                }],
-                labels: [
-                    {% for i in contribution_x %}
-                        '{{ i.0 }}',
-                    {% endfor %}
-                ]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Contributions'
-                },
-                responsive: true,
-                maintainAspectRatio: true
-            }
-        };
+    <!-- JAVASCRIPT FILES -->
+    <script src="{% static 'home/assets/js/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'home/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'home/assets/js/jquery.superslides.min.js' %}"></script>
+    <script src="{% static 'home/assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
+    <script src="{% static 'home/assets/js/imagesloaded.pkgd.js' %}"></script>
+    <script src="{% static 'home/assets/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'home/assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'home/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'home/assets/js/jquery.fitvids.js' %}"></script>
+    <script src="{% static 'home/assets/js/jqBootstrapValidation.js' %}"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="{% static 'home/assets/js/gmap3.min.js' %}"></script>
+    <script src="{% static 'home/assets/js/appear.js' %}"></script>
+    <script src="{% static 'home/assets/js/smoothscroll.js' %}"></script>
+    <script src="{% static 'home/assets/js/submenu-fix.js' %}"></script>
+    <script src="{% static 'home/assets/js/contact.js' %}"></script>
+    <script src="{% static 'home/assets/js/custom.js' %}"></script>
 
-        var config_gsoc = {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [
-                        {% for i in gsoc_y %}
-                            {{ i }},
-                        {% endfor %}
-                    ],
-                    backgroundColor: [
-                        {% for i in color_list_gsoc %}
-                            '{{ i }}',
-                        {% endfor %}
-                    ],
-                    label: 'Organizations'
-                }],
-                labels: [
-                    {% for i in gsoc_x %}
-                        '{{ i.0 }}',
-                    {% endfor %}
-                ]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'GSoC'
-                },
-                responsive: true,
-                maintainAspectRatio: true
-            }
-        };
-
-        window.onload = function () {
-            var ctx1 = document.getElementById("contribution-chart").getContext("2d");
-            window.myPie1 = new Chart(ctx1, config);
-            var ctx2 = document.getElementById("gsoc-chart").getContext("2d");
-            window.myPie2 = new Chart(ctx2, config_gsoc);
-        };
-
-
-    </script>
-{% endblock %}
-
-{% block css %}
-    <style>
-        #contribution-chart, #gsoc-chart {
-            max-height: 500px;
-            max-width: 500px;
-        }
-
-        .container-fluid {
-            margin-top: 30px;
-        }
-
-        @media (min-width: 1025px) {
-            /* big landscape tablets, laptops, and desktops */
-            .container-fluid {
-                margin: 30px 10%;
-            }
-        }
-
-        @media (min-width: 550px) {
-            /* big landscape tablets, laptops, and desktops */
-            canvas {
-                margin: 40px 0;
-            }
-        }
-
-        #main {
-            overflow-x: hidden;
-        }
-
-        .heading {
-            margin: 40px 0;
-        }
-
-        .content {
-            margin: 40px 0;
-        }
-
-        .click {
-            cursor: pointer;
-        }
-
-        .btn {
-            margin: 10px 10px 10px 0;
-        }
-
-        @media (max-width: 500px) {
-            .btn {
-                margin: 40px 10px 10px 0;
-            }
-        }
-    </style>
-{% endblock %}
+</body>
+</html>
