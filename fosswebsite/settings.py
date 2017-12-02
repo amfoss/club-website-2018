@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'contest',
     'Home',
     'BlogFeedAggregator',
+    'googleanalytics'
 
 ]
 
