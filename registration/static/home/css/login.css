@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    background: url('../../registration/../home/img/abstract-wallpapers.jpg') transparent;
+    background: url('../../registration/../home/img/abstract-wallpapers.jpg') transparent fixed;
 }
 
 *, *:before, *:after {
