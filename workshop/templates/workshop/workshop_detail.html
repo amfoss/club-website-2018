@@ -108,11 +108,11 @@
                         </p>
                         {% if seats_left %}
                             <a href="{% url 'workshop_register' object.id %}">
-                                <button type="submit" class="btn btn-primary add-btn">Register now</button>
+                                <button type="submit" class="btn btn-dark anim-scroll">Register now</button>
                             </a>
                         {% else %}
                             <a>
-                                <button type="submit" class="btn add-btn">No seat left</button>
+                                <button type="submit" class="btn btn-dark anim-scroll">No seat left</button>
                             </a>
                             <p>
                                 <small class="text-muted">
@@ -123,7 +123,7 @@
                         {% endif %}
                         {% if edit_permission %}
                             <a href="{% url 'workshopdetail_update' object.id %}">
-                                <button type="submit" class="btn btn-success add-btn">Update</button>
+                                <button type="submit" class="btn btn-dark anim-scroll">Update</button>
                             </a>
                         {% endif %}
                         {% if edit_permission %}

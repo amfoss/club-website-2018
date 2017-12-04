@@ -94,70 +94,24 @@
     </div>
 
     <br><br>
-    <div class="container">
-        <div class="row">
-            <h1 class="head col-md-12">{{ object.name }}</h1>
-            <div class="col-md-12">
-                <div class="card mb-3">
-                    {% if object.poster %}
-                        <img class="card-img-top img-fluid" src="/static/media/{{ object.poster }}">
-                    {% else %}
-                        <img class="card-img-top img-fluid" src="{% static 'workshop/default.png' %}">
-                    {% endif %}
-                    <div class="card-block">
-                        <h4 class="card-title">{{ object.name }}</h4>
-                        <p class="card-text preserve-contents">{{ object.overview }}</p>
-                        <p class="card-text preserve-contents">{{ object.course_details }}</p>
-                        <p class="card-text preserve-contents">{{ object.project }}</p>
-                        <p class="card-text preserve-contents">{{ object.other_info }}</p>
-                        <p class="card-text">{{ object.start_date_time }} to {{ object.end_date_time }}</p>
-                        <hr>
-                        <h5 class="card-text">Rs. {{ object.price }}</h5>
-                        <p>
-                            <small>Register and pay the amount at FOSS club, ground floor lab after 4:30pm
-                                on or before {{ object.start_date_time }} Please make sure you pay the amount as
-                                soon as possible so that your seat gets confirmed.
-                            </small>
-                        </p>
-                        <p>Contact: {{ object.contact_info }}</p>
-                        <p>Resource link: <a href="{{ object.link }}">{{ object.link }}</a></p>
-                        <p>
-                            <small class="text-muted">
-                                seats remaining : {{ no_of_seats_left }}
-                            </small>
-                        </p>
-                        {% if seats_left %}
-                            <a href="{% url 'workshop_register' object.id %}">
-                                <button type="submit" class="btn btn-primary add-btn">Register now</button>
-                            </a>
-                        {% else %}
-                            <a>
-                                <button type="submit" class="btn add-btn">No seat left</button>
-                            </a>
-                            <p>
-                                <small class="text-muted">
-                                    <a href="{% url 'foss_intro' %}#seventh">Contact us</a> to check for more
-                                    seats.
-                                </small>
-                            </p>
-                        {% endif %}
-                        {% if edit_permission %}
-                            <a href="{% url 'workshopdetail_update' object.id %}">
-                                <button type="submit" class="btn btn-success add-btn">Update</button>
-                            </a>
-                        {% endif %}
-                        {% if edit_permission %}
-                            <a href="{% url 'workshop_delete' object.id %}">
-                                <button type="submit" class="btn btn-danger add-btn">Delete</button>
-                            </a>
-                        {% endif %}
+    <div style="margin-left: 200px" class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 card">
+                        <div class="card-block">
+                            <h1 style="margin-left: 200px" class="card-title">Add Image</h1>
+                            <hr>
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="custom-file form-group">
+                                    <input type="file" name="image" id="file" class="form-control">
+                                </div>
+                                <br>
+                                <br>
+                                <button style="margin-left: 200px" type="submit" class="btn btn-dark anim-scroll">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-
-            </div>
-
-        </div>
-    </div>
     <!-- /BLOG -->
 
     <hr class="divider">

@@ -75,8 +75,8 @@
     <!-- BLOG -->
 
     <div class="container">
-        <h1>Gallery</h1>
         <div class="row">
+        <br>
             {% for object in object_list %}
                 <div class="col-md-6">
                     <img class="img" src="/static/media/{{ object.image }}">
@@ -90,7 +90,7 @@
             {% endfor %}
             <div class="col-md-12">
                 <a href="{% url 'image_create' id %}">
-                    <button type="submit" class="btn btn-primary add-btn">Add Image</button>
+                    <button type="submit" class="btn btn-dark anim-scroll">Add Image</button>
                 </a>
             </div>
         </div>
