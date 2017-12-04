@@ -1,7 +1,9 @@
-{% extends 'base/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 {% load static %}
-{% block title %} {{ object.name }} {% endblock %}
-<head><meta charset="UTF-8">
+
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -37,13 +39,17 @@
     <link href="{% static 'home/assets/css/vertical.min.css' %}" rel="stylesheet">
 
     <!-- Template core CSS -->
-    <link href="{% static 'home/assets/css/template.css' %}" rel="stylesheet"></head>
-{% block body %}
-    <!-- PRELOADER -->
+    <link href="{% static 'home/assets/css/template.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- PRELOADER -->
 <div class="page-loader">
     <div class="loader">Loading...</div>
 </div>
 <!-- /PRELOADER -->
+
 <!-- Incudes navigation bar.  -->
 {% include 'home/side-nav.html' %}
 
@@ -57,7 +63,7 @@
         <!-- HERO TEXT -->
         <div class="hero-caption">
             <div class="hero-text">
-                <h1 class="hero-title font-alt">Documents</h1>
+                <h1 class="hero-title font-alt">{{ object.name }}</h1>
                 <p class="hero-subtitle font-serif"></p>
             </div>
         </div>
@@ -66,15 +72,13 @@
     </section>
     <!-- /HERO -->
 
-    <div id="wrap">
-        <div id="main">
-            <!-- content goes here -->
-            <div class="container">
+    <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-block">
-                                <h1 class="card-title">{{ object.name }}</h1>
+                                <h1 class="card-title"></h1>
+                                <br>
                                 <h4 class="card-subtitle mb-2">{{ object.batch }}, <span style="font-size:20px"
                                                                                          class="text-muted">{{ object.email }}</span>
                                 </h4>
@@ -103,13 +107,13 @@
                                 {% ifequal object.is_rejected object.is_approved %}
                                     <div id="buttons">
                                         <hr>
-                                        <button id="approve" onclick="control(1)" class="btn btn-success card-link">
+                                        <button id="approve" onclick="control(1)" class="btn btn-dark anim-scroll">
                                             Approve
                                         </button>
                                         <button id="reject" onclick="control(2)" class="btn btn-danger card-link">
                                             Reject
                                         </button>￼
-navi
+
 
                                     </div>
                                 {% endifequal %}
@@ -156,107 +160,35 @@ navi
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    {% include 'base/footer.html' %}
-    <style>
 
-        .error {
-            margin: 20px 0;
-        }
+    <hr class="divider">
 
-        .card {
-            margin: 70px 5% 0 5%;
-            padding: 0;
-        }
 
-        @media (min-width: 768px) {
-            /* Desktops */
-            .card {
-                margin: 70px 13% 0 13%;
-                padding: 40px;
-            }
+    <!-- Footer section -->
+    {% include 'home/footer.html' %}
 
-            .card-text {
-                margin: 10px 20px 20px 0;
-            }
-        }
+</div>
+<!-- /WRAPPER -->
 
-        h4 {
-            margin: 20px 0;
-        }
+<!-- JAVASCRIPT FILES -->
+<script src="{% static 'home/assets/js/jquery-2.1.4.min.js' %}"></script>
+<script src="{% static 'home/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'home/assets/js/jquery.superslides.min.js' %}"></script>
+<script src="{% static 'home/assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
+<script src="{% static 'home/assets/js/imagesloaded.pkgd.js' %}"></script>
+<script src="{% static 'home/assets/js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'home/assets/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'home/assets/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'home/assets/js/jquery.fitvids.js' %}"></script>
+<script src="{% static 'home/assets/js/jqBootstrapValidation.js' %}"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="{% static 'home/assets/js/gmap3.min.js' %}"></script>
+<script src="{% static 'home/assets/js/appear.js' %}"></script>
+<script src="{% static 'home/assets/js/smoothscroll.js' %}"></script>
+<script src="{% static 'home/assets/js/submenu-fix.js' %}"></script>
+<script src="{% static 'home/assets/js/contact.js' %}"></script>
+<script src="{% static 'home/assets/js/custom.js' %}"></script>
 
-        @media (max-width: 600px) {
-            /* smartphones, Android phones, landscape iPhone, tablets */
-            .card {
-                margin: 40px 0 0 0;
-                padding: 0;
-            }
-        }
-    </style>
-    <script src="{% static 'home/assets/js/jquery.superslides.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/imagesloaded.pkgd.js' %}"></script>
-    <script src="{% static 'home/assets/js/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/jquery.fitvids.js' %}"></script>
-    <script src="{% static 'home/assets/js/jqBootstrapValidation.js' %}"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script src="{% static 'home/assets/js/gmap3.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/appear.js' %}"></script>
-    <script src="{% static 'home/assets/js/smoothscroll.js' %}"></script>
-    <script src="{% static 'home/assets/js/submenu-fix.js' %}"></script>
-    <script src="{% static 'home/assets/js/contact.js' %}"></script>
-    <script src="{% static 'home/assets/js/custom.js' %}"></script>
-    <script>
-        function control(selection) {
-            var form, head, option, subject, content, btns;
-            form = document.getElementById('mail_form');
-            head = document.getElementById('head');
-            option = document.getElementById('option');
-            subject = document.getElementById('subject');
-            content = document.getElementById('mail_content');
-            btns = document.getElementById('buttons');
-            submit_btn = document.getElementById('submit-btn');
-            to = document.getElementById('mail_id');
-            to.value = '{{ object.email }}';
+</body>
 
-            console.log(selection);
-
-            if (selection === 3) {
-                // cancel
-                form.style.display = 'none';
-                btns.style.display = 'block';
-            }
-            else if (selection === 1) {
-                // approve
-                head.innerHTML = 'Sent approval mail';
-                option.value = 'True';
-                option.name = 'is_approved';
-                subject.value = '{{ approve_mail_subject }}';
-                content.innerHTML = '{{ approve_mail_content }}';
-
-                form.style.display = 'block';
-                btns.style.display = 'none';
-                console.log(selection);
-                submit_btn.innerHTML = 'Approve';
-                submit_btn.classList = 'btn btn-success';
-            }
-            else {
-                // reject
-                head.innerHTML = 'Sent rejection mail';
-                option.value = 'True';
-                option.name = 'is_rejected';
-                subject.value = '{{ reject_mail_subject }}';
-                content.innerHTML = '{{ reject_mail_content }}';
-
-                form.style.display = 'block';
-                btns.style.display = 'none';
-                submit_btn.innerHTML = 'Reject';
-                submit_btn.classList = 'btn btn-danger';
-            }
-        }
-    </script>
-{% endblock %}
-
+</html>
