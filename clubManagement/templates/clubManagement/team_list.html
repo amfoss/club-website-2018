@@ -85,7 +85,8 @@
                     <hr>
                     <div class="row">
                         {% for object in object_list %}
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <br>
                                 <div class="card">
                                     <img class="card-img-top img-fluid" height="250px"
                                          src="/static/media/{{ object.image }}"
@@ -94,15 +95,17 @@
                                         <h3 class="card-title">{{ object.name }}</h3>
                                         <p class="card-text">{{ object.description }}</p>
                                         <a href="{% url 'team_detail' object.id %}"
-                                           class="btn btn-primary">More info
+                                           class="btn btn-dark anim-scroll">More info
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
                         {% if request.user.is_authenticated %}
+
                             <div class="col-md-12">
                                 <div class="container">
+                                    <br><br>
                                     <a href="{% url 'team_create' %}">
                                         <button class="btn btn-dark anim-scroll">Add new</button>
                                     </a>
