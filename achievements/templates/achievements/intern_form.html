@@ -199,6 +199,31 @@
 <script src="{% static 'home/assets/js/contact.js' %}"></script>
 <script src="{% static 'home/assets/js/custom.js' %}"></script>
 
+{% block script %}
+        <script src="{% static 'base/js/jquery.min.js' %}"></script>
+        <script src="{% static 'base/js/moment.min.js' %}"></script>
+        <script src="{% static 'base/js/bootstrap-datetimepicker.min.js' %}"></script>
+        <link href="{% static 'base/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-arrow-up",
+                        down: "fa fa-arrow-down"
+                    },
+                    format: 'YYYY-MM-DD',
+                    widgetPositioning: {
+                        horizontal: 'right',
+                        vertical: 'top'
+                    }
+                });
+            });
+        </script>
+{% endblock %}
+
 </body>
 
 </html>
