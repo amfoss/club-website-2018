@@ -3,61 +3,47 @@
 {% load static %}
 <html>
 <head>
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>FOSS@Amrita. Code | Share | Grow</title>
-
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="{% static 'home/assets/images/favicon.png' %}">
-    <link rel="apple-touch-icon" href="{% static 'home/assets/images/apple-touch-icon.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'home/assets/images/apple-touch-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'home/assets/images/apple-touch-icon-114x114.png' %}">
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,400italic,700' rel='stylesheet'
-          type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
-
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,400italic,700' rel='stylesheet'
-          type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'home/assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Icon Fonts -->
-    <link href="{% static 'home/assets/css/font-awesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'home/assets/css/et-line-font.min.css' %}" rel="stylesheet">
-
-    <!-- Plugins -->
-    <link href="{% static 'home/assets/css/magnific-popup.css' %}" rel="stylesheet">
-    <link href="{% static 'home/assets/css/owl.carousel.css' %}" rel="stylesheet">
-    <link href="{% static 'home/assets/css/superslides.css' %}" rel="stylesheet">
-    <link href="{% static 'home/assets/css/vertical.min.css' %}" rel="stylesheet">
-    <link href = "{% static 'admissions/css/admission.css' %}" rel = "stylesheet">
-{#    <!-- Template core CSS -->#}
-    <link href="{% static 'home/assets/css/template.css' %}" rel="stylesheet">
-</head>
+    <title>FOSS@Amrita</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="{% static 'admissions/css/main.css' %}"/>
     <noscript>
         <link rel="stylesheet" href="{% static 'admissions/css/noscript.css' %}"/>
+        <link rel="stylesheet" href="{% static 'admissions/css/admission.css' %}"/>
     </noscript>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 <body>
-<!-- PRELOADER -->
-<div class="page-loader">
-    <div class="loader">Loading...</div>
-</div>
-<!-- /PRELOADER -->
-<!-- Incudes navigation bar.  -->
-{% include 'home/side-nav.html' %}
+
+<nav class="nav">
+    <div class="nav-content">
+        <div class="nav-left">
+            <div class="nav-item">
+                <h3 class="nav-data active"><a class="nav-link" href="{% url 'home' %}">FOSS@Amrita</a></h3>
+            </div>
+            <div class="nav-item">
+                <h4 class="nav-data"><a class="nav-link" href="{% url 'achievements' %}">Achievements</a></h4>
+            </div>
+            <div class="nav-item">
+                <h4 class="nav-data"><a class="nav-link" href="{% url 'profile_list' %}">Members</a></h4>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="nav-item">
+                {% if request.user.is_authenticated %}
+                    <h4 class="nav-data">
+                        <a class="nav-link" href="{% url 'profile' request.user.id %}">{{ request.user.username }}</a>
+                        <a class="nav-link nav-data" href="{% url 'logout' %}">Logout</a>
+                    </h4>
+                {% else %}
+                    <h4 class="nav-data"><a href="{% url 'login' %}">Login</a></h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+
 
 <!-- Page Wrapper -->
 <div id="page-wrapper">
@@ -317,29 +303,14 @@
     </div>
 
 </div>
-       <!-- Footer section -->
-        {% include 'home/footer.html' %}
+
 <!-- Scripts -->
- <!-- JAVASCRIPT FILES -->
-    <script src="{% static 'home/assets/js/jquery-2.1.4.min.js' %}"></script>
-    <script src="{% static 'home/assets/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/jquery.superslides.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/imagesloaded.pkgd.js' %}"></script>
-    <script src="{% static 'home/assets/js/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/jquery.fitvids.js' %}"></script>
-    <script src="{% static 'home/assets/js/jqBootstrapValidation.js' %}"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script src="{% static 'home/assets/js/gmap3.min.js' %}"></script>
-    <script src="{% static 'home/assets/js/appear.js' %}"></script>
-    <script src="{% static 'home/assets/js/smoothscroll.js' %}"></script>
-    <script src="{% static 'home/assets/js/submenu-fix.js' %}"></script>
-    <script src="{% static 'home/assets/js/contact.js' %}"></script>
-    <script src="{% static 'home/assets/js/custom.js' %}"></script>
+<script src="{% static 'admissions/js/jquery.min.js' %}"></script>
 <script src="{% static 'admissions/js/skel.min.js' %}"></script>
 <script src="{% static 'admissions/js/main.js' %}"></script>
-<script src="{% static 'admissions/js/admission.js' %}"></script>
+
+<script src="{% static 'admissions/js/admission.js' %}">
+
+</script>
 </body>
 </html>
