@@ -63,7 +63,7 @@
         <!-- HERO TEXT -->
         <div class="hero-caption">
             <div class="hero-text">
-                <h1 class="hero-title font-alt">Workshop details</h1>
+                <h1 class="hero-title font-alt">{{ object.name }}</h1>
                 <p class="hero-subtitle font-serif"></p>
             </div>
         </div>
@@ -73,10 +73,9 @@
     <!-- /HERO -->
 
     <!-- BLOG -->
-
+    <br>
     <div class="container">
         <div class="row">
-            <h1 class="head col-md-12">{{ object.name }}</h1>
             <div class="col-md-12">
                 <div class="card mb-3">
                     {% if object.poster %}
@@ -138,6 +137,30 @@
 
         </div>
     </div>
+<br>
+<h3 style="text-align: center">Feedback</h3>
+    <div style="width: 75%; margin-left: 120px">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-default">
+            <tr>
+                <th>Name</th>
+                <th>Remark</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in feedback %}
+                <tr>
+                    <th scope="row">{{ i.name }}</th>
+                    <td>{{ i.comment }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
     <!-- /BLOG -->
 
     <hr class="divider">
