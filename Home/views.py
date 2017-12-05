@@ -30,4 +30,5 @@ class Contact(View):
 def about (request):
     return render(request, 'home/about.html')
 
+
 tags = ["one", "two", "three"]
