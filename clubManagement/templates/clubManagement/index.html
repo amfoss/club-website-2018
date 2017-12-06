@@ -1,281 +1,341 @@
-{% extends 'base/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 {% load static %}
 {% load index %}
-{% block title %} Attendance {% endblock %}
 
-{% block body %}
-    {% include 'base/nav-bar.html' %}
-    <div id="wrap">
-        <div id="main">
-            <!-- content goes here -->
-            <div class="container">
-                <div class="row">
-                    <h1 class="col-md-12 head">FOSS@Amrita</h1>
-                    <div class="col-md-8 offset-md-2">
-                        <div class="card">
-                            <div class="card-block row">
-                                <h1 class="card-title col-md-12">Attendance</h1>
-                                <h5 class="card-subtitle col-md-12 text-muted">Attendance report</h5>
-                                <hr class="col-md-11">
-                                <div class="alert alert-danger col-md-12" id="error" role="alert" style="display: none;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="year">Year</label>
-                                    <select class="form-control" onchange="printDaysInMonth()" id="year">
-                                        {% for year in year_list %}
-                                            <option value="{{ year }}">{{ year }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="month">Month</label>
-                                    <select class="form-control" onchange="printDaysInMonth()" id="month">
-                                        <option value="all">All</option>
-                                        {% for i in list %}
-                                            <option value="{{ i }}">{{ month_list|index:i }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="day">Day</label>
-                                    <select class="form-control" id="day">
-                                        <option value="all">All</option>
-                                        {% for day in day_list %}
-                                            <option value="{{ day }}">{{ day }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
+    <title>FOSS@Amrita. Code | Share | Grow</title>
 
-                                <div class="form-group col-md-6">
-                                    <label for="batch">Batch</label>
-                                    <select class="form-control" onchange="errorBatch()" id="batch">
-                                        <option value="all">All</option>
-                                        {% for batch in batch_list %}
-                                            <option value="{{ batch }}">{{ batch }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{% static 'home/assets/images/favicon.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'home/assets/images/apple-touch-icon.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'home/assets/images/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'home/assets/images/apple-touch-icon-114x114.png' %}">
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,400italic,700' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
 
-                                <div class="col-md-3 button">
-                                    <button onclick="attendanceLink()" class="btn btn-primary">View attendance</button>
-                                </div>
-                                {% if request.user.is_superuser %}
-                                    <div class="col-md-3 button">
-                                        <button onclick="editAttendance()" class="btn btn-secondary">Add attendance</button>
-                                    </div>
-                                {% endif %}
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,400italic,700' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
 
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'home/assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-                                <hr class="col-md-11">
+    <!-- Icon Fonts -->
+    <link href="{% static 'home/assets/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'home/assets/css/et-line-font.min.css' %}" rel="stylesheet">
 
-                                <div class="dropdown col-md-6">
-                                    <label for="search">Student</label>
-                                    <input id="search" onkeyup="myFunction()" class="form-control"
-                                           data-toggle="dropdown" placeholder="Search..." autocomplete="off">
-                                    <input type="hidden" id="search-id" name="user_id">
-                                    <div class="dropdown-menu" id="search-results">
-                                        {% for user in user_list %}
-                                            <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
-                                               class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>
-                                        {% endfor %}
-                                    </div>
-                                </div>
+    <!-- Plugins -->
+    <link href="{% static 'home/assets/css/magnific-popup.css' %}" rel="stylesheet">
+    <link href="{% static 'home/assets/css/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'home/assets/css/superslides.css' %}" rel="stylesheet">
+    <link href="{% static 'home/assets/css/vertical.min.css' %}" rel="stylesheet">
 
-                                <div class="col-md-6 button">
-                                    <button onclick="studentAttendance()" class="btn btn-primary">Student report</button>
-                                </div>
+    <!-- Template core CSS -->
+    <link href="{% static 'home/assets/css/template.css' %}" rel="stylesheet">
+</head>
 
+<body>
+
+<!-- PRELOADER -->
+<div class="page-loader">
+    <div class="loader">Loading...</div>
+</div>
+<!-- /PRELOADER -->
+
+<!-- Incudes navigation bar.  -->
+{% include 'home/side-nav.html' %}
+
+<!-- WRAPPER -->
+<div class="wrapper">
+
+    <!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+        <!-- HERO TEXT -->
+        <div class="hero-caption">
+            <div class="hero-text">
+                <h1 class="hero-title font-alt">Attendance</h1>
+                <p class="hero-subtitle font-serif"></p>
+            </div>
+        </div>
+        <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
+
+    <!-- BLOG -->
+    <br><br>
+    <div class="container" align="center">
+        <div class="row">
+            <div class="col-md-10" style="margin-left: 100px;">
+                <div class="card">
+                    <div class="card-block row">
+                        <h1 class="card-title col-md-12">Attendance</h1>
+                        <h5 class="card-subtitle col-md-12 text-muted">Attendance report</h5>
+                        <hr class="col-md-11">
+                        <div class="alert alert-danger col-md-12" id="error" role="alert" style="display: none;">
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="year">Year</label>
+                            <select class="form-control" onchange="printDaysInMonth()" id="year">
+                                {% for year in year_list %}
+                                    <option value="{{ year }}">{{ year }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="month">Month</label>
+                            <select class="form-control" onchange="printDaysInMonth()" id="month">
+                                <option value="all">All</option>
+                                {% for i in list %}
+                                    <option value="{{ i }}">{{ month_list|index:i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="day">Day</label>
+                            <select class="form-control" id="day">
+                                <option value="all">All</option>
+                                {% for day in day_list %}
+                                    <option value="{{ day }}">{{ day }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="batch">Batch</label>
+                            <select class="form-control" onchange="errorBatch()" id="batch">
+                                <option value="all">All</option>
+                                {% for batch in batch_list %}
+                                    <option value="{{ batch }}">{{ batch }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 button">
+                            <button onclick="attendanceLink()" class="btn btn-dark anim-scroll">View attendance</button>
+                        </div>
+                        {% if request.user.is_superuser %}
+                            <div class="col-md-6 button">
+                                <button onclick="editAttendance()" class="btn btn-dark anim-scroll">Add attendance
+                                </button>
                             </div>
+                        {% endif %}
+
+
+                        <hr class="col-md-11">
+                        <div class="dropdown col-md-8">
+                            <input id="search" onkeyup="myFunction()" class="form-control"
+                                   data-toggle="dropdown" placeholder="Search with students name.." autocomplete="off">
+                            <input type="hidden" id="search-id" name="user_id">
+                            <div class="dropdown-menu" id="search-results">
+                                {% for user in user_list %}
+                                    <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
+                                       class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-md-3 button">
+                            <button onclick="studentAttendance()" class="btn btn-dark anim-scroll">Student report
+                            </button>
                         </div>
                     </div>
-
-                    <div class="card-deck col-md-8 offset-md-2">
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="{% static 'clubManagement/image/status.png' %}" alt="Card image cap">
-                            <div class="card-block">
-                                <h4 class="card-title">Status updates</h4>
-                                <p class="card-text">Weekly status updates sent by each student.</p>
-                                <a href="{% url 'status' %}" class="btn btn-primary">View all</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top img-fluid" src="{% static 'clubManagement/image/teams.png' %}" alt="Card image cap">
-                            <div class="card-block">
-                                <h4 class="card-title">Teams</h4>
-                                <p class="card-text">The various teams and members of the club.</p>
-                                <a href="{% url 'team' %}" class="btn btn-primary">View all</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top img-fluid"
-                                 src="{% static 'clubManagement/image/great_power_great_responsibility.jpg' %}"
-                                 alt="Card image cap">
-                            <div class="card-block">
-                                <h4 class="card-title">Responsibilities</h4>
-                                <p class="card-text">Responsibilities assigned to each student in the club.</p>
-                                <a href="{% url 'responsibility' %}" class="btn btn-primary">View all</a>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <hr class="col-md-11" style="margin: 30px;">
+            <div class="card-deck col-md-8 offset-md-2" style="margin-left: 15%">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 class="card-title">Status updates</h4>
+                        <p class="card-text">Weekly status updates sent by each student.</p>
+                        <a href="{% url 'status' %}" class="btn btn-dark anim-scroll">View all</a>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="card-title">Teams</h4>
+                        <p class="card-text">The various teams and members of the club.</p>
+                        <a href="{% url 'team' %}" class="btn btn-dark anim-scroll">View all</a>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="card-title">Responsibilities</h4>
+                        <p class="card-text">Responsibilities assigned to each student in the club.</p>
+                        <a href="{% url 'responsibility' %}" class="btn btn-dark anim-scroll">View all</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% include 'base/footer.html' %}
+    <!-- /BLOG -->
 
-    <style>
-        .card-deck {
-            margin-top: 50px;
-        }
+    <hr class="divider">
 
-        .container {
-            margin-top: 70px;
-        }
 
-        .head {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    <!-- Footer section -->
+    {% include 'home/footer.html' %}
 
-        body {
-            background-color: #fcfcfc;
-        }
+</div>
+<!-- /WRAPPER -->
 
-        .button {
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-    </style>
+<!-- JAVASCRIPT FILES -->
+<script src="{% static 'home/assets/js/jquery-2.1.4.min.js' %}"></script>
+<script src="{% static 'home/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'home/assets/js/jquery.superslides.min.js' %}"></script>
+<script src="{% static 'home/assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
+<script src="{% static 'home/assets/js/imagesloaded.pkgd.js' %}"></script>
+<script src="{% static 'home/assets/js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'home/assets/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'home/assets/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'home/assets/js/jquery.fitvids.js' %}"></script>
+<script src="{% static 'home/assets/js/jqBootstrapValidation.js' %}"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="{% static 'home/assets/js/gmap3.min.js' %}"></script>
+<script src="{% static 'home/assets/js/appear.js' %}"></script>
+<script src="{% static 'home/assets/js/smoothscroll.js' %}"></script>
+<script src="{% static 'home/assets/js/submenu-fix.js' %}"></script>
+<script src="{% static 'home/assets/js/contact.js' %}"></script>
+<script src="{% static 'home/assets/js/custom.js' %}"></script>
 
-    <script>
-        function myFunction() {
-            // Declare variables
-            var input, filter, items, i;
-            input = document.getElementById('search');
-            filter = input.value.toUpperCase();
-            items = document.getElementsByClassName('dropdown-item');
+</body>
 
-            // Loop through all list items, and hide those who don't match the search query
-            for (i = 0; i < items.length; i++) {
-                if (items[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    items[i].style.display = "";
-                } else {
-                    items[i].style.display = "none";
-                }
+</html>
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, items, i;
+        input = document.getElementById('search');
+        filter = input.value.toUpperCase();
+        items = document.getElementsByClassName('dropdown-item');
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < items.length; i++) {
+            if (items[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                items[i].style.display = "";
+            } else {
+                items[i].style.display = "none";
             }
         }
-        function addText(id, name) {
-            var inp1 = document.getElementById('search');
-            var inp2 = document.getElementById('search-id');
-            inp1.value = name;
-            inp2.value = id;
-        }
+    }
 
-        function printDaysInMonth() {
-             var year_input = document.getElementById('year');
-             var month_input = document.getElementById('month');
+    function addText(id, name) {
+        var inp1 = document.getElementById('search');
+        var inp2 = document.getElementById('search-id');
+        inp1.value = name;
+        inp2.value = id;
+    }
 
-             var day_select = document.getElementById('day');
+    function printDaysInMonth() {
+        var year_input = document.getElementById('year');
+        var month_input = document.getElementById('month');
 
-             if(month_input.value !== 'all') {
-                 var year = parseInt(year_input.value);
-                 var month = parseInt(month_input.value);
+        var day_select = document.getElementById('day');
 
-                 var date = new Date(year, month, 1);
+        if (month_input.value !== 'all') {
+            var year = parseInt(year_input.value);
+            var month = parseInt(month_input.value);
 
-                 while (date.getMonth() === month) {
-                    var day = new Date(date).getDate();
-                    date.setDate(date.getDate() + 1);
-                    var opt = document.createElement('option');
-                    opt.value = day;
-                    opt.innerHTML = day.toString();
-                    day_select.appendChild(opt);
-                 }
-             }
-        }
+            var date = new Date(year, month, 1);
 
-        function errorBatch() {
-            var batch_input = document.getElementById('batch');
-            if(batch_input.value !== 'all')
-                document.getElementById('error').style.display = 'none';
-        }
-
-
-        function attendanceLink() {
-            var batch_input = document.getElementById('batch');
-            var year_input = document.getElementById('year');
-            var month_input = document.getElementById('month');
-            var day_input = document.getElementById('day');
-
-            var link = '/club/attendance-report/';
-
-            if(batch_input.value !== 'all')
-                link += batch_input.value + '/';
-            if(year_input !== 'all')
-                link += year_input.value + '/';
-            if(month_input.value !== 'all') {
-                if(batch_input.value === 'all' && day_input.value === 'all') {
-                    var error = document.getElementById('error');
-                    error.innerHTML = '<strong>Error!</strong> Batch or day should be selected.';
-                    error.style.display = 'block';
-                    return;
-                }
-                var mon = parseInt(month_input.value) + 1;
-                link += mon.toString() + '/';
+            while (date.getMonth() === month) {
+                var day = new Date(date).getDate();
+                date.setDate(date.getDate() + 1);
+                var opt = document.createElement('option');
+                opt.value = day;
+                opt.innerHTML = day.toString();
+                day_select.appendChild(opt);
             }
-            if(day_input.value !== 'all')
-                link += day_input.value + '/';
-
-            if(day_input.value !== 'all' && batch_input.value !== 'all' && month_input.value !== 'all')
-                link = '/club/attendance/' + batch_input.value + '/' + year_input.value + '/' +
-                    (parseInt(month_input.value) + 1).toString() + '/' + day_input.value + '/';
-
-            else if(day_input.value !== 'all' && month_input.value !== 'all')
-                link = '/club/attendance/' + year_input.value + '/' +
-                    (parseInt(month_input.value) + 1).toString() + '/' + day_input.value + '/';
-
-            window.location = link;
         }
+    }
 
-        function editAttendance() {
-            var batch_input = document.getElementById('batch');
-            var year_input = document.getElementById('year');
-            var month_input = document.getElementById('month');
-            var day_input = document.getElementById('day');
+    function errorBatch() {
+        var batch_input = document.getElementById('batch');
+        if (batch_input.value !== 'all')
+            document.getElementById('error').style.display = 'none';
+    }
 
-            var link = '/club/attendance/';
 
-            console.log(month_input.value);
-            console.log(day_input.value);
+    function attendanceLink() {
+        var batch_input = document.getElementById('batch');
+        var year_input = document.getElementById('year');
+        var month_input = document.getElementById('month');
+        var day_input = document.getElementById('day');
 
-            if(day_input.value !== 'all' && month_input.value !== 'all' && batch_input.value !== 'all')
-                link += batch_input.value + '/' + year_input.value + '/' +
-                    (parseInt(month_input.value)+1).toString() + '/' + day_input.value + '/';
-            else if(day_input.value !== 'all' && month_input.value !== 'all')
-                link += year_input.value + '/' + (parseInt(month_input.value)+1).toString() +
-                    '/' + day_input.value + '/';
-            else {
+        var link = '/club/attendance-report/';
+
+        if (batch_input.value !== 'all')
+            link += batch_input.value + '/';
+        if (year_input !== 'all')
+            link += year_input.value + '/';
+        if (month_input.value !== 'all') {
+            if (batch_input.value === 'all' && day_input.value === 'all') {
                 var error = document.getElementById('error');
-                error.innerHTML = '<strong>Error!</strong> Month and day should be selected.';
+                error.innerHTML = '<strong>Error!</strong> Batch or day should be selected.';
                 error.style.display = 'block';
                 return;
             }
-            window.location = link;
+            var mon = parseInt(month_input.value) + 1;
+            link += mon.toString() + '/';
         }
+        if (day_input.value !== 'all')
+            link += day_input.value + '/';
 
-        function studentAttendance() {
-            var inp = document.getElementById('search-id');
-            var year_input = document.getElementById('year');
-            if(inp.value === '') {
-                var error = document.getElementById('error');
-                error.innerHTML = '<strong>Error!</strong> please select a student.';
-                error.style.display = 'block';
-                return;
-            }
-            var link = '/club/attendance-report-student/' + year_input.value + '/' + inp.value + '/';
-            window.location = link;
+        if (day_input.value !== 'all' && batch_input.value !== 'all' && month_input.value !== 'all')
+            link = '/club/attendance/' + batch_input.value + '/' + year_input.value + '/' +
+                (parseInt(month_input.value) + 1).toString() + '/' + day_input.value + '/';
+
+        else if (day_input.value !== 'all' && month_input.value !== 'all')
+            link = '/club/attendance/' + year_input.value + '/' +
+                (parseInt(month_input.value) + 1).toString() + '/' + day_input.value + '/';
+
+        window.location = link;
+    }
+
+    function editAttendance() {
+        var batch_input = document.getElementById('batch');
+        var year_input = document.getElementById('year');
+        var month_input = document.getElementById('month');
+        var day_input = document.getElementById('day');
+
+        var link = '/club/attendance/';
+
+        console.log(month_input.value);
+        console.log(day_input.value);
+
+        if (day_input.value !== 'all' && month_input.value !== 'all' && batch_input.value !== 'all')
+            link += batch_input.value + '/' + year_input.value + '/' +
+                (parseInt(month_input.value) + 1).toString() + '/' + day_input.value + '/';
+        else if (day_input.value !== 'all' && month_input.value !== 'all')
+            link += year_input.value + '/' + (parseInt(month_input.value) + 1).toString() +
+                '/' + day_input.value + '/';
+        else {
+            var error = document.getElementById('error');
+            error.innerHTML = '<strong>Error!</strong> Month and day should be selected.';
+            error.style.display = 'block';
+            return;
         }
-    </script>
+        window.location = link;
+    }
 
-{% endblock %}
+    function studentAttendance() {
+        var inp = document.getElementById('search-id');
+        var year_input = document.getElementById('year');
+        if (inp.value === '') {
+            var error = document.getElementById('error');
+            error.innerHTML = '<strong>Error!</strong> please select a student.';
+            error.style.display = 'block';
+            return;
+        }
+        var link = '/club/attendance-report-student/' + year_input.value + '/' + inp.value + '/';
+        window.location = link;
+    }
+</script>
+

@@ -72,9 +72,156 @@
     </section>
     <!-- /HERO -->
 
-    <!-- Who we are -->
+    <!-- Achievements -->
     <section>
         <hr>
+        <div class="row" style="margin: 30px;">
+             <div class="col-md-6">
+                 <b><h2 class="major">Presence of FOSS@Amritans<br/></h2></b>
+                <div class="tagcloud05" id="tagcloud">
+                    <ul>
+                        {% for tag in tags %}
+                        <li><a href="#"><span>{{ tag }}</span></a></li>
+                        {% endfor %}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{##}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+{#                        <li><a href="#"><span>tag</span></a></li>#}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <b><h2 class="major">Achievements<br/></h2></b>
+                <ul>
+                    <li>
+                        For the very first time we got five first years (Gopal, Aniketh, Amrit, Anant and Chiranjeeb) to
+                        get into
+                        <a href="https://summerofcode.withgoogle.com/">GSoC 2017</a>
+                    </li>
+                    <li>
+                        Conducted conferences like MediaWiki To Learn Conference and Drupalathon'17.
+                    </li>
+                    <li>
+                        For the first time we had one first year student to get into Season Of KDE (SoK).
+                    </li>
+                    <li>
+                        Three students from the club were selected as speakers for the Wiki To Learn Conference India.
+                    </li>
+                    <li>
+                        Two students were selected as speakers for KDE Conference India.
+                    </li>
+                    <li>
+                        And much much more....... at
+                        <a href="http://foss.amrita.ac.in/achievements/">
+                            <strong>Achievements</strong>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- /Achievements -->
+
+    <!-- COUNTERS -->
+    <section class="module bg-dark-30">
+        <div class="container-fluid container-custom">
+
+            <div class="row">
+
+                <!-- COUNTER -->
+                <div class="col-md-3">
+                    <div class="counter text-light">
+                        <div class="counter-icon">
+                            <span class="icon-trophy"></span>
+                        </div>
+                        <div class="counter-header">
+                            <h4 class="counter-title">
+                                <span class="counter-timer" data-from="0" data-to="10">0</span><span>+</span>
+                            </h4>
+                        </div>
+                        <div class="counter-content">
+                            <h6>Years</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- /COUNTER -->
+
+                <!-- COUNTER -->
+                <div class="col-md-3">
+                    <div class="counter text-light">
+                        <div class="counter-icon">
+                            <span class="icon-tools"></span>
+                        </div>
+                        <div class="counter-header">
+                            <h4 class="counter-title">
+                                <span class="counter-timer" data-from="0" data-to="100">0</span><span>+</span>
+                            </h4>
+                        </div>
+                        <div class="counter-content">
+                            <h6>Google Summer of Code's</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- /COUNTER -->
+
+                <!-- COUNTER -->
+                <div class="col-md-3">
+                    <div class="counter text-light">
+                        <div class="counter-icon">
+                            <span class=" icon-linegraph"></span>
+                        </div>
+                        <div class="counter-header">
+                            <h4 class="counter-title">
+                                <span class="counter-timer" data-from="0" data-to="80">0</span><span>+</span>
+                            </h4>
+                        </div>
+                        <div class="counter-content">
+                            <h6>Alumni's in Abroad</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- /COUNTER -->
+
+                <!-- COUNTER -->
+                <div class="col-md-3">
+                    <div class="counter text-light">
+                        <div class="counter-icon">
+                            <span class=" icon-mic"></span>
+                        </div>
+                        <div class="counter-header">
+                            <h4 class="counter-title">
+                                <span class="counter-timer" data-from="0" data-to="15">0</span><span>+</span>
+                            </h4>
+                        </div>
+                        <div class="counter-content">
+                            <h6>International talks</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- /COUNTER -->
+
+            </div>
+
+        </div>
+    </section>
+    <!-- /COUNTERS -->
+
+    <!-- Who we are -->
+    <section>
+        <br>
         <div class="row" style="margin: 30px;">
             <div class="col-md-4">
                 <b><h2 class="major">What do we do?<br/></h2></b>
@@ -105,21 +252,21 @@
             </div>
             <div class="col-md-4">
                 <h2 class="major">The Fun!</h2>
-                <p style="color: white">We have a lot of fun in the club!<br/></p>
-                <ul>
-                    <li>Gardening sessions</li>
-                    <li>Outings</li>
-                    <li>Conferences</li>
-                    <li>Fests</li>
-                    <li>Hackathons</li>
-                    <li>And a lot more....</li>
-                </ul>
+                <p>And this is the one of the best part inside the club, which is not only fabulous
+                    but also excitingly interesting. We have great fun activities here apart from
+                    the technical aspects that we focus on, primarily meant to have a sound and
+                    healthy mind and body. Gardening sessions, debates, hackathon’s, visit to
+                    orphanages or picnics just to name a few. Indulging into such activities not
+                    only relaxes the mind and body but also teaches us the importance of social
+                    service. Fests and internal sessions are just another place for everyone to get
+                    together, interact and enjoy themselves. So get onboard!
+                </p>
             </div>
         </div>
         <hr>
     </section>
     <!-- Who we are -->
-    
+
     <!-- PORTFOLIO -->
     <section id="portfolio" class="module-sm" style="margin-top: -50px;">
         <div class="container-fluid">

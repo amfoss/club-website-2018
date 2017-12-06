@@ -19,7 +19,7 @@ function click_attendance(name) {
     }
 }
 
-// details scripts for number of elements
+// Reponsibility details scripts
 
  function showForm() {
         var form = document.getElementById('student-form');

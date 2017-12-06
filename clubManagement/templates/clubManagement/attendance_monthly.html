@@ -64,6 +64,8 @@
         <div class="hero-caption">
             <div class="hero-text">
                 <h1 class="hero-title font-alt">Attendance</h1>
+                <p class="hero-subtitle font-serif"></p>
+
             </div>
         </div>
         <!-- /HERO TEXT -->
@@ -73,6 +75,8 @@
 
     <!-- BLOG -->
     <div class="container">
+    <br><br>
+    <div class="container" align="center">
                 <div class="row">
                     <h2 class="header col-md-12">{{ head }}</h2>
                     {% for user_info in data %}
@@ -94,6 +98,7 @@
     <!-- Footer section -->
     {% include 'home/footer.html' %}
 
+</div>
 </div>
 <!-- /WRAPPER -->
 
@@ -134,18 +139,10 @@
         .names {
             height: 80px;
         }
+        </style>
 
-
-
-        .link {
-            height: 100%;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-</style>
 </body>
-
 </html>
+
+
+

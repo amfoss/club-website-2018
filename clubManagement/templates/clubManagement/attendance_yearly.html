@@ -3,6 +3,7 @@
 {% load static %}
 {% load index %}
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,6 +66,7 @@
         <div class="hero-caption">
             <div class="hero-text">
                 <h1 class="hero-title font-alt">Attendance</h1>
+                <p class="hero-subtitle font-serif"></p>
             </div>
         </div>
         <!-- /HERO TEXT -->
@@ -73,35 +75,38 @@
     <!-- /HERO -->
 
     <!-- BLOG -->
-    <div class="container graph-div">
-                <div class="row">
-                    {% if errors %}
-                        <div class="col-md-12">
-                            <div class="alert alert-danger" role="alert">
-                              <strong>Oh snap!</strong> {{ errors }}
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="col-md-10">
-                            <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-                            <hr>
-                            <canvas id="myChart" width="400" height="400"></canvas>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="col-md-12">
-                                <h2>{{ year }}</h2>
-                            </div>
-                            <hr>
-                            {% for i in month_num %}
-                            <div class="col-md-12">
-                                <p>{{ month|index:i }} - {{ month_att|index:i }}</p>
-                            </div>
-                            {% endfor %}
-                        </div>
 
-                    {% endif %}
+
+    <div class="container graph-div" align="center">
+        <div class="row">
+            {% if errors %}
+                <div class="col-md-12">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Oh snap!</strong> {{ errors }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-md-10">
+                    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+                    <hr>
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+                <div class="col-md-2">
+                    <div class="col-md-12">
+                        <h2>{{ year }}</h2>
+                    </div>
+                    <hr>
+                    {% for i in month_num %}
+                        <div class="col-md-12">
+                            <p>{{ month|index:i }} - {{ month_att|index:i }}</p>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
+                {% endif %}
+        </div>
+    </div>
+    </div>
     <!-- /BLOG -->
 
     <hr class="divider">
@@ -133,90 +138,96 @@
 <script src="{% static 'home/assets/js/custom.js' %}"></script>
 <script src="{% static 'clubManagement/js/attendance.js' %}"></script>
 <script src="{% static 'base/js/chart-bundle.js'%}"></script>
+<script src="{% static 'clubManagement/js/attendance.js' %}"></script>
+<script src="{% static 'base/js/chart-bundle.js' %}"></script>
 
-    <script>
+<script>
 
-        window.chartColors = {
-            red: 'rgb(255, 99, 132)',
-            orange: 'rgb(255, 159, 64)',
-            yellow: 'rgb(255, 205, 86)',
-            green: 'rgb(75, 192, 192)',
-            blue: 'rgb(54, 162, 235)',
-            purple: 'rgb(153, 102, 255)',
-            grey: 'rgb(201, 203, 207)'
-        };
+    window.chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
 
-        var MONTHS = [
-            {% for i in month %}
-                    '{{ i }}',
-                {% endfor %}
-        ];
-        var config = {
-            type: 'line',
-            data: {
-                labels: MONTHS,
-                datasets: [{
-                    label: "{{ user.first_name }} {{ user.last_name }}",
-                    backgroundColor: window.chartColors.blue,
-                    borderColor: window.chartColors.blue,
-                    data: [
-                        {% for i in month_att %}
-                            {{ i }},
-                        {% endfor %}
-                    ],
-                    fill: false,
-                }]
+    var MONTHS = [
+        {% for i in month %}
+            '{{ i }}',
+        {% endfor %}
+    ];
+    var config = {
+        type: 'line',
+        data: {
+            labels: MONTHS,
+            datasets: [{
+                label: "{{ user.first_name }} {{ user.last_name }}",
+                backgroundColor: window.chartColors.blue,
+                borderColor: window.chartColors.blue,
+                data: [
+                    {% for i in month_att %}
+                        {{ i }},
+                    {% endfor %}
+                ],
+                fill: false,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: 'Attendance report'
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                title:{
-                    display:true,
-                    text:'Attendance report'
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
                         display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Months'
-                        }
-                    }],
-                    yAxes: [{
+                        labelString: 'Months'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
                         display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Number of days'
-                        }
-                    }]
-                }
+                        labelString: 'Number of days'
+                    }
+                }]
             }
-        };
-
-        window.onload = function() {
-            var ctx = document.getElementById("myChart").getContext("2d");
-            window.myLine = new Chart(ctx, config);
-        };
-
-    </script>
-
-    <style>
-        .graph-div {
-            margin-top: 40px;
-            width: 1000px;
         }
-        canvas {
-            max-height: 500px;
-        }
-    </style>
+    };
+
+    window.onload = function () {
+        var ctx = document.getElementById("myChart").getContext("2d");
+        window.myLine = new Chart(ctx, config);
+    };
+
+</script>
+
+<style>
+    .graph-div {
+        margin-top: 40px;
+    }
+
+    canvas {
+        max-height: 500px;
+    }
+</style>
+
 </body>
 
 </html>
+
+
+
