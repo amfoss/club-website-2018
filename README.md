@@ -2,16 +2,16 @@
 
 It’s been 10+ years now that FOSS@Amrita came into existence. We are a community of students supporting and guiding each other towards making open source contributions, which not only helps the members to build technical skills but also helps us to contribute back to the society. Being one of the most active student communities of the country, we have made our presence felt all over. We have been getting a lot of exposure and opportunities via different platforms such as conferences and social media, to name a few. 
 
-**Idea / Goal of the club**: To be a better human being.
+**Idea / Goal of the club**: To be a better human being
 
 
 ## **How to Contribute?**
 
 ### If you are a developer:
 
-* Get the code.
-* Familiarize yourself with the code base.
-* Get familiarised with Git.
+* Get the code
+* Familiarize yourself with the code base
+* Get familiarised with Git
 
 1. Bug fixing:
   The first area where you can help is bug fixing. You can look up for the bugs in the ‘issues’. The bugs have been provided with tags to help you classify and work on based on their difficulty level.
@@ -22,7 +22,7 @@ It’s been 10+ years now that FOSS@Amrita came into existence. We are a communi
 
 * If you are a designer or usability professional, help shape the UX:
 
-You can contribute in many ways to improve the User Experience of the foss website. Be it reviewing current features as a user and giving feedback, designing new features, testing designs or features with users, we are open for suggestions and, we'd love to have your help in the UX group! 
+    You can contribute in many ways to improve the User Experience of the foss website. Be it reviewing current features as a user and giving feedback, designing new features, testing designs or features with users, we are open for suggestions and, we'd love to have your help in the UX group! 
 
 * If you want to help with the foss website
 
@@ -46,7 +46,7 @@ Getting started with contributing to this is really easy with just one step away
 
 *   Do a direct clone, so that you can get familiarised with the code base. Moreover a cloned copy on your local system will help you to reproduce bugs and see the changes you make real time.
 
-    git clone [https://github.com/amfoss/fosswebsite.git]
+    `git clone https://github.com/amfoss/fosswebsite.git`
 
 
 ## **Pre-requisites**
@@ -124,25 +124,23 @@ Add the command to source:
 * **Talks**: Referencing to the talks and conferences given/attended by the students of the club.
 * **Internships**: Provides a brief outline of various internship programs enrolled in by the club members.
 * **Contests**: Gives out a detailed account of various contests participated and the rank obtained by the members of FOSS@Amrita.   
-* **Club Management**
-There are various activities in-store to manage and keep up the work-environment. We list them below:
+* **Club Management:** There are various activities in-store to manage and keep up the work-environment. We list them below:
 * **Attendance management**: Reflects number of people present during lab working hours and their respective attendance percentage. 
 * **Responsibility**: Describes the individual responsibilities assigned to the club members.
 * **Teams**: Lists out the teams working on various projects simultaneously.
 * **Status updates**: Involvement of a mailing list for sending weekly status updates to keep up with our work and stay updated with current club activities.
 
 **Registration:**   
-Social Oauths integrated to do registration and login.
-Social Oauth is part of the Social API. It provides a common interface for creating modules related to user registration/login through social networks' accounts.
+Social Oauths integrated to do registration and login. Social Oauth is part of the Social API. It provides a common interface for creating modules related to user registration/login through social networks' accounts.
 
-The student can login and create profile  via a portal but has to be reviewed/verified by a superuser/admin from the admin dashboard.
+The student can login and create profile via a portal but has to be reviewed/verified by a superuser/admin from the admin dashboard.
 
 **Additional pages:**
 * User profile
 * Sign-Up
 * Login
 * Password Reset
-* Password Change.
+* Password Change
 
 **Join Us:**   
 
@@ -178,10 +176,10 @@ It consists of all sorts of learning materials, links to different items, which 
   * Company papers (Microsoft, Google, Amazon)
   * Students sharing their personal interview experiences as blog posts. 
   * Including books such as 
-    * How to crack a coding interview;
+    * How to crack a coding interview
     * How to move Mount Fuji
 * Important Course links from various online learning platforms regarding all domains to benefit students.
-* A table representation or Excel sheet db consisting a list of all the GSoC and RSoC proposals selected
+* A table representation or Excel sheet db consisting a list of all the GSoC and RSoC proposals selected.
 
 **Gallery:**
 1. Foss trip pictures
