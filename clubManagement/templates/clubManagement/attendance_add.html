@@ -63,8 +63,7 @@
         <!-- HERO TEXT -->
         <div class="hero-caption">
             <div class="hero-text">
-                <h1 class="hero-title font-alt">Add Attendance</h1>
-                <p class="hero-subtitle font-serif"></p>
+                <h1 class="hero-title font-alt">Attendance</h1>
             </div>
         </div>
         <!-- /HERO TEXT -->
@@ -73,32 +72,34 @@
     <!-- /HERO -->
 
     <!-- BLOG -->
-    <br><br>
-    <div class="container" align="center">
-        <form class="row" action="" method="post">
-            {% csrf_token %}
-            {% for attendance in attendance_list %}
-                <h2 class="header col-xs-12 col-md-12">{{ attendance.1 }}</h2>
-                {% for att in attendance.0 %}
-                    <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}"
-                            {% if request.user.is_superuser %}
-                         onclick="click_attendance('{{ att.user.username }}')" {% endif %}
-                         id="{{ att.user.username }}_div" style="white-space: normal">
-                        <p class="link">{{ att.user.first_name }} {{ att.user.last_name }}</p>
-                        <input type="checkbox" style="display: None" id="{{ att.user.username }}" value="True"
-                               name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
+    <div  class="container">
+                <form class="row" action="" method="post">
+                    {% csrf_token %}
+                    {% for attendance in attendance_list %}
+                        <br>
+                        <h2 class="header col-xs-12 col-md-12">{{ attendance.1 }}</h2>
+                        {% for att in attendance.0 %}
+                            <div class="col-xs-6 col-sm-4 col-md-2 btn names {% if att.attendance %}btn-success{% else %}btn-danger{% endif %}"
+                                    {% if request.user.is_superuser %}
+                                 onclick="click_attendance('{{ att.user.username }}')" {% endif %}
+                                 id="{{ att.user.username }}_div" style="white-space: normal">
+                                <p class="link">{{ att.user.first_name }} {{ att.user.last_name }}</p>
+                                <input type="checkbox" style="display: None" id="{{ att.user.username }}" value="True"
+                                       name="{{ att.user.username }}" {% if att.attendance %}checked{% endif %}>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    <p class="col-xs-12 col-md-12"></p>
+                    <div style="margin-left: 250px">
+                    <button type="reset" onclick="changeDay(-1)" class="col-md-2 col-sm-6 btn btn-dark anim-scroll">Previous</button>
+                    {% if request.user.is_superuser %}
+                        <button type="submit" class="col-md-2 offset-md-3 col-sm-6 btn btn-dark anim-scroll">Save
+                        </button>
+                    {% endif %}
+                    <button type="reset" onclick="changeDay(1)" class="col-md-2 offset-md-3 col-sm-6 btn btn-dark anim-scroll">Next</button>
                     </div>
-                {% endfor %}
-            {% endfor %}
-            <p class="col-xs-12 col-md-12"></p>
-            <button type="reset" onclick="changeDay(-1)" class="col-md-2 col-sm-6 btn">Previous</button>
-            {% if request.user.is_superuser %}
-                <button type="submit" class="col-md-2 offset-md-3 col-sm-6 btn btn-primary save-btn">Save
-                </button>
-            {% endif %}
-            <button type="reset" onclick="changeDay(1)" class="col-md-2 offset-md-3 col-sm-6 btn">Next</button>
-        </form>
-    </div>
+                </form>
+            </div>
     <!-- /BLOG -->
 
     <hr class="divider">
@@ -128,30 +129,62 @@
 <script src="{% static 'home/assets/js/submenu-fix.js' %}"></script>
 <script src="{% static 'home/assets/js/contact.js' %}"></script>
 <script src="{% static 'home/assets/js/custom.js' %}"></script>
+<script src="{% static 'clubManagement/js/attendance.js' %}"></script>
+
+<script>
+        function changeDay(i) {
+            var variables, year, month, day, link, date;
+
+            variables = window.location.href.split("/");
+
+            year = variables[(variables.length - 4)];
+            month = variables[variables.length - 3] - 1;
+            day = variables[variables.length - 2];
+
+            if (variables.length === 9)
+                link = '/club/attendance/';
+            else
+                link = '/club/attendance/' + parseInt(variables[variables.length - 5]) + '/';
+
+            date = new Date(year, month, day, 0, 0, 0);
+            date.setDate(date.getDate() + i);
+            link += date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+
+            window.location = link;
+        }
+</script>
+
+<style>
+        .btn {
+            margin: 10px;
+        }
+
+        .save-btn {
+            padding: 10px 0;
+        }
+
+        .names {
+            height: 80px;
+        }
+
+        .link {
+            height: 100%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            margin: 30px 0;
+        }
+
+        .header {
+            padding-top: 20px;
+            margin-left: 450px;
+        }
+    </style>
 
 </body>
 
 </html>
-
-<script>
-    function changeDay(i) {
-        var variables, year, month, day, link, date;
-
-        variables = window.location.href.split("/");
-
-        year = variables[(variables.length - 4)];
-        month = variables[variables.length - 3] - 1;
-        day = variables[variables.length - 2];
-
-        if (variables.length === 9)
-            link = '/club/attendance/';
-        else
-            link = '/club/attendance/' + parseInt(variables[variables.length - 5]) + '/';
-
-        date = new Date(year, month, day, 0, 0, 0);
-        date.setDate(date.getDate() + i);
-        link += date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
-
-        window.location = link;
-    }
-</script>

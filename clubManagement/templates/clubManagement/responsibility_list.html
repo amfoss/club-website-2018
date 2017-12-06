@@ -74,7 +74,7 @@
 
     <!-- BLOG -->
     <br><br>
-    <div class="container" align="center">
+    <div class="container">
         <div class="row">
             <div class="card col-md-12">
                 <div class="card-block">
@@ -87,7 +87,7 @@
                         {% for object in object_list %}
                             <div class="col-md-4">
                                 <div class="card">
-                                    <div class="card-block">
+                                    <div style="padding: 10px" class="card-block">
                                         <h3 class="card-title">{{ object.name }}</h3>
                                         <p class="card-text">{{ object.description }}</p>
                                         <a href="{% url 'responsibility_detail' object.id %}"
