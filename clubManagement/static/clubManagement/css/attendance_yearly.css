@@ -1,0 +1,8 @@
+.graph-div {
+        margin-top: 40px;
+        width: 1000px;
+    }
+
+    canvas {
+        max-height: 500px;
+    }
