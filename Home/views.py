@@ -13,6 +13,11 @@ from django.views.generic import TemplateView
 class HomePageView(TemplateView):
     template_name = "home/home.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        context['tags'] = tags
+        return context
+
 
 class Contact(View):
     def get(self, request):
@@ -26,6 +31,7 @@ class Contact(View):
         to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
         send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
         return render(request, template_name='home/contact.html', context={"is_success": True})
+
 
 def about (request):
     return render(request, 'home/about.html')
