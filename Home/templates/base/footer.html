@@ -1,110 +1,22 @@
-<footer id="footer">
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-xs-12">
-                    <a href="{% url 'home' %}"><p>FOSS@Amrita</p></a>
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="footer-icons">
-                        <a class="footer-icons" href="https://github.com/amfoss/"><i class="fa fa-github-alt"></i></a>
-                        <a class="footer-icons" href="https://www.facebook.com/FossatAmrita"><i class="fa fa-facebook"></i></a>
-                        <a class="footer-icons" href="https://twitter.com/amritafoss"><i class="fa fa-twitter"></i></a>
-                        <a class="footer-icons" href="https://plus.google.com/107405104458420547482"><i class="fa fa-google-plus"></i></a>
-                    </div>
-                </div>
-            </div>
+<!-- FOOTER -->
+
+<footer class="footer module-overlay-dark-3">
+  <div class="container-fluid container-custom">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="copyright text-center font-alt">
+          © 2017 <a href="{% url 'home' %}">FOSS@Amrita</a>, All Rights Reserved.
         </div>
+      </div>
     </div>
+
+    <!-- SCROLLTOP -->
+    <a class="to-top-link" href="#top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+  </div>
 </footer>
 
-
-<style>
-    .footer-icons {
-        padding: 5px 5px;
-        float: right;
-        margin-top: 1px;
-    }
-    footer {
-        width: 100%;
-    }
-    .copyright {
-        min-height:40px;
-        width: 100%;
-        background-color: #1c1d1e;
-    }
-    .copyright p {
-        text-align:left;
-        color:#FFF;
-        padding:10px 0;
-        margin-bottom:0;
-        margin-top: 3px;
-    }
-
-    .navbar {
-        height: 70px;
-    }
-
-    .footer-icons {
-        color: white;
-    }
-
-    html, body {
-        height: 100%;
-    }
-
-    #wrap {
-        min-height: calc(100% - 170px);
-    }
-
-    #main {
-        overflow-y: auto;
-        overflow-x: hidden;
-        padding-bottom: 50px; /* must be same height as the footer */
-    }
-
-    #footer {
-        position: relative;
-        margin-top: 50px; /* negative value of footer height */
-        height: 50px;
-        clear: both;
-        background-color: #1c1d1e;
-    }
-
-    /* Opera Fix thanks to Maleika (Kohoutec) */
-    body:before {
-        content: "";
-        height: 100%;
-        float: left;
-        width: 0;
-        margin-top: -32767px;/* thank you Erik J - negate effect of float*/
-    }
-
-
-    @media only screen and (max-width: 576px) {
-        .footer-icons {
-            float: none;
-            text-align: center;
-        }
-        .copyright p {
-            text-align: center;
-        }
-        #wrap {
-            min-height: calc(100% - 210px);
-        }
-
-        .navbar {
-            height: auto;
-        }
-        .navbar-right {
-            float: left;
-        }
-        .footer {
-            height: 140px;
-        }
-    }
-
-    .preserve-contents {
-        white-space: pre-wrap;
-    }
-</style>
+<!-- /FOOTER -->
