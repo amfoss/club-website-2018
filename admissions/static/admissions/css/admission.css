@@ -7,45 +7,6 @@
     a {
         border-bottom: none !important;
     }
-    .nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 50px;
-        width: 100%;
-        background: #343335;
-        z-index: 10000;
-    }
-    .nav-content {
-        width: 100%;
-        margin: auto 0;
-    }
-    .nav-item {
-        display: inline-block;
-    }
-    .nav-data {
-        height: 50px;
-        line-height: 50px;
-        white-space: nowrap;
-        margin: 0 20px;
-        color: #b7c3c8;
-        font-family: 'Ubuntu', sans-serif;
-    }
-    .active {
-        color: white;
-    }
-    .nav-left {
-        display: inline-block;
-        margin-left: 20px;
-    }
-    .nav-right {
-        display: inline-block;
-        float: right;
-        margin-right: 10px;
-    }
-    .nav-link {
-        font-weight: 100;
-    }
 
     .container-fluid {
             margin: 0 6%;
