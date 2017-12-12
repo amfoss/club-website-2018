@@ -43,6 +43,8 @@
     <link href="{% static 'timeline/css/styles.css' %}" rel="stylesheet">
     <link href="{% static 'achievements/css/table.css' %}" rel="stylesheet">
     <link href="{% static 'home/assets/css/piechart.css' %}" rel="stylesheet">
+    <link href="{% static 'clubManagement/css/attendance_batch_yearly.css' %}" rel="stylesheet">
+    <link href="{% static 'clubManagement/css/attendance_add.css' %}" rel="stylesheet">
 </head>
 <body>
 
@@ -86,6 +88,7 @@
 <script src="{% static 'home/assets/js/contact.js' %}"></script>
 <script src="{% static 'home/assets/js/custom.js' %}"></script>
 {% block script %}
+    <script src="{% static 'base/js/chart-bundle.js' %}"></script>
     <script src="{% static 'clubManagement/js/attendance.js' %}"></script>
     <script src="{% static 'base/js/jquery.min.js' %}"></script>
     <script src="{% static 'base/js/moment.min.js' %}"></script>
