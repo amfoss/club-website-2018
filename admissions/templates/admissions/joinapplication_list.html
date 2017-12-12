@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/base.html' %}
 {% load static %}
-
-<head>
+{% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FOSS@Amrita. Code | Share | Grow</title>
+    {% block title %}FOSS@Amrita. Code | Share | Grow{% endblock %}
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="{% static 'home/assets/images/favicon.png' %}">
@@ -41,9 +39,9 @@
     <!-- Template core CSS -->
     <link href="{% static 'home/assets/css/template.css' %}" rel="stylesheet">
     <link href="{% static 'admissions/css/admission.css' %}" rel="stylesheet">
-</head>
+{% endblock %}
 
-<body>
+{% block body %}
 
 <!-- PRELOADER -->
 <div class="page-loader">
@@ -180,6 +178,5 @@
 <script src="{% static 'home/assets/js/contact.js' %}"></script>
 <script src="{% static 'home/assets/js/custom.js' %}"></script>
 
-</body>
+{% endblock %}
 
-</html>
