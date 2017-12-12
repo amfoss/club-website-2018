@@ -1,61 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/base.html' %}
 {% load static %}
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>FOSS@Amrita. Code | Share | Grow</title>
-
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="{% static 'home/assets/images/favicon.png' %}">
-    <link rel="apple-touch-icon" href="{% static 'home/assets/images/apple-touch-icon.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'home/assets/images/apple-touch-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'home/assets/images/apple-touch-icon-114x114.png' %}">
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,400italic,700' rel='stylesheet'
-          type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
-
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,400italic,700' rel='stylesheet'
-          type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'home/assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Icon Fonts -->
-    <link href="{% static 'home/assets/css/font-awesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'home/assets/css/et-line-font.min.css' %}" rel="stylesheet">
-
-    <!-- Plugins -->
-    <link href="{% static 'home/assets/css/magnific-popup.css' %}" rel="stylesheet">
-    <link href="{% static 'home/assets/css/owl.carousel.css' %}" rel="stylesheet">
-    <link href="{% static 'home/assets/css/superslides.css' %}" rel="stylesheet">
-    <link href="{% static 'home/assets/css/vertical.min.css' %}" rel="stylesheet">
-
-    <!-- Template core CSS -->
-    <link href="{% static 'home/assets/css/template.css' %}" rel="stylesheet">
-</head>
-
-<body>
-
-<!-- PRELOADER -->
-<div class="page-loader">
-    <div class="loader">Loading...</div>
-</div>
-<!-- /PRELOADER -->
-
-<!-- Incudes navigation bar.  -->
-{% include 'home/../../../Home/templates/base/side-nav.html' %}
-
-<!-- WRAPPER -->
-<div class="wrapper">
-
+{% block content %}
     <!-- HERO -->
     <section id="hero" class="module-hero bg-dark-30"
              data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
@@ -73,100 +18,69 @@
     <!-- /HERO -->
 
     <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <div id="mail_form">
-                                    <form method="post" action="">
-                                        {% csrf_token %}
-                                    <br>
-                                        <h2 id="head">Mail to all applicants</h2>
-                                        <small class="form-text text-muted">Not approved applications only</small>
-                                        <hr>
-                                        {% if error %}
-                                            <div class="alert alert-danger" role="alert">
-                                                <strong>Error!</strong> {{ error }}
-                                            </div>
-                                        {% endif %}
-                                        <div class="form-group">
-                                            <label for="to_list">To</label>
-                                            <textarea rows="3" name="to_list" class="form-control"
-                                                      placeholder="Mail id list" id="to_list">{{ to_list }}</textarea>
-                                            <small class="form-text text-muted">
-                                                Individual mail will be sent to each applicant
-                                            </small>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="cc_list">CC</label>
-                                            <textarea rows="3" name="cc_list" class="form-control"
-                                                      id="cc_list">{{ cc_list }}</textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="bcc_list">BCC</label>
-                                            <textarea rows="3" name="bcc_list" class="form-control"
-                                                      id="bcc_list">{{ bcc_list }}</textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="subject">Subject</label>
-                                            <input type="text" class="form-control" name="mail_subject" id="subject"
-                                                   value="{{ mail_subject }}" placeholder="Subject">
-                                            <small class="form-text text-muted">
-                                                Subject of the mail
-                                            </small>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="mail_content">Description</label>
-                                            <textarea rows="10" name="mail_content" class="form-control"
-                                                      id="mail_content" rows="5">{{ mail_content }}</textarea>
-                                            <small class="form-text text-muted">
-                                                Content of the mail
-                                            </small>
-                                        </div>
-                                        <button id="submit-btn" type="submit" class="btn btn-dark anim-scroll">Send</button>
-                                        <a href="{% url 'join_list' %}">
-                                            <div class="btn btn-danger">Cancel</div>
-                                        </a>
-                                    </form>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div id="mail_form">
+                            <form method="post" action="">
+                                {% csrf_token %}
+                                <br>
+                                <h2 id="head">Mail to all applicants</h2>
+                                <small class="form-text text-muted">Not approved applications only</small>
+                                <hr>
+                                {% if error %}
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>Error!</strong> {{ error }}
+                                    </div>
+                                {% endif %}
+                                <div class="form-group">
+                                    <label for="to_list">To</label>
+                                    <textarea rows="3" name="to_list" class="form-control"
+                                              placeholder="Mail id list" id="to_list">{{ to_list }}</textarea>
+                                    <small class="form-text text-muted">
+                                        Individual mail will be sent to each applicant
+                                    </small>
                                 </div>
-                            </div>
+
+                                <div class="form-group">
+                                    <label for="cc_list">CC</label>
+                                    <textarea rows="3" name="cc_list" class="form-control"
+                                              id="cc_list">{{ cc_list }}</textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bcc_list">BCC</label>
+                                    <textarea rows="3" name="bcc_list" class="form-control"
+                                              id="bcc_list">{{ bcc_list }}</textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" class="form-control" name="mail_subject" id="subject"
+                                           value="{{ mail_subject }}" placeholder="Subject">
+                                    <small class="form-text text-muted">
+                                        Subject of the mail
+                                    </small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="mail_content">Description</label>
+                                    <textarea rows="10" name="mail_content" class="form-control"
+                                              id="mail_content" rows="5">{{ mail_content }}</textarea>
+                                    <small class="form-text text-muted">
+                                        Content of the mail
+                                    </small>
+                                </div>
+                                <button id="submit-btn" type="submit" class="btn btn-dark anim-scroll">Send</button>
+                                <a href="{% url 'join_list' %}">
+                                    <div class="btn btn-danger">Cancel</div>
+                                </a>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-    <hr class="divider">
-
-
-    <!-- Footer section -->
-    {% include 'home/../../../Home/templates/base/footer.html' %}
-
-</div>
-<!-- /WRAPPER -->
-
-<!-- JAVASCRIPT FILES -->
-<script src="{% static 'home/assets/js/jquery-2.1.4.min.js' %}"></script>
-<script src="{% static 'home/assets/bootstrap/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'home/assets/js/jquery.superslides.min.js' %}"></script>
-<script src="{% static 'home/assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
-<script src="{% static 'home/assets/js/imagesloaded.pkgd.js' %}"></script>
-<script src="{% static 'home/assets/js/isotope.pkgd.min.js' %}"></script>
-<script src="{% static 'home/assets/js/jquery.magnific-popup.min.js' %}"></script>
-<script src="{% static 'home/assets/js/owl.carousel.min.js' %}"></script>
-<script src="{% static 'home/assets/js/jquery.fitvids.js' %}"></script>
-<script src="{% static 'home/assets/js/jqBootstrapValidation.js' %}"></script>
-<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script src="{% static 'home/assets/js/gmap3.min.js' %}"></script>
-<script src="{% static 'home/assets/js/appear.js' %}"></script>
-<script src="{% static 'home/assets/js/smoothscroll.js' %}"></script>
-<script src="{% static 'home/assets/js/submenu-fix.js' %}"></script>
-<script src="{% static 'home/assets/js/contact.js' %}"></script>
-<script src="{% static 'home/assets/js/custom.js' %}"></script>
-
-</body>
-
-</html>
+        </div>
+    </div>
+{% endblock %}
