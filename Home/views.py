@@ -37,4 +37,7 @@ def about (request):
     return render(request, 'home/about.html')
 
 
-tags = ["one", "two", "three"]
+tags = ["Malardalen University", "TU Kaiserslautern", "INRIA", "Motorola Solutions",
+        "HP", "VU University", "Synack Inc", "Okta", "Qualcomm", "2M companies Inc",
+        "Google", "Flipkart", "CISCO", "Ola", "KTH Swedens"]
+
