@@ -19,96 +19,93 @@
     <!-- /HERO -->
 
     <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <h1 class="card-title"></h1>
-                                <br>
-                                <h4 class="card-subtitle mb-2">{{ object.batch }}, <span style="font-size:20px"
-                                                                                         class="text-muted">{{ object.email }}</span>
-                                </h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-block">
+                        <h1 class="card-title"></h1>
+                        <br>
+                        <h4 class="card-subtitle mb-2">{{ object.batch }}, <span style="font-size:20px"
+                                                                                 class="text-muted">{{ object.email }}</span>
+                        </h4>
+                        <hr>
+                        <h4>Why do you want to join?</h4>
+                        <p class="card-text">{{ object.motivation }}</p>
+                        <h4>Technical knowledge</h4>
+                        <p class="card-text">{{ object.cs_background }}</p>
+                        <h4>Interests</h4>
+                        <p class="card-text">{{ object.interests }}</p>
+                        <p class="card-text">
+                            <small class="text-muted">{{ object.date }}</small>
+                        </p>
+                        {% if object.is_approved %}
+                            <hr>
+                            <div class="alert alert-success" role="alert">
+                                <strong>Approved!</strong> Mail has been sent to this applicant.
+                            </div>
+                        {% endif %}
+                        {% if object.is_rejected %}
+                            <hr>
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Rejected!</strong> Mail has sent to this applicant.
+                            </div>
+                        {% endif %}
+                        {% ifequal object.is_rejected object.is_approved %}
+                            <div id="buttons">
                                 <hr>
-                                <h4>Why do you want to join?</h4>
-                                <p class="card-text">{{ object.motivation }}</p>
-                                <h4>Technical knowledge</h4>
-                                <p class="card-text">{{ object.cs_background }}</p>
-                                <h4>Interests</h4>
-                                <p class="card-text">{{ object.interests }}</p>
-                                <p class="card-text">
-                                    <small class="text-muted">{{ object.date }}</small>
-                                </p>
-                                {% if object.is_approved %}
-                                    <hr>
-                                    <div class="alert alert-success" role="alert">
-                                        <strong>Approved!</strong> Mail has been sent to this applicant.
-                                    </div>
-                                {% endif %}
-                                {% if object.is_rejected %}
-                                    <hr>
-                                    <div class="alert alert-danger" role="alert">
-                                        <strong>Rejected!</strong> Mail has sent to this applicant.
-                                    </div>
-                                {% endif %}
-                                {% ifequal object.is_rejected object.is_approved %}
-                                    <div id="buttons">
-                                        <hr>
-                                        <button id="approve" onclick="control(1)" class="btn btn-dark anim-scroll">
-                                            Approve
-                                        </button>
-                                        <button id="reject" onclick="control(2)" class="btn btn-danger card-link">
-                                            Reject
-                                        </button>￼
+                                <button id="approve" onclick="control(1)" class="btn btn-dark anim-scroll">
+                                    Approve
+                                </button>
+                                <button id="reject" onclick="control(2)" class="btn btn-danger card-link">
+                                    Reject
+                                </button>
+                                ￼
 
 
-                                    </div>
-                                {% endifequal %}
-                                {% if mail_error %}
-                                    <div class="error alert alert-danger" role="alert">
-                                        <strong>error!</strong> {{ mail_error }}.
-                                    </div>
-                                {% endif %}
-                                <div style="display: none;" id="mail_form">
-                                    <form method="post" action="{% url 'join_update' object.id %}">
-                                        <hr>
-                                        {% csrf_token %}
-                                        <h2 id="head">Sent mail</h2>
-                                        <input style="display: none" id="option" value="" name="">
-                                        <div class="form-group">
-                                            <label for="mail_id">To</label>
-                                            <input type="email" class="form-control" name="mail_id" id="mail_id"
-                                                   value="{{ object.mail_subject }}" placeholder="Mail Id">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="subject">Subject</label>
-                                            <input type="text" class="form-control" name="mail_subject" id="subject"
-                                                   value="{{ object.mail_subject }}" placeholder="Subject">
-                                            <small class="form-text text-muted">
-                                                Subject of the mail
-                                            </small>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="mail_content">Description</label>
-                                            <textarea rows="10" name="mail_content" class="form-control"
-                                                      placeholder="Mail content" id="mail_content" rows="5">
+                            </div>
+                        {% endifequal %}
+                        {% if mail_error %}
+                            <div class="error alert alert-danger" role="alert">
+                                <strong>error!</strong> {{ mail_error }}.
+                            </div>
+                        {% endif %}
+                        <div style="display: none;" id="mail_form">
+                            <form method="post" action="{% url 'join_update' object.id %}">
+                                <hr>
+                                {% csrf_token %}
+                                <h2 id="head">Sent mail</h2>
+                                <input style="display: none" id="option" value="" name="">
+                                <div class="form-group">
+                                    <label for="mail_id">To</label>
+                                    <input type="email" class="form-control" name="mail_id" id="mail_id"
+                                           value="{{ object.mail_subject }}" placeholder="Mail Id">
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" class="form-control" name="mail_subject" id="subject"
+                                           value="{{ object.mail_subject }}" placeholder="Subject">
+                                    <small class="form-text text-muted">
+                                        Subject of the mail
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mail_content">Description</label>
+                                    <textarea rows="10" name="mail_content" class="form-control"
+                                              placeholder="Mail content" id="mail_content" rows="5">
                                                 {{ object.mail_content }}
                                             </textarea>
-                                            <small class="form-text text-muted">
-                                                Content of the mail
-                                            </small>
-                                        </div>
-                                        <button id="submit-btn" type="submit" class=""></button>
-                                        <div onclick="control(3)" class="btn btn-secondary">Cancel</div>
-                                    </form>
+                                    <small class="form-text text-muted">
+                                        Content of the mail
+                                    </small>
                                 </div>
-                            </div>
+                                <button id="submit-btn" type="submit" class=""></button>
+                                <div onclick="control(3)" class="btn btn-secondary">Cancel</div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-
+        </div>
+    </div>
 {% endblock %}
-
-
 
