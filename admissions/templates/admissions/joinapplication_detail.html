@@ -109,3 +109,52 @@
     </div>
 {% endblock %}
 
+{% block script %}
+        <script>
+        function control(selection) {
+            var form, head, option, subject, content, btns;
+            form = document.getElementById('mail_form');
+            head = document.getElementById('head');
+            option = document.getElementById('option');
+            subject = document.getElementById('subject');
+            content = document.getElementById('mail_content');
+            btns = document.getElementById('buttons');
+            submit_btn = document.getElementById('submit-btn');
+            to = document.getElementById('mail_id');
+            to.value = '{{ object.email }}';
+            console.log(selection);
+            if (selection === 3) {
+                // cancel
+                form.style.display = 'none';
+                btns.style.display = 'block';
+            }
+            else if (selection === 1) {
+                // approve
+                head.innerHTML = 'Sent approval mail';
+                option.value = 'True';
+                option.name = 'is_approved';
+                subject.value = '{{ approve_mail_subject }}';
+                content.innerHTML = '{{ approve_mail_content }}';
+                form.style.display = 'block';
+                btns.style.display = 'none';
+                console.log(selection);
+                submit_btn.innerHTML = 'Approve';
+                submit_btn.classList = 'btn btn-success';
+            }
+            else {
+                // reject
+                head.innerHTML = 'Sent rejection mail';
+                option.value = 'True';
+                option.name = 'is_rejected';
+                subject.value = '{{ reject_mail_subject }}';
+                content.innerHTML = '{{ reject_mail_content }}';
+                form.style.display = 'block';
+                btns.style.display = 'none';
+                submit_btn.innerHTML = 'Reject';
+                submit_btn.classList = 'btn btn-danger';
+            }
+        }
+    </script>
+
+{% endblock %}
+
