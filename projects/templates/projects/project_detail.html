@@ -2,20 +2,32 @@
 {% load static %}
 {% block content %}
 
+    <!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+         data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+    <!-- HERO TEXT -->
+    <div class="hero-caption">
+        <div class="hero-text">
+            <h1 class="hero-title font-alt">{{ object.title }}</h1>
+            <p class="hero-subtitle font-serif"></p>
+        </div>
+    </div>
+    <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
+
     <div class="container">
-        <div class="row">
-            <br>
-            <h1 class="head col-md-12"><strong>Project Details</strong></h1>
-            <hr>
-            <br>
-            <div class="card mb-3">
+        <div class="row" align="center">
+            <p class="card mb-3">
                 {% if object.image %}
                     <img class="card-img-top img-fluid" src="static/media/{{ object.image }}">
                 {% else %}
                     <img class="card-img-top img-fluid" src="{% static 'projects/images/default.png' %}">
                 {% endif %}
+                <p><h1 class="head col-md-12"><strong>Details</strong></h1></p>
                 <div class="card-block">
-                    <h4 class="card-title">{{ object.title }}</h4>
                     <p class="card-text">{{ object.description }}</p>
                     <p class="card-text">Link: <a href="{{ object.url }}">{{ object.url }}</a></p>
                     <p class="card-text">

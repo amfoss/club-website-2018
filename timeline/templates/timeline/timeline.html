@@ -2,6 +2,22 @@
 {% load static %}
 {% block content %}
 
+    <!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+         data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+    <!-- HERO TEXT -->
+    <div class="hero-caption">
+        <div class="hero-text">
+            <h1 class="hero-title font-alt">Timeline</h1>
+            <p class="hero-subtitle font-serif"></p>
+        </div>
+    </div>
+    <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
+
     <ul class="timeline">
         {% for object in objects %}
 
@@ -16,8 +32,6 @@
                 <p><br>{{ object.description }}</p>
                 <a href="/static/media/{{ object.resume }}">
 
-
-
                     <h6 class="btn btn-dark anim-scroll">Resume</h6>
 
                 </a>
@@ -25,6 +39,8 @@
         </li>
         {% endfor %}
     </ul>
+
+
 
 {% endblock %}
 
