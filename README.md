@@ -52,51 +52,65 @@ git clone [https://github.com/amfoss/fosswebsite.git]
 ## **Pre-requisites**
 1. Install requirements:
   All the requirements are mentioned in the file
-   `requirements.txt`
+   ```requirements.txt```
 
-    `pip install -r docs/requirements.txt`
+    ```pip install -r docs/requirements.txt```
 
-2. Install `python-pip`, `python-dev` and `virtualenvwrapper`
+2. Install ```python-pip```, ```python-dev``` and ```virtualenvwrapper```
 
-            `sudo apt-get install 
-            python-pip python-dev
-            sudo -H pip install virtualenvwrapper`
+    ```bash
+       sudo apt-get install
+       python-pip python-dev
+       sudo -H pip install virtualenvwrapper
+    ```
 
 
 ## **Installing**
 1. First, some initialization steps. Most of this only needs to be done one time. 
 Add the command to source:
-           `/usr/local/bin/virtualenvwrapper.sh` to your shell startup file
-            (`.bashrc` or `.zshrc`) 
-            changing the path to `virtualenvwrapper.sh`, depending on where it was installed by `pip`.
+           ```/usr/local/bin/virtualenvwrapper.sh``` to your shell startup file
+            (```.bashrc``` or ```.zshrc```) 
+            changing the path to ```virtualenvwrapper.sh```, depending on where it was installed by ```pip```.
 
-             `export WORKON_HOME=~/Envs
-              mkdir -p $WORKON_HOME
-              source /usr/local/bin/virtualenvwrapper.sh`
+      ```bash
+        export WORKON_HOME=~/Envs
+        mkdir -p $WORKON_HOME
+        source /usr/local/bin/virtualenvwrapper.sh
+      ```
 
 2. Lets create a virtual environment for our project
 
-              'mkvirtualenv --python=which python3 foss
-               workon foss`
+      ```bash
+         mkvirtualenv --python=which python3 foss
+         workon foss
+      ```
 
 3. Now to set up the database
    In the development phase, we use sqlite3.db
-          * Setup tables in the DB
+   
+    * Setup tables in the DB
 
-          `python manage.py makemigrations
-          python manage.py migrate`
+      ```python
+         python manage.py makemigrations
+         python manage.py migrate
+      ```
+      
+    * Collect all the static files for fast serving
                 
-          * Collect all the static files for fast serving
-                
-          `python manage.py collectstatic`
+      ```python 
+         python manage.py collectstatic
+      ```
 
-          * For creating an admin account
+    * For creating an admin account
 
-          'python manage.py createsuperuser'
-
+      ```python 
+         python manage.py createsuperuser
+      ```
 4. Run server
-          'python manage.py runserver'
 
+      ```python 
+         python manage.py runserver
+      ```
 
 
 ## **Built with:**
@@ -213,5 +227,6 @@ Simply put, by far the best way to know our audience, Google Analytics primarily
 * Navaneeth S- backend developer
 * Chiranjeeb M-  backend developer
 * Aniketh Gireesh- frontend and UI/UX design
+
 
 
