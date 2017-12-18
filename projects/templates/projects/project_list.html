@@ -22,12 +22,12 @@
         <div class="row">
             <div class="card col-md-12">
                 <div class="card-block">
-                    <div class="row">
+                    <div class="row"><p>
                         {% if request.user.is_authenticated %}
-                            <div class="col-md-4" align="right">
-                                <a href="{% url 'project_create' %}"><i class="fa fa-plus-circle fa-4x"></i></a>
+                            <div class="col-md-12" align="center">
+                                <p><a href="{% url 'project_create' %}"><i class="fa fa-plus-circle fa-4x"></i></a></p>
                             </div>
-                        {% endif %}
+                        {% endif %}</p>
                     </div>
                     <div class="row">
                         {% for object in object_list %}
