@@ -9,7 +9,7 @@
         <!-- HERO TEXT -->
         <div class="hero-caption">
             <div class="hero-text">
-                <h1 class="hero-title font-alt">Achievements</h1>
+                <h1 class="hero-title font-alt">Events</h1>
                 <p class="hero-subtitle font-serif"></p>
             </div>
         </div>
@@ -46,12 +46,12 @@
                         <p>Lab Requirements: {{ object.lab_requirements }}</p>
                         <p>ICTS Support: {{ object.icts_support }}</p>
                         {% if edit_permission %}
-                            <a href="{% url 'workshopdetail_update' object.id %}">
+                            <a href="{% url 'Event_edit' object.id %}">
                                 <button type="submit" class="btn btn-dark anim-scroll">Update</button>
                             </a>
                         {% endif %}
                         {% if edit_permission %}
-                            <a href="{% url 'workshop_delete' object.id %}">
+                            <a href="{% url 'event_delete' object.id %}">
                                 <button type="submit" class="btn btn-danger add-btn">Delete</button>
                             </a>
                         {% endif %}

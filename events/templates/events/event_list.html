@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+        <!-- HERO TEXT -->
+        <div class="hero-caption">
+            <div class="hero-text">
+                <h1 class="hero-title font-alt">Events</h1>
+                <p class="hero-subtitle font-serif"></p>
+            </div>
+        </div>
+        <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <br>
+            <br>
+                <div class="row">
+                    <div class="card-columns">
+                        {% for object in object_list %}
+                            <div class="card">
+                                <div class="col-md-4 card-block">
+                                    <h3 class="card-title">{{ object.name }}</h3>
+                                    <p class="card-text">{{ object.description }}</p>
+                                    <a class="btn btn-dark anim-scroll"
+                                       href="{% url 'event_detail' object.id %}">More Info
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        <div class="col-md-12">
+                            <div class="container">
+                                <br>
+                                <br>
+                                <br>
+                                <a href="{% url 'Event_add' %}">
+                                    <button style="margin-right: 300px" class="btn btn-dark anim-scroll">Add new</button>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
