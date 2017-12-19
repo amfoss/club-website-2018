@@ -27,6 +27,7 @@
     <!-- Icon Fonts -->
     <link href="{% static 'home/assets/css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'home/assets/css/et-line-font.min.css' %}" rel="stylesheet">
+    <link href="{% static 'registration/fonts/icomoon/style.css' %}" rel="stylesheet">
 
     <!-- Plugins -->
     <link href="{% static 'home/assets/css/magnific-popup.css' %}" rel="stylesheet">
@@ -46,6 +47,8 @@
     <link href="{% static 'clubManagement/css/attendance_batch_yearly.css' %}" rel="stylesheet">
     <link href="{% static 'clubManagement/css/attendance_add.css' %}" rel="stylesheet">
     <link href="{% static 'admissions/css/admission.css' %}" rel="stylesheet">
+    {% block styles %}
+    {% endblock %}
 </head>
 <body>
 
