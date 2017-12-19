@@ -12,10 +12,10 @@ from achievements.models import Contribution
 from clubManagement.models import Team
 from projects.models import Project
 from registration.forms import UserSignUpForm, UserForm
-from registration.models import UserInfo
+from registration.models import UserInfo, WorkExperience
 
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
-         "October", "November", "December"]
+          "October", "November", "December"]
 
 month_num = range(12)
 
@@ -31,7 +31,7 @@ class UserSignUpView(CreateView):
         return super(UserSignUpView, self).get(request, *args, **kwargs)
 
 
-def login(request,  *args, **kwargs):  # view to handle remember me and login
+def login(request, *args, **kwargs):  # view to handle remember me and login
     if request.method == 'POST':
         if not request.POST.get('remember_me'):
             request.session.set_expiry(0)
@@ -97,3 +97,12 @@ class ProfileListView(ListView):
     template_name = 'registration/profile_list.html'
     queryset = UserInfo.objects.order_by('user__first_name')
 
+
+class WorkExperienceView(ListView):
+    model = WorkExperience
+    template_name = 'registration/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkExperienceView, self).get_context_data(**kwargs)
+        context['objects'] = WorkExperience.objects.order_by('-end_date')
+        return context

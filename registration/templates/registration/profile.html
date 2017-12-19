@@ -119,11 +119,11 @@
                                 </li>
                                 {% if teams %}
                                     {% if projects %}
-                                <li>
-                                    <a href="index.php#portfolio" data-tooltip="Teams and Projects"><span
-                                            class="crt-icon crt-icon-product-hunt"></span></a>
-                                </li>
-                                        {% endif %}
+                                        <li>
+                                            <a href="index.php#portfolio" data-tooltip="Teams and Projects"><span
+                                                    class="crt-icon crt-icon-product-hunt"></span></a>
+                                        </li>
+                                    {% endif %}
                                 {% endif %}
                                 <li>
                                     <a href="index.php#experience" data-tooltip="Experience"><span
@@ -370,63 +370,28 @@
             <div id="experience" class="crt-paper-layers crt-animate">
                 <div class="crt-paper clearfix">
                     <div class="crt-paper-cont paper-padd clear-mrg">
-
                         <section class="section padd-box">
                             <h2 class="title-lg text-upper">work experience</h2>
                             <div class="education">
-
-                                <div class="education-box">
-                                    <time class="education-date" datetime="2014-01T2016-03">
-                                        <span>Jan <strong
-                                                class="text-upper">2014</strong> - Mar <strong>2016</strong></span>
-                                    </time>
-                                    <h3>Full Stack Developer</h3>
-                                    <div class="education-logo">
-                                        <img src="assets/images/uploads/experience/logo-audio-jungle.png" alt="">
+                                {% for object in objects %}
+                                    <div class="education-box">
+                                        <time class="education-date" datetime="2014-01T2016-03">
+                                        <span>{{ object.start_date.month }} <strong
+                                                class="text-upper">{{ object.start_date.year }}</strong> - {{ object.start_date.month }} <strong>{{ object.end_date.year }}</strong></span>
+                                        </time>
+                                        <h3>{{ object.position }}</h3>
+                                        <div class="education-logo">
+                                            <img src="assets/images/uploads/experience/logo-audio-jungle.png" alt="">
+                                        </div>
+                                        <span class="education-company">{{ object.company }}</span>
+                                        <p>{{ object.work_description }}</p>
                                     </div>
-                                    <span class="education-company">IBBA Group</span>
-                                    <p>Your brand is the core of your marketing,
-                                        the central theme around your products and services.
-                                        Your brand is not your Logo or your Company Name
-                                    </p>
-                                </div>
-                                <!-- .education-box -->
+                                    <!-- .education-box -->
 
-                                <div class="education-box">
-                                    <time class="education-date" datetime="2014-01T2016-03">
-                                        <span>Jan <strong
-                                                class="text-upper">2014</strong> - Mar <strong>2016</strong></span>
-                                    </time>
-                                    <h3>Systems Analyst / Web Developer</h3>
-                                    <div class="education-logo">
-                                        <img src="assets/images/uploads/experience/logo-themeforest.png" alt="">
                                     </div>
-                                    <span class="education-company">Loft Studio</span>
-                                    <p>
-                                        Your brand is the core of your marketing, the central theme around your products
-                                        and services.
-                                    </p>
-                                </div>
-                                <!-- .education-box -->
-
-                                <div class="education-box">
-                                    <time class="education-date" datetime="2014-01T2016-03">
-                                        <span>Jan <strong
-                                                class="text-upper">2014</strong> - Mar <strong>2016</strong></span>
-                                    </time>
-                                    <h3>Full Stack Developer</h3>
-                                    <div class="education-logo">
-                                        <img src="assets/images/uploads/experience/logo-envato.png" alt="">
-                                    </div>
-                                    <span class="education-company">Stu Unger Rise</span>
-                                    <p>Your brand is the core of your marketing, the central theme around your products
-                                        and services.</p>
-                                </div>
-                                <!-- .education-box -->
-
-                            </div>
-                            <!-- .education -->
-                        </section>
+                                    <!-- .education -->
+                                    </section>
+                                {% endfor %}
                         <!-- .section -->
 
                     </div>

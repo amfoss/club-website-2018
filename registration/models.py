@@ -34,15 +34,17 @@ class UserInfo(models.Model):
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'")
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)  # validators should be a list
 
-    # Work timeline model fields
-    start_date = models.DateField("Date", default=date.today)
-    end_date = models.DateField("Date", default=date.today)
-    position = models.CharField(max_length=100, blank=True)
-    company = models.CharField(max_length=100, blank=True)
-    work_description = models.TextField(max_length=300, blank=True)
-
     def __str__(self):
         return self.user.username
 
     def get_absolute_url(self):
         return reverse('profile', kwargs={'pk': self.id})
+
+
+class WorkExperience(models.Model):
+    workExp = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
+    start_date = models.DateField("Date", default=date.today)
+    end_date = models.DateField("Date", default=date.today)
+    position = models.CharField(max_length=100, blank=True)
+    company = models.CharField(max_length=100, blank=True)
+    work_description = models.TextField(max_length=300, blank=True)
