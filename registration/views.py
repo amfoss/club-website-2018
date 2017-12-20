@@ -97,3 +97,15 @@ class ProfileListView(ListView):
     model = UserInfo
     template_name = 'registration/profile_list.html'
     queryset = UserInfo.objects.order_by('user__first_name')
+
+
+class WorkExperienceCreateView(CreateView):
+    template_name = 'registration/workExperience_form.html'
+    model = WorkExperience
+    fields = ['position', 'company', 'work_description', 'start_date', 'end_date']
+    success_url = 'registration/profile.html'
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        response = super(WorkExperienceCreateView, self).form_valid(form)
+        return response

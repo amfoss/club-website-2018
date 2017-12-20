@@ -371,12 +371,21 @@
                 <div class="crt-paper clearfix">
                     <div class="crt-paper-cont paper-padd clear-mrg">
                         <section class="section padd-box">
-                            <h2 class="title-lg text-upper">work experience</h2>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h2 class="title-lg text-upper">work experience</h2>
+                                </div>
+                                <div class="col-md-4">
+                                    <a class="btn btn-default btn-lg btn-block btn-thin btn-upper"
+                                       href="{% url 'workexp_add' %}">Enter New Data</a>
+                                </div>
+                            </div>
                             <div class="education">
                                 {% for object in objects %}
                                     <div class="education-box">
                                         <time class="education-date" datetime="2014-01T2016-03">
-                                        <span>{{ object.start_date.month }} <strong class="text-upper">{{ object.start_date.year }}</strong> - {{ object.start_date.month }} <strong>{{ object.end_date.year }}</strong></span>
+                                            <span>{{ object.start_date.month }} <strong
+                                                    class="text-upper">{{ object.start_date.year }}</strong> - {{ object.start_date.month }} <strong>{{ object.end_date.year }}</strong></span>
                                         </time>
                                         <h3>{{ object.position }}</h3>
                                         <span class="education-company">{{ object.company }}</span>
