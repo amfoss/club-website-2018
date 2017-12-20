@@ -211,6 +211,14 @@
                                         <img src="#" alt="signature">
                                     </div>
                                 {% endif %}
+                                {% ifequal request.user user_info.user %}
+                                    <div class="col-sm-3 text-right">
+                                        <a href="/accounts/password_change"
+                                           class="btn btn-secondary">
+                                            Change password
+                                        </a>
+                                    </div>
+                                {% endifequal %}
                             </div>
                             <!-- .row -->
                         </section>
