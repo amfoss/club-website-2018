@@ -89,6 +89,7 @@ class ProfileDetailView(DetailView):
             context['error'] = 'No data found for this user!'
         context['teams'] = Team.objects.filter(created_by=self.get_object())
         context['projects'] = Project.objects.filter(created_by=self.get_object())
+        context['objects'] = WorkExperience.objects.order_by('-end_date')
         return context
 
 
@@ -98,11 +99,11 @@ class ProfileListView(ListView):
     queryset = UserInfo.objects.order_by('user__first_name')
 
 
-class WorkExperienceView(ListView):
-    model = WorkExperience
-    template_name = 'registration/profile.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(WorkExperienceView, self).get_context_data(**kwargs)
-        context['objects'] = WorkExperience.objects.order_by('-end_date')
-        return context
+# class WorkExperienceView(ListView):
+#     model = WorkExperience
+#     template_name = 'registration/profile.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(WorkExperienceView, self).get_context_data(**kwargs)
+#
+#         return context
