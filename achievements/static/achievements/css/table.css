@@ -4,12 +4,10 @@
     box-sizing: border-box;
 }
 
-body {
+table {
     font-family: 'Nunito', sans-serif;
     color: #384047;
-}
-
-table {
+    width: 90%;
     max-width: 960px;
     margin: 10px auto;
 }

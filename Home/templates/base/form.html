@@ -1,0 +1,83 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load field_type %}
+{% block content %}
+
+    <!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+        <!-- HERO TEXT -->
+        <div class="hero-caption">
+            <div class="hero-text">
+                <h1 class="hero-title font-alt">{{ heading }}</h1>
+                <p class="hero-subtitle font-serif"></p>
+            </div>
+        </div>
+        <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
+
+    <!-- BLOG -->
+    <div class="notifications">
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ field.label }}: {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <section class="module">
+        <div class="container-fluid container-custom">
+
+            <div class="row">
+
+                <div class="col-sm-8 col-sm-offset-2">
+
+                    <article class="post" align="center">
+                        <div class="post-header">
+                            <h2 class="post-title font-alt">Add the details</h2>
+                        </div>
+                        <div class="post-content">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    <div class="form-group">
+                                        {{ field.label_tag }}
+                                        {{ field }}
+                                        <small class="form-text text-muted">
+                                            {{ field.help_text }}
+                                        </small>
+                                    </div>
+                                {% endfor %}
+                                <center>
+                                    <ul id="filters" class="filters font-alt">
+                                        <button type="submit">Save</button>
+                                    </ul>
+                                </center>
+                            </form>
+                        </div>
+                    </article>
+
+                </div>
+                <!-- .col-* -->
+
+            </div>
+            <!-- .row -->
+
+        </div>
+    </section>
+
+{% endblock %}
