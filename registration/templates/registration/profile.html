@@ -376,13 +376,9 @@
                                 {% for object in objects %}
                                     <div class="education-box">
                                         <time class="education-date" datetime="2014-01T2016-03">
-                                        <span>{{ object.start_date.month }} <strong
-                                                class="text-upper">{{ object.start_date.year }}</strong> - {{ object.start_date.month }} <strong>{{ object.end_date.year }}</strong></span>
+                                        <span>{{ object.start_date.month }} <strong class="text-upper">{{ object.start_date.year }}</strong> - {{ object.start_date.month }} <strong>{{ object.end_date.year }}</strong></span>
                                         </time>
                                         <h3>{{ object.position }}</h3>
-                                        <div class="education-logo">
-                                            <img src="assets/images/uploads/experience/logo-audio-jungle.png" alt="">
-                                        </div>
                                         <span class="education-company">{{ object.company }}</span>
                                         <p>{{ object.work_description }}</p>
                                     </div>

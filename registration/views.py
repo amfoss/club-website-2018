@@ -97,13 +97,3 @@ class ProfileListView(ListView):
     model = UserInfo
     template_name = 'registration/profile_list.html'
     queryset = UserInfo.objects.order_by('user__first_name')
-
-
-# class WorkExperienceView(ListView):
-#     model = WorkExperience
-#     template_name = 'registration/profile.html'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(WorkExperienceView, self).get_context_data(**kwargs)
-#
-#         return context
