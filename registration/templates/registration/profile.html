@@ -161,8 +161,25 @@
                         <section class="section brd-btm padd-box">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h2 class="title-lg text-upper">About Me</h2>
-
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <h2 class="title-lg text-upper">About Me</h2>
+                                        </div>
+                                        {% ifequal request.user user_info.user %}
+                                            <div class="col-md-1">
+                                                <div id="crt-nav-scroll">
+                                                    <nav id="crt-nav" class="crt-nav">
+                                                        <ul class="clear-list">
+                                                            <li>
+                                                                <a href="{% url 'update_profile' user_info.user.id %}" data-tooltip="update profile"><span
+                                                                        class="crt-icon crt-icon-edit" style="size: 30px;"></span></a>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
+                                            </div>
+                                        {% endifequal %}
+                                    </div>
                                     <div class="text-box">
                                         <p><b>Helo, I’m {{ user_info.user.first_name }}!</b><br>
                                             {{ user_info.intro }}</p>
