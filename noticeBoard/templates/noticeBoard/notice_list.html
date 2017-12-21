@@ -1,8 +1,22 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %} Notices {% endblock %}
 {% load index %}
 {% block body %}
+<!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+         data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+    <!-- HERO TEXT -->
+    <div class="hero-caption">
+        <div class="hero-text">
+            <h1 class="hero-title font-alt">Notices</h1>
+            <p class="hero-subtitle font-serif"></p>
+        </div>
+    </div>
+    <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
 
 
     <div id="wrap">
@@ -28,15 +42,15 @@
         Click here:  <a href="{{ object.object.url }}">{{ object.object.url }}</a>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary btn-group" data-dismiss="modal">Close</button>
           {% if object.edit_permission %}
 
 
-                          <a href="{% url "edit_notice" object.object.id %}"> <button type="submit" class="btn btn-outline-primary">Edit</button></a>
+                          <a href="{% url "edit_notice" object.object.id %}"> <button type="submit" class="btn btn-outline-primary btn-group">Edit</button></a>
 
               <form method="post" action="{% url "delete_notice" object.object.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-group">Delete</button>
                             </form>
 
           {% endif %}
@@ -49,8 +63,8 @@
     <br>
     <br>
 
-        <div class="col-md-6">
-                                 <a href="{% url "add_notice" %}"> <button type="submit" class="btn ">Add</button></a>
+        <div style="margin-left: 75%;" >
+                                 <a href="{% url "add_notice" %}"> <button type="submit" class="btn btn-dark anim-scroll" >Add</button></a>
 
         </div>
         </div></div>
