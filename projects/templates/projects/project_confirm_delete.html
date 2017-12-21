@@ -20,26 +20,29 @@
 
     <section class="module">
         <div class="container-fluid container-custom">
-
             <div class="row">
-
                 <div class="col-sm-8 col-sm-offset-2">
-
                     <article class="post" align="center">
-                        <div class="post-header">
-                            <h2 class="post-title font-alt">Delete the selected project?</h2>
-                        </div>
                         <div class="post-content">
                             <form class="card" action="" method="post">
                                 <div class="card-block">
                                     {% csrf_token %}
-                                    <h2 class="post-title font-alt">Delete {{ object.title }}?</h2>
-                                    <button type="submit" class="btn btn-danger">Yes, continue</button>
+                                    <div class="col-sm-offset-5">
+                                        <h2 class="post-title font-alt">Delete {{ object.title }} ?</h2>
+                                    </div>
+                                    <div>
+                                        <p><br></p>
+                                    </div>
+                                    <div class="col-sm-offset-5" align="center">
+                                        <button type="submit" class="btn btn-danger">Yes, continue</button>
+                                    </div>
                                 </div>
                             </form>
                             <br>
                             <a href="{% url 'project_detail' object.id %}">
-                                <button class="btn btn-dark anim-scroll">No, take me out of here</button>
+                                <div class="col-sm-offset-5" align="center">
+                                    <button class="btn btn-dark anim-scroll">No, take me out of here</button>
+                                </div>
                             </a>
                         </div>
                     </article>
