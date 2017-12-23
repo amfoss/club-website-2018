@@ -12,10 +12,10 @@ from achievements.models import Contribution
 from clubManagement.models import Team
 from projects.models import Project
 from registration.forms import UserSignUpForm, UserForm
-from registration.models import UserInfo
+from registration.models import UserInfo, WorkExperience
 
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
-         "October", "November", "December"]
+          "October", "November", "December"]
 
 month_num = range(12)
 
@@ -31,7 +31,7 @@ class UserSignUpView(CreateView):
         return super(UserSignUpView, self).get(request, *args, **kwargs)
 
 
-def login(request,  *args, **kwargs):  # view to handle remember me and login
+def login(request, *args, **kwargs):  # view to handle remember me and login
     if request.method == 'POST':
         if not request.POST.get('remember_me'):
             request.session.set_expiry(0)
@@ -89,6 +89,7 @@ class ProfileDetailView(DetailView):
             context['error'] = 'No data found for this user!'
         context['teams'] = Team.objects.filter(created_by=self.get_object())
         context['projects'] = Project.objects.filter(created_by=self.get_object())
+        context['objects'] = WorkExperience.objects.order_by('-end_date')
         return context
 
 
@@ -97,3 +98,14 @@ class ProfileListView(ListView):
     template_name = 'registration/profile_list.html'
     queryset = UserInfo.objects.order_by('user__first_name')
 
+
+class WorkExperienceCreateView(CreateView):
+    template_name = 'registration/workExperience_form.html'
+    model = WorkExperience
+    fields = ['position', 'company', 'work_description', 'start_date', 'end_date']
+    success_url = 'registration/profile.html'
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        response = super(WorkExperienceCreateView, self).form_valid(form)
+        return response
