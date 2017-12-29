@@ -57,12 +57,20 @@ class NoticeDeleteView(DeleteView):
 
 class NoticeListView(ListView):
     model = Notice
+    template_name = "noticeBoard/notice_list.html"
 
     def get_context_data(self, **kwargs):
-        context = super(NoticeListView, self).get_context_data()
-        if self.request.user.is_superuser or self.request.user == self.object.user:
-            context['edit_permission'] = True
-        else:
-            context['edit_permission'] = False
-        print(context['edit_permission'])
+        context = super(NoticeListView, self).get_context_data(**kwargs)
+        object_list = Notice.objects.all()
+        object_list2 = []
+        for object in object_list:
+            edit_permission = False
+            if self.request.user.is_superuser or self.request.user == object.user:
+                edit_permission = True
+            else:
+                edit_permission = False
+            object2 = {"object": object, "edit_permission": edit_permission}
+            object_list2.append(object2)
+            print edit_permission
+        context['object_list'] = object_list2
         return context
