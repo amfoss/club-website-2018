@@ -19,7 +19,13 @@
     <!-- /HERO -->
 
     <div class="container" align="center">
-        <h1>Screenshots</h1>
+        <div>
+            <p><br></p>
+        </div>
+        <h3>Screenshots</h3>
+        <div>
+            <p><br></p>
+        </div>
         <div class="row">
             {% for object in object_list %}
                 <div class="col-md-6">
@@ -32,7 +38,7 @@
                     </div>
                 </div>
             {% endfor %}
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <a href="{% url 'screenshot_create' id %}">
                     <button type="submit" class="btn btn-dark anim-scroll">Add Image</button>
                 </a>
