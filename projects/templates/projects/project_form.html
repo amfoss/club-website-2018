@@ -39,22 +39,20 @@
 
     <section class="module">
         <div class="container-fluid container-custom">
-
             <div class="row">
-
-                <div class="col-sm-8 col-sm-offset-2">
-
-                    <article class="post" align="center">
-                        <div class="post-header">
-                            <h2 class="post-title font-alt">Add project info</h2>
+                <div class="col-sm-offset-3">
+                    <article class="post">
+                        <div class="post-header" align="center">
+                            <h1 class="post-title font-alt">Add project info</h1>
                         </div>
                         <div class="post-content">
                             <form action="" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label for="name">Title</label>
-                                    <input type="text" class="form-control" name="title" id="name"
-                                           value="{{ object.title }}" placeholder="Title">
+                                    <div style="text-align: center">
+                                        <input type="text" class="form-control" name="title" id="name" value="{{ object.title }}" placeholder="Title">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="url">Project Url</label>
@@ -85,7 +83,6 @@
                                         </span>
                                     </div>
                                 </div>
-
                                 <button type="submit" class="btn btn-dark anim-scroll">Submit</button>
                             </form>
                         </div>
