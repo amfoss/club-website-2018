@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load index %}
 {% block content %}
     <!-- HERO -->
     <section id="hero" class="module-hero bg-dark-30"
@@ -16,39 +17,29 @@
 
     </section>
     <!-- /HERO -->
+    <br><br>
 
-    <section class="module">
-        <div class="container-fluid container-custom">
-
-            <div class="row">
-
-                <div class="col-sm-8 col-sm-offset-2">
-
-                    <article class="post" align="center">
-                        <div class="post-content">
-                            <form class="card" action="" method="post">
-                                <div class="card-block">
-                                    {% csrf_token %}
-                                    <h2 class="post-title font-alt">Delete {{ object.name }}?</h2>
-                                    <button type="submit" class="btn btn-danger">Yes, continue</button>
-                                </div>
-                            </form>
-                            <br>
-                            <a href="{% url 'event_detail' object.id  %}">
-                                <button class="btn btn-dark anim-scroll">No, take me out of here</button>
-                            </a>
-                        </div>
-                    </article>
-
-                </div>
-                <!-- .col-* -->
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="card" action="" method="post">
+                    <div class="card-block">
+                        {% csrf_token %}
+                        <h2>Delete {{ object.name }}?</h2>
+                        <button type="submit" class="btn btn-danger">Yes, continue</button>
+                    </div>
+                </form>
+                {% ifequal title "Events" %}
+                    <a href="{% url 'events_list' %}">
+                        <button class="btn btn-dark anim-scroll">No, take me out of here</button>
+                    </a>
+                {% endifequal %}
+                {% ifequal title "Images" %}.
+                    <a href="{% url 'eventsimage_list' %}">
+                        <button class="btn btn-dark anim-scroll">No, take me out of here</button>
+                    </a>
+                {% endifequal %}
             </div>
-            <!-- .row -->
-
         </div>
-    </section>
+    </div>
 {% endblock %}
-
-
-

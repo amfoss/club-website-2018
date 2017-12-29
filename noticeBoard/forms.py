@@ -11,7 +11,7 @@ class NoticeCreateForm(forms.ModelForm):
                               widget=forms.Textarea(attrs={"placeholder": 'Message'}))
 
     startdate = forms.DateTimeField(label="Enter start date and time",
-                               widget=forms.DateTimeInput(attrs={'class': "datetime-input"}))
+                               widget=forms.DateTimeInput())
     enddate = forms.DateTimeField(label="Enter end date and time",
                                widget=forms.DateTimeInput())
     url = forms.URLField(label="Enter url if any",
@@ -20,13 +20,7 @@ class NoticeCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(NoticeCreateForm, self).__init__(*args, **kwargs)
         for field in iter(self.fields):
-            if field == 'startdate' :
-                self.fields[field].widget.attrs.update({'class': 'form-control datetimepicker6'})
-            elif field == 'enddate' :
-                self.fields[field].widget.attrs.update({'class': 'form-control datetimepicker7'})
-            else:
-                self.fields[field].widget.attrs.update({'class': 'form-control'})
-
+            self.fields[field].widget.attrs.update({'class': 'form-control'})
 
     class Meta:
         model = Notice
