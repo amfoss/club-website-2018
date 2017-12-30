@@ -13,6 +13,9 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
+  # Enviornments
+env:
+  - DJANGO=1.11 DB=mysql
 # command to run tests
 script:
   - python manage.py test # or py.test for Python versions 3.5 and below
