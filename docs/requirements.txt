@@ -1,4 +1,4 @@
-django
+django==1.11.6
 pillow
 django-recaptcha
 xlrd
