@@ -22,7 +22,7 @@
         <div class="row">
             <br><br>
 
-            <div class="card-block">
+            <div style ="padding :30px " class="card-block">
                 <h1 class="card-title">Workshops</h1>
                 <hr>
                 <div class="row">
@@ -39,16 +39,15 @@
                                          src="{% static 'workshop/default.png' %}">
                                 {% endif %}
                                 <div class="card-block">
-                                    <h3 class="card-title">{{ workshop.0.name }}</h3>
-                                    <p class="card-text">{{ workshop.0.overview }}</p>
-                                    <p class="card-text">
+                                    <h3 style="padding: 10px " class="card-title">{{ workshop.0.name }}</h3>
+                                    <p style="padding: 10px " class="card-text">{{ workshop.0.overview }}</p>
+                                    <p style="padding: 10px "class="card-text">
                                         <small>Seats Available: {{ workshop.1 }}</small>
                                     </p>
 
-                                    <p class="card-text">
+                                    <p style="padding: 10px "class="card-text">
                                         <small>{{ workshop.0.start_date_time }}</small>
                                     </p>
-
                                     <a href="{% url 'workshop_detail' workshop.0.id %}"
                                        class="btn btn-dark anim-scroll">More info
                                     </a>
