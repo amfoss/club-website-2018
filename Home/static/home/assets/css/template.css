@@ -309,6 +309,86 @@ blockquote cite{
 	}
 
 }
+
+/*Tag cloud*/
+
+
+#tagcloud {
+	width: 480px;
+	margin: 5em auto 2.5em;
+	margin-top: 3em;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+}
+
+.tagcloud05 ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.tagcloud05 ul li {
+	display: inline-block;
+	margin: 0 0 .3em 1em;
+	padding: 0;
+
+}
+.tagcloud05 ul li a {
+	position: relative;
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 1em;
+	background:rgba(17, 17, 17, 1);
+	border-radius: 0 3px 3px 0;
+	color: #fff;
+	font-size: 13px;
+	text-decoration: none;
+	-webkit-transition: .2s;
+	transition: .2s;
+}
+.tagcloud05 ul li a::before {
+	position: absolute;
+	top: 0;
+	left: -15px;
+	content: '';
+	width: 0;
+	height: 0;
+	border-color: transparent #000 transparent transparent;
+	border-style: solid;
+	border-width: 15px 15px 15px 0;
+	-webkit-transition: .2s;
+	transition: .2s;
+}
+.tagcloud05 ul li a::after {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 6px;
+	height: 6px;
+	margin-top: -3px;
+	background-color: #fff;
+	border-radius: 100%;
+}
+.tagcloud05 ul li span {
+	display: block;
+	max-width: 100px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.tagcloud05 ul li a:hover {
+	background-color: #555;
+	color: #fff;
+}
+.tagcloud05 ul li a:hover::before {
+	border-right-color: #555;
+}
+
+
+
 /*!------------------------------------------------------------------
 [Forms]
 */

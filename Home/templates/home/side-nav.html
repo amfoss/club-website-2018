@@ -24,14 +24,20 @@
             <ul class="nav navbar-nav">
 
                 {% if request.user.is_authenticated %}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{% url 'club' %}">Club</a></li>
-                        <li><a href="{% url 'document' %}">Documents</a></li>
-                        <li><a href="{% url 'achievements' %}">Achievements</a></li>
-                    </ul>
-                </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'club' %}">Club</a></li>
+                            <li><a href="{% url 'document' %}">Documents</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{% url 'feeds_list' %}">Add Feeds/RSS</a></li>
+                                    <li><a href="{% url 'join_list' %}">Application</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
 
                 {% else %}
 
@@ -54,7 +60,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inside FOSS</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{% url 'foss_intro' %}">Join us</a></li>
+                        <li><a href="{% url 'join' %}">Join us</a></li>
                         <li><a href="{% url 'about' %}">About Us</a></li>
                         <li><a href="{% url 'team' %}">Teams</a></li>
                         <li><a href="{% url 'profile_list' %}">Members</a></li>
@@ -63,6 +69,8 @@
                 </li>
 
                 <li><a href="/BlogFeedAggregator">blog posts</a></li>
+                <li><a href="{% url 'timeline_list' %}">Timeline</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
 
                 {% if request.user.is_authenticated %}
                 <li class="dropdown">
@@ -78,8 +86,6 @@
                     </ul>
                 </li>
                 {% endif %}
-
-                <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
         </div>
 
