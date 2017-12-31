@@ -9,9 +9,11 @@ from django.db import models
 class AlumniInfo(models.Model):
     name = models.CharField(max_length=100, blank=True)
     email = models.EmailField(blank=True)
-    profile_pic = models.ImageField(upload_to='prof_pics/', blank=True, null=True)
+    position = models.CharField(max_length=100, blank=True)
     description = models.TextField(max_length=300, blank=True)
     date = models.DateField()
+    resume = models.FileField(upload_to='resume/', default='null')
+    profile_pic = models.ImageField(upload_to='profile/', null=True, blank=True)
 
     def __str__(self):
         return self.name
