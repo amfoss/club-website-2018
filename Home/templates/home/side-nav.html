@@ -15,7 +15,7 @@
 
             <!-- YOU LOGO HERE -->
             <a class="navbar-brand" href={% url 'home' %}>
-            <img class="light-logo" src="{% static 'home/assets/images/logo.png' %}" width="95" alt="">
+                <img class="light-logo" src="{% static 'home/assets/images/logo.png' %}" width="95" alt="">
             </a>
         </div>
 
@@ -30,18 +30,18 @@
                             <li><a href="{% url 'club' %}">Club</a></li>
                             <li><a href="{% url 'document' %}">Documents</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools</a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{% url 'feeds_list' %}">Add Feeds/RSS</a></li>
-                                    <li><a href="{% url 'join_list' %}">Application</a></li>
-                                </ul>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools</a></li>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{% url 'feeds_list' %}">Add Feeds/RSS</a></li>
+                                <li><a href="{% url 'join_list' %}">Application</a></li>
+                            </ul>
                             </li>
                         </ul>
                     </li>
 
                 {% else %}
 
-                <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
 
                 {% endif %}
 
@@ -52,6 +52,8 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{% url 'project' %}">Projects</a></li>
                         <li><a href="{% url 'category_list' %}">Resources</a></li>
+                        <li><a href="{% url 'workshop_list' %}">Workshops</a></li>
+
                     </ul>
                 </li>
 
@@ -73,18 +75,18 @@
                 <li><a href="{% url 'contact' %}">Contact</a></li>
 
                 {% if request.user.is_authenticated %}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.username }}</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{% url 'profile' request.user.id %}">Profile</a></li>
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                        {% else %} {% ifequal request.path '/accounts/login/' %}
-                        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.username }}</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'profile' request.user.id %}">Profile</a></li>
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% else %} {% ifequal request.path '/accounts/login/' %}
+                            <li><a href="{% url 'signup' %}">Sign Up</a></li>
                         {% else %}
-                        <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                            <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
                         {% endifequal %}
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
                 {% endif %}
             </ul>
         </div>

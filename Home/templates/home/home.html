@@ -52,8 +52,7 @@
 <!-- Incudes navigation bar.  -->
 {% include 'home/side-nav.html' %}
 
-
-{% if request.user.is_authenticated %}
+{% if request.user.is_superuser %}
     <!-- Incudes Admin-Panel.  -->
     {% include 'home/admin-panel.html' %}
 {% endif %}
