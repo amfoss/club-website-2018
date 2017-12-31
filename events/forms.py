@@ -1,3 +1,4 @@
+from bootstrap3_datetime.widgets import DateTimePicker
 from django import forms
 
 from events.models import Event, EventImage
@@ -10,10 +11,24 @@ LEVEL_CHOICES = (('beginner', 'Beginner'),
 class EventCreateForm(forms.ModelForm):
     name = forms.CharField(label="Name", help_text="Enter name of event",
                            widget=forms.TextInput(attrs={'placeholder': "Name"}))
-    start_date = forms.DateTimeField(label="Enter start date and time",
-                                    widget=forms.DateTimeInput())
-    end_date = forms.DateTimeField(label="Enter end date and time",
-                                  widget=forms.DateTimeInput())
+    start_date = forms.DateField(label='From:',
+                                      widget=DateTimePicker(options={"format": "YYYY-MM-DD",
+                                                                     "icons": {
+                                                                         "time": "fa fa-clock-o",
+                                                                         "date": "fa fa-calendar",
+                                                                         "up": "fa fa-arrow-up",
+                                                                         "down": "fa fa-arrow-down"
+                                                                     }},
+                                                            attrs={'placeholder': 'YYYY-MM-DD'}))
+    end_date = forms.DateField(label='To:',
+                                    widget=DateTimePicker(options={"format": "YYYY-MM-DD",
+                                                                   "icons": {
+                                                                       "time": "fa fa-clock-o",
+                                                                       "date": "fa fa-calendar",
+                                                                       "up": "fa fa-arrow-up",
+                                                                       "down": "fa fa-arrow-down"
+                                                                   }},
+                                                          attrs={'placeholder': 'YYYY-MM-DD'}))
     description = forms.CharField(label="Description", help_text="Description",
                                  widget=forms.Textarea(attrs={'placeholder': "Description"}))
     venue = forms.CharField(label="Venue", help_text="Venue",
