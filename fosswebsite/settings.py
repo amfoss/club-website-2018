@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'registration',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -52,7 +53,15 @@ INSTALLED_APPS = [
     'Home',
     'BlogFeedAggregator',
 
+    # Social all-auth provider
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -84,7 +93,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fosswebsite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -94,7 +102,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -114,7 +121,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -127,7 +133,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -144,13 +149,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 # No captcha
 NOCAPTCHA = True
 
 # application count notification
 
 TEMPLATES[0]['OPTIONS']['context_processors'].append("admissions.context_processors.application_processor")
-
 
 # bcc mail id for join application task mail
 join_application_mail_list = ['chirath.02@gmail.com', 'vipin.p@gmail.com', 'anuv.1994@gmail.com',

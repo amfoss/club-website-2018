@@ -192,7 +192,7 @@ body {
 }
 
 .connect.facebook {
-    background: #3b5998;
+    background: #333;
     color: #FFF;
 }
 
@@ -201,7 +201,7 @@ body {
 }
 
 .connect.facebook .connect__icon {
-    background: #283d68;
+    background: #3f3f3f;    
 }
 
 .connect.googleplus {
