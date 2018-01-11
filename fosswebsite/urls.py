@@ -28,13 +28,9 @@ urlpatterns = [
     url(r'^accounts/', include('django.contrib.auth.urls')),#this file is invisible
     url(r'^club/', include('clubManagement.urls')),
     url(r'^achievements/', include('achievements.urls')),
-    url(r'^documents/', include('documents.urls')),
     url(r'^project/', include('projects.urls')),
     url(r'^timeline/', include('timeline.urls')),
     url(r'^workshop/', include('workshop.urls')),
-    url(r'^notices/', include('noticeBoard.urls')),
-    url(r'^resources/', include('technical_resources.urls')),
-    url(r'^events/', include('events.urls')),
     url(r'^home/', include('Home.urls')),
     url(r'^$', include('Home.urls')),
     url(r'^BlogFeedAggregator/', include('BlogFeedAggregator.urls')),
