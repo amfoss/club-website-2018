@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'workshop',
     'Home',
     'BlogFeedAggregator',
-    'documents',
 
     # Social all-auth provider
 
