@@ -35,6 +35,10 @@ urlpatterns = [
     url(r'^$', include('Home.urls')),
     url(r'^BlogFeedAggregator/', include('BlogFeedAggregator.urls')),
     url(r'^admissions/', include('admissions.urls')),
+    url(r'^notices/', include('noticeBoard.urls')),
+    url(r'^resources/', include('technical_resources.urls')),
+    url(r'^events/', include('events.urls')),
+    url(r'^documents/', include('documents.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

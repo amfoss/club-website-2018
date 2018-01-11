@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+        <!-- HERO TEXT -->
+        <div class="hero-caption">
+            <div class="hero-text">
+                <h1 class="hero-title font-alt">Category details</h1>
+                <p class="hero-subtitle font-serif"></p>
+            </div>
+        </div>
+        <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
+
+    <!-- BLOG -->
+    <section class="module">
+        <div class="container">
+            <div class="card card-inverse">
+                <img class="card-img" src="/static/technical_resources/image/default.jpg" alt="Card image">
+                <div class="card-img-overlay">
+                    <h1 class="card-title">{{ object.name }}</h1>
+                    <p class="card-text">{{ object.description }}</p>
+                </div>
+            </div>
+
+            <div class="row files-links">
+                {% for link in links %}
+                    <div class="col-md-6">
+                        <a href="{{ link.link }}" target="_blank" class="link-file btn btn-secondary">
+                            {{ link.name }}
+                            <small>(link)</small>
+                        </a>
+                    </div>
+                {% endfor %}
+
+                {% for file in files %}
+                    <div class="col-md-6">
+                        <a href="{{ file.file }}" target="_blank" class="link-file btn btn-secondary">
+                            {{ file.name }}
+                            <small>(file)</small>
+                        </a>
+                    </div>
+                {% endfor %}
+
+                {% if request.user.is_authenticated %}
+                    <div class="row" align="center">
+                    <div class="col-md-6">
+                        <a href="{% url 'file_create' object.id %}" class="link-file btn btn-primary">
+                            Add a new file
+                            <small>(file)</small>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{% url 'link_create' object.id %}" class="link-file btn btn-primary">
+                            Add a new link
+                            <small>(file)</small>
+                        </a>
+                    </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+
+

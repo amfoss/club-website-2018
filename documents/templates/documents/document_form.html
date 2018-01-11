@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+        <!-- HERO TEXT -->
+        <div class="hero-caption">
+            <div class="hero-text">
+                <h1 class="hero-title font-alt">Add Documents</h1>
+                <p class="hero-subtitle font-serif"></p>
+            </div>
+        </div>
+        <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
+
+    <!-- BLOG -->
+    <div class="notifications">
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ field.label }}: {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <section class="module">
+    <div class="container-fluid container-custom">
+
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+
+                <article class="post" align="center">
+                    <div class="card-block">
+                        <h1 class="card-title">Add File</h1>
+                        <hr>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name">Title</label>
+                                <input type="text" class="form-control" name="title" id="name"
+                                       value="{{ object.title }}" placeholder="Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" name="description" class="form-control"
+                                          placeholder="Description" rows="5">{{ object.description }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="file" class="form-control" name="document" id="document">
+                            </div>
+                            <center>
+                                <button type="submit" class="btn btn-dark anim-scroll">Submit</button>
+                            </center>
+                        </form>
+                    </div>
+            </div>
+            </article>
+        </div>
+        <!-- .col-* -->
+    </div>
+    <!-- .row -->
+
+{% endblock %}

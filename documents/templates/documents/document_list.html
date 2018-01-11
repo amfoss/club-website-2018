@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+        <!-- HERO TEXT -->
+        <div class="hero-caption">
+            <div class="hero-text">
+                <h1 class="hero-title font-alt">Documents List</h1>
+                <p class="hero-subtitle font-serif"></p>
+            </div>
+        </div>
+        <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
+
+    <div class="container" align="center">
+        <div class="row">
+            <div class="col-md-12">
+                <br></br>
+                <h1><i class="fa fa-file-text"></i> Documents</h1>
+
+                <div class="row">
+                    <div class="card-columns">
+                        {% for object in object_list %}
+                            <div class="card">
+                                <div class="col-md-4 card-block">
+                                    <a style="color: black;" href="/static/media/{{ object.document }}">
+                                        <h3 class="card-title">{{ object.title }}</h3>
+                                    </a>
+                                    <p class="card-text">{{ object.description }}</p>
+                                    <a class="btn btn-dark anim-scroll"
+                                       href="{% url 'document_update' object.id %}">Update
+                                    </a>
+                                    <a class="btn btn-danger"
+                                       href="{% url 'document_delete' object.id %}">Delete
+                                    </a>
+                                    <p class="card-text">
+                                        <small class="text-muted">{{ object.user.first_name }} {{ object.user.last_name }}</small>
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        <div class="col-md-12">
+                            <div class="container">
+                                <a href="{% url 'document_create' %}">
+                                    <button class="btn btn-dark anim-scroll">Add new</button>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
