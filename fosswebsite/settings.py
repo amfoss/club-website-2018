@@ -37,27 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
     'bootstrap3_datetime',
     'achievements',
     'clubManagement',
-    'documents',
-    'events',
     'projects',
     'admissions',
     'captcha',
     'timeline',
     'workshop',
-    'noticeBoard',
-    'technical_resources',
-    'contest',
     'Home',
     'BlogFeedAggregator',
 
     # Social all-auth provider
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
+
 
 ]
 
