@@ -1,6 +1,7 @@
 from django import forms
 
 from .models import *
+from bootstrap3_datetime.widgets import DateTimePicker
 
 
 class ContestForm(forms.ModelForm):
@@ -14,7 +15,14 @@ class ContestForm(forms.ModelForm):
                                          widget=forms.NumberInput(attrs={'placeholder': 'problems solved'}))
     ranking = forms.IntegerField(label='Rank', help_text='Enter your rank',
                                  widget=forms.NumberInput(attrs={'placeholder': 'Rank'}))
-    date = forms.DateField(label='Date of contest')
+    date = forms.DateField(label='Date of contest', widget=DateTimePicker(options={"format": "YYYY-MM-DD",
+                                                                     "icons": {
+                                                                         "time": "fa fa-clock-o",
+                                                                         "date": "fa fa-calendar",
+                                                                         "up": "fa fa-arrow-up",
+                                                                         "down": "fa fa-arrow-down"
+                                                                     }},
+                                                            attrs={'placeholder': 'YYYY-MM-DD'}))
     description = forms.CharField(label='Description', help_text='Describe about the contest',
                                   widget=forms.Textarea(attrs={'placeholder': 'Description'}))
 
