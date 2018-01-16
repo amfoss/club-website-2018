@@ -61,7 +61,6 @@
                             </table>
                             </div>
                             <br>
-                            <div>
                             <a href="{% url 'contribution' %}">
                                 <button class="btn btn-dark anim-scroll">All contributions</button>
                             </a>
@@ -80,7 +79,6 @@
                                 </a>
                             {% endif %}
                         {% endif %}
-                        </div>
                     <br>
                     <br>
                 </div>
@@ -122,7 +120,6 @@
                             </table>
                         </div>
                         <br>
-                        <div>
                         <a href="{% url 'gsoc' %}">
                             <button class="btn btn-dark anim-scroll">All GSoCs</button>
                         </a>
@@ -141,7 +138,6 @@
                             </a>
                         {% endif %}
                     {% endif %}
-                    </div>
                     <br>
                     <br>
                 </div>
@@ -183,7 +179,6 @@
                             </table>
                         </div>
                         <br>
-                        <div>
                         <a href="{% url 'article' %}">
                             <button class="btn btn-dark anim-scroll">All articles</button>
                         </a>
@@ -202,7 +197,6 @@
                             </a>
                         {% endif %}
                     {% endif %}
-                    </div>
                     <br>
                     <br>
                 </div>
@@ -244,7 +238,7 @@
                             </table>
                         </div>
                         <br>
-                        <div>
+                        <>
                         <a href="{% url 'intern' %}">
                             <button class="btn btn-dark anim-scroll">All internships</button>
                         </a>
@@ -263,7 +257,6 @@
                             </a>
                         {% endif %}
                     {% endif %}
-                    </div>
                     <br>
                     <br>
                 </div>
@@ -305,7 +298,6 @@
                             </table>
                         </div>
                         <br>
-                        <div>
                         <a href="{% url 'speaker' %}">
                             <button class="btn btn-dark anim-scroll">All talks</button>
                         </a>
@@ -324,7 +316,6 @@
                             </a>
                         {% endif %}
                     {% endif %}
-                    </div>
                     <br>
                     <br>
                 </div>
@@ -335,7 +326,7 @@
                     <h1><i class="fa fa-graduation-cap"></i> Contests</h1>
                 </div>
                 <div class="content col-md-12 table-responsive">
-                    {% if speaker_list %}
+                    {% if contest_list %}
                         <div class="table-responsive">
                             <table>
                                 <thead>
@@ -368,7 +359,6 @@
                             </table>
                         </div>
                         <br>
-                        <div>
                         <a href="{% url 'contest' %}">
                             <button class="btn btn-dark anim-scroll">All contests</button>
                         </a>
@@ -387,7 +377,6 @@
                             </a>
                         {% endif %}
                     {% endif %}
-                    </div>
                     <br>
                     <br>
                 </div>
