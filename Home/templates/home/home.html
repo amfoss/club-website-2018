@@ -3,19 +3,65 @@
 {% block content %}
 
     <!-- HERO -->
-    <section id="hero" class="module-hero bg-dark-30 js-fullheight"
-             data-background="{% static 'home/assets/images/mainbg.jpg' %}">
+    <!-- HERO -->
+    <section id="hero" class="module-hero js-fullheight">
+        <div id="slides">
 
-        <!-- HERO TEXT -->
-        <div class="hero-caption">
-            <div class="hero-text">
-                <h3 class="m-b-60">FOSS@Amrita</h3>
-                <h6 class="m-b-60">Code | Share | Grow</h6>
-                <a href="#portfolio" class="btn btn-dark anim-scroll">Learn More</a>
-            </div>
+            <ul class="slides-container">
+
+                <li class="bg-light bg-film">
+                    <img src="{% static 'home/assets/images/mainbg.jpg' %}">
+
+                    <!-- HERO TEXT -->
+                    <div class="hero-caption">
+                        <div class="hero-text">
+                            <h6 class="m-b-30">amrita vishwa vidyapeetham</h6>
+                            <h1 class="m-b-30">FOSS@Amrita</h1>
+                            <h6 class="m-b-60">Code | Share | Grow</h6>
+                            <a href="#portfolio" class="btn btn-dark anim-scroll">Learn More</a>
+                        </div>
+                    </div>
+                    <!-- /HERO TEXT -->
+                </li>
+
+                <li class="bg-dark-30">
+                    <img src="assets/images/module-3.jpg" alt="">
+
+                    <!-- HERO TEXT -->
+                    <div class="hero-caption">
+                        <div class="hero-text">
+                            <h6 class="m-b-30">Text 1</h6>
+                            <h1 class="m-b-30">Text 2</h1>
+                            <h6 class="m-b-60">Text 3</h6>
+                            <a href="about.html" class="btn btn-dark anim-scroll">About</a>
+                        </div>
+                    </div>
+                    <!-- /HERO TEXT -->
+                </li>
+
+                <li>
+                    <img src="assets/images/module-6.jpg" alt="">
+
+                    <!-- HERO TEXT -->
+                    <div class="hero-caption">
+                        <div class="hero-text">
+                            <h6 class="m-b-30">Text 1</h6>
+                            <h1 class="m-b-30">Text 2</h1>
+                            <h6 class="m-b-60">Text 3</h6>
+                            <a href="portfolio-single.html" class="btn btn-dark">See more</a>
+                        </div>
+                    </div>
+                    <!-- /HERO TEXT -->
+                </li>
+
+            </ul>
+
+            <nav class="slides-navigation">
+                <a href="#" class="next"><i class="fa fa-angle-right"></i></a>
+                <a href="#" class="prev"><i class="fa fa-angle-left"></i></a>
+            </nav>
+
         </div>
-        <!-- /HERO TEXT -->
-
     </section>
     <!-- /HERO -->
 
