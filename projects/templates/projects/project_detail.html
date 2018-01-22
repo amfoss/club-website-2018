@@ -20,22 +20,25 @@
 
     <div class="container">
         <div class="row" align="center">
+            <div>
+                <p><br></p>
+            </div>
             <p class="card mb-3">
                 {% if object.image %}
                     <img class="card-img-top img-fluid" src="static/media/{{ object.image }}">
                 {% else %}
                     <img class="card-img-top img-fluid" src="{% static 'projects/images/default.png' %}">
                 {% endif %}
-                <p><h1 class="head col-md-12"><strong>Details</strong></h1></p>
+                <p><h3 class="head col-md-12"><strong>Details</strong></h3></p>
                 <div class="card-block">
-                    <p class="card-text">{{ object.description }}</p>
-                    <p class="card-text">Link: <a href="{{ object.url }}">{{ object.url }}</a></p>
-                    <p class="card-text">
+                    <h4 class="card-text">{{ object.description }}</h4>
+                    <h5 class="card-text">Link: <a href="{{ object.url }}">{{ object.url }}</a></h5>
+                    <h4 class="card-text">
                         <small class="text-muted">
                             Added by : {{ object.created_by.first_name }} {{ object.created_by.last_name }},
                             {{ object.date }}
                         </small>
-                    </p>
+                    </h4>
                     {% if edit_permission %}
                         <a href="{% url 'project_update' object.id %}">
                             <button type="submit" class="btn btn-dark anim-scroll">Update</button>
@@ -50,7 +53,6 @@
                 </div>
             </div>
 
-
             <br><br>
         </div>
         <div class="row">
@@ -58,7 +60,7 @@
                 <ul class="list-group">
                     <div class="margin-20"></div>
                     <li class="list-group-item justify-content-between">
-                        <h5>Project members</h5>
+                        <h5 style="text-align: center">Project members</h5>
                         <span class="badge badge-default badge-pill">{{ user_count }}</span>
                     </li>
                     {% for project in project_list %}
@@ -72,7 +74,7 @@
                     {% endfor %}
                     <br>
                     {% if edit_permission %}
-                        <div onclick="showForm()" class="col-md-1 offset-md-3">
+                    <div onclick="showForm()" class="col-sm-offset-5">
                             <button class="btn btn-dark anim-scroll">
                                 Add student
                             </button>
@@ -113,14 +115,12 @@
                 </div>
             </div>
 
-
             <div class="col-md-6">
                 <ul class="list-group">
                     <li class="list-group-item justify-content-between">
-                        <h5>Languages & Frameworks</h5>
+                        <h5 style="text-align: center">Languages & Frameworks</h5>
                     </li>
                     {% for i in languages %}
-
                         <li class="list-group-item justify-content-between">
                         <h6>{{ i.language }}</h6><br>
                         <form method="post" action="{% url "language_delete" i.id %}">
@@ -131,7 +131,7 @@
                     </li>
                     {% if edit_permission %}
                         <br>
-                        <div class="col-md-6 offset-md-3">
+                        <div class="col-sm-offset-5">
                             <a href="{% url 'language_create' object.id %}">
                                 <button class="btn btn-dark anim-scroll">Add Language</button>
                             </a>
