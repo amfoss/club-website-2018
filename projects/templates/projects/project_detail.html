@@ -88,12 +88,14 @@
                     <div class="card-block">
                         <form class="form-group col-md-6" action="" method="post">
                             {% csrf_token %}
+                            <div class="col-sm-9" align="center">
                             <label for="exampleInputEmail1"><h4>Add Student</h4></label>
+                            </div>
                             <div class="dropdown">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <input id="search" onkeyup="myFunction()" class="form-control"
-                                               data-toggle="dropdown" placeholder="Search..." autocomplete="off">
+                                               data-toggle="dropdown" placeholder="Search..." autocomplete="off" style="text-transform:none">
                                         <input type="hidden" id="search-id" name="user_id">
                                     </div>
                                     <div class="col-md-2">
@@ -108,8 +110,9 @@
                                     {% endfor %}
                                 </div>
                             </div>
-                            <small id="emailHelp" class="form-text text-muted">Search for a student above.
-                            </small>
+                            <div class="col-sm-9" align="center">
+                            <small id="emailHelp" class="form-text text-muted">Search for a student above.</small>
+                            </div>
                         </form>
                     </div>
                 </div>
