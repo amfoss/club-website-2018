@@ -20,23 +20,24 @@
 		<!-- Language Addition Section -->
 		<section class="module">
 			<div class="container-fluid container-custom">
-
 				<div class="row">
-
 					<div class="col-sm-8 col-sm-offset-2">
-
 						<article class="post" align="center">
 							<div class="post-header">
+								<div class="col-sm-offset-1" align="center">
 								<h2 class="post-title font-alt">Language/Framework</h2>
+								</div>
 							</div>
 							<div class="post-content">
                                                             <form action="" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="language" id="language"
-                                           value="{{ object.language }}" placeholder="Language">
+                                           value="{{ object.language }}" placeholder="Language" style="text-transform:none">
                                 </div>
+								<div class="col-sm-offset-1" align="center">
                                 <center><button type="submit" class="btn btn-dark anim-scroll">Submit</button></center>
+								</div>
                             </form>
 							</div>
 						</article>

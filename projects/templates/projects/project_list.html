@@ -22,12 +22,8 @@
         <div class="row">
             <div class="card col-md-12">
                 <div class="card-block">
-                    <div class="row"><p>
-                        {% if request.user.is_authenticated %}
-                            <div class="col-md-12" align="center">
-                                <p><a href="{% url 'project_create' %}"><i class="fa fa-plus-circle fa-4x"></i></a></p>
-                            </div>
-                        {% endif %}</p>
+                    <div>
+                        <p><br></p>
                     </div>
                     <div class="row">
                         {% for object in object_list %}
@@ -41,7 +37,7 @@
                                     {% endif %}
                                     <div class="card-block">
                                         <h3 class="card-title">{{ object.title }}</h3>
-                                        <p class="card-text">{{ object.description }}</p>
+                                        <h5 class="card-text">{{ object.description }}</h5>
                                         <center><a href="{% url 'project_detail' object.id %}"
                                                    class="btn btn-dark anim-scroll">More info</a></center>
                                     </div>
@@ -49,6 +45,13 @@
                             </div>
                         {% endfor %}
                     </div>
+                    <div class="row"><p>
+                        {% if request.user.is_authenticated %}
+                        <div class="col-md-12" align="center">
+                        <p><a href="{% url 'project_create' %}"><i class="fa fa-plus-circle fa-4x"></i></a></p>
+                    </div>
+                    {% endif %}</p>
+                </div>
                 </div>
             </div>
         </div>
