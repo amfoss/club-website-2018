@@ -1,32 +1,7 @@
-.btn {
-            margin: 10px;
-        }
-
-        .header {
-            padding-top: 20px;
-            margin-left: 400px;
-        }
-
-        .names {
-            height: 80px;
-        }
-
-        .names p {
-            margin: 16px 0;
-        }
-
-        .form {
-            margin: 30px 0;
-        }
-
-        .link {
-            height: 100%;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .link:hover {
-            color: black;
-        }
+.btn{margin:10px;}
+.header{padding-top:20px;margin-left:400px;}
+.names{height:80px;}
+.names p{margin:16px 0;}
+.form{margin:30px 0;}
+.link{height:100%;color:white;display:flex;align-items:center;justify-content:center;}
+.link:hover{color:black;}
