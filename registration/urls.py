@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^login/$', login, name="login"),
     url(r'^signup/$', UserSignUpView.as_view(), name="signup"),
     url(r'^$', ProfileListView.as_view(), name="profile_list"),
-    url(r'^(?P<pk>[0-9]+)/$', ProfileDetailView.as_view(), name="profile"),
+    url(r'^(?P<username>[\w.@+-]+)/$', ProfileDetailView.as_view(), name="profile"),
     url(r'^workExperience/add/$', login_required(WorkExperienceCreateView.as_view()), name='workexp_add'),
     url(r'^(?P<pk>[0-9]+)/update/$', login_required(UserUpdateView.as_view()), name="update_profile"),
     url(
