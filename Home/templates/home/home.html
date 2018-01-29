@@ -3,19 +3,65 @@
 {% block content %}
 
     <!-- HERO -->
-    <section id="hero" class="module-hero bg-dark-30 js-fullheight"
-             data-background="{% static 'home/assets/images/mainbg.jpg' %}">
+    <!-- HERO -->
+    <section id="hero" class="module-hero js-fullheight">
+        <div id="slides">
 
-        <!-- HERO TEXT -->
-        <div class="hero-caption">
-            <div class="hero-text">
-                <h3 class="m-b-60">FOSS@Amrita</h3>
-                <h6 class="m-b-60">Code | Share | Grow</h6>
-                <a href="#portfolio" class="btn btn-dark anim-scroll">Learn More</a>
-            </div>
+            <ul class="slides-container">
+
+                <li class="bg-dark-90 bg-film">
+                    <img src="{% static 'home/assets/images/mainbg.jpg' %}">
+
+                    <!-- HERO TEXT -->
+                    <div class="hero-caption">
+                        <div class="hero-text">
+                            <h6 class="m-b-30">amrita vishwa vidyapeetham</h6>
+                            <h1 class="m-b-30">FOSS@Amrita</h1>
+                            <h6 class="m-b-60">Code | Share | Grow</h6>
+                            <a href="#portfolio" class="btn btn-dark anim-scroll">Learn More</a>
+                        </div>
+                    </div>
+                    <!-- /HERO TEXT -->
+                </li>
+
+                <li>
+                    <img src="{% static 'home/assets/images/3.jpg' %}">
+
+{#                    <!-- HERO TEXT -->#}
+{#                    <div class="hero-caption">#}
+{#                        <div class="hero-text">#}
+{#                            <h6 class="m-b-30">Text 1</h6>#}
+{#                            <h1 class="m-b-30">Text 2</h1>#}
+{#                            <h6 class="m-b-60">Text 3</h6>#}
+{#                            <a href="about.html" class="btn btn-dark anim-scroll">About</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <!-- /HERO TEXT -->#}
+                </li>
+
+                <li>
+                    <img src="assets/images/module-6.jpg" alt="">
+
+                    <!-- HERO TEXT -->
+                    <div class="hero-caption">
+                        <div class="hero-text">
+                            <h6 class="m-b-30">Text 1</h6>
+                            <h1 class="m-b-30">Text 2</h1>
+                            <h6 class="m-b-60">Text 3</h6>
+                            <a href="portfolio-single.html" class="btn btn-dark">See more</a>
+                        </div>
+                    </div>
+                    <!-- /HERO TEXT -->
+                </li>
+
+            </ul>
+
+            <nav class="slides-navigation">
+                <a href="#" class="next"><i class="fa fa-angle-right"></i></a>
+                <a href="#" class="prev"><i class="fa fa-angle-left"></i></a>
+            </nav>
+
         </div>
-        <!-- /HERO TEXT -->
-
     </section>
     <!-- /HERO -->
 
@@ -89,16 +135,34 @@
                     </div>
                 </div>
                 <!-- /COUNTER -->
+                
+                                <!-- COUNTER -->
+                <div class="col-md-3">
+                    <div class="counter text-light">
+                        <div class="counter-icon">
+                            <span class=" icon-mic"></span>
+                        </div>
+                        <div class="counter-header">
+                            <h4 class="counter-title">
+                                <span class="counter-timer" data-from="0" data-to="15">0</span><span>+</span>
+                            </h4>
+                        </div>
+                        <div class="counter-content">
+                            <h6>International talks</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- /COUNTER -->
 
                 <!-- COUNTER -->
                 <div class="col-md-3">
                     <div class="counter text-light">
                         <div class="counter-icon">
-                            <span class="icon-tools"></span>
+                            <span class="icon-genius"></span>
                         </div>
                         <div class="counter-header">
                             <h4 class="counter-title">
-                                <span class="counter-timer" data-from="0" data-to="100">0</span><span>+</span>
+                                <span class="counter-timer" data-from="0" data-to="50">0</span><span>+</span>
                             </h4>
                         </div>
                         <div class="counter-content">
@@ -126,24 +190,6 @@
                 </div>
                 <!-- /COUNTER -->
 
-                <!-- COUNTER -->
-                <div class="col-md-3">
-                    <div class="counter text-light">
-                        <div class="counter-icon">
-                            <span class=" icon-mic"></span>
-                        </div>
-                        <div class="counter-header">
-                            <h4 class="counter-title">
-                                <span class="counter-timer" data-from="0" data-to="15">0</span><span>+</span>
-                            </h4>
-                        </div>
-                        <div class="counter-content">
-                            <h6>International talks</h6>
-                        </div>
-                    </div>
-                </div>
-                <!-- /COUNTER -->
-
             </div>
 
         </div>
@@ -155,43 +201,18 @@
         <br>
         <div class="row" style="margin: 30px;">
             <div class="col-md-4">
-                <b><h2 class="major">Why should you be here.<br/></h2></b>
-                <p>This club is pretty informal and is operational from 2007.
-                    The alumni of the club are all over the world and in top companies as well such as Cisco, Amazon,
-                    Flipkart, Google, VMWare etc.
-                    As members of the club you get some guidance from the alumni at a later point of time as well.
-                    Also there are many who are doing PhD or Masters in reputed universities all over the world.
-                    Students from the club has got various opportunities such as doing paid internships in New Zealand,
-                    Israel, US and Europe.
-                    Our students are also invited for talks all over the world, invited to deliver workshops in IITs and
-                    many more.
-
-
+                <b><h2 class="major">Why you should be here.<br/></h2></b>
+                <p>Do you have that drive to work hard to reach heights and thrive for good causes? Then this is the place you should be. Our training and guidance have landed our alumni in the best places to work all over the world. More than that we work as a team to bring about some difference in socially relevant issues.
                 </p>
             </div>
             <div class="col-md-4">
                 <b><h2 class="major">What we do.<br></h2></b>
-                <p>This club gives solid training to the students in the basics of computer
-                    science and hence students are able to excel. There are lots of skills you don't get to learn in the
-                    classrooms. Here we
-                    emphasize starting from basics such as how to type correctly and to gain speed, writing code,
-                    ability
-                    to read large code base (more than 1000s of lines of code) and debugging, making presentations and
-                    many more. You may be aware that our FOSS club has one of the largest number of Google Summer of
-                    Code Interns
-                    in India. We are getting better and better every year.    
+                <p>The solid training given by the club to its students is one of a kind. With one of the highest numbers of Google Summer of Codes from a university in India, our students excel in all aspects of Computer Science and Engineering. We give emphasis on what the industry really requires and instill the skills that the classrooms do not provide in students.  
                 </p>
             </div>
             <div class="col-md-4">
                 <h2 class="major">The Fun!</h2>
-                <p>And this is the one of the best part inside the club, which is not only fabulous
-                    but also excitingly interesting. We have great fun activities here apart from
-                    the technical aspects that we focus on, primarily meant to have a sound and
-                    healthy mind and body. Gardening sessions, debates, hackathon’s, visit to
-                    orphanages or picnics just to name a few. Indulging into such activities not
-                    only relaxes the mind and body but also teaches us the importance of social
-                    service. Fests and internal sessions are just another place for everyone to get
-                    together, interact and enjoy themselves. So get onboard!
+                <p>This is not a mere technical club. What we vision here is the wholesome development of students.Apart from the social services, We organize exciting activities like debates, hackathons, and sports sessions to improve your interpersonal skills, leadership qualities, presentation skills and of course your physical abilities. Yes! A sound mind needs a sound body. So Welcome aboard!
                 </p>
             </div>
         </div>

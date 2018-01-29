@@ -1,46 +1,43 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% block styles %}
+    <link href="{% static 'timeline/css/styles.css' %}" rel="stylesheet">
+{% endblock %}
 {% block content %}
 
-    <!-- HERO -->
-    <section id="hero" class="module-hero bg-dark-30"
-         data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+    <script src="https://use.typekit.net/bkt6ydm.js"></script>
+    <script>try {
+        Typekit.load({async: true});
+    } catch (e) {
+    }</script>
+    <header class="example-header">
+        <h1 class="text-center">Timeline</h1>
+        <p class="m-b-md-60">The list of all the FOSS Alumni's in chronological order</p>
+    </header>
+    <div class="container-fluid">
+        <div class="row example-centered" style="margin-top: 50px;">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                <ul class="timeline timeline-centered">
+                    {% for object in objects %}
+                        <li class="timeline-item">
+                            <div class="timeline-info">
+                                <span>{{ object.date.month }}, {{ object.date.year }}</span>
+                            </div>
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">{{ object.name }}</h3>
+                                <h6 class="timeline">({{ object.email }})</h6>
+                                <h5 class="timeline">{{ object.position }}</h5>
+                                {#<img style="margin-left: 300px; height: 25%; width: 25%;" src="/static/media/{{ object.profile_pic }}">#}
+                                <p>{{ object.description }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
 
-    <!-- HERO TEXT -->
-    <div class="hero-caption">
-        <div class="hero-text">
-            <h1 class="hero-title font-alt">Timeline</h1>
-            <p class="hero-subtitle font-serif"></p>
+                </ul>
+            </div>
         </div>
     </div>
-    <!-- /HERO TEXT -->
-
-    </section>
-    <!-- /HERO -->
-
-    <ul class="timeline">
-        {% for object in objects %}
-
-        <li class="timeline-event">
-            <label class="timeline-event-icon"></label>
-             <img style="margin-left: 300px; height: 25%; width: 25%;" src="/static/media/{{ object.profile_pic }}">
-            <div class="timeline-event-copy">
-                <p class="timeline-event-thumbnail">{{ object.date.month }} {{ object.date.year }}</p>
-                <h3>{{ object.name }}</h3>
-                <h4>{{ object.email }}</h4>
-                <strong>{{ object.position }}</strong>
-                <p><br>{{ object.description }}</p>
-                <a href="/static/media/{{ object.resume }}">
-
-                    <h6 class="btn btn-dark anim-scroll">Resume</h6>
-
-                </a>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-
-
 
 {% endblock %}
 

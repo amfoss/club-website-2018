@@ -80,6 +80,8 @@ class UserUpdateView(UpdateView):
 class ProfileDetailView(DetailView):
     model = User
     template_name = 'registration/profile.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
 
     def get_context_data(self, **kwargs):
         context = super(ProfileDetailView, self).get_context_data(**kwargs)
