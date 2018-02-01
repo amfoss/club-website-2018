@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 
-from projects.models import Project, ProjectMembers, Language, ProjectScreenShot
+from projects.models import Project, ProjectMember, Language, ProjectScreenShot
 from django.urls import reverse, reverse_lazy
 
 
@@ -36,11 +36,11 @@ class ProjectDetailView(DetailView):
             return redirect('permission_denied')
         try:
             user = User.objects.get(id=int(request.POST.get('user_id')))
-            ProjectMembers.objects.get(project=self.get_object(), user=user)
-        except ProjectMembers.DoesNotExist:
+            ProjectMember.objects.get(project=self.get_object(), user=user)
+        except ProjectMember.DoesNotExist:
             try:
                 user = User.objects.get(id=int(request.POST.get('user_id')))
-                ProjectMembers(project=self.get_object(), user=user).save()
+                ProjectMember(project=self.get_object(), user=user).save()
             except User.DoesNotExist:
                 redirect('error')
         return redirect('project_detail', self.get_object().pk)
@@ -53,7 +53,7 @@ class ProjectCreateView(CreateView):
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         response = super(ProjectCreateView, self).form_valid(form)
-        ProjectMembers(project=self.object, user=self.request.user).save()
+        ProjectMember(project=self.object, user=self.request.user).save()
         return response
 
 
@@ -88,7 +88,7 @@ class ProjectDeleteView(DeleteView):
 
 
 class ProjectMemberDeleteView(DeleteView):
-    model = ProjectMembers
+    model = ProjectMember
 
     def get_success_url(self):
         return reverse('project_detail', kwargs={'pk': self.object.project.id})
