@@ -53,12 +53,13 @@ iframe{
 }
 
 .sidebar .copyright{
-	position:absolute;
+	position:relative;
 	width:100%;
 	bottom:0;
 	left:0;
 	padding:15px 30px;
 	font-size:11px;
+	margin-top: 50px;
 }
 
 .sidebar .social-icons a{
