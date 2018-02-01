@@ -28,7 +28,7 @@ class ProjectScreenShot(models.Model):
         return self.project
 
 
-class ProjectMembers(models.Model):
+class ProjectMember(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     date_assigned = models.DateTimeField(auto_now_add=True, auto_now=False)
