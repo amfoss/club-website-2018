@@ -21,7 +21,7 @@ class ProjectDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProjectDetailView, self).get_context_data(**kwargs)
-        context['project_list'] = self.get_object().projectmembers_set.all()
+        context['project_list'] = self.get_object().projectmember_set.all()
         context['user_count'] = len(context['project_list'])
         context['all_users'] = User.objects.all()
         context['languages'] = Language.objects.filter(project=Project.objects.get(id=self.kwargs['pk']))
