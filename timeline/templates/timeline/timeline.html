@@ -10,18 +10,10 @@
         Typekit.load({async: true});
     } catch (e) {
     }</script>
-     <section id="hero" class="module-hero bg-dark-30"
-         data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
-
-    <!-- HERO TEXT -->
-    <div class="hero-caption">
-        <div class="hero-text">
-            <h1 class="hero-title font-alt">Timeline</h1>
-            <p class="hero-subtitle font-serif">The list of all the FOSS Alumni's in chronological order</p>
-        </div>
-    </div>
-     </section>
-
+    <header class="example-header">
+        <h1 class="text-center">Timeline</h1>
+        <p class="m-b-md-60">The list of all the FOSS Alumni's in chronological order</p>
+    </header>
     <div class="container-fluid">
         <div class="row example-centered" style="margin-top: 50px;">
             <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
@@ -48,4 +40,3 @@
     </div>
 
 {% endblock %}
-
