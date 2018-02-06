@@ -27,16 +27,16 @@
                 <li>
                     <img src="{% static 'home/assets/images/3.jpg' %}">
 
-{#                    <!-- HERO TEXT -->#}
-{#                    <div class="hero-caption">#}
-{#                        <div class="hero-text">#}
-{#                            <h6 class="m-b-30">Text 1</h6>#}
-{#                            <h1 class="m-b-30">Text 2</h1>#}
-{#                            <h6 class="m-b-60">Text 3</h6>#}
-{#                            <a href="about.html" class="btn btn-dark anim-scroll">About</a>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <!-- /HERO TEXT -->#}
+                    {#                    <!-- HERO TEXT -->#}
+                    {#                    <div class="hero-caption">#}
+                    {#                        <div class="hero-text">#}
+                    {#                            <h6 class="m-b-30">Text 1</h6>#}
+                    {#                            <h1 class="m-b-30">Text 2</h1>#}
+                    {#                            <h6 class="m-b-60">Text 3</h6>#}
+                    {#                            <a href="about.html" class="btn btn-dark anim-scroll">About</a>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {#                    <!-- /HERO TEXT -->#}
                 </li>
 
                 <li>
@@ -86,44 +86,61 @@
             </div>
             <div class="col-sm-6">
 
-						<!-- ACCORDIONS -->
-						<div id="accordion" class="panel-group">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#support1">Events</a></h4>
-								</div>
-								<div id="support1" class="panel-collapse collapse in">
-									<div class="panel-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-									</div>
-								</div>
-							</div>
+                <!-- ACCORDIONS -->
+                <div id="accordion" class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#support1">Events</a>
+                            </h4>
+                        </div>
+                        <div id="support1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <ul>
+                                    {% for event in events %}
+                                        <li><a href="{% url 'workshop_detail' event.id %}">{{ event.name }}<br>
+                                            <small>{{ event.overview }}</small>
+                                        </a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
-                            	<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#support2" class="collapsed">Careers</a></h4>
-								</div>
-								<div id="support2" class="panel-collapse collapse">
-									<div class="panel-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-									</div>
-								</div>
-							</div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#support2"
+                                                       class="collapsed">Careers</a></h4>
+                        </div>
+                        <div id="support2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                One thing that is deeply rooted in the club is that FOSS@Amrita is helping its fellow
+                                members get their foot in the door with the tech industry. Our members are hence able to
+                                land a seat in the top universities abroad, boosting their career ahead. We are exposed
+                                to various opportunities too, which give us a feel of what it's like to be working in
+                                the industry for real.
+                            </div>
+                        </div>
+                    </div>
 
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#support3" class="collapsed">Did you know?</a></h4>
-								</div>
-								<div id="support3" class="panel-collapse collapse">
-									<div class="panel-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /ACCORDIONS -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#support3"
+                                                       class="collapsed">Did you know?</a></h4>
+                        </div>
+                        <div id="support3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
+                                squid single-origin coffee nulla assumenda shoreditch et.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ACCORDIONS -->
 
-					</div><!-- .col-* -->
+            </div><!-- .col-* -->
+
         </div>
     </section>
     <!-- /Achievements -->
@@ -151,8 +168,8 @@
                     </div>
                 </div>
                 <!-- /COUNTER -->
-                
-                                <!-- COUNTER -->
+
+                <!-- COUNTER -->
                 <div class="col-md-3">
                     <div class="counter text-light">
                         <div class="counter-icon">
@@ -218,17 +235,26 @@
         <div class="row" style="margin: 30px;">
             <div class="col-md-4">
                 <b><h2 class="major">Why you should be here.<br/></h2></b>
-                <p>Do you have that drive to work hard to reach heights and thrive for good causes? Then this is the place you should be. Our training and guidance have landed our alumni in the best places to work all over the world. More than that we work as a team to bring about some difference in socially relevant issues.
+                <p>Do you have that drive to work hard to reach heights and thrive for good causes? Then this is the
+                    place you should be. Our training and guidance have landed our alumni in the best places to work all
+                    over the world. More than that we work as a team to bring about some difference in socially relevant
+                    issues.
                 </p>
             </div>
             <div class="col-md-4">
                 <b><h2 class="major">What we do.<br></h2></b>
-                <p>The solid training given by the club to its students is one of a kind. With one of the highest numbers of Google Summer of Codes from a university in India, our students excel in all aspects of Computer Science and Engineering. We give emphasis on what the industry really requires and instill the skills that the classrooms do not provide in students.  
+                <p>The solid training given by the club to its students is one of a kind. With one of the highest
+                    numbers of Google Summer of Codes from a university in India, our students excel in all aspects of
+                    Computer Science and Engineering. We give emphasis on what the industry really requires and instill
+                    the skills that the classrooms do not provide in students.
                 </p>
             </div>
             <div class="col-md-4">
                 <h2 class="major">The Fun!</h2>
-                <p>This is not a mere technical club. What we vision here is the wholesome development of students.Apart from the social services, We organize exciting activities like debates, hackathons, and sports sessions to improve your interpersonal skills, leadership qualities, presentation skills and of course your physical abilities. Yes! A sound mind needs a sound body. So Welcome aboard!
+                <p>This is not a mere technical club. What we vision here is the wholesome development of students.Apart
+                    from the social services, We organize exciting activities like debates, hackathons, and sports
+                    sessions to improve your interpersonal skills, leadership qualities, presentation skills and of
+                    course your physical abilities. Yes! A sound mind needs a sound body. So Welcome aboard!
                 </p>
             </div>
         </div>

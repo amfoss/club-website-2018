@@ -6,8 +6,11 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 
 # Create your views here
+from django.utils.timezone import now
 from django.views import View
 from django.views.generic import TemplateView
+
+from workshop.models import Workshop
 
 
 class HomePageView(TemplateView):
@@ -16,6 +19,7 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['tags'] = tags
+        context['events'] = Workshop.objects.filter(start_date_time__gte=now()).order_by('start_date_time')[:5]
         return context
 
 
