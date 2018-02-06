@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- HERO -->
+    <section id="hero" class="module-hero bg-dark-30"
+             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+
+        <!-- HERO TEXT -->
+        <div class="hero-caption">
+            <div class="hero-text">
+                <h1 class="hero-title font-alt">Already Logged In!</h1>
+                <p class="hero-subtitle font-serif"></p>
+            </div>
+        </div>
+        <!-- /HERO TEXT -->
+
+    </section>
+    <!-- /HERO -->
+
+    <section class="module">
+        <div style="margin-left: 300px">
+            <div class="container">
+                <div class="row">
+                    <div class="container">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h1 class="card-title col-md-12">Sorry :(</h1>
+                                    <hr>
+                                    <p class="card-text col-md-12">
+                                        You are already a member of FOSS@Amrita.
+                                    <hr class="my-4">
+                                    </p>
+                                    <div style="margin-left: 70px">
+                                        <p class="card-text col-md-12">
+                                            <a class="btn btn-dark anim-scroll" href="{% url 'home' %}" role="button">Home</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

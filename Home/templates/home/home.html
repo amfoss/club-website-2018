@@ -95,10 +95,13 @@
                         </div>
                         <div id="support1" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                                squid single-origin coffee nulla assumenda shoreditch et.
+                                <ul>
+                                    {% for event in events %}
+                                        <li><a href="{% url 'workshop_detail' event.id %}">{{ event.name }}<br>
+                                            <small>{{ event.overview }}</small>
+                                        </a></li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -137,6 +140,7 @@
                 <!-- /ACCORDIONS -->
 
             </div><!-- .col-* -->
+
         </div>
     </section>
     <!-- /Achievements -->
