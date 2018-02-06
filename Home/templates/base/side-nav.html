@@ -22,54 +22,24 @@
         <div class="collapse navbar-collapse" id="custom-collapse">
 
             <ul class="nav navbar-nav">
-
-                {% if request.user.is_authenticated %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'club' %}">Club</a></li>
-                            <li class="dropdown">
-                                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools</a></li>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{% url 'feeds_list' %}">Add Feeds/RSS</a></li>
-                                    <li><a href="{% url 'join_list' %}">Application</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-                {% else %}
-
-                    <li><a href="{% url 'home' %}">Home</a></li>
-
-                {% endif %}
-
-                <!-- What we Do -->
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">What we Do</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{% url 'project' %}">Projects</a></li>
-                         <li><a href="{% url 'workshop_list' %}">Workshops</a></li>
-
-                    </ul>
-                </li>
-
+                <li><a href="{% url 'home' %}">Home</a></li>
                 <!-- Who are we -->
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inside FOSS</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{% url 'join' %}">Join us</a></li>
-                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="/BlogFeedAggregator">blog posts</a></li>
+                        <li><a href="{% url 'timeline_list' %}">Timeline</a></li>
+                        <li><a href="{% url 'club' %}">Club</a></li>
                         <li><a href="{% url 'team' %}">Teams</a></li>
                         <li><a href="{% url 'profile_list' %}">Members</a></li>
                         <li><a href="{% url 'achievements' %}">achievements</a></li>
                     </ul>
                 </li>
-
-                <li><a href="/BlogFeedAggregator">blog posts</a></li>
-                <li><a href="{% url 'timeline_list' %}">Timeline</a></li>
+                <li><a href="{% url 'workshop_list' %}">Events</a></li>
+                <li><a href="{% url 'project' %}">Projects</a></li>
+                <li><a href="{% url 'join' %}">Join us</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
                 <li><a href="{% url 'contact' %}">Contact</a></li>
 
                 {% if request.user.is_authenticated %}
