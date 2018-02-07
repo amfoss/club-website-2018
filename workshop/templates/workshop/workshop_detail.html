@@ -33,42 +33,50 @@
                                 <p class="card-text preserve-contents">{{ object.other_info }}</p>
                                 <p class="card-text">{{ object.start_date_time }} to {{ object.end_date_time }}</p>
                                 <hr>
-                                <h5 class="card-text">Rs. {{ object.price }}</h5>
-                                <p>
-                                    <small>Register and pay the amount at FOSS club, ground floor lab after 4:30pm
-                                        on or before {{ object.start_date_time }} Please make sure you pay the amount as
-                                        soon as possible so that your seat gets confirmed.
-                                    </small>
-                                </p>
-                                <p>Contact: {{ object.contact_info }}</p>
-                                <p>Resource link: <a href="{{ object.link }}">{{ object.link }}</a> </p>
-                                <p>
-                                    <small class="text-muted">
-                                        seats remaining : {{ no_of_seats_left }}
-                                    </small>
-                                </p>
-                                {% if seats_left %}
-                                    <a href="{% url 'workshop_register' object.id %}">
-                                        <button type="submit" class="btn btn-primary add-btn">Register now</button>
-                                    </a>
-                                {% else %}
-                                    <a>
-                                        <button type="submit" class="btn add-btn">No seat left</button>
-                                    </a>
+                                {% if object.price != 0 %}
+                                    <h5 class="card-text">Rs. {{ object.price }}</h5>
                                     <p>
-                                        <small class="text-muted">
-                                            <a href="{% url 'foss_intro' %}#seventh">Contact us</a> to check for more
-                                            seats.
+                                        <small>Register and pay the amount at FOSS club, ground floor lab after 4:30pm
+                                            on or before {{ object.start_date_time }} Please make sure you pay the
+                                            amount as
+                                            soon as possible so that your seat gets confirmed.
                                         </small>
                                     </p>
                                 {% endif %}
-                                {%  if edit_permission %}
-                                  <a href="{% url 'workshopdetail_update' object.id %}">
+                                <p>Contact: {{ object.contact_info }}</p>
+                                <p>Resource link: <a href="{{ object.link }}">{{ object.link }}</a></p>
+                                <p>
+                                    {% if object.number_of_seats is not None %}
+                                        <small class="text-muted">
+                                            seats remaining : {{ no_of_seats_left }}
+                                        </small>
+
+                                        </p>
+                                        {% if seats_left %}
+                                            <a href="{% url 'workshop_register' object.id %}">
+                                                <button type="submit" class="btn btn-primary add-btn">Register now
+                                                </button>
+                                            </a>
+                                        {% else %}
+                                            <a>
+                                                <button type="submit" class="btn add-btn">No seat left</button>
+                                            </a>
+                                            <p>
+                                                <small class="text-muted">
+                                                    <a href="{% url 'foss_intro' %}#seventh">Contact us</a> to check for
+                                                    more
+                                                    seats.
+                                                </small>
+                                            </p>
+                                        {% endif %}
+                                    {% endif %}
+                                {% if edit_permission %}
+                                    <a href="{% url 'workshopdetail_update' object.id %}">
                                         <button type="submit" class="btn btn-success add-btn">Update</button>
                                     </a>
-                            {% endif %}
-                                    {% if edit_permission %}
-                                  <a href="{% url 'workshop_delete' object.id %}">
+                                {% endif %}
+                                {% if edit_permission %}
+                                    <a href="{% url 'workshop_delete' object.id %}">
                                         <button type="submit" class="btn btn-danger add-btn">Delete</button>
                                     </a>
                                 {% endif %}
@@ -79,23 +87,23 @@
 
                 </div>
             </div>
-        <div class="container">
-        <h2 class="head col-md-12">Feedback</h2>
+            <div class="container">
+                <h2 class="head col-md-12">Feedback</h2>
 
-{% for i in feedback %}
-<div class="card">
-  <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-          {% if i.name %}
-          <strong>{{ i.name }}</strong>
-          {% else %}
-          <strong>Anonymous</strong>
-          {% endif %}
-          :{{ i.comment }}</li>
-  </ul>
-</div>
-        {% endfor %}
-        </div>
+                {% for i in feedback %}
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                {% if i.name %}
+                                    <strong>{{ i.name }}</strong>
+                                {% else %}
+                                    <strong>Anonymous</strong>
+                                {% endif %}
+                                :{{ i.comment }}</li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
