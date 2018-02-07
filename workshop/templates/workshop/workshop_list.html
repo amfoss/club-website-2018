@@ -30,10 +30,11 @@
                                         <div class="card-block">
                                             <h3 class="card-title">{{ workshop.0.name }}</h3>
                                             <p class="card-text">{{ workshop.0.overview }}</p>
-                                            <p class="card-text">
-                                                <small>Seats Available: {{ workshop.1 }}</small>
-                                            </p>
-
+                                            {% if workshop.1 is not None %}
+                                                <p class="card-text">
+                                                    <small>Seats Available: {{ workshop.1 }}</small>
+                                                </p>
+                                            {% endif %}
                                             <p class="card-text">
                                                 <small>{{ workshop.0.start_date_time }}</small>
                                             </p>

@@ -24,17 +24,18 @@ class WorkshopDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(WorkshopDetailView, self).get_context_data(**kwargs)
         registrations = WorkshopRegistration.objects.filter(workshop=self.get_object())
-        print(len(registrations))
-        no_of_seats_left = self.get_object().number_of_seats - len(registrations)
-        context['seats_left'] = True
-        if no_of_seats_left <= 0:
-            context['seats_left'] = False
-            no_of_seats_left = 0
-        context['no_of_seats_left'] = no_of_seats_left
+        if self.get_object().number_of_seats is not None:
+            no_of_seats_left = self.get_object().number_of_seats - len(registrations)
+            context['seats_left'] = True
+            if no_of_seats_left <= 0:
+                context['seats_left'] = False
+                no_of_seats_left = 0
+            context['no_of_seats_left'] = no_of_seats_left
         feedback = WorkshopFeedback.objects.filter(workshop=self.get_object())
         context['feedback'] = feedback
         if self.request.user.is_superuser or self.request.user == self.get_object().user:
             context['edit_permission'] = True
+        print(self.get_object().price)
         return context
 
 
@@ -237,10 +238,13 @@ class WorkshopListView(ListView):
         workshops = []
         for i in workshop:
             reg = WorkshopRegistration.objects.filter(workshop=i)
-            num = i.number_of_seats - len(reg)
-            if num < 0:
-                num = 0
-            workshops.append([i, num])
+            if i.number_of_seats is not None:
+                num = i.number_of_seats - len(reg)
+                if num < 0:
+                    num = 0
+                workshops.append([i, num])
+            else:
+                workshops.append([i])
 
         context['workshops'] = workshops
         return context
