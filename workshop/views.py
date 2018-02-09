@@ -149,8 +149,8 @@ class WorkshopRegisterFormView(CreateView):
         # send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
 
         mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
-                       "Great to know that you are interested in '" + workshop.name + "' workshop conducted by" \
-                                                                                      "FOSS@Amrita. We got your application and it's being processed. " + \
+                       "Great to know that you are interested in '" + workshop.name + "' workshop conducted by " + \
+                       "FOSS@Amrita. We got your application and it's being processed. " + \
                        "We will get back to you once your payment process is is complete.\n\n" \
                        "Please pay Rs" + str(workshop.price) + " at FOSS club, ground floor lab after 4:30pm on or " + \
                        "before " + str(workshop.start_date_time.date()) + " or contact us at " + \
@@ -158,7 +158,19 @@ class WorkshopRegisterFormView(CreateView):
                        "before the last date. You should show the confirmation e-mail to attend the workshop." + \
                        " \n\nThank you, \n\nFOSS@Amrita"
 
+        contest_mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
+                       "Great to know that you are interested in '" + workshop.name + "' contest conducted by " \
+                       "FOSS@Amrita. We got your application, you need to sent us a link to your artwork/video" + \
+                       "(Upload your work to Google drive and share the link).\n\n" + \
+                       "You can submit the link and your details on this page: " + workshop.link + \
+                       " latest by " + str(workshop.end_date_time.date()) + ".\n\n" \
+                       "Contact us at " + str(workshop.contact_info) + ". \n\nNote: You need to submit your work " + \
+                       "before the last date to be eligible for the prize." + \
+                       " \n\nThank you, \n\nFOSS@Amrita"
+
         to_address_list = ['chirath.02@gmail.com', form.cleaned_data.get('email')]
+        if workshop.price == 0.0:
+            mail_content = contest_mail_content
         email = EmailMessage(
             workshop.name + ' registartion',
             mail_content,
