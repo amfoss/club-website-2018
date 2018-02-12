@@ -18,7 +18,7 @@
                             <h6 class="m-b-30">amrita vishwa vidyapeetham</h6>
                             <h1 class="m-b-30">FOSS@Amrita</h1>
                             <h6 class="m-b-60">Code | Share | Grow</h6>
-                            <a href="#portfolio" class="btn btn-dark anim-scroll">Learn More</a>
+                            <a href="#LearnMore" class="btn btn-dark anim-scroll">Learn More</a>
                         </div>
                     </div>
                     <!-- /HERO TEXT -->
@@ -27,28 +27,24 @@
                 <li>
                     <img src="{% static 'home/assets/images/3.jpg' %}">
 
-                    {#                    <!-- HERO TEXT -->#}
-                    {#                    <div class="hero-caption">#}
-                    {#                        <div class="hero-text">#}
-                    {#                            <h6 class="m-b-30">Text 1</h6>#}
-                    {#                            <h1 class="m-b-30">Text 2</h1>#}
-                    {#                            <h6 class="m-b-60">Text 3</h6>#}
-                    {#                            <a href="about.html" class="btn btn-dark anim-scroll">About</a>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {#                    <!-- /HERO TEXT -->#}
+                                        <!-- HERO TEXT -->
+                                        <div class="hero-caption">
+                                            <div class="hero-text">
+                                                <h1 class="m-b-30">Overall Achievements 2018</h1>
+                                                <a href="{% url 'achievements' %}" class="btn btn-dark anim-scroll">See More</a>
+                                            </div>
+                                        </div>
+                                        <!-- /HERO TEXT -->
                 </li>
 
                 <li>
-                    <img src="assets/images/module-6.jpg" alt="">
+                    <img src="{% static 'home/assets/images/2018-foss.jpg' %}">
 
                     <!-- HERO TEXT -->
                     <div class="hero-caption">
                         <div class="hero-text">
-                            <h6 class="m-b-30">Text 1</h6>
-                            <h1 class="m-b-30">Text 2</h1>
-                            <h6 class="m-b-60">Text 3</h6>
-                            <a href="portfolio-single.html" class="btn btn-dark">See more</a>
+                            <h1 class="m-b-30">FOSS Club 2018</h1>
+                            <a href="{% url 'profile_list' %}" class="btn btn-dark">See profile</a>
                         </div>
                     </div>
                     <!-- /HERO TEXT -->
@@ -230,7 +226,7 @@
     <!-- /COUNTERS -->
 
     <!-- Who we are -->
-    <section>
+    <section id="LearnMore">
         <br>
         <div class="row" style="margin: 30px;">
             <div class="col-md-4">
@@ -373,11 +369,11 @@
         <div class="row" style="margin: 30px;">
             <div class="col-md-4">
                 <a class="twitter-timeline" data-height="350" data-theme="light"
-                   href="https://twitter.com/amritafoss?ref_src=twsrc%5Etfw">Tweets by amritafoss</a>
+                   href="https://twitter.com/amfoss_?ref_src=twsrc%5Etfw">Tweets by amritafoss</a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
             <div class="col-md-4">
-                <div class="fb-page" data-href="https://www.facebook.com/FossatAmrita/" data-tabs="timeline"
+                <div class="fb-page" data-href="https://www.facebook.com/amfoss.in/" data-tabs="timeline"
                      data-height="350" data-small-header="false" data-adapt-container-width="true"
                      data-hide-cover="false" data-show-facepile="true">
                     <blockquote cite="https://www.facebook.com/FossatAmrita/" class="fb-xfbml-parse-ignore"><a
