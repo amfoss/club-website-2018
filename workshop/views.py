@@ -159,14 +159,14 @@ class WorkshopRegisterFormView(CreateView):
                        " \n\nThank you, \n\nFOSS@Amrita"
 
         contest_mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
-                       "Great to know that you are interested in '" + workshop.name + "' contest conducted by " \
-                       "FOSS@Amrita. We got your application, you need to sent us a link to your artwork/video" + \
-                       "(Upload your work to Google drive and share the link).\n\n" + \
-                       "You can submit the link and your details on this page: " + workshop.link + \
-                       " latest by " + str(workshop.end_date_time.date()) + ".\n\n" \
-                       "Contact us at " + str(workshop.contact_info) + ". \n\nNote: You need to submit your work " + \
-                       "before the last date to be eligible for the prize." + \
-                       " \n\nThank you, \n\nFOSS@Amrita"
+                               "Great to know that you are interested in '" + workshop.name + "' contest conducted " + \
+                               "by FOSS@Amrita. We got your application, you need to send us a link to your artwork" + \
+                               "/video (Upload your work to Google drive and share the link).\n\n" + \
+                               "You can submit the link and your details on this page: " + workshop.link + \
+                               " latest by " + str(workshop.end_date_time.date()) + ".\n\n" \
+                               "Contact us at " + str(workshop.contact_info) + ". \n\nNote: You need to submit " + \
+                               "your work before the last date to be eligible for the prize." + \
+                               " \n\nThank you, \n\nFOSS@Amrita"
 
         to_address_list = ['chirath.02@gmail.com', form.cleaned_data.get('email')]
         if workshop.price == 0.0:
@@ -245,7 +245,7 @@ class WorkshopListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(WorkshopListView, self).get_context_data(**kwargs)
-        workshop = Workshop.objects.all()
+        workshop = Workshop.objects.all().order_by('-start_date_time')
         workshops = []
         for i in workshop:
             reg = WorkshopRegistration.objects.filter(workshop=i)
