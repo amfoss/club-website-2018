@@ -548,9 +548,6 @@ class IndexView(TemplateView):
 
         return context
 
-
-
-
 class batchfilterview(View):
 
     def get(self, request, *args, **kwargs):

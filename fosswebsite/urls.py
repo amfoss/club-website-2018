@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^timeline/', include('timeline.urls')),
     url(r'^workshop/', include('workshop.urls')),
     url(r'^home/', include('Home.urls')),
-    url(r'^$', include('Home.urls')),
+    url(r'^', include('Home.urls')),
     url(r'^BlogFeedAggregator/', include('BlogFeedAggregator.urls')),
     url(r'^admissions/', include('admissions.urls')),
 ]

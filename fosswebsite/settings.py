@@ -168,4 +168,4 @@ join_application_mail_list = ['chirath.02@gmail.com', 'vipin.p@gmail.com', 'anuv
 join_application_reply_to = ['chirath.02@gmail.com']
 
 # Additional info like email configurations, passwords and secrete keys kept in separate file during development
-# from .local_settings import *
+from .local_settings import *
