@@ -42,15 +42,6 @@ def login(request, *args, **kwargs):  # view to handle remember me and login
     return auth_views.login(request, *args, **kwargs)
 
 
-# logout since, the allauth is interfering with logout
-def logout(request, *args, **kwargs):
-    if request.user.is_authenticated:
-        auth_views.logout(request, *args, **kwargs)
-        return redirect('home')
-    else:
-        return redirect('login')
-
-
 class UserUpdateView(UpdateView):
     model = UserInfo
     form_class = UserForm

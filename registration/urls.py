@@ -3,11 +3,10 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from registration.views import UserSignUpView, login, UserUpdateView, ProfileDetailView, ProfileListView, \
-    WorkExperienceCreateView, logout
+    WorkExperienceCreateView
 
 urlpatterns = [
     url(r'^login/$', login, name="login"),
-    url(r'^logout/$', logout, name="logout"),
     url(r'^signup/$', UserSignUpView.as_view(), name="signup"),
     url(r'^$', ProfileListView.as_view(), name="profile_list"),
     url(r'^(?P<username>[\w.@+-]+)/$', ProfileDetailView.as_view(), name="profile"),

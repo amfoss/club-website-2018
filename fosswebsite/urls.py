@@ -17,14 +17,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-
 from fosswebsite import settings
-from .views import Home
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/', include('registration.urls')),
-    url(r'^accounts/', include('django.contrib.auth.urls')),  # this file is invisible
     url(r'^accounts/', include('allauth.urls')),
     url(r'^club/', include('clubManagement.urls')),
     url(r'^achievements/', include('achievements.urls')),
