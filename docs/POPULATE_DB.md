@@ -30,9 +30,11 @@ create database fossamrita
 
 ```mysql
 mysql> CREATE USER 'foss'@'localhost' IDENTIFIED BY 'foss@amrita';
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'finley'@'localhost'
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'foss'@'localhost'
     ->     WITH GRANT OPTION;
 ```
+
+where foss is the username and foss@amrita is the password.
 
 logout using ctrl+d and login again using the new user
 ```bash
