@@ -39,9 +39,22 @@ logout using ctrl+d and login again using the new user
 $ mysql -u foss -p
 ```
 
+Create new database fossamrita, for avoiding this error: 'Specified key was too long; max key length is 767 bytes' in 
+MariaDB just specify utf8_general_ci at creation time
+
+```mysql
+mysql> create database fossamrita default CHARACTER set utf8 default COLLATE utf8_general_ci;
+```
+
 If everything works restore the database
 
 ```bash
 $ mysql -u foss -p fossamrita < dump.sql
+```
+
+Then migrate the db to complete the restore.
+
+```bash
+$ python manage.py migrate
 ```
 
