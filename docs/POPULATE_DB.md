@@ -2,6 +2,14 @@
 $ sudo apt install mysql-server
 ```
 
+If you are running Python3
+
+```bash
+$ pip3 install mysqlclient
+```
+
+For python2
+
 ```bash
 $ pip install MySQL-python
 ```
