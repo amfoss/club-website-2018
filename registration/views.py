@@ -22,7 +22,7 @@ month_num = range(12)
 
 class UserSignUpView(CreateView):
     form_class = UserSignUpForm
-    template_name = 'registration/login.html'
+    template_name = 'registration/signup.html'
     success_url = reverse_lazy('signup_success')
 
     def get(self, request, *args, **kwargs):
