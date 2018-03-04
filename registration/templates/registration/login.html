@@ -179,6 +179,8 @@
                     <div class="logmod__form">
                         <form accept-charset="utf-8" action="{% url 'login' %}" class="simform" method="post">
                             {% csrf_token %}
+                            <input type="hidden" value="{% if request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}{% endif %}" name="next" />
+
                             <div class="sminputs">
                                 <div class="input full">
                                     <label class="string optional" for="user-name">Username*</label>
