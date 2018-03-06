@@ -329,15 +329,21 @@
                         {% csrf_token %}
                         <div class="field half">
                             <label for="name">Name</label>
-                            <input type="text" value="{{ form.name.value }}" name="name" id="name"/>
+                            <input type="text"
+                                   value="{% ifnotequal form.name.value None %}{{ form.name.value }}{% endifnotequal %}"
+                                   name="name" id="name"/>
                         </div>
                         <div class="field half">
                             <label for="email">Email</label>
-                            <input type="email" value="{{ form.email.value }}" name="email" id="email"/>
+                            <input type="email"
+                                   value="{% ifnotequal form.email.value None %}{{ form.email.value }}{% endifnotequal %}"
+                                   name="email" id="email"/>
                         </div>
                         <div class="field">
                             <label for="message">Message</label>
-                            <textarea name="message" id="message" rows="4">{{ form.message.value }}</textarea>
+                            <textarea name="message" id="message" rows="4">
+                                {% ifnotequal form.message.value None %}{{ form.message.value }}{% endifnotequal %}
+                            </textarea>
                         </div>
                         <ul class="actions">
                             <li>{{ form.captcha }}</li>
