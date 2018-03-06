@@ -55,3 +55,13 @@ class JoinApplicationForm(forms.ModelForm):
     class Meta:
         model = JoinApplication
         fields = ['name', 'email', 'batch', 'roll_number', 'motivation', 'cs_background', 'interests', 'captcha']
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(max_length=1000)
+
+    captcha = ReCaptchaField(attrs={
+        'theme': 'clean',
+    })

@@ -17,7 +17,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
-from promotion.forms import JoinApplicationForm
+from promotion.forms import JoinApplicationForm, ContactForm
 from promotion.models import JoinApplication
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
 
@@ -193,15 +193,27 @@ class JoinApplicationUpdateView(UpdateView):
 class ContactView(View):
     def get(self, request):
         template_name = 'promotion/index.html'
-        return render(request, template_name)
+        form = ContactForm()
+        return render(request, template_name, {'form': form})
 
     def post(self, request):
-        subject = 'Message from ' + request.POST.get('name')
-        content = "Message from : " + request.POST.get('name') + " <" + request.POST.get('email') + ">\n\n" +\
-                  request.POST.get('message')
-        to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
-        send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
-        return render(request, template_name='promotion/index.html', context={"is_success": True})
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            subject = 'Message from ' + form.cleaned_data.get('name')
+            content = "Message from : " + form.cleaned_data.get('name') + \
+                      " <" + form.cleaned_data.get('email') + ">\n\n" + \
+                      form.cleaned_data.get('message')
+            to_address_list = list(
+                User.objects.filter(is_superuser=True).values_list('email',
+                                                                   flat=True))
+            send_mail(subject, content, 'amritapurifoss@gmail.com',
+                      to_address_list, fail_silently=True)
+            return render(request, template_name='promotion/index.html',
+                          context={"is_success": True})
+        else:
+            return render(request, template_name='promotion/index.html',
+                          context={"is_success": False, 'form': form})
 
 
 def validate_mail(email):

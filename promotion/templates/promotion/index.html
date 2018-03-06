@@ -329,17 +329,18 @@
                         {% csrf_token %}
                         <div class="field half">
                             <label for="name">Name</label>
-                            <input type="text" name="name" id="name"/>
+                            <input type="text" value="{{ form.name.value }}" name="name" id="name"/>
                         </div>
                         <div class="field half">
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="email"/>
+                            <input type="email" value="{{ form.email.value }}" name="email" id="email"/>
                         </div>
                         <div class="field">
                             <label for="message">Message</label>
-                            <textarea name="message" id="message" rows="4"></textarea>
+                            <textarea name="message" id="message" rows="4">{{ form.message.value }}</textarea>
                         </div>
                         <ul class="actions">
+                            <li>{{ form.captcha }}</li>
                             <li><input type="submit" value="Send Message" class="button special"/></li>
                         </ul>
 
@@ -348,8 +349,17 @@
                         Thank you!!
                         <script>alert("Thank you! Message sent.")</script>
                     {% endif %}
+                    {% ifequal is_success False %}
+                        Failed!!
+                        <script>alert("Sorry! Message sent failed.")</script>
+                    {% endifequal %}
                 </div>
-                <div class="span-1-5">
+                {% if form.errors %}
+                    <div class="span-1-5">
+                        {{ form.errors }}
+                    </div>
+                {% endif %}
+                <div class="span-1-5" id="eighth">
                     <ul class="contact-icons color1">
                         <li class="icon fa-twitter"><a href="https://twitter.com/amritafoss">@amfoss</a></li>
                         <li class="icon fa-facebook"><a href="https://www.facebook.com/FossatAmrita">facebook.com/amfoss</a></li>
