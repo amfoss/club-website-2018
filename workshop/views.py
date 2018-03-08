@@ -233,7 +233,7 @@ class WorkshopListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(WorkshopListView, self).get_context_data(**kwargs)
-        workshop = Workshop.objects.all()
+        workshop = Workshop.objects.all().order_by('-start_date_time')
         workshops = []
         for i in workshop:
             reg = WorkshopRegistration.objects.filter(workshop=i)
