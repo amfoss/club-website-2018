@@ -32,7 +32,8 @@ class TeamMember(models.Model):
 
 class Attendance(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    added_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="added_by")
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE,
+                                 related_name="added_by")
     date = models.DateField()
     modified_date = models.DateTimeField(auto_now=True, auto_now_add=False)
     attendance = models.BooleanField(default=False)
@@ -45,7 +46,8 @@ class Attendance(models.Model):
 
 
 class Responsibility(models.Model):
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_by')
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
+                                   related_name='created_by')
     name = models.CharField(max_length=300)
     description = models.TextField(blank=True)
 
@@ -61,4 +63,16 @@ class StudentResponsibility(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
+class StatusUpdate(models.Model):
+    """
+    The status update for each data is stored as a string
+    `user_id1 Y/N, user_id Y/N, .....`
+    """
+    date = models.DateField()
+    value = models.CharField(max_length=1000)
 
+    def __str__(self):
+        return self.date
+
+    def get_absolute_url(self):
+        return reverse('status_update_detail', kwargs={'pk': self.date})
