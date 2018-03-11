@@ -6,11 +6,13 @@ from datetime import date, datetime
 
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render, redirect
+from django.http import Http404
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, ListView, DetailView, UpdateView, DeleteView, CreateView, TemplateView
-from clubManagement.models import Attendance, Team, TeamMember, Responsibility, StudentResponsibility
+from clubManagement.models import Attendance, Team, TeamMember, Responsibility, \
+    StudentResponsibility, StatusUpdate
 from projects.models import Project
 
 from registration.models import UserInfo
@@ -468,5 +470,22 @@ class IndexView(TemplateView):
         return context
 
 
+class StatusUpdateDetailView(TemplateView):
+    model = StatusUpdate
+    template_name = 'clubManagement/status-update-detail.html'
 
+    def get(self, request, *args, **kwargs):
+        context = {}
+        if len(kwargs) == 3:
+            try:
+                status_date = date(
+                    day=int(kwargs.get('day')), month=int(kwargs.get('month')),
+                    year=int(kwargs.get('year'))
+                )
+                status_update = get_object_or_404(
+                    StatusUpdate, date=status_date)
+                context = {'status_update': status_update, 'date': status_date}
+            except ValueError:
+                raise Http404
 
+        return render(request, self.template_name, context)

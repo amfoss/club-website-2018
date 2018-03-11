@@ -76,3 +76,5 @@ class StatusUpdateModelTest(TestCase):
         status_update.process_report()
 
         self.assertEqual(status_update.data, json.dumps(report))
+
+
