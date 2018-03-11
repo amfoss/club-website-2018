@@ -5,6 +5,7 @@ import json
 
 from django.contrib.auth.models import User
 from django.test import TestCase
+from django.urls import reverse
 from django.utils.datetime_safe import date
 
 from clubManagement.models import StatusUpdate
@@ -43,7 +44,10 @@ class StatusUpdateModelTest(TestCase):
 
         self.assertEqual(status_update.get_value_dict(), status_dict)
 
-    def add_two_user(self):
+    def test_process_report(self):
+        """
+        Test if the data is processed properly
+        """
         user1 = User.objects.create(
             username='user1', email='user@email.com', password='pass',
             first_name='User', last_name='1', is_active=True
@@ -53,24 +57,17 @@ class StatusUpdateModelTest(TestCase):
             first_name='User', last_name='2', is_active=True
         )
 
+        value = str(user1.pk) + ' Y, ' + str(user2.pk) + ' N'
+
         UserInfo.objects.create(user=user1, year=self.today.year - 1)
         UserInfo.objects.create(user=user2, year=self.today.year - 2)
 
-        return user1, user2
-
-    def test_process_report(self):
-        """
-        Test if the data is processed properly
-        """
-
-        user1, user2 = self.add_two_user()
-
         status_update = StatusUpdate.objects.create(
-            date=self.today, value=self.value)
+            date=self.today, value=value)
 
         report = {
             str(self.today.year-1): {str(user1.get_full_name()): 'Y'},
-            str(self.today.year-2): {str(user1.get_full_name()): 'N'}
+            str(self.today.year-2): {str(user2.get_full_name()): 'N'}
         }
 
         status_update.process_report()
@@ -78,3 +75,30 @@ class StatusUpdateModelTest(TestCase):
         self.assertEqual(status_update.data, json.dumps(report))
 
 
+class StatusUpdateDetailViewTest(TestCase):
+
+    def test_view_loads_correct_data(self):
+        today = date.today()
+        value = '1 Y, 2 N'
+
+        user1 = User.objects.create(
+            username='user1', email='user@email.com', password='pass',
+            first_name='User', last_name='1', is_active=True
+        )
+        user2 = User.objects.create(
+            username='user2', email='user@email.com', password='pass',
+            first_name='User', last_name='2', is_active=True
+        )
+
+        UserInfo.objects.create(user=user1, year=today.year - 1)
+        UserInfo.objects.create(user=user2, year=today.year - 2)
+
+        StatusUpdate.objects.create(
+            date=today, value=value)
+
+        response = self.client.get(
+            reverse('status-update-detail', kwargs={
+                'day': today.day, 'month': today.month, 'year': today.year}))
+
+        self.assertIn('User 1', response.content.decode('utf8'))
+        self.assertIn('User 2', response.content.decode('utf8'))

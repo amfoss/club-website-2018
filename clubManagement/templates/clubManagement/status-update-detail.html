@@ -15,32 +15,13 @@
                             <p class="card-text">
                                 <small class="text-muted">Status update list for {{ date }}</small>
                             </p>
-                            {{ status_update }}
-                            <hr>
                             <div class="row">
-                                {% for object in object_list %}
-                                    <div class="col-md-6">
-                                        <div class="card">
-                                            <img class="card-img-top img-fluid" height="250px" src="/static/media/{{ object.image }}" alt="Card image cap">
-                                            <div class="card-block">
-                                                <h3 class="card-title">{{ object.name }}</h3>
-                                                <p class="card-text">{{ object.description }}</p>
-                                                <a href="{% url 'team_detail' object.id %}"
-                                                   class="btn btn-primary">More info
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                {% for year, value in status_update.items %}
+                                    <h3>{{ year }}</h3>
+                                    {% for name, status in value.items %}
+                                        <p>{{ name }} - {{ status }}</p>
+                                    {%  endfor %}
                                 {% endfor %}
-                                {% if request.user.is_authenticated %}
-                                <div class="col-md-12">
-                                    <div class="container">
-                                        <a href="{% url 'team_create' %}">
-                                            <button class="btn btn-secondary">Add new</button>
-                                        </a>
-                                    </div>
-                                </div>
-                                {% endif %}
                             </div>
                         </div>
                     </div>

@@ -484,7 +484,8 @@ class StatusUpdateDetailView(TemplateView):
                 )
                 status_update = get_object_or_404(
                     StatusUpdate, date=status_date)
-                context = {'status_update': status_update, 'date': status_date}
+                context = {'status_update': status_update.get_report(),
+                           'date': status_date}
             except ValueError:
                 raise Http404
 

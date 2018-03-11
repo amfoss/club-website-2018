@@ -12,7 +12,6 @@ from projects.models import Project
 from registration.models import UserInfo
 
 
-
 class Team(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
@@ -95,8 +94,7 @@ class StatusUpdate(models.Model):
         value N
         :return:  {'year': {'name': 'full_name', 'status': 'Y'}}
         """
-
-        value_dict = self.get_value_dict()
+        status_dict = self.get_value_dict()
 
         start_year = date.today().year
 
@@ -110,12 +108,17 @@ class StatusUpdate(models.Model):
             user_list = {}
             for user_info in user_info_list:
                 if user_info.user.is_active:
-                    status = value_dict[user_info.user.pk]
-                    user_list[user_info.user.get_full_name()] = status
+                    status = status_dict.get(int(user_info.user.pk), None)
+                    if status:
+                        user_list[user_info.user.get_full_name()] = status
+                    else:
+                        user_list[user_info.user.get_full_name()] = 'N'
+
             if user_list:
                 user_data[str(year)] = user_list
 
         self.data = json.dumps(user_data)
+        self.save()
 
     def get_report(self):
         """
@@ -124,10 +127,7 @@ class StatusUpdate(models.Model):
         """
         if not self.data:
             self.process_report()
-        return json.dumps(self.data)
+        return json.loads(self.data)
 
     def __str__(self):
-        return self.date
-
-    def get_absolute_url(self):
-        return reverse('status_update_detail', kwargs={'pk': self.date})
+        return str(self.date)
