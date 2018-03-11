@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, ListView, DetailView, UpdateView, DeleteView, CreateView, TemplateView
-from clubManagement.models import Attendance, Team, TeamMember, Responsibility, StudentResponsibility, StatusReport
+from clubManagement.models import Attendance, Team, TeamMember, Responsibility, StudentResponsibility
 from projects.models import Project
 
 from registration.models import UserInfo
@@ -426,87 +426,6 @@ class TeamMemberDeleteView(DeleteView):
         return super(TeamMemberDeleteView, self).post(request, *args, **kwargs)
 
 
-class StatusListView(ListView):
-    model = StatusReport
-    queryset = StatusReport.objects.all().order_by('-date')
-
-    def post(self, request, **kwargs):
-        batch = int(request.POST.get('batch'))
-        return redirect('batch_filter', batch)
-
-
-
-class StatusDetailView(DetailView):
-    model = StatusReport
-
-    def get_context_data(self, **kwargs):
-        context = super(StatusDetailView, self).get_context_data(**kwargs)
-        if self.request.user.is_superuser or self.request.user == self.object.created_by:
-            context['edit_permission'] = True
-        else:
-            context['edit_permission'] = False
-        return context
-
-
-class StatusCreateView(CreateView):
-    model = StatusReport
-    fields = ['title', 'content', 'image', 'project']
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        response = super(StatusCreateView, self).form_valid(form)
-        return response
-
-    def get_context_data(self, **kwargs):
-        context = super(StatusCreateView, self).get_context_data(**kwargs)
-        proj = Project.objects.all()
-        context['project'] = proj
-        return context
-
-
-class StatusUpdateView(UpdateView):
-    model = StatusReport
-    fields = ['title', 'content', 'image', 'project']
-
-    def form_valid(self, form):
-        if self.request.POST['project'] != "":
-            form.instance.project = Project.objects.get(id=int(self.request.POST['project']))
-
-        response = super(StatusUpdateView, self).form_valid(form)
-        return response
-
-    def get(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().user):
-            redirect('permission_denied')
-        return super(StatusUpdateView, self).get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super(StatusUpdateView, self).get_context_data(**kwargs)
-        proj = Project.objects.all()
-        context['project'] = proj
-        return context
-
-    def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().user):
-            redirect('permission_denied')
-        return super(StatusUpdateView, self).post(request, *args, **kwargs)
-
-
-class StatusDeleteView(DeleteView):
-    model = StatusReport
-    success_url = reverse_lazy('status')
-
-    def get(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
-            redirect('permission_denied')
-        return super(StatusDeleteView, self).get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().user):
-            redirect('permission_denied')
-        return super(StatusDeleteView, self).post(request, *args, **kwargs)
-
-
 class IndexView(TemplateView):
     template_name = 'clubManagement/index.html'
 
@@ -549,20 +468,5 @@ class IndexView(TemplateView):
         return context
 
 
-
-
-class batchfilterview(View):
-
-    def get(self, request, *args, **kwargs):
-        batch = self.kwargs['pk']
-        users = UserInfo.objects.filter(year=batch)
-        status = []
-
-        for i in users:
-            user = User.objects.get(username=i)
-            status += StatusReport.objects.filter(user=user)
-        context = {'object_list': status, 'batch': self.kwargs['pk']}
-        template_name = 'clubManagement/batchstatus.html'
-        return render(request, template_name, context)
 
 
