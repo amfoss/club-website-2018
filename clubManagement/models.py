@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 # created by Chirath R, chirath.02@gmail.com
 from __future__ import unicode_literals
+
+import json
+
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils.datetime_safe import date
-
 from projects.models import Project
 from registration.models import UserInfo
+
 
 
 class Team(models.Model):
@@ -90,8 +93,10 @@ class StatusUpdate(models.Model):
         data field
         list-of-users = [[user, status]] where status is  a string with default
         value N
-        :return:  {year, list[user, status]}
+        :return:  {'year': {'name': 'full_name', 'status': 'Y'}}
         """
+
+        value_dict = self.get_value_dict()
 
         start_year = date.today().year
 
@@ -100,23 +105,26 @@ class StatusUpdate(models.Model):
 
         user_data = {}
 
-        for year in range(start_year, start_year + 4, -1):
+        for year in range(start_year, start_year - 4, -1):
             user_info_list = UserInfo.objects.filter(year=year)
-            user_list = []
+            user_list = {}
             for user_info in user_info_list:
                 if user_info.user.is_active:
-                    user_list.append([user_info.user, 'N'])
-            user_data[year] = user_list
+                    status = value_dict[user_info.user.pk]
+                    user_list[user_info.user.get_full_name()] = status
+            if user_list:
+                user_data[str(year)] = user_list
 
-        return user_data
+        self.data = json.dumps(user_data)
 
-    def get_report_with_year(self):
+    def get_report(self):
         """
-        Returns a dict with key = year and value = list of [user, status_update]
-        , where status update represents a string with value (Y/N)
-        :return: dict of {year, list[user, status]}
+        Returns a dict with {'year': {'name': 'full_name', 'status': 'Y'}}
+        :return: dict
         """
-        pass
+        if not self.data:
+            self.process_report()
+        return json.dumps(self.data)
 
     def __str__(self):
         return self.date
