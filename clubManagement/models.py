@@ -4,8 +4,10 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from django.utils.datetime_safe import date
 
 from projects.models import Project
+from registration.models import UserInfo
 
 
 class Team(models.Model):
@@ -70,6 +72,51 @@ class StatusUpdate(models.Model):
     """
     date = models.DateField()
     value = models.CharField(max_length=1000)
+    data = models.CharField(max_length=2000, blank=True)
+
+    def get_value_dict(self):
+        status_list = self.value.split(', ')
+        status_dict = {}
+
+        for status in status_list:
+            user_id, status = status.split(' ')
+            status_dict[int(user_id)] = status
+
+        return status_dict
+
+    def process_report(self):
+        """
+        saves a dict with key as the year and value as a list of user to the
+        data field
+        list-of-users = [[user, status]] where status is  a string with default
+        value N
+        :return:  {year, list[user, status]}
+        """
+
+        start_year = date.today().year
+
+        if date.today().month < 8:
+            start_year -= 1
+
+        user_data = {}
+
+        for year in range(start_year, start_year + 4, -1):
+            user_info_list = UserInfo.objects.filter(year=year)
+            user_list = []
+            for user_info in user_info_list:
+                if user_info.user.is_active:
+                    user_list.append([user_info.user, 'N'])
+            user_data[year] = user_list
+
+        return user_data
+
+    def get_report_with_year(self):
+        """
+        Returns a dict with key = year and value = list of [user, status_update]
+        , where status update represents a string with value (Y/N)
+        :return: dict of {year, list[user, status]}
+        """
+        pass
 
     def __str__(self):
         return self.date

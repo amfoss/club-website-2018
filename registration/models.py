@@ -8,7 +8,8 @@ from django.urls import reverse
 
 class UserInfo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    profile_pic = models.ImageField(upload_to='profile_pics/', blank=True,
+                                    null=True)
     small_intro = models.CharField(max_length=300, blank=True)
     intro = models.TextField(blank=True)
     interests = models.TextField(blank=True)
