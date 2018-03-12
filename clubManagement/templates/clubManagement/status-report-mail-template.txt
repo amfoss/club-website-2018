@@ -1,0 +1,17 @@
+Status update report {{ date }}
+
+Didn't send status update:
+{% for year, value in status_update.items %}
+{{ year }}
+{% for name, status in value.items %}{% ifequal status "N" %}
+{{ name }}{% endifequal %}{% endfor %}{% endfor %}
+
+Send status update:
+{% for year, value in status_update.items %}
+{{ year }}
+{% for name, status in value.items %}{% ifequal status "Y" %}
+{{ name }}{% endifequal %}{% endfor %}{% endfor %}
+
+Thank you,
+
+This is an automatically generated mail.
