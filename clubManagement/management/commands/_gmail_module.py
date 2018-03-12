@@ -6,7 +6,7 @@ from oauth2client import tools
 from oauth2client.file import Storage
 from apiclient import errors
 
-flags = None
+flags = True
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/gmail-python-quickstart.json
