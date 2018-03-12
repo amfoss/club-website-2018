@@ -72,7 +72,8 @@ urlpatterns = [
 
     # Status update
     url(r'^status-update/(?P<day>[0-9]+)/(?P<month>[0-9]+)/(?P<year>[0-9]+)/$',
-        StatusUpdateDetailView.as_view(), name='status-update-detail'),
+        login_required(StatusUpdateDetailView.as_view()),
+        name='status-update-detail'),
 
     # index
     url(r'^$', login_required(IndexView.as_view()), name='club'),

@@ -472,7 +472,7 @@ class IndexView(TemplateView):
 
 class StatusUpdateDetailView(TemplateView):
     model = StatusUpdate
-    template_name = 'clubManagement/status-update-detail.html'
+    template_name = 'clubManagement/status-report-mail-template.html'
 
     def get(self, request, *args, **kwargs):
         context = {}
