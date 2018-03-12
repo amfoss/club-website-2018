@@ -25,7 +25,7 @@
         <h4>{{ year }}</h4>
         <ol>
             {% for name, status in value.items %}
-                {% ifequal status "N" %}
+                {% ifequal status "Y" %}
                     <li>{{ name }}</li>
                 {% endifequal %}
             {%  endfor %}
