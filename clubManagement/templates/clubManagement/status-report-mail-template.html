@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Status update report {{ date }}</title>
 </head>
 <body>
+    <h2>Status update report {{ date }}</h2>
+
+    <h3>Didn't send status update</h3>
+    {% for year, value in status_update.items %}
+        <h4>{{ year }}</h4>
+        <ol>
+            {% for name, status in value.items %}
+                {% ifequal status "N" %}
+                    <li>{{ name }}</li>
+                {% endifequal %}
+            {%  endfor %}
+        </ol>
+    {% endfor %}
+
+    <h3>Send status update</h3>
+
+    {% for year, value in status_update.items %}
+        <h4>{{ year }}</h4>
+        <ol>
+            {% for name, status in value.items %}
+                {% ifequal status "Y" %}
+                    <li>{{ name }}</li>
+                {% endifequal %}
+            {%  endfor %}
+        </ol>
+    {% endfor %}
 
 </body>
 </html>
