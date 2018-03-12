@@ -1,12 +1,12 @@
 Status update report {{ date }}
 
-Didn't send status update:
+Students who didn't sent status updates:
 {% for year, value in status_update.items %}
 {{ year }}
 {% for name, status in value.items %}{% ifequal status "N" %}
 {{ name }}{% endifequal %}{% endfor %}{% endfor %}
 
-Send status update:
+Students who sent status updates:
 {% for year, value in status_update.items %}
 {{ year }}
 {% for name, status in value.items %}{% ifequal status "Y" %}

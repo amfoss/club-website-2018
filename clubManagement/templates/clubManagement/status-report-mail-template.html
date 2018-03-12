@@ -7,7 +7,7 @@
 <body>
     <h2>Status update report {{ date }}</h2>
 
-    <h3>Didn't send status update</h3>
+    <h3>Students who didn't sent status updates</h3>
     {% for year, value in status_update.items %}
         <h4>{{ year }}</h4>
         <ol>
@@ -19,7 +19,7 @@
         </ol>
     {% endfor %}
 
-    <h3>Send status update</h3>
+    <h3>Students who sent status updates</h3>
 
     {% for year, value in status_update.items %}
         <h4>{{ year }}</h4>
