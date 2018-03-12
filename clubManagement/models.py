@@ -96,6 +96,10 @@ class StatusUpdate(models.Model):
         """
         status_dict = self.get_value_dict()
 
+        # no status reports found
+        if not status_dict:
+            return
+
         start_year = date.today().year
 
         if date.today().month < 8:

@@ -44,6 +44,18 @@ class StatusUpdateModelTest(TestCase):
 
         self.assertEqual(status_update.get_value_dict(), status_dict)
 
+    def test_process_report_with_empty_value(self):
+        """
+        Tests if the the system can handle no status updates
+        :return:
+        """
+        value = ''
+        report = ''
+        status_update = StatusUpdate.objects.create(
+            date=self.today, value=value)
+
+        self.assertEqual(status_update.data, report)
+
     def test_process_report(self):
         """
         Test if the data is processed properly
@@ -57,6 +69,7 @@ class StatusUpdateModelTest(TestCase):
             first_name='User', last_name='2', is_active=True
         )
 
+        # value = 'user1_id Y user2_id N'
         value = str(user1.pk) + ' Y, ' + str(user2.pk) + ' N'
 
         UserInfo.objects.create(user=user1, year=self.today.year - 1)
@@ -79,7 +92,6 @@ class StatusUpdateDetailViewTest(TestCase):
 
     def test_view_loads_correct_data(self):
         today = date.today()
-        value = '1 Y, 2 N'
 
         user1 = User.objects.create(
             username='user1', email='user@email.com', password='pass',
@@ -92,6 +104,8 @@ class StatusUpdateDetailViewTest(TestCase):
 
         UserInfo.objects.create(user=user1, year=today.year - 1)
         UserInfo.objects.create(user=user2, year=today.year - 2)
+
+        value = str(user1.pk) + ' Y, ' + str(user2.pk) + ' N'
 
         StatusUpdate.objects.create(
             date=today, value=value)
