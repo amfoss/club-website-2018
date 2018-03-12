@@ -13,7 +13,6 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import View, ListView, DetailView, UpdateView, DeleteView, CreateView, TemplateView
 from clubManagement.models import Attendance, Team, TeamMember, Responsibility, \
     StudentResponsibility, StatusUpdate
-from projects.models import Project
 
 from registration.models import UserInfo
 

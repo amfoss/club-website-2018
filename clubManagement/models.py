@@ -111,7 +111,7 @@ class StatusUpdate(models.Model):
             user_info_list = UserInfo.objects.filter(year=year)
             user_list = {}
             for user_info in user_info_list:
-                if user_info.user.is_active:
+                if user_info.user.is_active and not user_info.is_mentor:
                     status = status_dict.get(int(user_info.user.pk), None)
                     if status:
                         user_list[user_info.user.get_full_name()] = status

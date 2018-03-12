@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives, send_mail
 from django.core.management.base import BaseCommand
 from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils.datetime_safe import date
-from django.utils.html import strip_tags
 
 from clubManagement.models import StatusUpdate
 
@@ -63,22 +63,35 @@ class Command(BaseCommand):
 
         mailing_list = settings.MAILING_LIST
 
-        print(status_update.data)
-
         if not mailing_list:
             print('MAILING_LIST needs to be set as your environment variable')
             sys.exit()
 
+        domain = settings.DOMAIN
+
+        url = 'https://%s%s' % (domain, reverse('status-update-detail',
+                                                kwargs={
+                                                    'day': status_date.day,
+                                                    'month': status_date.month,
+                                                    'year': status_date.year
+                                                }))
+
         # Send status report
         # render with dynamic value
         html_content = render_to_string(
-            'clubManagement/status-report-mail-template.html',
-            {'status_update': status_update.get_report(), 'date': status_date})
+            'clubManagement/status-report-mail-template.html', {
+                'status_update': status_update.get_report(),
+                'date': status_date,
+                'url': url
+            })
 
         # render text only mail
         text_content = render_to_string(
-            'clubManagement/status-report-mail-template.txt',
-            {'status_update': status_update.get_report(), 'date': status_date})
+            'clubManagement/status-report-mail-template.txt', {
+                'status_update': status_update.get_report(),
+                'date': status_date,
+                'url': url
+            })
 
         subject = 'Status update report %s' % status_date.strftime('%d-%m-%Y')
 

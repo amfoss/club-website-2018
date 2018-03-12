@@ -14,4 +14,6 @@ Send status update:
 
 Thank you,
 
+{% if url %}More info: {{ url }}{% endif %}
+
 This is an automatically generated mail.

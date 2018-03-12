@@ -25,12 +25,16 @@
         <h4>{{ year }}</h4>
         <ol>
             {% for name, status in value.items %}
-                {% ifequal status "Y" %}
+                {% ifequal status "N" %}
                     <li>{{ name }}</li>
                 {% endifequal %}
             {%  endfor %}
         </ol>
     {% endfor %}
+
+    {% if url %}
+        <p>More info: <a href="{{ url }}">{{ url }}</a></p>
+    {% endif %}
 
 </body>
 </html>
