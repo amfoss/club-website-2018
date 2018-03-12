@@ -103,7 +103,7 @@ class Command(BaseCommand):
         email.send()
 
         # Send next status update reminder
-        subject = 'Status Update [%s]' % status_date.strftime('%d-%m-%Y')
+        subject = 'Status Update [%s]' % date.today().strftime('%d-%m-%Y')
 
         text_content = 'Please reply to this thread to sent your status ' \
                        'updates for %s' % date.today().strftime('%d-%m-%Y')
