@@ -74,7 +74,7 @@ class StatusUpdate(models.Model):
     """
     date = models.DateField()
     value = models.CharField(max_length=1000)
-    data = models.CharField(max_length=2000, blank=True)
+    data = models.CharField(max_length=5000, blank=True)
 
     def get_value_dict(self):
         status_list = self.value.split(', ')
