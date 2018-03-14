@@ -158,7 +158,11 @@ def get_status_update_emails(status_update_date):
     for message in messages:
         email = get_sender_email_id(
             service, user_id="me", msg_id=message['id'], subject=query)
-        if email and email not in emails:
-            emails.append(email)
+        if email:
+            # remove period from username part
+            email_parts = email.split('@')
+            email = email_parts[0].replace('.', '') + '@' + email_parts[1]
+            if email not in emails:
+                emails.append(email)
 
     return emails

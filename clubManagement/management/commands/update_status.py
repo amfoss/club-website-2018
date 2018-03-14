@@ -37,6 +37,11 @@ class Command(BaseCommand):
             help='prevent the system from sending mails'
         )
 
+    @staticmethod
+    def remove_periods_from_email(email):
+        email_parts = email.split('@')
+        return email_parts[0].replace('.', '') + '@' + email_parts[1]
+
     def handle(self, *args, **options):
         if options['date']:
             try:
@@ -53,8 +58,16 @@ class Command(BaseCommand):
         if not email_list:
             sys.exit()
 
-        user_list = User.objects.filter(email__in=email_list)
+        # get all users in email_list
+        users = User.objects.all()
+        user_list = []
 
+        for user in users:
+            user_email = self.remove_periods_from_email(user.email)
+            if user_email in email_list:
+                user_list.append(user)
+
+        # Generate string user_id Y, user_id Y etc....
         status_string = ''
 
         for user in user_list:
