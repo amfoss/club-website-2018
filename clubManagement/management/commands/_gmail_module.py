@@ -100,7 +100,7 @@ def list_messages_matching_query(service, user_id, query=''):
         print ('An error occurred: %s' % error)
 
 
-def get_sender_email_id(service, user_id, msg_id):
+def get_sender_email_id(service, user_id, msg_id, subject):
     """
     This functions return the email id of the sender
     :param service: The google service(here Gmail)
@@ -117,6 +117,15 @@ def get_sender_email_id(service, user_id, msg_id):
         header_data = message["payload"]["headers"]
 
         sender_text = "From"
+
+        correct_subject = False
+
+        for data in header_data:
+            if 'subject' == data['name'].lower() and subject in data['value']:
+                correct_subject = True
+
+        if not correct_subject:
+            return ''
 
         # Get email id from header data
         for data in header_data:
@@ -148,8 +157,8 @@ def get_status_update_emails(status_update_date):
 
     for message in messages:
         email = get_sender_email_id(
-            service, user_id="me", msg_id=message['id'])
-        if email not in emails:
+            service, user_id="me", msg_id=message['id'], subject=query)
+        if email and email not in emails:
             emails.append(email)
 
     return emails
