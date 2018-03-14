@@ -116,12 +116,15 @@ def get_sender_email_id(service, user_id, msg_id):
 
         header_data = message["payload"]["headers"]
 
-        sender_text = "X-Original-Sender"
+        sender_text = "From"
 
         # Get email id from header data
         for data in header_data:
-            if sender_text in data["name"]:
+            if sender_text == data["name"]:
                 email_id = data["value"]
+                start = email_id.find('<')
+                end = email_id.find('>')
+                email_id = email_id[start + 1: end]
         return email_id
 
     except errors.HttpError, error:
@@ -146,6 +149,7 @@ def get_status_update_emails(status_update_date):
     for message in messages:
         email = get_sender_email_id(
             service, user_id="me", msg_id=message['id'])
-        emails.append(email)
+        if email not in emails:
+            emails.append(email)
 
     return emails

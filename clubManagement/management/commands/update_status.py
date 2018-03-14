@@ -30,6 +30,13 @@ class Command(BaseCommand):
             help='Date to check status update (dd-mm-yyyy)'
         )
 
+        parser.add_argument(
+            '--no-mail',
+            action='store_true',
+            dest='no-mail',
+            help='prevent the system from sending mails'
+        )
+
     def handle(self, *args, **options):
         if options['date']:
             try:
@@ -61,59 +68,63 @@ class Command(BaseCommand):
         status_update.value = status_string
         status_update.process_report()
 
-        mailing_list = settings.MAILING_LIST
+        no_mail = options.get('no-mail', False)
 
-        if not mailing_list:
-            print('MAILING_LIST needs to be set as your environment variable')
-            sys.exit()
+        if not no_mail:
+            mailing_list = settings.MAILING_LIST
 
-        domain = settings.DOMAIN
+            if not mailing_list:
+                print('MAILING_LIST env variable needs to be set')
+                sys.exit()
 
-        url = 'https://%s%s' % (domain, reverse('status-update-detail',
-                                                kwargs={
-                                                    'day': status_date.day,
-                                                    'month': status_date.month,
-                                                    'year': status_date.year
-                                                }))
+            domain = settings.DOMAIN
 
-        # Send status report
-        # render with dynamic value
-        html_content = render_to_string(
-            'clubManagement/status-report-mail-template.html', {
-                'status_update': status_update.get_report(),
-                'date': status_date,
-                'url': url
-            })
+            url = 'https://%s%s' % (domain, reverse('status-update-detail',
+                                                    kwargs={
+                                                        'day': status_date.day,
+                                                        'month': status_date.month,
+                                                        'year': status_date.year
+                                                    }))
 
-        # render text only mail
-        text_content = render_to_string(
-            'clubManagement/status-report-mail-template.txt', {
-                'status_update': status_update.get_report(),
-                'date': status_date,
-                'url': url
-            })
+            # Send status report
+            # render with dynamic value
+            html_content = render_to_string(
+                'clubManagement/status-report-mail-template.html', {
+                    'status_update': status_update.get_report(),
+                    'date': status_date,
+                    'url': url
+                })
 
-        subject = 'Status update report %s' % status_date.strftime('%d-%m-%Y')
+            # render text only mail
+            text_content = render_to_string(
+                'clubManagement/status-report-mail-template.txt', {
+                    'status_update': status_update.get_report(),
+                    'date': status_date,
+                    'url': url
+                })
 
-        from_email = settings.EMAIL
+            subject = 'Status update report %s' % status_date.strftime(
+                '%d-%m-%Y')
 
-        email = EmailMultiAlternatives(
-            subject, text_content, from_email, [mailing_list])
-        email.attach_alternative(html_content, "text/html")
-        email.send()
+            from_email = settings.EMAIL
 
-        # Send next status update reminder
-        subject = 'Status Update [%s]' % date.today().strftime('%d-%m-%Y')
+            email = EmailMultiAlternatives(
+                subject, text_content, from_email, [mailing_list])
+            email.attach_alternative(html_content, "text/html")
+            email.send()
 
-        text_content = 'Please reply to this thread to sent your status ' \
-                       'updates for %s' % date.today().strftime('%d-%m-%Y')
+            # Send next status update reminder
+            subject = 'Status Update [%s]' % date.today().strftime('%d-%m-%Y')
 
-        send_mail(
-            subject,
-            text_content,
-            from_email,
-            [mailing_list],
-            fail_silently=False,
-        )
+            text_content = 'Please reply to this thread to sent your status ' \
+                           'updates for %s' % date.today().strftime('%d-%m-%Y')
+
+            send_mail(
+                subject,
+                text_content,
+                from_email,
+                [mailing_list],
+                fail_silently=False,
+            )
 
         print("Status update processing successful")
