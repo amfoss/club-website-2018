@@ -17,15 +17,23 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
+from rest_framework import routers
+from rest_framework_jwt.views import obtain_jwt_token
 
+from clubManagement.views import StatusReportDetailApiView
 from fosswebsite import settings
 from .views import Home
+
+
+router = routers.DefaultRouter()
+router.register(r'status-report', StatusReportDetailApiView)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', Home.as_view(), name='home'),
     url(r'^accounts/', include('registration.urls')),
-    url(r'^accounts/', include('django.contrib.auth.urls')),#this file is invisible
+    # this file is invisible
+    url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^club/', include('clubManagement.urls')),
     url(r'^foss/', include('promotion.urls')),
     url(r'^achievements/', include('achievements.urls')),
@@ -36,6 +44,9 @@ urlpatterns = [
     url(r'^notices/', include('noticeBoard.urls')),
     url(r'^resources/', include('technical_resources.urls')),
     url(r'^events/', include('events.urls')),
+    url(r'^api/auth/', include('rest_framework.urls')),
+    url(r'^api/auth/token/$', obtain_jwt_token),
+    url(r'^api/', include(router.urls)),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

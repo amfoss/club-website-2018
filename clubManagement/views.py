@@ -10,14 +10,20 @@ from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.urls import reverse, reverse_lazy
-from django.views.generic import View, ListView, DetailView, UpdateView, DeleteView, CreateView, TemplateView
-from clubManagement.models import Attendance, Team, TeamMember, Responsibility, \
-    StudentResponsibility, StatusUpdate
+from django.views.generic import View, ListView, DetailView, UpdateView, \
+    DeleteView, CreateView, TemplateView
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.response import Response
+
+from clubManagement.models import Attendance, Team, TeamMember, \
+    Responsibility, StudentResponsibility, StatusUpdate
+from clubManagement.serializers import StatusReportSerializer
 
 from registration.models import UserInfo
 
-month = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
-         "October", "November", "December"]
+month = ["January", "February", "March", "April", "May", "June", "July",
+         "August", "September", "October", "November", "December"]
 
 month_num = range(12)
 
@@ -68,21 +74,26 @@ class AttendanceAddView(View):
         if not request.user.is_authenticated:
             return redirect('permission_denied')
 
-        d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
+        d = date(int(kwargs.get('year')), int(kwargs.get('month')),
+                 int(kwargs.get('day')))
         batch_list = get_batch_list(kwargs)
 
         attendance_list = []
 
         for batch in batch_list:
-            user_info_list = UserInfo.objects.filter(year=batch).order_by('user__first_name')
+            user_info_list = UserInfo.objects.filter(year=batch).order_by(
+                'user__first_name')
             # display the current attendance for this date and batch
             attendance_list_batch = []
             for user_info in user_info_list:
                 try:
-                    attendance = Attendance.objects.get(user=user_info.user, date=d)
+                    attendance = Attendance.objects.get(user=user_info.user,
+                                                        date=d)
                 except Attendance.DoesNotExist:
                     attendance = Attendance(user=user_info.user,
-                                            added_by=User.objects.get(username=self.request.user.username), date=d)
+                                            added_by=User.objects.get(
+                                                username=self.request.user.username),
+                                            date=d)
                     attendance.save()
                 attendance_list_batch.append(attendance)
 
@@ -96,10 +107,12 @@ class AttendanceAddView(View):
         if not request.user.is_superuser:
             return redirect('permission_denied')
 
-        d = date(int(kwargs.get('year')), int(kwargs.get('month')), int(kwargs.get('day')))
+        d = date(int(kwargs.get('year')), int(kwargs.get('month')),
+                 int(kwargs.get('day')))
 
         if 'batch' in kwargs:
-            user_info_list = UserInfo.objects.filter(year=int(kwargs.get('batch')))
+            user_info_list = UserInfo.objects.filter(
+                year=int(kwargs.get('batch')))
             for user_info in user_info_list:
                 attendance_list = user_info.user.attendance_set.filter(date=d)
                 for i in attendance_list:
@@ -144,7 +157,8 @@ class YearStudentAttendanceReportView(View):
                     )
                     )
                 )
-            context = {'user': user, 'month_att': month_att, 'month': month, 'month_num': month_num,
+            context = {'user': user, 'month_att': month_att, 'month': month,
+                       'month_num': month_num,
                        'year': kwargs.get('year')}
         else:
             context = {'errors': 'No records found'}
@@ -181,7 +195,8 @@ class YearAttendanceReportView(View):
                     )
 
                     total = len(
-                        user_info.user.attendance_set.filter(date__range=["2017-07-03", datetime.now().date()])
+                        user_info.user.attendance_set.filter(
+                            date__range=["2017-07-03", datetime.now().date()])
                     )
 
                     total_att += att_month
@@ -197,7 +212,8 @@ class YearAttendanceReportView(View):
                 else:
                     x = 0
                 percentage = float("{0:.2f}".format(x))
-                user_data.append([user_info.user, month_att, total_att, percentage])
+                user_data.append(
+                    [user_info.user, month_att, total_att, percentage])
             year = calculate_year(batch)
             if len(user_data) > 0:
                 data_list.append([user_data, year, ''])
@@ -227,13 +243,13 @@ class MonthAttendanceReportView(View):
             total_att += att_month
 
             total = len(user_info.user.attendance_set.filter(
-                    date__year=int(kwargs.get('year')),
-                    date__month=int(kwargs.get('month'))
-                )
+                date__year=int(kwargs.get('year')),
+                date__month=int(kwargs.get('month'))
+            )
             )
 
             if total > 0:
-                x = float(att_month*100)/float(total)
+                x = float(att_month * 100) / float(total)
             else:
                 x = 0
             percentage = float("{0:.2f}".format(x))
@@ -241,8 +257,11 @@ class MonthAttendanceReportView(View):
             data.append([user_info.user, att_month, percentage])
 
         if len(data) > 0:
-            context = {'data': data, 'head': calculate_year(int(kwargs.get('batch'))) + " - " +
-                       month[int(kwargs.get('month')) - 1] + ", " + kwargs.get('year')}
+            context = {'data': data, 'head': calculate_year(
+                int(kwargs.get('batch'))) + " - " +
+                                             month[int(kwargs.get(
+                                                 'month')) - 1] + ", " + kwargs.get(
+                'year')}
         else:
             context = {'errors': 'No data found'}
         return render(request, self.template_name, context)
@@ -260,8 +279,10 @@ class ResponsibilityDetailView(DetailView):
     model = Responsibility
 
     def get_context_data(self, **kwargs):
-        context = super(ResponsibilityDetailView, self).get_context_data(**kwargs)
-        context['responsibility_list'] = self.get_object().studentresponsibility_set.all()
+        context = super(ResponsibilityDetailView, self).get_context_data(
+            **kwargs)
+        context[
+            'responsibility_list'] = self.get_object().studentresponsibility_set.all()
         context['user_count'] = len(context['responsibility_list'])
         context['all_users'] = User.objects.all()
         if self.request.user.is_superuser or self.request.user == self.object.created_by:
@@ -271,15 +292,18 @@ class ResponsibilityDetailView(DetailView):
         return context
 
     def post(self, request, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             raise PermissionDenied
         try:
             user = User.objects.get(id=int(request.POST.get('user_id')))
-            StudentResponsibility.objects.get(responsibility=self.get_object(), user=user)
+            StudentResponsibility.objects.get(responsibility=self.get_object(),
+                                              user=user)
         except StudentResponsibility.DoesNotExist:
             try:
                 user = User.objects.get(id=int(request.POST.get('user_id')))
-                StudentResponsibility(responsibility=self.get_object(), user=user).save()
+                StudentResponsibility(responsibility=self.get_object(),
+                                      user=user).save()
             except User.DoesNotExist:
                 redirect('error')
         return redirect('responsibility_detail', self.get_object().pk)
@@ -292,7 +316,8 @@ class ResponsibilityCreateView(CreateView):
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         response = super(ResponsibilityCreateView, self).form_valid(form)
-        StudentResponsibility(responsibility=self.object, user=self.request.user).save()
+        StudentResponsibility(responsibility=self.object,
+                              user=self.request.user).save()
         return response
 
 
@@ -301,14 +326,18 @@ class ResponsibilityUpdateView(UpdateView):
     fields = ['name', 'description']
 
     def get(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
-        return super(ResponsibilityUpdateView, self).get(request, *args, **kwargs)
+        return super(ResponsibilityUpdateView, self).get(request, *args,
+                                                         **kwargs)
 
     def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
-        return super(ResponsibilityUpdateView, self).post(request, *args, **kwargs)
+        return super(ResponsibilityUpdateView, self).post(request, *args,
+                                                          **kwargs)
 
 
 class ResponsibilityDeleteView(DeleteView):
@@ -316,26 +345,33 @@ class ResponsibilityDeleteView(DeleteView):
     success_url = reverse_lazy('responsibility')
 
     def get(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             return redirect('permission_denied')
-        return super(ResponsibilityDeleteView, self).get(request, *args, **kwargs)
+        return super(ResponsibilityDeleteView, self).get(request, *args,
+                                                         **kwargs)
 
     def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
-        return super(ResponsibilityDeleteView, self).post(request, *args, **kwargs)
+        return super(ResponsibilityDeleteView, self).post(request, *args,
+                                                          **kwargs)
 
 
 class StudentResponsibilityDeleteView(DeleteView):
     model = StudentResponsibility
 
     def get_success_url(self):
-        return reverse('responsibility_detail', kwargs={'pk': self.object.responsibility.id})
+        return reverse('responsibility_detail',
+                       kwargs={'pk': self.object.responsibility.id})
 
     def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
-        return super(StudentResponsibilityDeleteView, self).post(request, *args, **kwargs)
+        return super(StudentResponsibilityDeleteView, self).post(request, *args,
+                                                                 **kwargs)
 
 
 # Views to add, update and delete Teams
@@ -360,7 +396,8 @@ class TeamDetailView(DetailView):
         return context
 
     def post(self, request, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             return redirect('permission_denied')
         try:
             user = User.objects.get(id=int(request.POST.get('user_id')))
@@ -390,12 +427,14 @@ class TeamUpdateView(UpdateView):
     fields = ['name', 'image', 'description']
 
     def get(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(TeamUpdateView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(TeamUpdateView, self).post(request, *args, **kwargs)
 
@@ -405,12 +444,14 @@ class TeamDeleteView(DeleteView):
     success_url = reverse_lazy('team')
 
     def get(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(TeamDeleteView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(TeamDeleteView, self).post(request, *args, **kwargs)
 
@@ -422,7 +463,8 @@ class TeamMemberDeleteView(DeleteView):
         return reverse('team_detail', kwargs={'pk': self.object.team.id})
 
     def post(self, request, *args, **kwargs):
-        if not (request.user.is_superuser or request.user == self.get_object().created_by):
+        if not (
+                request.user.is_superuser or request.user == self.get_object().created_by):
             redirect('permission_denied')
         return super(TeamMemberDeleteView, self).post(request, *args, **kwargs)
 
@@ -489,3 +531,14 @@ class StatusUpdateDetailView(TemplateView):
                 raise Http404
 
         return render(request, self.template_name, context)
+
+
+class StatusReportDetailApiView(viewsets.ReadOnlyModelViewSet):
+    queryset = StatusUpdate.objects.all()
+    serializer_class = StatusReportSerializer
+    lookup_field = 'date'
+
+    def retrieve(self, request, *args, **kwargs):
+        status = StatusUpdate.objects.get(date=kwargs.get('date', None))
+        return Response(status.get_report())
+
