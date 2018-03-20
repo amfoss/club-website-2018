@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'bootstrap3_datetime',
     'achievements',
     'clubManagement',
@@ -91,6 +92,28 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ],
+}
+
+if DEBUG:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'].append(
+        'rest_framework.renderers.BrowsableAPIRenderer')
+    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
+        'rest_framework.authentication.SessionAuthentication')
+    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
+        'rest_framework.authentication.BasicAuthentication')
 
 
 # Password validation
@@ -150,13 +173,17 @@ TEMPLATES[0]['OPTIONS']['context_processors'].append("promotion.context_processo
 
 
 # bcc mail id for join application task mail
-join_application_mail_list = ['chirath.02@gmail.com', 'vipin.p@gmail.com', 'anuv.1994@gmail.com',
-                              'haritha.h20@gmail.com', 'akshayharidas006@gmail.com', 'bithin2007@gmail.com']
+join_application_mail_list = [
+    'chirath.02@gmail.com',
+    'vipin.p@gmail.com',
+    'bithin2007@gmail.com'
+]
 
 # mail id to sent task and reply to
 join_application_reply_to = ['chirath.02@gmail.com']
 
 NOCAPTCHA = True
 
-# Additional info like email configurations, passwords and secrete keys kept in separate file during development
+# Additional info like email configurations, passwords and secrete keys kept
+#  in separate file during development
 from .local_settings import *
