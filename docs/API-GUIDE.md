@@ -13,7 +13,7 @@ Response is a json object with a token valid for 300 seconds. Use this token to
 make all requests to the server.
 
 ```json
-{"token":"your_token"}
+{"token": "your_token"}
 ```
 
 ## Status update
@@ -23,4 +23,38 @@ status-report.
 
 ```bash
 curl -H "Authorization: JWT <your_token>" https://amfoss.in/api/status-report/2018-03-19/
+```
+
+## Attendance
+
+All actions requires JWT token in the header header.
+
+### Random Wi-Fi SSID name
+
+url: api/attendance/wifi-ssid/
+
+```json
+{"ssid": "some-random-ssid-name"}
+```
+
+Access only for admin accounts. The SSID will be updated everyday.
+
+### Mark attendance
+
+url: api/attendance/mark/
+
+post: 
+
+```json
+{"ssid_list": "string of ssid separated by comma"}
+```
+
+response:
+
+```json
+{
+  "time": "the current time",
+  "duration": "in minutes", 
+  "status": "successful"
+}
 ```
