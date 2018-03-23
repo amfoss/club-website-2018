@@ -539,6 +539,19 @@ class StatusReportDetailApiView(viewsets.ReadOnlyModelViewSet):
     lookup_field = 'date'
 
     def retrieve(self, request, *args, **kwargs):
-        status = StatusUpdate.objects.get(date=kwargs.get('date', None))
-        return Response(status.get_report())
+        if kwargs.get('date', None):
+            try:
+                status_update_date = datetime.strptime(
+                    kwargs.get('date'), '%Y-%m-%d'
+                ).date()
+            except ValueError:
+                return Response(
+                        {"error": "Wrong date format, format : yyyy-mm-dd"})
+            if status_update_date:
+                try:
+                    status = StatusUpdate.objects.get(date=status_update_date)
+                    return Response(status.get_report())
+                except StatusUpdate.DoesNotExist:
+                    return Response({"error": "No reports found!"})
+        return Response({"error": "Error"})
 
