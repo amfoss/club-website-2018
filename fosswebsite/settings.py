@@ -107,15 +107,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-if DEBUG:
-    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'].append(
-        'rest_framework.renderers.BrowsableAPIRenderer')
-    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
-        'rest_framework.authentication.SessionAuthentication')
-    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
-        'rest_framework.authentication.BasicAuthentication')
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -169,21 +160,17 @@ NOCAPTCHA = True
 
 # application count notification
 
-TEMPLATES[0]['OPTIONS']['context_processors'].append("promotion.context_processors.application_processor")
-
-
-# bcc mail id for join application task mail
-join_application_mail_list = [
-    'chirath.02@gmail.com',
-    'vipin.p@gmail.com',
-    'bithin2007@gmail.com'
-]
-
-# mail id to sent task and reply to
-join_application_reply_to = ['chirath.02@gmail.com']
-
-NOCAPTCHA = True
+TEMPLATES[0]['OPTIONS']['context_processors'].append(
+    "promotion.context_processors.application_processor")
 
 # Additional info like email configurations, passwords and secrete keys kept
 #  in separate file during development
 from .local_settings import *
+
+if DEBUG:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'].append(
+        'rest_framework.renderers.BrowsableAPIRenderer')
+    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
+        'rest_framework.authentication.SessionAuthentication')
+    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].append(
+        'rest_framework.authentication.BasicAuthentication')
