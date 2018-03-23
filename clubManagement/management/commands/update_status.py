@@ -3,6 +3,7 @@ import sys
 import os
 from datetime import timedelta
 
+import telegram
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives, send_mail
 from django.core.management.base import BaseCommand
@@ -31,10 +32,24 @@ class Command(BaseCommand):
         )
 
         parser.add_argument(
-            '--no-mail',
+            '--mail',
             action='store_true',
-            dest='no-mail',
-            help='prevent the system from sending mails'
+            dest='mail',
+            help='Sent status update as mail'
+        )
+
+        parser.add_argument(
+            '--create-thread',
+            action='store_true',
+            dest='create-thread',
+            help='Create a new thread for the status update'
+        )
+
+        parser.add_argument(
+            '--telegram',
+            action='store_true',
+            dest='telegram',
+            help='Sent status update to the telegram group'
         )
 
     @staticmethod
@@ -81,23 +96,23 @@ class Command(BaseCommand):
         status_update.value = status_string
         status_update.process_report()
 
-        no_mail = options.get('no-mail', False)
+        domain = settings.DOMAIN
 
-        if not no_mail:
-            mailing_list = settings.MAILING_LIST
+        url = 'https://%s%s' % (domain, reverse('status-update-detail',
+                                                kwargs={
+                                                    'day': status_date.day,
+                                                    'month': status_date.month,
+                                                    'year': status_date.year
+                                                }))
+
+        mailing_list = settings.MAILING_LIST
+        from_email = settings.EMAIL
+
+        if options.get('mail', False):
 
             if not mailing_list:
                 print('MAILING_LIST env variable needs to be set')
                 sys.exit()
-
-            domain = settings.DOMAIN
-
-            url = 'https://%s%s' % (domain, reverse('status-update-detail',
-                                                    kwargs={
-                                                        'day': status_date.day,
-                                                        'month': status_date.month,
-                                                        'year': status_date.year
-                                                    }))
 
             # Send status report
             # render with dynamic value
@@ -119,13 +134,12 @@ class Command(BaseCommand):
             subject = 'Status update report %s' % status_date.strftime(
                 '%d-%m-%Y')
 
-            from_email = settings.EMAIL
-
             email = EmailMultiAlternatives(
                 subject, text_content, from_email, [mailing_list])
             email.attach_alternative(html_content, "text/html")
             email.send()
 
+        if options.get('create-thread', False):
             # Send next status update reminder
             subject = 'Status Update [%s]' % date.today().strftime('%d-%m-%Y')
 
@@ -138,6 +152,23 @@ class Command(BaseCommand):
                 from_email,
                 [mailing_list],
                 fail_silently=False,
+            )
+
+        if options.get('telegram', False):
+            text_content = render_to_string(
+                'clubManagement/status-report-telegram.txt', {
+                    'status_update': status_update.get_report(),
+                    'date': status_date,
+                    'url': url
+                })
+
+            # Telegram bot
+            bot = telegram.Bot(
+                token=settings.telegram_bot_token)
+            bot.send_message(
+                chat_id=settings.telegram_group_id,
+                text=text_content,
+                parse_mode=telegram.ParseMode.HTML
             )
 
         print("Status update processing successful")

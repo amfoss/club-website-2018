@@ -1,0 +1,12 @@
+<b>Status update report {{ date }} </b>
+
+<b>Students who didn't sent status updates: </b>
+{% for year, value in status_update.items %}
+
+<b>{{ year }}</b>
+{% for name, status in value.items %}{% ifequal status "N" %}
+{{ name }}{% endifequal %}{% endfor %}{% endfor %}
+
+{% if url %}More info at <a href="{{ url }}">amfoss.in</a>{% endif %}
+
+<i>This is an automatically generated message.</i>

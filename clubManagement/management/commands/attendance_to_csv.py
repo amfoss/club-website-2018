@@ -1,7 +1,5 @@
 import csv
 from datetime import date
-
-import os
 from django.core.management import BaseCommand
 
 from clubManagement.models import Attendance
