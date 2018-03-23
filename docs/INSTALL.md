@@ -35,7 +35,7 @@ pip install -r docs/requirements.txt
 ```
 ## Create local_settings.py
 ```bash
-touch fosswebsite/local_settings.py
+cp fosswebsite/local_settings_sample.py fosswebsite/local_settings.py
 ```
 ## Setup database
 In the development phase, we use sqlite3.db
