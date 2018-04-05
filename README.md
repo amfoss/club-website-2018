@@ -42,7 +42,7 @@ Start by building the code, and testing all our new exciting features!!
 
 Getting started with contributing to this is really easy with just one step away from contributing to foss@amrita. So let’s get you started,
 Fork the repository
-[https://github.com/amfoss/website](https://github.com/amfoss/website)
+[https://github.com/amfoss/fosswebsite](https://github.com/amfoss/fosswebsite)
 
 Do a direct clone, so that you can get familiarised with the code base. Moreover a cloned copy on your local system will help you to reproduce bugs and see the changes you make real time.
 
