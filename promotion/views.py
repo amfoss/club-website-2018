@@ -75,6 +75,10 @@ class JoinApplicationCreateView(CreateView):
     template_name = 'base/form.html'
     success_url = reverse_lazy('join_success')
 
+    def get(self, request, *args, **kwargs):
+        template_name = 'promotion/coming_soon.html'
+        return render(request, template_name, {})
+
     def get_context_data(self, **kwargs):
         context = super(JoinApplicationCreateView, self).get_context_data(**kwargs)
         context['title'] = 'Applications'
