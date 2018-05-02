@@ -30,8 +30,22 @@ workon foss
 ```
 ## Install requirements
 All the requirements are mentioned in the file `requirements.txt`.
+
+Install mysql client. 
+
+In debian: 
+
+```bash
+sudo apt install default-libmysqlclient-dev 
+```
+
+In ubuntu: 
+
 ```bash
 sudo apt install libmysqlclient-dev
+```
+
+```bash
 pip install -r docs/requirements.txt
 ```
 ## Create local_settings.py
