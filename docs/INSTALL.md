@@ -31,6 +31,7 @@ workon foss
 ## Install requirements
 All the requirements are mentioned in the file `requirements.txt`.
 ```bash
+sudo apt install libmysqlclient-dev
 pip install -r docs/requirements.txt
 ```
 ## Create local_settings.py
