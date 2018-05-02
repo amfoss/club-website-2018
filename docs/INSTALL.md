@@ -44,6 +44,7 @@ In ubuntu:
 ```bash
 sudo apt install libmysqlclient-dev
 ```
+Further install all the requirement packages from the requirements.txt file.
 
 ```bash
 pip install -r docs/requirements.txt
