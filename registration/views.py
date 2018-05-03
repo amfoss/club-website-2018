@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, ListView, View
+from rest_framework import viewsets
 import xlrd, datetime
 
 from achievements.models import Contribution
@@ -13,6 +14,7 @@ from clubManagement.models import Team
 from projects.models import Project
 from registration.forms import UserSignUpForm, UserForm
 from registration.models import UserInfo
+from registration.serializers import UserInfoSerializer, UserSerializer
 
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
          "October", "November", "December"]
@@ -138,3 +140,16 @@ class AddData(View):
             Contribution(user=user, title=title, organisation=org, url=url, description=desc, date=dates).save()
 
         return render(request, template_name)
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+
+class UserInfoViewSet(viewsets.ModelViewSet):
+    queryset = UserInfo.objects.all()
+    serializer_class = UserInfoSerializer
