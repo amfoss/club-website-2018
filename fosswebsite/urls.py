@@ -20,13 +20,17 @@ from django.contrib import admin
 from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token
 
+from attendance.views import SSIDNameAPIView, MarkAttendanceAPIView
 from clubManagement.views import StatusReportDetailApiView
 from fosswebsite import settings
+from registration.views import UserViewSet, UserInfoViewSet
 from .views import Home
 
 
 router = routers.DefaultRouter()
 router.register(r'status-report', StatusReportDetailApiView)
+router.register(r'user', UserViewSet)
+router.register(r'user-info', UserInfoViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -46,6 +50,8 @@ urlpatterns = [
     url(r'^events/', include('events.urls')),
     url(r'^api/auth/', include('rest_framework.urls')),
     url(r'^api/auth/token/$', obtain_jwt_token),
+    url(r'^api/ssid-name/$',  SSIDNameAPIView.as_view()),
+    url(r'^api/attendance/mark/$',  MarkAttendanceAPIView.as_view()),
     url(r'^api/', include(router.urls)),
 ]
 
