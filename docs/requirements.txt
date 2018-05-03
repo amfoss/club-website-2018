@@ -4,6 +4,7 @@ chardet==3.0.4
 defusedxml==0.5.0
 Django==1.11.10
 django-allauth==0.35.0
+django-mysql==2.2.2
 django-recaptcha==1.4.0
 djangorestframework==3.7.7
 djangorestframework-jwt==1.11.0
