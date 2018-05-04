@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.contrib.auth.models import User
 from django.http import Http404
@@ -90,7 +90,7 @@ class MarkAttendanceAPIView(APIView):
                 attendance.attendance[year][str(user_info.user.id)][1] = str(timezone.now().strftime('%X'))
             # update end time
             attendance.attendance[year][str(user_info.user.id)][2] = \
-                str((timezone.now() + datetime.timedelta(0, 1)).strftime('%X'))
+                str((timezone.now() + timedelta(0, 1)).strftime('%X'))
             attendance.save()
 
             at = attendance.attendance[year][str(request.user.id)]
