@@ -16,28 +16,6 @@ class DailyAttendance(models.Model):
         return str(self.date)
 
 
-class MonthlyAttendance(models.Model):
-    """
-    attendance = { "user_id": [days_present, total_days, total_hours], "user_id": [5, 7, 50] }
-    """
-    date = models.DateField()
-    attendance = JSONField()
-
-    def __str__(self):
-        return str(self.date)
-
-
-class YearlyAttendance(models.Model):
-    """
-    attendance = { "user_id":  [days_present, total_days, total_hours], "user_id": [200, 300, 1000] }
-    """
-    date = models.DateField()
-    attendance = JSONField()
-
-    def __str__(self):
-        return str(self.date)
-
-
 class SSIDName(models.Model):
     name = models.CharField(max_length=30)
 
