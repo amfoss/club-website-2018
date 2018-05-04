@@ -1,0 +1,95 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Add attendance {% endblock %}
+
+{% block body %}
+    {% include 'base/nav-bar.html' %}
+    <div id="wrap">
+        <div id="main">
+            <div class="container">
+                <form class="row" action="" method="post">
+                    {% csrf_token %}
+                    {% for batch, attendance_batch in attendance_dict.items %}
+                        <h2 class="header col-xs-12 col-md-12">{{ batch }}</h2>
+                        {% for user, data in attendance_batch.items %}
+                            <div class="col-xs-6 col-sm-4 col-md-2 btn names {% ifequal data.0 1 %}btn-success{% else %}btn-danger{% endifequal %}"
+{#                                    {% if request.user.is_superuser %}#}
+{#                                 onclick="click_attendance('{{ att.user.username }}')" #}
+{#                                    {% endif %}#}
+                                 id="{{ user.username }}_div" style="white-space: normal">
+                                <p class="link">{{ user.first_name }} {{ user.last_name }} {% if data.3 %}<br/> {{ data.3 }} {% endif %}</p>
+                                <input type="checkbox" style="display: None" id="{{ user.username }}" value="True"
+                                       name="{{ user.username }}" {% ifequal data.0 1 %}checked{% endifequal %}>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    <p class="col-xs-12 col-md-12"></p>
+                    <button type="reset" onclick="changeDay(-1)" class="col-md-2 col-sm-6 btn">Previous</button>
+                    {% if request.user.is_superuser %}
+                        <button type="submit" class="col-md-2 offset-md-3 col-sm-6 btn btn-primary save-btn">Save
+                        </button>
+                    {% endif %}
+                    <button type="reset" onclick="changeDay(1)" class="col-md-2 offset-md-3 col-sm-6 btn">Next</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+    <script>
+        function changeDay(i) {
+            var variables, year, month, day, link, date;
+
+            variables = window.location.href.split("/");
+
+            year = variables[(variables.length - 4)];
+            month = variables[variables.length - 3] - 1;
+            day = variables[variables.length - 2];
+
+            link = '/attendance/';
+
+
+            date = new Date(year, month, day, 0, 0, 0);
+            date.setDate(date.getDate() + i);
+            link += date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+
+            window.location = link;
+        }
+    </script>
+
+    <style>
+        .btn {
+            margin: 10px;
+        }
+
+        .save-btn {
+            padding: 10px 0;
+        }
+
+        .names {
+            height: 80px;
+        }
+
+        .link {
+            height: 100%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            margin: 30px 0;
+        }
+
+        .header {
+            padding-top: 20px;
+            text-align: center;
+        }
+    </style>
+
+    {% block script %}
+        <script src="{% static 'clubManagement/js/attendance.js' %}"></script>
+    {% endblock %}
+{% endblock %}

@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.contrib.auth.models import User
+from django.http import Http404
 from django.shortcuts import redirect, get_object_or_404, render
 from django.utils import timezone
 from django.utils.datetime_safe import date
@@ -93,6 +94,22 @@ class MarkAttendanceAPIView(APIView):
         else:
             return Response({"status": "error"})
 
+def create_daily_attendance_dict(daily_attendance):
+    attendance = daily_attendance.attendance
+    attendance_dict = {}
+
+    for batch, attendance_b in attendance.items():
+        attendance_batch = {}
+        for user_id, data in attendance_b.items():
+            user = User.objects.get(id=int(user_id))
+            time_in_lab = datetime.strptime(data[2], '%X') - datetime.strptime(data[1], '%X')
+            if time_in_lab.total_seconds() != 0:
+                data.append(time_in_lab)
+            attendance_batch[user] = data
+        attendance_dict[batch] = attendance_batch
+
+    return attendance_dict
+
 
 class DailyAttendanceView(View):
     template_name = 'attendance/attendance-daily.html'
@@ -104,18 +121,83 @@ class DailyAttendanceView(View):
         d = date(int(kwargs.get('year')), int(kwargs.get('month')),
                  int(kwargs.get('day')))
 
-        attendance = get_object_or_404(DailyAttendance, date=d).attendance
-        attendance_dict = {}
+        daily_attendance = get_object_or_404(DailyAttendance, date=d)
+        attendance_dict = create_daily_attendance_dict(daily_attendance)
 
+        # attendance_dict = { "1st year": { user: [present, s_time, e_time], } }
+        context = {'attendance_dict': attendance_dict, 'head': d}
+        return render(request, self.template_name, context)
+
+
+def sum_daily_attendance_dict(attendance_list):
+    # attendance_dict = { "1st year": { user: [present, total, percentage, total_time, avg time], } }
+    attendance_dict = {}
+
+    for daily_attendance in attendance_list:
+        attendance = daily_attendance.attendance
         for batch, attendance_b in attendance.items():
-            attendance_batch = {}
+            if batch not in attendance_dict:
+                attendance_dict[batch] = {}
             for user_id, data in attendance_b.items():
-                user = User.objects.get(id=int(user_id))
+                user = User.objects.get(id=user_id)
                 time_in_lab = datetime.strptime(data[2], '%X') - datetime.strptime(data[1], '%X')
-                if time_in_lab.total_seconds() != 0:
-                    data.append(time_in_lab)
-                attendance_batch[user] = data
-            attendance_dict[batch] = attendance_batch
+                if user not in attendance_dict[batch]:
+                    attendance_dict[batch][user] = [data[0], 1, data[0], time_in_lab, time_in_lab]
+                else:
+                    # present count
+                    attendance_dict[batch][user][0] += data[0]
+                    # total
+                    attendance_dict[batch][user][1] += 1
+                    # total time in lab
+                    attendance_dict[batch][user][3] += time_in_lab
 
-        context = {'attendance_dict': attendance_dict, 'head': str(date)}
+                    # attendance percentage
+                    if attendance_dict[batch][user][1] == 0:
+                        attendance_dict[batch][user][2] = 0
+                    else:
+                        attendance_dict[batch][user][2] = \
+                            attendance_dict[batch][user][0] * 100 / attendance_dict[batch][user][1]
+
+                    # Avg time per day
+                    if attendance_dict[batch][user][0] == 0:
+                        attendance_dict[batch][user][4] = attendance_dict[batch][user][3]
+                    else:
+                        attendance_dict[batch][user][4] = \
+                            attendance_dict[batch][user][3] / attendance_dict[batch][user][0]
+
+    return attendance_dict
+
+
+class MonthlyAttendanceView(View):
+    template_name = 'attendance/attendance-sum.html'
+
+    def get(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('permission_denied')
+
+        year = int(kwargs.get('year'))
+        month = int(kwargs.get('month'))
+
+        attendance_list = DailyAttendance.objects.filter(date__year=year, date__month=month)
+        if attendance_list.count() == 0:
+            raise Http404
+        attendance_dict = sum_daily_attendance_dict(attendance_list)
+        context = {'attendance_dict': attendance_dict, 'head': str(year) + " " + str(month)}
+        return render(request, self.template_name, context)
+
+
+class YearlyAttendanceView(View):
+    template_name = 'attendance/attendance-sum.html'
+
+    def get(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('permission_denied')
+
+        year = int(kwargs.get('year'))
+
+        attendance_list = DailyAttendance.objects.filter(date__year=year)
+        if attendance_list.count() == 0:
+            raise Http404
+        attendance_dict = sum_daily_attendance_dict(attendance_list)
+        context = {'attendance_dict': attendance_dict, 'head': str(year)}
         return render(request, self.template_name, context)
