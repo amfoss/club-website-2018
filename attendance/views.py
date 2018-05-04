@@ -1,6 +1,10 @@
 from datetime import datetime
 
+from django.contrib.auth.models import User
+from django.shortcuts import redirect, get_object_or_404, render
 from django.utils import timezone
+from django.utils.datetime_safe import date
+from django.views.generic.base import View
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -28,16 +32,19 @@ class MarkAttendanceAPIView(APIView):
     def get_student_years(self):
         batches = []
         year = timezone.now().year
-        if timezone.now().month < 7:
+        if timezone.now().month < 8:
             year -= 1
-        for i in range(4):
+        for i in range(3):
             batches += [year - i]
+        print(batches)
         return batches
 
     def calculate_year(self, year):
         year = timezone.now().year - year
         if timezone.now().month > 7:
             year += 1
+        if year > 4:
+            year = 4
         if year == 1:
             return '1st year'
         elif year == 2:
@@ -46,12 +53,11 @@ class MarkAttendanceAPIView(APIView):
             return '3rd year'
         elif year == 4:
             return '4th year'
-        else:
-            return 'Alumni - ' + str(year + timezone.now().year) + ' batch'
 
     def create_daily_attendance_json_data(self):
         # attendance = { "2016": [[user_id, 0, s_time, e_time], ], "2015": [[user_id, 1, s_time, e_time], ] }
         batch_list = self.get_student_years()
+        print(batch_list)
         attendance_dict = {}
 
         for batch in batch_list:
@@ -86,3 +92,30 @@ class MarkAttendanceAPIView(APIView):
             return Response({"status": "success", "time-in-lab": str(time_in_lab)})
         else:
             return Response({"status": "error"})
+
+
+class DailyAttendanceView(View):
+    template_name = 'attendance/attendance-daily.html'
+
+    def get(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('permission_denied')
+
+        d = date(int(kwargs.get('year')), int(kwargs.get('month')),
+                 int(kwargs.get('day')))
+
+        attendance = get_object_or_404(DailyAttendance, date=d).attendance
+        attendance_dict = {}
+
+        for batch, attendance_b in attendance.items():
+            attendance_batch = {}
+            for user_id, data in attendance_b.items():
+                user = User.objects.get(id=int(user_id))
+                time_in_lab = datetime.strptime(data[2], '%X') - datetime.strptime(data[1], '%X')
+                if time_in_lab.total_seconds() != 0:
+                    data.append(time_in_lab)
+                attendance_batch[user] = data
+            attendance_dict[batch] = attendance_batch
+
+        context = {'attendance_dict': attendance_dict, 'head': str(date)}
+        return render(request, self.template_name, context)

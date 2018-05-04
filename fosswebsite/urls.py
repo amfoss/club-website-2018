@@ -48,6 +48,7 @@ urlpatterns = [
     url(r'^notices/', include('noticeBoard.urls')),
     url(r'^resources/', include('technical_resources.urls')),
     url(r'^events/', include('events.urls')),
+    url(r'^attendance/', include('attendance.urls')),
     url(r'^api/auth/', include('rest_framework.urls')),
     url(r'^api/auth/token/$', obtain_jwt_token),
     url(r'^api/ssid-name/$',  SSIDNameAPIView.as_view()),
