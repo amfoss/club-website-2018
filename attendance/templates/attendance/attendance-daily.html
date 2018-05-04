@@ -1,12 +1,13 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %} Add attendance {% endblock %}
+{% block title %} {{ head }} {% endblock %}
 
 {% block body %}
     {% include 'base/nav-bar.html' %}
     <div id="wrap">
         <div id="main">
             <div class="container">
+            <h1 class="mt-2 ml-2"> {{ head|date }} </h1>
                 <form class="row" action="" method="post">
                     {% csrf_token %}
                     {% for batch, attendance_batch in attendance_dict.items %}
@@ -25,10 +26,7 @@
                     {% endfor %}
                     <p class="col-xs-12 col-md-12"></p>
                     <button type="reset" onclick="changeDay(-1)" class="col-md-2 col-sm-6 btn">Previous</button>
-                    {% if request.user.is_superuser %}
-                        <button type="submit" class="col-md-2 offset-md-3 col-sm-6 btn btn-primary save-btn">Save
-                        </button>
-                    {% endif %}
+
                     <button type="reset" onclick="changeDay(1)" class="col-md-2 offset-md-3 col-sm-6 btn">Next</button>
                 </form>
             </div>
@@ -49,7 +47,6 @@
 
             link = '/attendance/';
 
-
             date = new Date(year, month, day, 0, 0, 0);
             date.setDate(date.getDate() + i);
             link += date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
@@ -68,7 +65,7 @@
         }
 
         .names {
-            height: 80px;
+            min-height: 80px;
         }
 
         .link {
