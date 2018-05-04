@@ -84,7 +84,13 @@ class MarkAttendanceAPIView(APIView):
             user_info = UserInfo.objects.get(user=request.user)
             year = self.calculate_year(user_info.year)
             attendance.attendance[year][str(user_info.user.id)][0] = 1  # present
-            attendance.attendance[year][str(user_info.user.id)][2] = str(timezone.now().strftime('%X'))  # update end time
+            # first time
+            if attendance.attendance[year][str(user_info.user.id)][1] == \
+                    attendance.attendance[year][str(user_info.user.id)][2]:
+                attendance.attendance[year][str(user_info.user.id)][1] = str(timezone.now().strftime('%X'))
+            # update end time
+            attendance.attendance[year][str(user_info.user.id)][2] = \
+                str((timezone.now() + datetime.timedelta(0, 1)).strftime('%X'))
             attendance.save()
 
             at = attendance.attendance[year][str(request.user.id)]
@@ -93,6 +99,7 @@ class MarkAttendanceAPIView(APIView):
             return Response({"status": "success", "time-in-lab": str(time_in_lab)})
         else:
             return Response({"status": "error"})
+
 
 def create_daily_attendance_dict(daily_attendance):
     attendance = daily_attendance.attendance
