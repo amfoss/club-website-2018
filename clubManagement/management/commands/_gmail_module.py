@@ -61,7 +61,7 @@ def get_label_id(service, user_id, label_name):
         for label in labels:
             if label['name'] == label_name:
                 label_id = label['id']
-    except errors.HttpError, error:
+    except errors.HttpError as error:
         print('An error occurred: %s' % error)
 
     return label_id
@@ -96,7 +96,7 @@ def list_messages_matching_query(service, user_id, query=''):
             messages.extend(response['messages'])
         return messages
 
-    except errors.HttpError, error:
+    except errors.HttpError as error:
         print ('An error occurred: %s' % error)
 
 
@@ -136,7 +136,7 @@ def get_sender_email_id(service, user_id, msg_id, subject):
                 email_id = email_id[start + 1: end]
         return email_id
 
-    except errors.HttpError, error:
+    except errors.HttpError as error:
         print ('An error occurred: %s' % error)
 
 

@@ -13,7 +13,7 @@ from django.utils.datetime_safe import date
 
 from clubManagement.models import StatusUpdate
 
-from _gmail_module import get_status_update_emails
+from clubManagement.management.commands._gmail_module import get_status_update_emails
 from fosswebsite import settings
 
 
