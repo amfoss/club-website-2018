@@ -69,6 +69,12 @@ python manage.py collectstatic
 python manage.py createsuperuser
 ```
 ## Run server
+Check whether DEBUG=FALSE in 'settings.py' file. In that case, you need to call runserver with
+```bash
+python manage.py runserver --insecure
+```
+Else runserver with
+
 ```bash
 python manage.py runserver
 ```
