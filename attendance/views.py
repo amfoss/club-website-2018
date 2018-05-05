@@ -108,11 +108,14 @@ def create_daily_attendance_dict(daily_attendance):
     for batch, attendance_b in attendance.items():
         attendance_batch = {}
         for user_id, data in attendance_b.items():
-            user = User.objects.get(id=int(user_id))
-            time_in_lab = datetime.strptime(data[2], '%X') - datetime.strptime(data[1], '%X')
-            if time_in_lab.total_seconds() != 0:
-                data.append(time_in_lab)
-            attendance_batch[user] = data
+            try:
+                user = User.objects.get(id=int(user_id))
+                time_in_lab = datetime.strptime(data[2], '%X') - datetime.strptime(data[1], '%X')
+                if time_in_lab.total_seconds() != 0:
+                    data.append(time_in_lab)
+                attendance_batch[user] = data
+            except User.DoesNotExist:
+                pass
         attendance_dict[batch] = attendance_batch
 
     return attendance_dict
@@ -146,31 +149,34 @@ def sum_daily_attendance_dict(attendance_list):
             if batch not in attendance_dict:
                 attendance_dict[batch] = {}
             for user_id, data in attendance_b.items():
-                user = User.objects.get(id=user_id)
-                time_in_lab = datetime.strptime(data[2], '%X') - datetime.strptime(data[1], '%X')
-                if user not in attendance_dict[batch]:
-                    attendance_dict[batch][user] = [data[0], 1, data[0], time_in_lab, time_in_lab]
-                else:
-                    # present count
-                    attendance_dict[batch][user][0] += data[0]
-                    # total
-                    attendance_dict[batch][user][1] += 1
-                    # total time in lab
-                    attendance_dict[batch][user][3] += time_in_lab
-
-                    # attendance percentage
-                    if attendance_dict[batch][user][1] == 0:
-                        attendance_dict[batch][user][2] = 0
+                try:
+                    user = User.objects.get(id=user_id)
+                    time_in_lab = datetime.strptime(data[2], '%X') - datetime.strptime(data[1], '%X')
+                    if user not in attendance_dict[batch]:
+                        attendance_dict[batch][user] = [data[0], 1, data[0], time_in_lab, time_in_lab]
                     else:
-                        attendance_dict[batch][user][2] = \
-                            attendance_dict[batch][user][0] * 100 / attendance_dict[batch][user][1]
+                        # present count
+                        attendance_dict[batch][user][0] += data[0]
+                        # total
+                        attendance_dict[batch][user][1] += 1
+                        # total time in lab
+                        attendance_dict[batch][user][3] += time_in_lab
 
-                    # Avg time per day
-                    if attendance_dict[batch][user][0] == 0:
-                        attendance_dict[batch][user][4] = attendance_dict[batch][user][3]
-                    else:
-                        attendance_dict[batch][user][4] = \
-                            attendance_dict[batch][user][3] / attendance_dict[batch][user][0]
+                        # attendance percentage
+                        if attendance_dict[batch][user][1] == 0:
+                            attendance_dict[batch][user][2] = 0
+                        else:
+                            attendance_dict[batch][user][2] = \
+                                attendance_dict[batch][user][0] * 100 / attendance_dict[batch][user][1]
+
+                        # Avg time per day
+                        if attendance_dict[batch][user][0] == 0:
+                            attendance_dict[batch][user][4] = attendance_dict[batch][user][3]
+                        else:
+                            attendance_dict[batch][user][4] = \
+                                attendance_dict[batch][user][3] / attendance_dict[batch][user][0]
+                except User.DoesNotExist:
+                    pass
 
     return attendance_dict
 
