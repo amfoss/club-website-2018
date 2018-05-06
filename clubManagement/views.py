@@ -557,6 +557,7 @@ class MonthlyStatusUpdateDetailView(View):
 
                 print(report)
                 context = {'status_update': report,
+                           'total': status_updates.count(),
                            'date': date(
                                month=int(kwargs.get('month')), year=int(kwargs.get('year')), day=1).strftime("%b - %Y")}
             except ValueError:
