@@ -533,6 +533,38 @@ class StatusUpdateDetailView(TemplateView):
         return render(request, self.template_name, context)
 
 
+class MonthlyStatusUpdateDetailView(View):
+    model = StatusUpdate
+    template_name = 'clubManagement/status-report-monthly-template.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        report = {}
+        if len(kwargs) == 2:
+            try:
+                status_updates = StatusUpdate.objects.filter(
+                    date__year=int(kwargs.get('year')), date__month=int(kwargs.get('month')))
+                for status_update in status_updates:
+                    data = status_update.get_report()
+                    for batch, status_update_dict in data.items():
+                        if batch not in report:
+                            report[batch] = {}
+                        for name, status in status_update_dict.items():
+                            if name not in report[batch]:
+                                report[batch][name] = 0
+                            if status == 'Y':
+                                report[batch][name] += 1
+
+                print(report)
+                context = {'status_update': report,
+                           'date': date(
+                               month=int(kwargs.get('month')), year=int(kwargs.get('year')), day=1).strftime("%b - %Y")}
+            except ValueError:
+                raise Http404
+
+        return render(request, self.template_name, context)
+
+
 class StatusReportDetailApiView(viewsets.ReadOnlyModelViewSet):
     queryset = StatusUpdate.objects.all()
     serializer_class = StatusReportSerializer
@@ -554,4 +586,6 @@ class StatusReportDetailApiView(viewsets.ReadOnlyModelViewSet):
                 except StatusUpdate.DoesNotExist:
                     return Response({"error": "No reports found!"})
         return Response({"error": "Error"})
+
+
 

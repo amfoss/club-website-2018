@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Status update report {{ date }}</title>
+</head>
+<body>
+    <h2>Status update report {{ date }}</h2>
+
+
+    {% for year, value in status_update.items %}
+        <h4>{{ year }}</h4>
+        <ol>
+            {% for name, status in value.items %}
+                    <li>{{ name }} - {{ status }}</li>
+            {%  endfor %}
+        </ol>
+    {% endfor %}
+
+</body>
+</html>

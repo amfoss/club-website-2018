@@ -71,9 +71,13 @@ urlpatterns = [
         name='team_member_delete'),
 
     # Status update
+    url(r'^status-update/(?P<month>[0-9]+)/(?P<year>[0-9]+)/$',
+        login_required(MonthlyStatusUpdateDetailView.as_view()),
+        name='monthly-status-update-detail'),
     url(r'^status-update/(?P<day>[0-9]+)/(?P<month>[0-9]+)/(?P<year>[0-9]+)/$',
         login_required(StatusUpdateDetailView.as_view()),
         name='status-update-detail'),
+
 
     # index
     url(r'^$', login_required(IndexView.as_view()), name='club'),
