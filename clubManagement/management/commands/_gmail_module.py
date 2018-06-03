@@ -79,13 +79,14 @@ def list_messages_matching_query(service, user_id, query=''):
         return messages
 
     except errors.HttpError as error:
-        print ('An error occurred: %s' % error)
+        print('An error occurred: %s' % error)
 
 
 def get_sender_email_id(service, user_id, msg_id, subject):
     """
     This functions return the email id of the sender
-    :param service: The google service(here Gmail)
+    :param subject: subject of mail
+    :param service: The google service(here GMail)
     :param user_id: The user id of the user
     :param msg_id: The message id that is to be retrived
     :return: string(email id)
@@ -98,6 +99,10 @@ def get_sender_email_id(service, user_id, msg_id, subject):
 
         header_data = message["payload"]["headers"]
 
+        for i in header_data:
+            print(i)
+        print("=========================================================================")
+
         sender_text = "From"
 
         correct_subject = False
@@ -105,6 +110,8 @@ def get_sender_email_id(service, user_id, msg_id, subject):
         for data in header_data:
             if 'subject' == data['name'].lower() and subject in data['value']:
                 correct_subject = True
+
+        print(correct_subject)
 
         if not correct_subject:
             return ''
@@ -119,7 +126,7 @@ def get_sender_email_id(service, user_id, msg_id, subject):
         return email_id
 
     except errors.HttpError as error:
-        print ('An error occurred: %s' % error)
+        print('An error occurred: %s' % error)
 
 
 def get_status_update_emails(status_update_date):
@@ -132,7 +139,7 @@ def get_status_update_emails(status_update_date):
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('gmail', 'v1', http=http)
     status_update_date_string = status_update_date.strftime('%d-%m-%Y')
-    query = '[foss-2017] Status Update [%s]' % status_update_date_string
+    query = 'Status Update [%s]' % status_update_date_string
 
     emails = []
     messages = list_messages_matching_query(service, user_id='me', query=query)
@@ -148,9 +155,3 @@ def get_status_update_emails(status_update_date):
                 emails.append(email)
 
     return emails
-
-
-if __name__ == '__main__':
-    get_credentials()
-    status_date = date(day=2, month=6, year=2018)
-    print(get_status_update_emails(status_date))
