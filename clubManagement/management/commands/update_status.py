@@ -72,7 +72,7 @@ class Command(BaseCommand):
         print(email_list)
 
         if not email_list:
-            print("No email found.")
+            print("No email found, possible reasons: Google api Token might have expired.")
             sys.exit()
 
         # get all users in email_list

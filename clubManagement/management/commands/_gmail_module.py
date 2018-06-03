@@ -99,10 +99,6 @@ def get_sender_email_id(service, user_id, msg_id, subject):
 
         header_data = message["payload"]["headers"]
 
-        for i in header_data:
-            print(i)
-        print("=========================================================================")
-
         sender_text = "From"
 
         correct_subject = False
@@ -110,8 +106,6 @@ def get_sender_email_id(service, user_id, msg_id, subject):
         for data in header_data:
             if 'subject' == data['name'].lower() and subject in data['value']:
                 correct_subject = True
-
-        print(correct_subject)
 
         if not correct_subject:
             return ''
