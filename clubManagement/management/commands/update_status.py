@@ -69,8 +69,10 @@ class Command(BaseCommand):
             status_date = date.today() - timedelta(days=1)
 
         email_list = get_status_update_emails(status_date)
+        print(email_list)
 
         if not email_list:
+            print("No email found.")
             sys.exit()
 
         # get all users in email_list
@@ -82,6 +84,7 @@ class Command(BaseCommand):
             if user_email in email_list:
                 user_list.append(user)
 
+        print(user_list)
         # Generate string user_id Y, user_id Y etc....
         status_string = ''
 
