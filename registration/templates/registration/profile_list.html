@@ -27,7 +27,7 @@
                 <input onkeyup="myFunction()" type="text" class="form-control" id="search" placeholder="Search">
             </div>
 
-            <div class="card-columns col-md-12">
+            <div class="col-md-12" id="box">
 
                 {% for user_info in object_list %}
                     {% if user_info.user.is_active %}
@@ -40,12 +40,11 @@
                     <div class="crt-card bg-primary text-center">
                         <div class="crt-card-avatar">
                             {% if user_info.profile_pic %}
-                                <img class="avatar avatar-195" src="/static/media/{{ user_info.profile_pic }}"
-                                     srcset="/static/media/{{ user_info.profile_pic }} 2x" width="195" height="195"
-                                     alt="">
+                                <img class="avatar avatar-210" src="/static/media/{{ user_info.profile_pic }}"
+                                     srcset="/static/media/{{ user_info.profile_pic }} 2x" alt="">
                             {% else %}
                                 <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
-                                     class="card-title profile-pic img-fluid rounded-circle">
+                                     class="avatar-210 card-title profile-pic img-fluid rounded-circle">
                             {% endif %}
                         </div>
                         <div class="crt-card-info">
@@ -54,24 +53,31 @@
                             <p class="text-muted">{{ user_info.small_intro }}</p>
                             <ul class="crt-social clear-list">
                                 {% if user_info.gitHub %}
-                                    <li><a href="{{ user_info.gitHub }}"><span class="crt-icon crt-icon-github"></span></a>
+                                    <li><a class="icon-link" href="{{ user_info.gitHub }}"><span class="crt-icon">
+                                            <img width="25px" height="25px" src="{% static 'base/icons/github.png' %}">
+                                          </span></a>
                                     </li>
                                 {% endif %}
                                 {% if user_info.blog %}
-                                    <li><a href="{{ user_info.blog }}"><span class="crt-icon crt-icon-wordpress"></span></a>
+                                    <li><a href="{{ user_info.blog }}"><span class="crt-icon">
+                                            <img width="25px" height="25px" src="{% static 'base/icons/wordpress.png' %}">
+                                          </span></a>
                                     </li>
                                 {% endif %}
                                 {% if user_info.linkedIn %}
-                                    <li><a href="{{ user_info.linkedIn }}"><span
-                                            class="crt-icon crt-icon-linkedin"></span></a></li>
+                                    <li><a href="{{ user_info.linkedIn }}"><span class="crt-icon">
+                                            <img width="25px" height="25px" src="{% static 'base/icons/linkedin.png' %}">
+                                          </span></a></li>
                                 {% endif %}
                                 {% if user_info.facebook %}
-                                    <li><a href="{{ user_info.facebook }}"><span
-                                            class="crt-icon crt-icon-facebook"></span></a></li>
+                                    <li><a href="{{ user_info.facebook }}"><span class="crt-icon">
+                                            <img width="25px" height="25px" src="{% static 'base/icons/facebook.png' %}">
+                                          </span></a></li>
                                 {% endif %}
                                 {% if user_info.twitter %}
-                                    <li><a href="{{ user_info.twitter }}"><span
-                                            class="crt-icon crt-icon-twitter"></span></a></li>
+                                    <li><a href="{{ user_info.twitter }}"><span class="crt-icon">
+                                            <img width="25px" height="25px" src="{% static 'base/icons/twitter.png' %}">
+                                          </span></a></li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -83,7 +89,6 @@
                         </div>
                     {% endif %}
                 </div><!-- .crt-side-box-item -->
-
             </div><!-- #crt-side-box -->
         </div><!-- #crt-side-box-wrap -->
                         </a>
