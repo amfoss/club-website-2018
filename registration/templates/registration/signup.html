@@ -127,7 +127,7 @@
                                 </div>
                                 <div class="input string optional">
                                     <label class="string optional" for="user-name">Batch*</label>
-                                    <input type="number" class="form-control" name="year" id="year"
+                                    <input type="number" min="2006" class="form-control" name="year" id="year"
                                            value="{{ form.year.value|default_if_none:"" }}" placeholder="YYYY">
                                 </div>
                             </div>
