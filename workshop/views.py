@@ -150,13 +150,13 @@ class WorkshopRegisterFormView(CreateView):
 
         mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
                        "Great to know that you are interested in '" + workshop.name + "' workshop conducted by" \
-                                                                                      "FOSS@Amrita. We got your application and it's being processed. " + \
+                                                                                      "amFOSS. We got your application and it's being processed. " + \
                        "We will get back to you once your payment process is is complete.\n\n" \
                        "Please pay Rs" + str(workshop.price) + " at FOSS club, ground floor lab after 4:30pm on or " + \
                        "before " + str(workshop.start_date_time.date()) + " or contact us at " + \
                        str(workshop.contact_info) + " during breaks. \n\nNote: Payment has to completed " + \
                        "before the last date. You should show the confirmation e-mail to attend the workshop." + \
-                       " \n\nThank you, \n\nFOSS@Amrita"
+                       " \n\nThank you, \n\namFOSS"
 
         to_address_list = ['chirath.02@gmail.com', form.cleaned_data.get('email')]
         email = EmailMessage(
