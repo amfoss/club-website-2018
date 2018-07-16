@@ -1,6 +1,6 @@
 # **Project**
 
-It’s been 10+ years now that FOSS@Amrita came into existence. We are a community of students who support and guide each other towards making open source contributions, which not only helps them to build their technical skills but also helps them to contribute back to the society. Being one of the most active student communities of the country, we have made our presence felt all over. We have been getting a lot of exposure & opportunities via different platforms such as conferences & social media to name a few.
+It’s been 10+ years now that amFOSS came into existence. We are a community of students who support and guide each other towards making open source contributions, which not only helps them to build their technical skills but also helps them to contribute back to the society. Being one of the most active student communities of the country, we have made our presence felt all over. We have been getting a lot of exposure & opportunities via different platforms such as conferences & social media to name a few.
 
 **Idea / Goal of the club**: To be a better human being.
 
@@ -137,7 +137,7 @@ Add the command to source:
 * **RGSoC**: A timeline enlisting the details of students selected for RGSoC every year.
 * **Talks**: Referencing to the talks and conferences given/attended by the students of the club.
 * **Internships**: Provides a brief outline of various internship programs enrolled in by the club members.
-* **Contests**: Gives out a detailed account of various contests participated and the rank obtained by the members of FOSS@Amrita.
+* **Contests**: Gives out a detailed account of various contests participated and the rank obtained by the members of amFOSS.
 * **Club Management**
 There are various activities in-store to manage and keep up the work-environment. We list them below:
 * **Attendance management**: Reflects number of people present during lab working hours and their respective attendance percentage.

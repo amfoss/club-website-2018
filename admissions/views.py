@@ -23,7 +23,7 @@ from fosswebsite.settings import join_application_mail_list, join_application_re
 
 approve_mail_content = ',\\n\\nWe are excited to inform that you are selected for the interview. Be there at ' + \
                         'ground floor computer lab by 5PM. \\n\\nIf you have any queries contact : Chirath,'+ \
-                        ' 8547801861 \\n\\nThank you, \\n\\nFOSS@Amrita'
+                        ' 8547801861 \\n\\nThank you, \\n\\namFOSS'
 
 reject_mail_content = ',\\n\\nWe are sorry to inform that you are not selected for the interview. Please try again ' \
                       'next time.'
@@ -62,9 +62,9 @@ class JoinApplicationDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(JoinApplicationDetailView, self).get_context_data(**kwargs)
-        context['approve_mail_subject'] = 'Congrats! FOSS@Amrita membership application'
+        context['approve_mail_subject'] = 'Congrats! amFOSS membership application'
         context['approve_mail_content'] = 'Hi ' + self.get_object().name + approve_mail_content
-        context['reject_mail_subject'] = 'FOSS@Amrita membership application'
+        context['reject_mail_subject'] = 'amFOSS membership application'
         context['reject_mail_content'] = 'Hi ' + self.get_object().name + reject_mail_content
         context['mail_error'] = self.request.GET.get('errors', None)
         return context
@@ -126,10 +126,10 @@ class JoinApplicationCreateView(CreateView):
                        "solved. This is to test if you are really interested and we expect you to be honest. " + \
                        "If you have any queries feel free to reply to this mail." + \
                        "\n\n[1] http://foss.amrita.ac.in/foss/#sixth\n[2] https://www.hackerrank.com/" + \
-                       "\n[3] http://cs50.tv/2016/fall/\n\nWith regards, \n\nFOSS@Amrita"
+                       "\n[3] http://cs50.tv/2016/fall/\n\nWith regards, \n\namFOSS"
         to_address_list = ['chirath.02@gmail.com', form.cleaned_data.get('email')]
         email = EmailMessage(
-            'Tasks to complete, FOSS@Amrita',
+            'Tasks to complete, amFOSS',
             mail_content,
             'amritapurifoss@gmail.com',
             to_address_list,
@@ -220,7 +220,7 @@ class EmailAllApplicantsView(View):
             cc_list += user.email + ", "
 
         reply_to = join_application_reply_to[0]
-        mail_subject = "FOSS@Amrita"
+        mail_subject = "amFOSS"
         mail_content = "Namah Shivaya, \n\n"
 
         context = {'to_list': to_list, 'bcc_list': bcc_list, 'cc_list': cc_list,
