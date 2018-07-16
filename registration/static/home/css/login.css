@@ -5,6 +5,8 @@ html {
 
 body {
     background: url('../../registration/../home/img/abstract-wallpapers.jpg') transparent fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 *, *:before, *:after {
@@ -201,7 +203,7 @@ body {
 }
 
 .connect.facebook .connect__icon {
-    background: #3f3f3f;    
+    background: #3f3f3f;
 }
 
 .connect.googleplus {
