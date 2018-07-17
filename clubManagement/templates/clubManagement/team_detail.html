@@ -61,15 +61,18 @@
                                     <span class="badge badge-default badge-pill">{{ user_count }}</span>
                                 </li>
                                 {% for resp in responsibility_list %}
+
                                     <li class="list-group-item justify-content-between">
                                         <a class="link" href="{% url 'profile' resp.user.id %}">
                                             {{ resp.user.first_name }} {{ resp.user.last_name }}
                                         </a>
+                                    {% if edit_permission %}
                                         <form method="post" action="{% url "team_member_delete" resp.id %}">
                                             {% csrf_token %}
                                             <button type="submit" class="close">×</button>
                                         </form>
-                                    </li>
+                                    {% endif %}
+                                             </li>
                                 {% endfor %}
                                 {% if edit_permission %}
                                     <div onclick="showForm()" class="col-md-6 offset-md-3">

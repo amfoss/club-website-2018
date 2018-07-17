@@ -27,12 +27,12 @@
                         <div class="col-md-4">
                             <br>
                             <div class="card-group" style="width:60%" >
-                                <img class="card-img-top img-fluid" height="auto" width="auto"
+                                <img class="card-img-top img-fluid" style="height: 200px;width: 300px"
                                      src="/static/clubManagement/image/{{ object.image }}"
                                      alt="Card image cap">
                                 <div class="card-block">
                                     <h3 class="card-title">{{ object.name }}</h3>
-                                    <p class="card-body text-truncate">{{ object.description | truncatechars:99}}</p>
+                                    <p class="card-body text-truncate">{{ object.description | truncatechars:50}}</p>
                                     <a href="{% url 'team_detail' object.id %}"
                                        class="btn btn-dark anim-scroll">More info
                                     </a>
