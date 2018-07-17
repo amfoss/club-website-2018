@@ -74,6 +74,9 @@
                                         <button type="submit" class="btn btn-danger add-btn">Delete</button>
                                     </a>
                                 {% endif %}
+                                  <a href="{% url 'workshop_feedback' object.id %}">
+                                        <button type="submit" class="btn">Add Feedback</button>
+                                  </a>
                             </div>
                         </div>
 
