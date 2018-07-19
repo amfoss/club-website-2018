@@ -46,12 +46,14 @@
                         </div>
                     {% endfor %}
                 </div>
-                </div>
+
             {% endif %}
     </div>
     </div>
 {% endblock %}
 {% block script %}
+<script src="{% static 'base/js/chart-bundle.js'%}"></script>
+
 <script>
 
     window.chartColors = {
@@ -125,4 +127,12 @@
     };
 
 </script>
+<style>
+    .graph-div {
+        margin-top: 40px;
+    }
+    canvas {
+        max-height: 500px;
+    }
+</style>
 {% endblock %}

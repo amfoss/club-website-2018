@@ -9,7 +9,7 @@
         <div class="hero-caption">
             <div class="hero-text">
                 <h1 class="hero-title font-alt">Teams</h1>
-                <p class="hero-subtitle font-serif">A list of all the Teams, FOSS@Amrita.</p>
+                <p class="hero-subtitle font-serif">A list of all the Teams, amFOSS.</p>
             </div>
         </div>
         <!-- /HERO TEXT -->
@@ -24,13 +24,16 @@
             <div class="card col-md-12">
                 <div class="card-block"  align='center'>
 
-                    <div class="row">
-                        {% for object in object_list %}
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img class="card-img-top img-fluid"  width="auto"
+
+                <div class="row">
+                    {% for object in object_list %}
+                        <div class="col-md-4">
+                            <br>
+                            <div class="card-group" style="width:60%" >
+                                <img class="card-img-top img-fluid" height="auto" width="auto"
                                      src="/static/clubManagement/image/{{ object.image }}"
-                                 alt="Card image cap">
+                                     alt="Card image cap">
+
                                 <div class="card-block">
                                     <br>
                                     <h3 class="card-title">{{ object.name }}</h3>
