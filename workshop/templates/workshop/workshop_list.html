@@ -51,12 +51,19 @@
                                     <a href="{% url 'workshop_detail' workshop.0.id %}"
                                        class="btn btn-dark anim-scroll">More info
                                     </a>
-                                    {% ifequal workshop.1 0 %}
-                                        <a class="btn btn-danger">Closed</a>
+                                   {% ifequal workshop.1 0 %}
+                                        <button onclick="ifclosed()" class="btn btn-danger">Closed</button>
                                     {% else %}
-                                        <a class="btn btn-success">
-                                            Open</a>
+                                        <button onclick="ifopened()" class="btn btn-success">Open</button>
                                     {% endifequal %}
+                                    <script>
+                                      function ifclosed() {
+                                        alert("Sorry! the seats are completed");
+                                      }
+                                      function ifopened() {
+                                        alert("Go to MORE INFO to register a seat!!");
+                                      }
+                                    </script>
                                 </div>
                             </div>
                         </div>
