@@ -19,20 +19,22 @@
 
     <!-- BLOG -->
     <br><br>
-    
-    <div class="container"  >
+      <div class="container">
+        <div class="row">
+            <div class="card col-md-12">
+                <div class="card-block"  align='center'>
 
-                <div class="row">
-                    {% for object in object_list %}
-                        <div class="col-md-4">
-                            <br>
-                            <div class="card-group" style="width:60%" >
-                                <img class="card-img-top img-fluid" height="250px"
-                                     src="/static/media/{{ object.image }}"
-                                     alt="Card image cap">
+                    <div class="row">
+                        {% for object in object_list %}
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img class="card-img-top img-fluid"  width="auto"
+                                     src="/static/clubManagement/image/{{ object.image }}"
+                                 alt="Card image cap">
                                 <div class="card-block">
+                                    <br>
                                     <h3 class="card-title">{{ object.name }}</h3>
-                                    <p class="card-body text-truncate">{{ object.description | truncatechars:99}}</p>
+                                    <p class="card-body text-truncate">{{ object.description | truncatechars:100}}</p>
                                     <a href="{% url 'team_detail' object.id %}"
                                        class="btn btn-dark anim-scroll">More info
                                     </a>
@@ -43,7 +45,7 @@
                     {% if request.user.is_authenticated %}
 
                         <div class="col-md-12">
-                            <div class="container">
+                            <div class="container" align='center'>
                                 <br><br>
                                 <a href="{% url 'team_create' %}">
                                     <button class="btn btn-dark anim-scroll">Add new</button>
@@ -52,7 +54,9 @@
                         </div>
                     {% endif %}
 
-
+                         </div>
+                  </div>
+             </div>
         </div>
     </div>
 {% endblock %}
