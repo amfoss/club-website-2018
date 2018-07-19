@@ -21,16 +21,13 @@
         <div class="container-fluid container-custom">
 
             <div class="row">
-
-                <div class="col-sm-8 col-sm-offset-2">
-
                     <div class="container">
                         <div class="row">
 
                             <div class="col-md-4">
                                 <h3>Team details</h3>
                                 <div class="card mb-3">
-                                    <img class="card-img-top img-fluid" src="/static/media/{{ object.image }}">
+                                    <img class="card-img-top img-fluid" src="/static/clubManagement/image/{{ object.image }}">
                                     <div class="card-block">
                                         <h4 class="card-title">{{ object.name }}</h4>
                                         <p class="card-text">{{ object.description }}</p>
@@ -50,30 +47,30 @@
                                         {% endif %}
                                     </div>
                                 </div>
-
-
                             </div>
 
-                            <ul class="list-group col-md-4">
+                              <div class="row">
+                              <div class="col-md-5">
+                              <ul class="list-group">
                                 <div class="margin-20"></div>
-                                <li class="list-group-item justify-content-between">
-                                    <h5>Team members</h5>
-                                    <span class="badge badge-default badge-pill">{{ user_count }}</span>
+                                <li class="row list-group-item justify-content-between">
+                                    <h5 style="text-align: center">Team members</h5>
+                                    <span class="col-md-1 badge badge-default badge-pill">{{ user_count }}</span>
                                 </li>
                                 {% for resp in responsibility_list %}
-                                    <li class="list-group-item justify-content-between">
-                                        <a class="link" href="{% url 'profile' resp.user.id %}">
+                                    <li class="row list-group-item justify-content-between">
+                                        <p class="col-md-10">
                                             {{ resp.user.first_name }} {{ resp.user.last_name }}
-                                        </a>
-                                        <form method="post" action="{% url "team_member_delete" resp.id %}">
+                                        </p>
+                                        <form class="col-md-2" method="post" action="{% url "team_member_delete" resp.id %}">
                                             {% csrf_token %}
                                             <button type="submit" class="close">×</button>
                                         </form>
                                     </li>
                                 {% endfor %}
                                 {% if edit_permission %}
-                                    <div onclick="showForm()" class="col-md-6 offset-md-3">
-                                        <button class="btn btn-dark anim-scroll">
+                                    <div onclick="showForm()" class="col-sm-offset-5">
+                                          <button class="btn btn-dark anim-scroll">
                                             Add student
                                         </button>
                                     </div>
@@ -100,16 +97,15 @@
                                     </div>
                                 </div>
                             </ul>
+                          </div>
 
                         </div>
                     </div>
 
-                </div>
-                <!-- .col-* -->
-
-            </div>
+                </div>                        
             <!-- .row -->
 
         </div>
+      </div>
     </section>
 {% endblock %}
