@@ -9,7 +9,7 @@
         <div class="hero-caption">
             <div class="hero-text">
                 <h1 class="hero-title font-alt">Teams</h1>
-                <p class="hero-subtitle font-serif">A list of all the Teams, FOSS@Amrita.</p>
+                <p class="hero-subtitle font-serif">A list of all the Teams, amFOSS.</p>
             </div>
         </div>
         <!-- /HERO TEXT -->
@@ -19,20 +19,20 @@
 
     <!-- BLOG -->
     <br><br>
-    <div class="container" align="center">
-        <div class="row">
-            <div class="card col-md-12">
+    
+    <div class="container"  >
+
                 <div class="row">
                     {% for object in object_list %}
                         <div class="col-md-4">
                             <br>
-                            <div class="card">
-                                <img class="card-img-top img-fluid" height="250px"
-                                     src="/static/media/{{ object.image }}"
+                            <div class="card-group" style="width:60%" >
+                                <img class="card-img-top img-fluid" height="auto" width="auto"
+                                     src="/static/clubManagement/image/{{ object.image }}"
                                      alt="Card image cap">
                                 <div class="card-block">
                                     <h3 class="card-title">{{ object.name }}</h3>
-                                    <p class="card-text">{{ object.description }}</p>
+                                    <p class="card-body text-truncate">{{ object.description | truncatechars:99}}</p>
                                     <a href="{% url 'team_detail' object.id %}"
                                        class="btn btn-dark anim-scroll">More info
                                     </a>
@@ -51,8 +51,8 @@
                             </div>
                         </div>
                     {% endif %}
-                </div>
-            </div>
+
+
         </div>
     </div>
 {% endblock %}

@@ -54,23 +54,23 @@
             </div>
 
             <br><br>
-        </div>
+
         <div class="row">
             <div class="col-md-6">
                 <ul class="list-group">
                     <div class="margin-20"></div>
-                    <li class="list-group-item justify-content-between">
-                        <h5 style="text-align: center">Project members</h5>
-                        <span class="badge badge-default badge-pill">{{ user_count }}</span>
+                    <li class="row list-group-item justify-content-between">
+                        <h5 class="col-md-11"style="text-align: center">Project members</h5>
+                        <span class="col-md-1 badge badge-default badge-pill">{{ user_count }}</span>
                     </li>
                     {% for project in project_list %}
-                        <li class="list-group-item justify-content-between">
-                            {{ project.user.first_name }} {{ project.user.last_name }}
-                            <form method="post" action="{% url "project_member_delete" project.id %}">
+                        <li class="row list-group-item justify-content-between">
+                              <p class="col-md-10">{{ project.user.first_name }} {{ project.user.last_name }}</p>
+                              <form class="col-md-2" method="post" action="{% url "project_member_delete" project.id %}">
                                 {% csrf_token %}
                                 <button type="submit" class="close">×</button>
-                            </form>
-                        </li>
+                              </form>
+                          </li>
                     {% endfor %}
                     <br>
                     {% if edit_permission %}
@@ -78,7 +78,7 @@
                             <button class="btn btn-dark anim-scroll">
                                 Add student
                             </button>
-                        </div>
+                    </div>
 
                     {% endif %}
                 </ul>
@@ -86,28 +86,29 @@
 
                 <div class="card student-form" id="student-form" style="display: none">
                     <div class="card-block">
-                        <form class="form-group col-md-6" action="" method="post">
+                        <form class="form-group" action="" method="post">
                             {% csrf_token %}
-                            <div class="col-sm-9" align="center">
-                            <label for="exampleInputEmail1"><h4>Add Student</h4></label>
+                            <div class="row">
+                                <div class="col-md-12" align="">
+                                  <label for="exampleInputEmail1"><h4>Add Student</h4></label>
+                                </div>
                             </div>
-                            <div class="dropdown">
+
                                 <div class="row">
-                                    <div class="col-md-10">
-                                        <input id="search" onkeyup="myFunction()" class="form-control"
-                                               data-toggle="dropdown" placeholder="Search..." autocomplete="off" style="text-transform:none">
-                                        <input type="hidden" id="search-id" name="user_id">
+                                      <div class="col-md-8">
+                                      <input id="search" onkeyup="myFunction()" class="form-control"
+                                             data-toggle="dropdown" placeholder="Search with students name.." autocomplete="off">
+                                      <input type="hidden" id="search-id" name="user_id">
+                                      <div class="dropdown-menu" id="search-results">
+                                          {% for user in all_users %}
+                                              <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
+                                                 class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>
+                                          {% endfor %}
+                                      </div>
                                     </div>
                                     <div class="col-md-2">
                                         <button type="submit" class="btn btn-dark anim-scroll">Add</button>
                                     </div>
-                                </div>
-
-                                <div class="dropdown-menu" id="search-results">
-                                    {% for user in all_users %}
-                                        <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
-                                           class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>
-                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="col-sm-9" align="center">
@@ -116,7 +117,6 @@
                         </form>
                     </div>
                 </div>
-            </div>
 
             <div class="col-md-6">
                 <ul class="list-group">
@@ -124,14 +124,17 @@
                         <h5 style="text-align: center">Languages & Frameworks</h5>
                     </li>
                     {% for i in languages %}
-                        <li class="list-group-item justify-content-between">
-                        <h6>{{ i.language }}</h6><br>
-                        <form method="post" action="{% url "language_delete" i.id %}">
+                        <li class=" list-group-item justify-content-between">
+                          <div class="row">
+                        <h6 class="col-md-10">{{ i.language }}</h6><br>
+                        <form class="col-md-2" method="post" action="{% url "language_delete" i.id %}">
                             {% csrf_token %}
                             <button type="submit" class="close">×</button>
                         </form>
+                      </div>
+                      </li>
                     {% endfor %}
-                    </li>
+
                     {% if edit_permission %}
                         <br>
                         <div class="col-sm-offset-5">
@@ -144,4 +147,23 @@
             </div>
         </div>
     </div>
+  </div>
+        <script>
+            function myFunction() {
+                // Declare variables
+                var input, filter, items, i;
+                input = document.getElementById('search');
+                filter = input.value.toUpperCase();
+                items = document.getElementsByClassName('dropdown-item');
+
+                // Loop through all list items, and hide those who don't match the search query
+                for (i = 0; i < items.length; i++) {
+                    if (items[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        items[i].style.display = "";
+                    } else {
+                        items[i].style.display = "none";
+                    }
+                }
+            }
+      </script>
 {% endblock %}

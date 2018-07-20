@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FOSS@Amrita. Code | Share | Grow</title>
+    <title>amFOSS. Code | Share | Grow</title>
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="{% static 'home/assets/images/favicon.png' %}">
@@ -122,12 +122,12 @@
                                 <div class="input string optional">
                                     <label class="string optional" for="user-name">UserName*</label>
                                     <input class="string optional" maxlength="255" id="user-name" name="username"
-                                           placeholder="First Name" type="text" size="50"
+                                           placeholder="Username" type="text" size="50"
                                            value="{{ form.username.value|default_if_none:"" }}"/>
                                 </div>
                                 <div class="input string optional">
                                     <label class="string optional" for="user-name">Batch*</label>
-                                    <input type="number" class="form-control" name="year" id="year"
+                                    <input type="number" min="2006" class="form-control" name="year" id="year"
                                            value="{{ form.year.value|default_if_none:"" }}" placeholder="YYYY">
                                 </div>
                             </div>
