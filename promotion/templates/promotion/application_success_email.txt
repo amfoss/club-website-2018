@@ -1,0 +1,24 @@
+Hi {{ applicant_name }}
+
+
+Your application details:
+
+Name: {{ applicant_name }}
+Email: {{ applicant_email }}
+Batch: {{ batch }}
+{% if roll_number %}
+Roll No: {{ roll_number }}
+{% endif %}
+
+Why do you want to join FOSS?
+
+{{ motivation }}
+
+{% if cs_background %}
+Technical knowledge: {{ cs_background }}
+{% endif %}
+
+Interests: {{ interests }}
+
+
+Feel free to contact at us amritapurifoss@gmail.com for any queries.

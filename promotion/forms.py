@@ -43,9 +43,9 @@ class JoinApplicationForm(forms.ModelForm):
     interests = forms.CharField(label='Interests', help_text="Write about your interests, passions and hobbies",
                                 widget=forms.Textarea(attrs={'placeholder': 'example: I love reading books.'}))
 
-    captcha = ReCaptchaField(attrs={
-        'theme': 'clean',
-    })
+    # captcha = ReCaptchaField(attrs={
+    #     'theme': 'clean',
+    # })
 
     def __init__(self, *args, **kwargs):
         super(JoinApplicationForm, self).__init__(*args, **kwargs)
@@ -54,7 +54,7 @@ class JoinApplicationForm(forms.ModelForm):
 
     class Meta:
         model = JoinApplication
-        fields = ['name', 'email', 'batch', 'roll_number', 'motivation', 'cs_background', 'interests', 'captcha']
+        fields = ['name', 'email', 'batch', 'roll_number', 'motivation', 'cs_background', 'interests', ]
 
 
 class ContactForm(forms.Form):

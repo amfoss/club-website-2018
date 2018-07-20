@@ -1,0 +1,23 @@
+Namah Shivaya,
+
+A new application was submitted.
+
+Name: {{ applicant_name }}
+Email: {{ applicant_email }}
+Batch: {{ batch }}
+{% if roll_number %}
+Roll No: {{ roll_number }}
+{% endif %}
+
+Why do you want to join FOSS?
+
+{{ motivation }}
+
+{% if cs_background %}
+Technical knowledge: {{ cs_background }}
+{% endif %}
+
+Interests: {{ interests }}
+
+
+Please visit {{ application_list_url }} for more details.

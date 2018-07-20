@@ -11,12 +11,14 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.forms.utils import ErrorList
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
+from fosswebsite import settings
 from promotion.forms import JoinApplicationForm, ContactForm
 from promotion.models import JoinApplication
 from fosswebsite.settings import join_application_mail_list, join_application_reply_to
@@ -73,6 +75,8 @@ class JoinApplicationDetailView(DetailView):
 class JoinApplicationCreateView(CreateView):
     form_class = JoinApplicationForm
     template_name = 'base/form.html'
+    success_email_plain_name = 'promotion/application_success_email.txt'
+    success_email_admin_plain_name = 'promotion/application_success_email_for_admins.txt'
     success_url = reverse_lazy('join_success')
 
     # def get(self, request, *args, **kwargs):
@@ -100,32 +104,41 @@ class JoinApplicationCreateView(CreateView):
 
         valid_form = super(JoinApplicationCreateView, self).form_valid(form)
 
-        # generate urls
-        # list_url = ''.join(['http://', get_current_site(self.request).domain, reverse('join_list')])
-        #
-        # # mail data
-        # subject = 'Application from ' + form.cleaned_data.get('name')
-        # content = 'A new application was submitted by ' + form.cleaned_data.get('name') + ' at ' + \
-        #           str(datetime.datetime.now()) + '. \n\nPlease visit ' + list_url + ' for more details.'
-        #
-        # to_address_list = list(User.objects.filter(is_superuser=True).values_list('email', flat=True))
-        #
-        # # sent mail when application is submitted
-        # send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
+        # Application details
+        applicant_name = form.cleaned_data.get('name')
+        applicant_email = form.cleaned_data.get('email')
+        application_time = str(datetime.datetime.now().strftime('%d - %B - %Y'))
+        batch = form.cleaned_data.get('batch')
+        roll_number = form.cleaned_data.get('roll_number', '')
+        motivation = form.cleaned_data.get('motivation')
+        cs_background = form.cleaned_data.get('cs_background', '')
+        interests = form.cleaned_data.get('interests')
 
-        mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
-                       "Great to know that you are interested in being a part of the FOSS club at Amritapuri. " + \
-                       "We got your application, please complete the " + \
-                       "tasks at [1] and complete at least 25 Hackerrank[2] problems or " + \
-                       "if you are not familiar with programming complete cs50.tv[3] till week 3 " + \
-                       "before " + str(datetime.date.today() + datetime.timedelta(days=20)) + ".\n\n" + \
-                       "Let us know when you are done with the Hackerrank problems, so that we can have a one on " + \
-                       "one interview. We won't be testing your skills but would ask about the problems you have " + \
-                       "solved. This is to test if you are really interested and we expect you to be honest. " + \
-                       "If you have any queries feel free to reply to this mail." + \
-                       "\n\n[1] http://foss.amrita.ac.in/foss/#sixth\n[2] https://www.hackerrank.com/" + \
-                       "\n[3] http://cs50.tv/2016/fall/\n\nWith regards, \n\nFOSS@Amrita"
+        # admin mail details
+        application_list_url = ''.join(['http://', get_current_site(self.request).domain, reverse('join_list')])
+        subject = 'Application from ' + applicant_name
+        email_context = {
+            'applicant_name': applicant_name,
+            'applicant_email': applicant_email,
+            'application_time': application_time,
+            'application_list_url': application_list_url,
+            'batch': batch,
+            'roll_number': roll_number,
+            'motivation': motivation,
+            'cs_background': cs_background,
+            'interests': interests
+        }
+        content = render_to_string(self.success_email_admin_plain_name, email_context)
+
+        try:
+            to_address_list = settings.join_application_mail_list
+            send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
+        except NameError:
+            print("Error: define `join_application_mail_list = []` to send application mail to admins")
+
+        mail_content = render_to_string(self.success_email_plain_name, email_context)
         to_address_list = ['chirath.02@gmail.com', form.cleaned_data.get('email')]
+
         email = EmailMessage(
             'Tasks to complete, FOSS@Amrita',
             mail_content,
