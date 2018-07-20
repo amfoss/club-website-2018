@@ -151,7 +151,7 @@ class JoinApplicationCreateView(CreateView):
             mail_content,
             'amritapurifoss@gmail.com',
             to_address_list,
-            join_application_mail_list,
+            None,
             reply_to=join_application_reply_to,
             headers={'Message-ID': 'foss@amrita'},
         )
