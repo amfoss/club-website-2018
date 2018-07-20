@@ -31,6 +31,11 @@
                                         <img height="25px" src="{% static 'base/icons/wordpress.png' %}">
                                     </a>
                                 {% endif %}
+                                {% if user_info.codeforces %}
+                                    <a class="icon-link" href="{{ user_info.codeforces }}">
+                                        <img height="25px" src="{% static 'base/icons/codeforces.png' %}">
+                                    </a>
+                                {% endif %}
                                 {% if user_info.linkedIn %}
                                     <a class="icon-link" href="{{ user_info.linkedIn }}">
                                         <img height="25px" src="{% static 'base/icons/linkedin.png' %}">
