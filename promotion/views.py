@@ -102,6 +102,7 @@ class JoinApplicationCreateView(CreateView):
             ])
             return self.form_invalid(form)
 
+        # get the valid form
         valid_form = super(JoinApplicationCreateView, self).form_valid(form)
 
         # Application details
@@ -117,6 +118,8 @@ class JoinApplicationCreateView(CreateView):
         # admin mail details
         application_list_url = ''.join(['http://', get_current_site(self.request).domain, reverse('join_list')])
         subject = 'Application from ' + applicant_name
+
+        # template variables accessible in the email files
         email_context = {
             'applicant_name': applicant_name,
             'applicant_email': applicant_email,
@@ -128,17 +131,21 @@ class JoinApplicationCreateView(CreateView):
             'cs_background': cs_background,
             'interests': interests
         }
+        # Render mail content from file
         content = render_to_string(self.success_email_admin_plain_name, email_context)
 
         try:
+            # to make sure the `join_application_mail_list` variable is set in settings.py
             to_address_list = settings.join_application_mail_list
             send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=False)
         except NameError:
             print("Error: define `join_application_mail_list = []` to send application mail to admins")
 
+        # Render mail content from file
         mail_content = render_to_string(self.success_email_plain_name, email_context)
-        to_address_list = ['chirath.02@gmail.com', form.cleaned_data.get('email')]
+        to_address_list = ['amritapurifoss@gmail.com', form.cleaned_data.get('email')]
 
+        # send mail to the applicant
         email = EmailMessage(
             'Tasks to complete, FOSS@Amrita',
             mail_content,

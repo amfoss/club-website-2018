@@ -54,16 +54,82 @@ pip install -r docs/requirements.txt
 cp fosswebsite/local_settings_sample.py fosswebsite/local_settings.py
 ```
 ## Setup database
-In the development phase, we use sqlite3.db
-Setup tables in the DB
+
+This project is deployed using a MySQL database,so it's recommended to set up a mysql server locally to ensure compatibility.
+
+Install mysql-server
+
 ```bash
-python manage.py makemigrations
-python manage.py migrate
+$ sudo apt install mysql-server
 ```
-Collect all the static files for fast serving
+
+If you are running Python3
+
 ```bash
-python manage.py collectstatic
+$ pip3 install mysqlclient
 ```
+
+For python2
+
+```bash
+$ pip install MySQL-python
+```
+
+If MySQL-python installation fails install 'default-libmysqlclient-dev' or 'libmysqlclient-dev' and try again.
+
+```bash
+$ sudo apt install default-libmysqlclient-dev
+```
+
+or 
+
+```bash
+$ sudo apt install libmysqlclient-dev
+```
+
+Log into mysql as root
+
+```bash
+$ sudo mysql -u root
+```
+
+Create a new user and database
+
+create database fossamrita
+
+```mysql
+mysql> CREATE USER 'foss'@'localhost' IDENTIFIED BY 'foss@amrita';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'foss'@'localhost'
+    ->     WITH GRANT OPTION;
+```
+
+where foss is the username and foss@amrita is the password.
+
+logout using ctrl+d and login again using the new user
+
+```bash
+$ mysql -u foss -p
+```
+
+Create new database fossamrita, for avoiding this error: 'Specified key was too long; max key length is 767 bytes' in 
+MariaDB just specify utf8_general_ci at creation time
+
+```mysql
+mysql> create database fossamrita default CHARACTER set utf8 default COLLATE utf8_general_ci;
+```
+
+## Use the default settings
+
+```bash
+$ cp fosswebsite/local_settings_sample.py fosswebsite/local_settings.py
+```
+
+Then migrate the db to complete the restore.
+
+```bash
+$ python manage.py migrate
+```
+
 ## Create an admin account
 ```bash
 python manage.py createsuperuser
