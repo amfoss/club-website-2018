@@ -49,10 +49,7 @@ Further install all the requirement packages from the requirements.txt file.
 ```bash
 pip install -r docs/requirements.txt
 ```
-## Create local_settings.py
-```bash
-cp fosswebsite/local_settings_sample.py fosswebsite/local_settings.py
-```
+
 ## Setup database
 
 This project is deployed using a MySQL database,so it's recommended to set up a mysql server locally to ensure compatibility.
