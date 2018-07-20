@@ -1,5 +1,11 @@
 Hi {{ applicant_name }}
 
+Great to know that you are interested in being a part of the FOSS club at Amritapuri. We received your application, so please complete the tasks mentioned in the document below [0] to be a part of the club. You can try attempting any number of tasks. Please write an email to us, describing the tasks that you have completed, on or before 31st July. Further instructions are mentioned in the document.
+
+[0] Link to tasks: https://goo.gl/JmYne8
+Last date to send us your work: 31st July 2018
+
+Ask your friends to register at https://amfoss.in/foss/join to consider their work. Feel free to contact at us amritapurifoss@gmail.com for any queries.
 
 Your application details:
 
@@ -11,7 +17,6 @@ Roll No: {{ roll_number }}
 {% endif %}
 
 Why do you want to join FOSS?
-
 {{ motivation }}
 
 {% if cs_background %}
@@ -21,4 +26,4 @@ Technical knowledge: {{ cs_background }}
 Interests: {{ interests }}
 
 
-Feel free to contact at us amritapurifoss@gmail.com for any queries.
+
