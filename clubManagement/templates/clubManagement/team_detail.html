@@ -8,7 +8,7 @@
         <!-- HERO TEXT -->
         <div class="hero-caption">
             <div class="hero-text">
-                <h1 class="hero-title font-alt">Team</h1>
+                <h1 class="hero-title font-alt">{{ object.name }}</h1>
                 <p class="hero-subtitle font-serif"></p>
             </div>
         </div>
@@ -30,7 +30,7 @@
                             <div class="col-md-4">
                                 <h3>Team details</h3>
                                 <div class="card mb-3">
-                                    <img class="card-img-top img-fluid" src="/static/clubManagement/image/{{ object.image }}">
+                                    <img class="card-img-top img-fluid" src="/static/media{{ object.image }}">
                                     <div class="card-block">
                                         <h4 class="card-title">{{ object.name }}</h4>
                                         <p class="card-text">{{ object.description }}</p>
@@ -61,15 +61,18 @@
                                     <span class="badge badge-default badge-pill">{{ user_count }}</span>
                                 </li>
                                 {% for resp in responsibility_list %}
+
                                     <li class="list-group-item justify-content-between">
-                                        <a class="link" href="{% url 'profile' resp.user.id %}">
+                                        <a class="link" href="{% url 'profile' resp.user.username %}">
                                             {{ resp.user.first_name }} {{ resp.user.last_name }}
                                         </a>
+                                    {% if edit_permission %}
                                         <form method="post" action="{% url "team_member_delete" resp.id %}">
                                             {% csrf_token %}
                                             <button type="submit" class="close">×</button>
                                         </form>
-                                    </li>
+                                    {% endif %}
+                                             </li>
                                 {% endfor %}
                                 {% if edit_permission %}
                                     <div onclick="showForm()" class="col-md-6 offset-md-3">
