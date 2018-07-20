@@ -70,24 +70,24 @@
                             <p class="text-muted">{{ user_info.small_intro }}</p>
                             <ul class="crt-social clear-list">
                                 {% if user_info.gitHub %}
-                                    <li><a href="{{ user_info.gitHub }}"><span class="crt-icon crt-icon-github"></span></a>
+                                    <li><a href="{{ user_info.gitHub }}"><span class="crt-icon "><img width="25px" height="25px" src="{% static 'base/icons/github.png' %}"></span></a>
                                     </li>
                                 {% endif %}
                                 {% if user_info.blog %}
-                                    <li><a href="{{ user_info.blog }}"><span class="crt-icon crt-icon-wordpress"></span></a>
+                                    <li><a href="{{ user_info.blog }}"><span class="crt-icon "><img width="25px" height="25px" src="{% static 'base/icons/wordpress.png' %}"></span></a>
                                     </li>
                                 {% endif %}
                                 {% if user_info.linkedIn %}
                                     <li><a href="{{ user_info.linkedIn }}"><span
-                                            class="crt-icon crt-icon-linkedin"></span></a></li>
+                                            class="crt-icon "><img width="25px" height="25px" src="{% static 'base/icons/linkedin.png' %}"></span></a></li>
                                 {% endif %}
                                 {% if user_info.facebook %}
                                     <li><a href="{{ user_info.facebook }}"><span
-                                            class="crt-icon crt-icon-facebook"></span></a></li>
+                                            class="crt-icon "><img width="25px" height="25px" src="{% static 'base/icons/facebook.png' %}"></span></a></li>
                                 {% endif %}
                                 {% if user_info.twitter %}
                                     <li><a href="{{ user_info.twitter }}"><span
-                                            class="crt-icon crt-icon-twitter"></span></a></li>
+                                            class="crt-icon "><img width="25px" height="25px" src="{% static 'base/icons/twitter.png' %}"></span></a></li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -111,31 +111,31 @@
                             <ul class="clear-list">
                                 <li>
                                     <a href="{% url 'home' %}" data-tooltip="Home"><span
-                                            class="crt-icon crt-icon-home"></span></a>
+                                            class="crt-icon"><img width="25px" height="25px" src="{% static 'base/icons/home.png' %}"></span></a>
                                 </li>
                                 <li>
                                     <a href="{% url 'about' %}" data-tooltip="About Us"><span
-                                            class="crt-icon crt-icon-anchor"></span></a>
+                                            class="crt-icon"><img width="25px" height="25px" src="{% static 'base/icons/anchor.png' %}"></span></a>
                                 </li>
                                 {% if teams %}
                                     {% if projects %}
                                         <li>
                                             <a href="index.php#portfolio" data-tooltip="Teams and Projects"><span
-                                                    class="crt-icon crt-icon-product-hunt"></span></a>
+                                                    class="crt-icon"><img width="25px" height="25px" src="{% static 'base/icons/producthunt.png' %}"></span></a>
                                         </li>
                                     {% endif %}
                                 {% endif %}
                                 <li>
                                     <a href="index.php#experience" data-tooltip="Experience"><span
-                                            class="crt-icon crt-icon-industry"></span></a>
+                                            class="crt-icon"><img width="25px" height="25px" src="{% static 'base/icons/industry.png' %}"></span></a>
                                 </li>
                                 <li>
                                     <a href="index.php#references" data-tooltip="References"><span
-                                            class="crt-icon crt-icon-window-restore"></span></a>
+                                            class="crt-icon"><img width="25px" height="25px" src="{% static 'base/icons/windowrestore.png' %}"></span></a>
                                 </li>
                                 <li>
                                     <a href="{% url 'contact' %}" data-tooltip="Contact"><span
-                                            class="crt-icon crt-icon-contao"></span></a>
+                                            class="crt-icon "><img width="25px" height="25px" src="{% static 'base/icons/contact.png' %}"></span></a>
                                 </li>
                             </ul>
                         </nav>
@@ -194,7 +194,7 @@
                                 <div class="col-sm-9">
                                     <div class="crt-share-box clearfix">
                                         <button id="btn-share" class="btn btn-share btn-upper"><span
-                                                class="crt-icon crt-icon-share-alt"></span>Share
+                                                class="crt-icon"><img width="25px" height="25px" src="{% static 'base/icons/share.png' %}"></span>Share
                                         </button>
                                         <script type="text/javascript"
                                                 src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5821a6c28931dc81"></script>
@@ -206,10 +206,7 @@
                                     <div class="col-sm-3 text-right">
                                         <img src="/static/media/{{ user_info.signature }}" alt="signature">
                                     </div>
-                                {% else %}
-                                    <div class="col-sm-3 text-right">
-                                        <img src="#" alt="signature">
-                                    </div>
+                              
                                 {% endif %}
                                 {% ifequal request.user user_info.user %}
                                     <div class="col-sm-3 text-right">
