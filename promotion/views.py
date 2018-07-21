@@ -114,6 +114,7 @@ class JoinApplicationCreateView(CreateView):
         motivation = form.cleaned_data.get('motivation')
         cs_background = form.cleaned_data.get('cs_background', '')
         interests = form.cleaned_data.get('interests')
+        contribution = form.cleaned_data.get('contribution')
 
         # admin mail details
         application_list_url = ''.join(['http://', get_current_site(self.request).domain, reverse('join_list')])
@@ -129,7 +130,8 @@ class JoinApplicationCreateView(CreateView):
             'roll_number': roll_number,
             'motivation': motivation,
             'cs_background': cs_background,
-            'interests': interests
+            'interests': interests,
+            'contribution': contribution
         }
         # Render mail content from file
         content = render_to_string(self.success_email_admin_plain_name, email_context)

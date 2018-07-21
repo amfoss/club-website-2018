@@ -21,6 +21,7 @@ class JoinApplication(models.Model):
     motivation = models.TextField()
     cs_background = models.TextField(blank=True)
     interests = models.TextField()
+    contribution = models.TextField(default='NULL')
     is_approved = models.BooleanField(default=False)
     is_rejected = models.BooleanField(default=False)
 

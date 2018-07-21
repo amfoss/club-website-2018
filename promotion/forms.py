@@ -43,6 +43,10 @@ class JoinApplicationForm(forms.ModelForm):
     interests = forms.CharField(label='Interests', help_text="Write about your interests, passions and hobbies",
                                 widget=forms.Textarea(attrs={'placeholder': 'example: I love reading books.'}))
 
+    contribution = forms.CharField(label='Contribution',
+                                   help_text="How would you like to contribute to the growth of the club?",
+                                   widget=forms.Textarea(attrs={'placeholder': 'I would like to help in ..'}))
+
     # captcha = ReCaptchaField(attrs={
     #     'theme': 'clean',
     # })
@@ -54,7 +58,7 @@ class JoinApplicationForm(forms.ModelForm):
 
     class Meta:
         model = JoinApplication
-        fields = ['name', 'email', 'batch', 'roll_number', 'motivation', 'cs_background', 'interests', ]
+        fields = ['name', 'email', 'batch', 'roll_number', 'motivation', 'cs_background', 'interests', 'contribution', ]
 
 
 class ContactForm(forms.Form):

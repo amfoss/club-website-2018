@@ -172,7 +172,7 @@ class WorkshopRegisterFormView(CreateView):
         if workshop.price == 0.0:
             mail_content = contest_mail_content
         email = EmailMessage(
-            workshop.name + ' registartion',
+            workshop.name + ' registration',
             mail_content,
             'amritapurifoss@gmail.com',
             to_address_list,

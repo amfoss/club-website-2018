@@ -5,7 +5,7 @@ Great to know that you are interested in being a part of the FOSS club at Amrita
 [0] Link to tasks: https://goo.gl/JmYne8
 Last date to send us your work: 31st July 2018
 
-Ask your friends to register at https://amfoss.in/foss/join to consider their work. Feel free to contact at us amritapurifoss@gmail.com for any queries.
+Ask your friends to register at https://amfoss.in/foss/join to consider their work. Feel free to contact us at amritapurifoss@gmail.com for any queries.
 
 Your application details:
 
@@ -24,6 +24,8 @@ Technical knowledge: {{ cs_background }}
 {% endif %}
 
 Interests: {{ interests }}
+
+Contribution: {{ contribution }}
 
 
 
