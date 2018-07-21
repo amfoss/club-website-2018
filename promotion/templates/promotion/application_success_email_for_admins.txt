@@ -10,7 +10,6 @@ Roll No: {{ roll_number }}
 {% endif %}
 
 Why do you want to join FOSS?
-
 {{ motivation }}
 
 {% if cs_background %}
@@ -19,5 +18,6 @@ Technical knowledge: {{ cs_background }}
 
 Interests: {{ interests }}
 
+Contribution to the club: {{ contribution }}
 
 Please visit {{ application_list_url }} for more details.

@@ -25,7 +25,7 @@ Technical knowledge: {{ cs_background }}
 
 Interests: {{ interests }}
 
-Contribution: {{ contribution }}
+Contribution to the club: {{ contribution }}
 
 
 
