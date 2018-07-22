@@ -11,7 +11,7 @@ batch_choices = (
     ('1st year', '1st year'),
     ('2nd year', '2nd year'),
     ('3rd year', '3rd year'),
-    ('4th year', '4t year'),
+    ('4th year', '4th year'),
 )
 
 
