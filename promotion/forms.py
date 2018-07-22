@@ -47,9 +47,9 @@ class JoinApplicationForm(forms.ModelForm):
                                    help_text="How would you like to contribute to the growth of the club?",
                                    widget=forms.Textarea(attrs={'placeholder': 'I would like to help in ..'}))
 
-    # captcha = ReCaptchaField(attrs={
-    #     'theme': 'clean',
-    # })
+    captcha = ReCaptchaField(attrs={
+        'theme': 'clean',
+    })
 
     def __init__(self, *args, **kwargs):
         super(JoinApplicationForm, self).__init__(*args, **kwargs)
