@@ -25,6 +25,7 @@ class Migration(migrations.Migration):
                 ('interests', models.TextField(blank=True)),
                 ('expertise', models.TextField(blank=True)),
                 ('gitHub', models.URLField(blank=True)),
+                ('codeforces', models.URLField(blank=True)),
                 ('linkedIn', models.URLField(blank=True)),
                 ('googlePlus', models.URLField(blank=True)),
                 ('facebook', models.URLField(blank=True)),
