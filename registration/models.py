@@ -19,6 +19,7 @@ class UserInfo(models.Model):
     expertise = models.TextField(blank=True)
     gitHub = models.URLField(blank=True)
     blog = models.URLField(blank=True)
+    codeforces = models.URLField(blank=True)
     linkedIn = models.URLField(blank=True)
     email = models.URLField(blank=True)
     facebook = models.URLField(blank=True)
