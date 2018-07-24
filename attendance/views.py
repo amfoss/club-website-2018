@@ -127,9 +127,11 @@ class DailyAttendanceView(View):
     def get(self, request, **kwargs):
         if not request.user.is_authenticated:
             return redirect('permission_denied')
-
-        d = date(int(kwargs.get('year')), int(kwargs.get('month')),
-                 int(kwargs.get('day')))
+        try:
+            d = date(int(kwargs.get('year')), int(kwargs.get('month')),
+                     int(kwargs.get('day')))
+        except ValueError:
+            raise Http404
 
         daily_attendance = get_object_or_404(DailyAttendance, date=d)
         attendance_dict = create_daily_attendance_dict(daily_attendance)
