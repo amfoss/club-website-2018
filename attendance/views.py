@@ -178,7 +178,7 @@ def sum_daily_attendance_dict(attendance_list):
                             attendance_dict[batch][user][2] = 0
                         else:
                             attendance_dict[batch][user][2] = \
-                                attendance_dict[batch][user][0] * 100 / attendance_dict[batch][user][1]
+                                round(attendance_dict[batch][user][0] * 100 / attendance_dict[batch][user][1], 2)
 
                         # Avg time per day
                         if attendance_dict[batch][user][0] == 0:
@@ -186,8 +186,15 @@ def sum_daily_attendance_dict(attendance_list):
                         else:
                             attendance_dict[batch][user][4] = \
                                 attendance_dict[batch][user][3] / attendance_dict[batch][user][0]
+
+                            # round to minutes
+                            minutes = round(attendance_dict[batch][user][4].seconds / 60)
+                            attendance_dict[batch][user][4] = timedelta(minutes=minutes)
+
                 except User.DoesNotExist:
                     pass
+
+
 
     return attendance_dict
 
