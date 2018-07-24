@@ -29,11 +29,13 @@ class SSIDNameAPIView(APIView):
 
 class MarkAttendanceAPIView(APIView):
     permission_classes = [IsAuthenticated, ]
+    # Month where the new first years join
+    month_new_year = 7
 
     def get_student_years(self):
         batches = []
         year = timezone.now().year
-        if timezone.now().month < 8:
+        if timezone.now().month < self.month_new_year:
             year -= 1
         for i in range(3):
             batches += [year - i]
@@ -42,7 +44,7 @@ class MarkAttendanceAPIView(APIView):
 
     def calculate_year(self, year):
         year = timezone.now().year - year
-        if timezone.now().month > 6:
+        if timezone.now().month >= self.month_new_year:
             year += 1
         if year > 4:
             year = 4
