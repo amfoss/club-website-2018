@@ -65,6 +65,9 @@
                                           </span></a>
                                     </li>
                                 {% endif %}
+                                {% if user_info.codeforces %}
+                                  <li> <a  href="{{ user_info.codeforces }}"></a> </li>
+                                {% endif %}
                                 {% if user_info.linkedIn %}
                                     <li><a href="{{ user_info.linkedIn }}"><span class="crt-icon">
                                             <img width="25px" height="25px" src="{% static 'base/icons/linkedin.png' %}">
