@@ -17,6 +17,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
+from django.utils.safestring import mark_safe
 
 from fosswebsite import settings
 from promotion.forms import JoinApplicationForm, ContactForm
@@ -128,10 +129,10 @@ class JoinApplicationCreateView(CreateView):
             'application_list_url': application_list_url,
             'batch': batch,
             'roll_number': roll_number,
-            'motivation': motivation,
-            'cs_background': cs_background,
-            'interests': interests,
-            'contribution': contribution
+            'motivation': mark_safe(motivation),
+            'cs_background': mark_safe(cs_background),
+            'interests': mark_safe(interests),
+            'contribution': mark_safe(contribution)
         }
         # Render mail content from file
         content = render_to_string(self.success_email_admin_plain_name, email_context)
@@ -233,8 +234,7 @@ class ContactView(View):
             to_address_list = list(
                 User.objects.filter(is_superuser=True).values_list('email',
                                                                    flat=True))
-            send_mail(subject, content, 'amritapurifoss@gmail.com',
-                      to_address_list, fail_silently=True)
+            send_mail(subject, content, 'amritapurifoss@gmail.com', to_address_list, fail_silently=True)
             return render(request, template_name='promotion/index.html',
                           context={"is_success": True})
         else:
