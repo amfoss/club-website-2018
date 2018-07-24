@@ -42,7 +42,7 @@ class MarkAttendanceAPIView(APIView):
 
     def calculate_year(self, year):
         year = timezone.now().year - year
-        if timezone.now().month > 7:
+        if timezone.now().month > 6:
             year += 1
         if year > 4:
             year = 4
@@ -83,7 +83,14 @@ class MarkAttendanceAPIView(APIView):
                 attendance.attendance = self.create_daily_attendance_json_data()
             user_info = UserInfo.objects.get(user=request.user)
             year = self.calculate_year(user_info.year)
-            attendance.attendance[year][str(user_info.user.id)][0] = 1  # present
+            try:
+                attendance.attendance[year][str(user_info.user.id)][0] = 1  # present
+            except KeyError:
+                # Edge case when a new user registers after the attendance gets updated for a day, in that case
+                # add that user and mark as present
+                attendance.attendance[year][str(user_info.user.id)] = \
+                    [1, str(timezone.now().strftime('%X')), str((timezone.now() + timedelta(0, 1)).strftime('%X'))]
+
             # first time
             if attendance.attendance[year][str(user_info.user.id)][1] == \
                     attendance.attendance[year][str(user_info.user.id)][2]:
