@@ -7,7 +7,7 @@ from django_mysql.models import JSONField
 
 class DailyAttendance(models.Model):
     """
-    attendance = { "2016": [[user_id, 0, s_time, e_time], ], "2015": [[user_id, 1, s_time, e_time], ] }
+    attendance = { "2016": {"user_id": [1, s_time, e_time], "user_id": [0, s_time, e_time]}  }
     """
     date = models.DateField()
     attendance = JSONField()

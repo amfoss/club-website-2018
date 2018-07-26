@@ -31,7 +31,7 @@ All actions requires JWT token in the header header.
 
 ### Random Wi-Fi SSID name
 
-url: api/attendance/wifi-ssid/
+url: api/ssid-name/
 
 ```json
 {"ssid": "some-random-ssid-name"}

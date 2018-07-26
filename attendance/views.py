@@ -31,34 +31,19 @@ class MarkAttendanceAPIView(APIView):
     permission_classes = [IsAuthenticated, ]
     # Month where the new first years join
     month_new_year = 7
+    year_to_display = 3
 
     def get_student_years(self):
         batches = []
         year = timezone.now().year
         if timezone.now().month < self.month_new_year:
             year -= 1
-        for i in range(3):
+        for i in range(self.year_to_display):
             batches += [year - i]
-        print(batches)
         return batches
 
-    def calculate_year(self, year):
-        year = timezone.now().year - year
-        if timezone.now().month >= self.month_new_year:
-            year += 1
-        if year > 4:
-            year = 4
-        if year == 1:
-            return '1st year'
-        elif year == 2:
-            return '2nd year'
-        elif year == 3:
-            return '3rd year'
-        elif year == 4:
-            return '4th year'
-
     def create_daily_attendance_json_data(self):
-        # attendance = { "2016": [[user_id, 0, s_time, e_time], ], "2015": [[user_id, 1, s_time, e_time], ] }
+        # attendance = { "2016": {"user_id": [1, s_time, e_time], "user_id": [0, s_time, e_time]}  }
         batch_list = self.get_student_years()
         print(batch_list)
         attendance_dict = {}
@@ -73,7 +58,7 @@ class MarkAttendanceAPIView(APIView):
                 attendance_list_batch[str(user_info.user.id)] = user_attendance
 
             # attendance list contains all the Attendance objects of the batch with date = d
-            year = self.calculate_year(batch)
+            year = str(batch)
             attendance_dict[year] = attendance_list_batch
         return attendance_dict
 
@@ -84,7 +69,16 @@ class MarkAttendanceAPIView(APIView):
             if created:
                 attendance.attendance = self.create_daily_attendance_json_data()
             user_info = UserInfo.objects.get(user=request.user)
-            year = self.calculate_year(user_info.year)
+
+            # Edge case where a 4th year tries to mark attendance
+            if user_info.year not in self.get_student_years():
+                return Response({
+                    "status": "error",
+                    "message": "you cannot mark attendance. Please check if you year in website is correct."
+                })
+
+            year = str(user_info.year)
+
             try:
                 attendance.attendance[year][str(user_info.user.id)][0] = 1  # present
             except KeyError:
@@ -193,8 +187,6 @@ def sum_daily_attendance_dict(attendance_list):
 
                 except User.DoesNotExist:
                     pass
-
-
 
     return attendance_dict
 
