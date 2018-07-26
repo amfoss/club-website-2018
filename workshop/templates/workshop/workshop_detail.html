@@ -51,22 +51,21 @@
                                     </small>
                                 </p>
 
-                                {% if request.is_authenticated %}
-                                    {% if seats_left %}
-                                        <a href="{% url 'workshop_register' object.id %}">
-                                            <button type="submit" class="btn btn-primary add-btn">Register now</button>
-                                        </a>
-                                    {% else %}
-                                        <a>
-                                            <button type="submit" class="btn add-btn">No seat left</button>
-                                        </a>
-                                        <p>
-                                            <small class="text-muted">
-                                                <a href="{% url 'foss_intro' %}#seventh">Contact us</a> to check for more
-                                                seats.
-                                            </small>
-                                        </p>
-                                    {% endif %}
+
+                                {% if seats_left %}
+                                    <a href="{% url 'workshop_register' object.id %}">
+                                        <button type="submit" class="btn btn-primary add-btn">Register now</button>
+                                    </a>
+                                {% else %}
+                                    <a>
+                                        <button type="submit" class="btn add-btn">No seat left</button>
+                                    </a>
+                                    <p>
+                                        <small class="text-muted">
+                                            <a href="{% url 'foss_intro' %}#seventh">Contact us</a> to check for more
+                                            seats.
+                                        </small>
+                                    </p>
                                 {% endif %}
 
                                 {% if edit_permission %}

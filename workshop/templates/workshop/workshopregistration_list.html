@@ -15,63 +15,70 @@
                         <h1 id="page-header">Workshop registration</h1>
                     </div>
                     <div class="col-md-12 table-responsive">
-                    <form id="myform" action="{% url 'workshop_update' workshop_id %}" method="POST">
-                    {% csrf_token %}
-                        <table class="table table-bordered table-hover">
-                            <thead class="thead-default">
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Batch</th>
-                                <th>Roll number</th>
-                                <th>Phone</th>
-                                <th>Course</th>
-                                <th>Hostel_details</th>
-                                <th>Gender</th>
-                                <th>Paid?</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for object in object_list %}
-                                <tr class="click"
-                                    onclick="">
-                                    <th scope="row">{{ object.name }}</th>
-                                    <td>{{ object.email }}</td>
-                                    <td>{{ object.batch }}</td>
-                                    <td>{{ object.roll_number }}</td>
-                                    <td>{{ object.phone_number }}</td>
-                                    <td>{{ object.course }} {{ object.section }}</td>
-                                    <td>{{ object.hostel_details }}</td>
-                                    <td>{{ object.male_or_female }}</td>
-                                    <td>
-                                        <input type="checkbox" name="{{ object.id }}" {% if object.paid %}checked{% endif %}>
-                                        {% if object.paid %}Yes{% endif %}
-                                    </td>
+                        <form id="myform" action="{% url 'workshop_update' workshop_id %}" method="POST">
+                            {% csrf_token %}
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Batch</th>
+                                    <th>Roll number</th>
+                                    <th>Phone</th>
+                                    <th>Course</th>
+                                    <th>Hostel_details</th>
+                                    <th>Gender</th>
+                                    <th>Paid?</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                {% for object in object_list %}
+                                    <tr class="click"
+                                        onclick="">
+                                        <th scope="row">{{ object.name }}</th>
+                                        <td>{{ object.email }}</td>
+                                        <td>{{ object.batch }}</td>
+                                        <td>{{ object.roll_number }}</td>
+                                        <td>{{ object.phone_number }}</td>
+                                        <td>{{ object.course }} {{ object.section }}</td>
+                                        <td>{{ object.hostel_details }}</td>
+                                        <td>{{ object.male_or_female }}</td>
+                                        <td>
+                                            <input type="checkbox" name="{{ object.id }}"
+                                                   {% if object.paid %}checked{% endif %}>
+                                            {% if object.paid %}Yes{% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
 
-                    </form>
-                    {% if save %}
-                    <input type="submit"  form="myform" class="btn btn-primary" value="Save">
-                    {% else %}
-                        <a href="{% url 'workshop_registration_list' workshop_id %}">
-                            <button id="reject" class="btn btn-primary card-link">All</button>
+                        </form>
+                        {% if save %}
+                            <input type="submit" form="myform" class="btn btn-primary" value="Save">
+                        {% else %}
+                            <a href="{% url 'workshop_registration_list' workshop_id %}">
+                                <button id="reject" class="btn btn-primary card-link">All</button>
+                            </a>
+                        {% endif %}
+                        <a href="{% url 'workshop_registration_list' workshop_id %}?paid=True">
+                            <button id="approve" class="btn btn-success card-link">Paid only</button>
                         </a>
-                    {% endif %}
-                    <a href="{% url 'workshop_registration_list' workshop_id %}?paid=True">
-                        <button id="approve" class="btn btn-success card-link">Paid only</button>
-                    </a>
-                    <a href="{% url 'workshop_registration_list' workshop_id %}?paid=False">
-                        <button id="reject" class="btn btn-danger card-link">Unpaid only</button>
-                    </a>
-                    <a href="{% url 'workshop_registration_list' workshop_id %}?gender=male">
-                        <button id="reject" class="btn btn-primary card-link">Male</button>
-                    </a>
-                    <a href="{% url 'workshop_registration_list' workshop_id %}?gender=female">
-                        <button id="reject" class="btn btn-primary card-link">Female</button>
-                    </a>
+                        <a href="{% url 'workshop_registration_list' workshop_id %}?paid=False">
+                            <button id="reject" class="btn btn-danger card-link">Unpaid only</button>
+                        </a>
+                        <a href="{% url 'workshop_registration_list' workshop_id %}?gender=male">
+                            <button id="reject" class="btn btn-primary card-link">Male</button>
+                        </a>
+                        <a href="{% url 'workshop_registration_list' workshop_id %}?gender=female">
+                            <button id="reject" class="btn btn-primary card-link">Female</button>
+                        </a>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group mt-4">
+                            <label for="exampleFormControlTextarea1">All Email id:</label>
+                            <textarea class="form-control" rows="4">{% for object in object_list %} {{ object.email }}, {% endfor %}</textarea>
+                        </div>
                     </div>
                 </div>
             </div>
