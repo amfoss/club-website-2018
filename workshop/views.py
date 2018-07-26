@@ -58,7 +58,7 @@ class WorkshopCreateView(CreateView):
         form.instance.user = self.request.user
         return super(WorkshopCreateView, self).form_valid(form)
 
-
+# TODO(1) update workshop crashesg
 class WorkshopUpdateView(UpdateView):
     form_class = WorkshopForm
     template_name = 'base/form.html'
