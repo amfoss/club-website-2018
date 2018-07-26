@@ -77,11 +77,11 @@
                                     {% endifnotequal %}
                                 {% endif %}
 
-                                {% if edit_permission %}
-                                    <a href="{% url 'workshopdetail_update' object.id %}">
-                                        <button type="submit" class="btn btn-success add-btn">Update</button>
-                                    </a>
-                                {% endif %}
+{#                                {% if edit_permission %}#}
+{#                                    <a href="{% url 'workshopdetail_update' object.id %}">#}
+{#                                        <button type="submit" class="btn btn-success add-btn">Update</button>#}
+{#                                    </a>#}
+{#                                {% endif %}#}
                                 {% if edit_permission %}
                                     <a href="{% url 'workshop_delete' object.id %}">
                                         <button type="submit" class="btn btn-danger add-btn">Delete</button>
