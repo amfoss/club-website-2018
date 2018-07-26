@@ -5,12 +5,12 @@
 {% endblock %}
 {% block content %}
     <section id="hero" class="module-hero bg-dark-30"
-             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+             data-background="{% static 'home/assets/images/members.jpg' %}">
 
         <!-- HERO TEXT -->
         <div class="hero-caption">
             <div class="hero-text">
-                <h1 class="hero-title font-alt">Event Details</h1>
+                <!--<h1 class="hero-title font-alt">Event Details</h1>-->
                 <p class="hero-subtitle font-serif"></p>
             </div>
         </div>
@@ -22,7 +22,7 @@
     <div class="container">
         <div class="row">
 
-            <h1 class="head col-md-9">Club Members</h1>
+            <h1 class="head col-md-9 ">Club Members</h1>
             <div class="form-group col-md-3">
                 <input onkeyup="myFunction()" type="text" class="form-control" id="search" placeholder="Search">
             </div>
@@ -42,7 +42,7 @@
                         <div class="crt-card-avatar">
                             {% if user_info.profile_pic %}
                                 <img class="avatar avatar-210" src="/static/media/{{ user_info.profile_pic }}"
-                                     srcset="/static/media/{{ user_info.profile_pic }} 2x" alt="">
+                                     srcset="/static/media/{{ user_info.profile_pic }} 2x" alt="profile_pic">
                             {% else %}
                                 <img src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt=""
                                      class="avatar-210 card-title profile-pic img-fluid rounded-circle">
@@ -86,12 +86,6 @@
                             </ul>
                         </div>
                     </div>
-                    {% if user_info.resume %}
-                        <div class="crt-side-box-btn">
-                            <a class="btn btn-default btn-lg btn-block btn-thin btn-upper"
-                               href="/static/media/{{ user_info.resume }}">Download Resume</a>
-                        </div>
-                    {% endif %}
                 </div><!-- .crt-side-box-item -->
               </a>
             </div>
