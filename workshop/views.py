@@ -210,6 +210,8 @@ class WorkshopRegistrationListView(ListView):
         context['save'] = save
         context['object_list'] = context['object_list'].order_by('-date')
         context['workshop_id'] = workshop.id
+        context["count"] = context['object_list'].count()
+        context["workshop_name"] = workshop.name
         return context
 
 
