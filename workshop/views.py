@@ -152,7 +152,7 @@ class WorkshopRegisterFormView(CreateView):
                        "Great to know that you are interested in '" + workshop.name + "' workshop conducted by " + \
                        "FOSS@Amrita. We got your application and it's being processed. " + \
                        "Please come to the ground floor lab on 27th or 28th after 4:30pm for registration. " \
-                       "There will be meeting in Acharya hall at 4 pm on 27th July (Friday)." + \
+                       "Also there will be meeting in Acharya hall at 4 pm on 27th July (Friday)." + \
                        " \n\nThank you, \n\nFOSS@Amrita"
 
         contest_mail_content = "Hi " + form.cleaned_data.get('name') + ", \n\n" + \
@@ -166,8 +166,8 @@ class WorkshopRegisterFormView(CreateView):
                                " \n\nThank you, \n\nFOSS@Amrita"
 
         to_address_list = ['chirath.02@gmail.com', form.cleaned_data.get('email')]
-        if workshop.price == 0.0:
-            mail_content = contest_mail_content
+        # if workshop.price == 0.0:
+        #     mail_content = mail_content
         email = EmailMessage(
             workshop.name + ' registration',
             mail_content,
