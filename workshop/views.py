@@ -58,6 +58,7 @@ class WorkshopCreateView(CreateView):
         form.instance.user = self.request.user
         return super(WorkshopCreateView, self).form_valid(form)
 
+
 # TODO(1) update workshop crashesg
 class WorkshopUpdateView(UpdateView):
     form_class = WorkshopForm
@@ -165,7 +166,7 @@ class WorkshopRegisterFormView(CreateView):
                                "your work before the last date to be eligible for the prize." + \
                                " \n\nThank you, \n\nFOSS@Amrita"
 
-        to_address_list = ['chirath.02@gmail.com', form.cleaned_data.get('email')]
+        to_address_list = [form.cleaned_data.get('email')]
         # if workshop.price == 0.0:
         #     mail_content = mail_content
         email = EmailMessage(
