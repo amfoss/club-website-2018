@@ -26,28 +26,30 @@
             <div class="row">
 
                 <div class="col-sm-8">
-
                     <form id="contact-form" role="form" method="post">
                         <div class="form-group">
                             {% csrf_token %}
-                            <label class="sr-only" for="name">Name</label>
-                            <input type="text" id="name" class="form-control" name="name" placeholder="Name*"
+                            <label class="" for="name">Name: </label>
+                            <input type="text" minlength="6" id="name" value="{% ifnotequal form.email.value None %}{{ form.email.value }}{% endifnotequal %}" class="form-control" name="name" placeholder="Name*"
                                    required="">
-                            <p class="help-block text-danger"></p>
                         </div>
                         <div class="form-group">
-                            <label class="sr-only" for="email">Your Email</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Your E-mail*"
+                            <label class="" for="email">Email: </label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Your E-mail*" value="{% ifnotequal form.email.value None %}{{ form.email.value }}{% endifnotequal %}"
                                    required="">
-                            <p class="help-block text-danger"></p>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" id="message" name="message" rows="7" placeholder="Message*"
-                                      required=""></textarea>
-                            <p class="help-block text-danger"></p>
+                          <label class="" for="message">Message:</label>
+                            <textarea class="form-control" id="message" name="message" rows="7" placeholder="Any Message*"
+                                      required="">{% ifnotequal form.message.value None %}{{ form.message.value }}{% endifnotequal %}</textarea>
+
                         </div>
+                        <div class="form-group">
+                          {{form.captcha }}
+                        </div>
+
                         <div class="text-center">
-                            <button type="submit" class="btn btn-block btn-round btn-dark">Submit</button>
+                            <button type="submit" id="submit" class="btn btn-round btn-dark">Submit</button>
                         </div>
                     </form>
                     {% if is_success %}
@@ -57,7 +59,12 @@
                         <meta http-equiv="refresh" content="0.1; URL=/home">
                         <meta name="keywords" content="automatic redirection">
                     {% endif %}
-
+                    {% ifequal is_success False%}
+                    Failed to send message
+                    <script>
+                      alert("There is a problem in sending message, please fill credentials properly")
+                    </script>
+                    {% endifequal %}
                 </div><!-- .col-* -->
 
                 <div class="col-sm-4">
@@ -94,4 +101,3 @@
     </section>
     <!-- /CONTACT -->
 {% endblock %}
-

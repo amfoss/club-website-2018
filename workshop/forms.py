@@ -6,6 +6,7 @@ from bootstrap3_datetime.widgets import DateTimePicker
 from captcha.fields import ReCaptchaField
 from django import forms
 
+
 from workshop.models import WorkshopRegistration, WorkshopFeedback, Workshop
 
 batch_choices = (
@@ -142,3 +143,10 @@ class WorkshopForm(forms.ModelForm):
         model = Workshop
         fields = ['name', 'overview', 'course_details', 'project', 'link', 'other_info',
                   'level', 'number_of_seats', 'poster', 'contact_info', 'start_date_time', 'end_date_time', 'price']
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(label='Name',widget=forms.TextInput())
+    email = forms.EmailField(label='Email', widget=forms.EmailInput())
+    message = forms.CharField(label='Message', widget=forms.Textarea())
+    captcha = ReCaptchaField( attrs={'theme': 'clean',})
