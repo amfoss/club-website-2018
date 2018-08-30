@@ -30,7 +30,9 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="/BlogFeedAggregator">blog posts</a></li>
                         <li><a href="{% url 'timeline_list' %}">Timeline</a></li>
-                        <li><a href="{% url 'club' %}">Club</a></li>
+                        {% if request.user.is_authenticated %}
+                          <li><a href="{% url 'club' %}">Club</a></li>
+                        {% endif %}
                         <li><a href="{% url 'team' %}">Teams</a></li>
                         <li><a href="{% url 'profile_list' %}">Members</a></li>
                         <li><a href="{% url 'achievements' %}">achievements</a></li>
@@ -63,7 +65,7 @@
     </nav>
 
     <!-- SOCIAL LINKS -->
-    <div class="copyright" style="position: fixed">
+    <div class="copyright" style="position: absolute">
         <div class="social-icons m-b-20">
             <a href="https://www.facebook.com/amfoss.in/?ref=br_rs" target="_blank" class="fa fa-facebook facebook"></a>
             <a href="https://twitter.com/amritafoss" target="_blank" class="fa fa-twitter twitter"></a>

@@ -19,24 +19,28 @@
 
     <!-- BLOG -->
     <br><br>
-    
     <div class="container"  >
 
                 <div class="row">
                     {% for object in object_list %}
                         <div class="col-md-4">
                             <br>
-                            <div class="card-group" style="width:60%" >
-                                <img class="card-img-top img-fluid" height="auto" width="auto"
+                            <div class="card_display">
+                              <div class="front">
+                                <img class="card-image img-fluid"
                                      src="/static/clubManagement/image/{{ object.image }}"
                                      alt="Card image cap">
-                                <div class="card-block">
+                                     <center><h3 style="padding: 4px;">{{ object.name }}</h3><center>
+                              </div>
+                              <div class="back">
+                                <div class="card-block" style="padding: 2%;">
                                     <h3 class="card-title">{{ object.name }}</h3>
                                     <p class="card-body text-truncate">{{ object.description | truncatechars:99}}</p>
                                     <a href="{% url 'team_detail' object.id %}"
                                        class="btn btn-dark anim-scroll">More info
                                     </a>
                                 </div>
+                              </div>
                             </div>
                         </div>
                     {% endfor %}
@@ -45,9 +49,9 @@
                         <div class="col-md-12">
                             <div class="container">
                                 <br><br>
-                                <a href="{% url 'team_create' %}">
+                              <center><a href="{% url 'team_create' %}">
                                     <button class="btn btn-dark anim-scroll">Add new</button>
-                                </a>
+                                </a></center>
                             </div>
                         </div>
                     {% endif %}
