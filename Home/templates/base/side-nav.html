@@ -38,10 +38,11 @@
                 </li>
                 <li><a href="{% url 'workshop_list' %}">Events</a></li>
                 <li><a href="{% url 'project' %}">Projects</a></li>
-                <li><a href="{% url 'join' %}">Join us</a></li>
-                <li><a href="{% url 'about' %}">About Us</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
-
+                {% if not request.user.is_authenticated %}
+                  <li><a href="{% url 'join' %}">Join us</a></li>
+                  <li><a href="{% url 'about' %}">About Us</a></li>
+                  <li><a href="{% url 'contact' %}">Contact</a></li>
+                {% endif %}
                 {% if request.user.is_authenticated %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.username }}</a>
@@ -74,7 +75,7 @@
             <a href="https://github.com/amfoss" target="_blank" class="fa fa-github github"></a>
 
         </div>
-      
+
       <p>© <a href="https://amfoss.in/">amFOSS</a>'18</p>
     </div>
     <!-- /SOCIAL LINKS -->

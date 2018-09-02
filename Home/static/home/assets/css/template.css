@@ -1803,6 +1803,18 @@ blockquote cite{
 	margin:5px 15px;
 }
 
+button#submit {
+	transition: 0.3s;
+}
+button#submit:hover {
+	background: #e7e7e7;
+	color: black;
+	transition: 0.3s;
+}
+textarea {
+	resize: none;
+}
+
 .to-top-link{
 	position:absolute;
 	bottom:0;
