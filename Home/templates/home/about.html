@@ -3,18 +3,19 @@
 {% block content %}
 
     <!-- HERO -->
-    <section id="hero" class="module-hero bg-dark-30 js-fullheight"
-             data-background="{% static 'home/assets/images/aboutbg.jpg' %}">
+    <section id="hero" class="module-hero js-halfheight"
+             data-background="{% static 'home/assets/images/aboutus1.jpg' %}">
 
         <!-- HERO TEXT -->
         <div class="hero-caption">
             <div class="hero-text">
-                <h1 class="hero-title">amFOSS</h1>
+                <h1 class="hero-title" style="color: white">amFOSS</h1>
                 <p class="hero-subtitle font-serif m-t-40">Your freedom begins here. <br>
                     Converge your obssesion into something great. For the greater cause.</p>
             </div>
         </div>
         <!-- /HERO TEXT -->
+
 
     </section>
     <!-- /HERO -->
@@ -26,8 +27,7 @@
             <!-- MODULE TITLE -->
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
-                    <h2 class="module-title font-alt">Our Notion</h2>
-                    <p class="module-subtitle">"Leadership is about Empathy."</p>
+                    <h2 class="module-title font-alt">Our Participations</h2>
                 </div>
             </div>
             <!-- /MODULE TITLE -->
@@ -118,75 +118,79 @@
     <!-- /SERVICES -->
 
     <!-- Short note section -->
-    <section class="module bg-dark-30" data-background="{% static 'home/assets/images/module-5.jpg' %}">
-        <div class="container-fluid container-custom">
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <h2 class="module-title font-alt">A short note..!</h2>
-                </div>
-                <!-- text area -->
-                <div class="col-md-12">
-                    <div class="counter text-light">
-                        <p> amFOSS is one of the most active student communities on the campus, 
-                            living and breathing on the motto of Code | Share | Grow. We are a community
-                            of students who support and guide each other towards making open source contributions 
-                            and the usage of free software. Here we encourage, support and mentor students to improve 
-                            their technical and social skills through contributing to open source. We aim at helping 
-                            students to embrace the free and open source approach that is fast gaining momentum.
-                            We develop ideas, learn to build new things, be it Computer Science or social skills
-                            which are an essentiality today.</p>
-                        
-                        <p>We have regular sessions, talks, and presentations on recent technologies and 
-                            how it’s important to us, given by our own students and Alumni placed at prestigious 
-                            institutions. We try to give the students as much a exposure and experience that we
-                            can give to prepare them on how the industry works, and what is expected of them in a
-                            real workspace. Hackathons conducted by MediaWiki and Drupal are examples of the wide array 
-                            of opportunities that the FOSS club provides the students to learn, grow and work with the
-                            industry, and get a feel of how they can apply what they learn sitting in classrooms.
-                            We have students working for Free and open source communities, working on Android development, 
-                            Web development and much more.</p>
-                        
-                        <p>We take part in programs such as GSoC, KDE-SoK, RSoC which all are different Summer of Code 
-                            programs conducted by different communities. In the year of 2016, we had 16 selects for GSoC 
-                            ( with 11 from Amritapuri - 10 GSoC + 1 Outreach ), also 5 selectees at 2017 which clearly
-                            shows the enthusiasm and dedication of the Amritapuri Campus. Being a student community, 
-                            there are no biases, since learning comes from our fellow peers and seniors. It becomes super
-                            fun when we stay late in labs working on things which we love and are interested in. If you
-                            are thinking that FOSS is all about academics and work, We think this would help you clear
-                            your mind. We have weekly activities like debates, gardening, lightning talks, Vedic chanting, 
-                            sports sessions and many more to supplement our growth as a whole. We work together as a team.
-                            And apart from all of these FOSS Club is a great learning platform for anyone who is really 
-                            interested in hacking into the crest and trough of Computer science. We also focus on
-                            extracurricular activities which will in turn lead you to better future and a wholesome life. 
-                            Students in FOSS club have a complete growth and the foresight to survive and succeed in the
-                            outside world, given the constraints and work environment. We are not a bunch of “geeks” who 
-                            sit and stare at the computer screens, but a family of happy to go lucky people who are just
-                            ready to take on whatever life has in store for us!!:)</p><br>
 
-                        <p>There is an excitement among ourselves in the club, which could be seen vibrantly all around 
-                            the faces in the foss club.
-                            Here is a chat with bill gates by a random interviewer which is kinda our driving force.</p>
-                        
-                        <p>Interviewer: Is studying computer science the best way to prepare to be a programmer?<br>
-                            Bill Gates: No. the best way to prepare is to write programs, and to study great programs
-                            that other
-                            people have written. In my case, I went to the garbage cans at the Computer Science Center
-                            and I
-                            fished out listings of their operating system. You got to be willing to read other people's
-                            code,
-                            then write your own, then have other people review your code. You've got to want to be in
-                            this
-                            incredible feedback loop where you get the world-class people to tell you what you're doing
-                            wrong. <br>
+    <section class="container">
+        <div class="row">
+        <!-- The carousel -->
+        <div id="transition-timer-carousel" class="carousel slide transition-timer-carousel" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#transition-timer-carousel" data-slide-to="0" class="active"></li>
+				<li data-target="#transition-timer-carousel" data-slide-to="1"></li>
+				<li data-target="#transition-timer-carousel" data-slide-to="2"></li>
+                <li data-target="#transition-timer-carousel" data-slide-to="3+"></li>
+			</ol>
 
-                            Bill Gates cited in: "Programmers at Work: Interviews With 19 Programmers Who Shaped the
-                            Computer
-                            Industry".</p>
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+                    <img class="width" src="{% static 'home/assets/images/slidepage1.jpg' %}"/>
+                    <div class="carousel-caption">
+                        <h1 class="carousel-caption-header">What is amFOSS?</h1>
+                        <p class="carousel-caption-text hidden-sm hidden-xs" style="font-size: x-large">
+                            amFOSS is one of the most active student communities on the campus, living and breathing on the motto of Code | Share | Grow. We are a community of students who support and guide each other towards making open source contributions and the usage of free software. Here we encourage, support and mentor students to improve their technical and social skills through contributing to open source. We aim at helping students to embrace the free and open source approach that is fast gaining momentum. We develop ideas, learn to build new things, be it Computer Science or social skills which are an essentiality today.
+                        </p>
                     </div>
                 </div>
-                <!-- /text area -->
+
+                <div class="item">
+                    <img class="width" src="{% static 'home/assets/images/slidepage1.jpg' %}">
+                    <div class="carousel-caption">
+                        <h1 class="carousel-caption-header">What we do and How is it beneficial for students?</h1>
+                        <p class="carousel-caption-text hidden-sm hidden-xs" style="font-size: x-large">
+                            We conduct regular sessions, talks and presentations on recent technologies and it’s relevents to us, given by our own students and Alumni placed at prestigious institutions. We try to give the students as much as exposure and experience that we can give. We make them industry ready and train them for what is expected of them in a real workspace. Hackathons conducted by organisations such as  MediaWiki and Drupal are examples of the wide array of opportunities that our club provides to the students. To learn, grow and work with the industry, and to get a feel of how they can apply what they learn sitting in classrooms.
+                        </p>
+
+                        </div>
+                    </div>
+
+                <div class="item">
+                    <img style="width: fit-content" src="{% static 'home/assets/images/slidepage1.jpg' %}">
+                    <div class="carousel-caption">
+                        <h1 class="carousel-caption-header">We do what we love!</h1>
+                        <p class="carousel-caption-text hidden-sm hidden-xs" style="font-size: large">
+                            We have students working for Free and Open Source communities, working on Android development, Web development and much more.We take part in programs such as GSoC, KDE-SoK, RSoC which are all different Summer of Code programs conducted by varrious communities. In the year of 2016, we had 16 selects for GSoC ( with 11 from Amritapuri - 10 GSoC + 1 Outreach ), also 5 selectees at 2017 which clearly shows the enthusiasm and dedication of the Amritapuri Campus. Being in a student community, there are no pressure, since learning comes from our fellow peers and seniors. It becomes super exciting when we stay late in labs working on things which we love and are interested in. But, let this not delude you into believing that amFOSS is all about academics and work. we give extracurricular activities as much of importance. We have weekly activities like debates, gardening, lightning talks, Vedic chanting, sports sessions and many more to supplement our growth as a whole. We work together as a team and apart from all of these amFOSS Club is a great learning platform for anyone who is really interested in hacking into the crest and trough of Computer science.  Students in FOSS club have a complete growth and the foresight to survive and succeed in the outside world, given the constraints and work environment. We are not a bunch of “geeks” who sit and stare onto the computer screens, but a one big family of happy to go lucky people who are just ready to take on whatever life has in store for us :)
+
+There is an excitement amongst ourselves in the club, which could be seen vibrantly all around the faces in the foss club!</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img class="width" src="{% static 'home/assets/images/slidepage1.jpg' %}">
+                    <div class="carousel-caption">
+                        <h1 class="carousel-caption-header">Our ispiration!</h1>
+                        <p class="carousel-caption-text hidden-sm hidden-xs" style="font-size: x-large">
+                            Here is a chat with Bill Gates by a random interviewer which is kind off our driving force.
+Interviewer: Is studying computer science the best way to prepare to be a programmer?
+Bill Gates: No. the best way to prepare is to write programs, and to study great programs that other people have written. In my case, I went to the garbage cans at the Computer Science Center and I fished out listings of their operating system. You got to be willing to read other people's code, then write your own, then have other people review your code. You've got to want to be in this incredible feedback loop where you get the world-class people to tell you what you're doing wrong.
+Bill Gates cited in: "Programmers at Work: Interviews With 19 Programmers Who Shaped the Computer Industry".</p>
+                    </div>
+                </div>
             </div>
-        </div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#transition-timer-carousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a class="right carousel-control" href="#transition-timer-carousel" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+
+            <!-- Timer "progress bar" -->
+            <hr class="transition-timer-carousel-progress-bar animate" />
+		</div>
+    </div>
+
     </section>
     <!-- /Short note section -->
 
@@ -354,37 +358,6 @@
                             <div class="work-caption">
                                 <h4 class="team-name font-alt">Aniketh Girish</h4>
                                 <span class="team-role font-serif">Designer / Front-end Developer</span>
-                            </div>
-                            <a href="portfolio-single-1.html" class="work-link"></a>
-                        </div>
-                    </article>
-                    <!-- /PORTFOLIO ITEM -->
-
-                    <!-- PORTFOLIO ITEM -->
-                    <article class="work-item video">
-                        <div class="work-wrapper">
-                            <div class="work-thumbnail">
-                                <img src="{% static 'home/assets/images/team-1.jpg' %}" alt="Navaneeth S">
-                            </div>
-                            <div class="work-caption">
-                                <h4 class="team-name font-alt">Navaneeth S</h4>
-                                <span class="team-role font-serif">Back-End Developer</span>
-                            </div>
-                            <a href="portfolio-single-1.html" class="work-link"></a>
-                        </div>
-                    </article>
-                    <!-- /PORTFOLIO ITEM -->
-
-
-                    <!-- PORTFOLIO ITEM -->
-                    <article class="work-item video">
-                        <div class="work-wrapper">
-                            <div class="work-thumbnail">
-                                <img src="{% static 'home/assets/images/team-3.jpg' %}" alt="Rahul K">
-                            </div>
-                            <div class="work-caption">
-                                <h4 class="team-name font-alt">Rahul K</h4>
-                                <span class="team-role font-serif">Back-End Developer</span>
                             </div>
                             <a href="portfolio-single-1.html" class="work-link"></a>
                         </div>
