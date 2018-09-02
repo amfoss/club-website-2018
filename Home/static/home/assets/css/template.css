@@ -57,7 +57,7 @@ iframe{
 	width:100%;
 	bottom:0;
 	left:0;
-	padding:15px 30px;
+	padding:0px 10px 5px 10px;
 	font-size:11px;
 	margin-top: 50px;
 }
@@ -198,16 +198,18 @@ blockquote cite{
 .font-alt{
 	font-family:'Roboto Condensed', sans-serif;
 	text-transform:uppercase;
-	letter-spacing:2px;
+	letter-spacing:1px;
 }
 
 .font-serif{
 	font-family:Georgia, sans-serif;
 	font-style:italic;
+	font-size: medium;
 }
 
 .text-light{
-	color:#fff !important;
+	color:white !important;
+	font-size: x-large;
 
 }
 
@@ -574,7 +576,9 @@ blockquote cite{
 */
 
 .counter{
-	text-align:center;
+	text-align:justify;
+	font-size: x-large;
+	text-indent: 50px;
 }
 
 .counter-icon{
@@ -614,6 +618,14 @@ blockquote cite{
 .iconbox{
 	text-align:center;
 	margin:40px 0;
+}
+
+.iconbox:hover{
+	-webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .iconbox-icon{
@@ -1172,6 +1184,7 @@ blockquote cite{
 	display:table-cell;
 	vertical-align:middle;
 	height:100%;
+	color: white;
 }
 
 .hero-subtitle{
@@ -1296,7 +1309,7 @@ blockquote cite{
 	text-align:center;
 	line-height:1.4;
 	font-weight:300;
-	font-size:48px;
+	font-size:40px;
 }
 
 .module-subtitle{
@@ -1360,7 +1373,7 @@ blockquote cite{
 	top:0;
 }
 
-.bg-film, .bg-dark-30, .bg-dark-60, .bg-dark-90{
+.bg-film, .bg-dark-30, .bg-darkh-60, .bg-dark-90{
 	color:#fff;
 
 }
@@ -1877,4 +1890,69 @@ blockquote cite{
 	.multi-columns-row .col-lg-2:nth-child(6n + 7){ clear:left; }
 	.multi-columns-row .col-lg-1:nth-child(12n + 13){ clear:left; }
 
+}
+/*------------------------------------------------------------------
+ */
+#text{
+display:none;
+}
+
+.width{
+	width: 100%;
+}
+
+.transition-timer-carousel .carousel-caption {
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 4%, rgba(0,0,0,0.5) 32%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(4%,rgba(0,0,0,0.1)), color-stop(32%,rgba(0,0,0,0.5)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.5) 32%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.5) 32%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.5) 32%,rgba(0,0,0,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 4%,rgba(0,0,0,0.5) 32%,rgba(0,0,0,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	width: 100%;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	text-align: left;
+	padding-top: 5px;
+	padding-left: 15%;
+	padding-right: 15%;
+}
+.transition-timer-carousel .carousel-caption .carousel-caption-header {
+	margin-top: 10px;
+	font-size: 24px;
+	color: white;
+}
+
+@media (min-width: 1200px) {
+    /* Lower the font size of the carousel caption header so that our caption
+    doesn't take up the full image/slide on smaller screens */
+	.transition-timer-carousel .carousel-caption .carousel-caption-header {
+		font-size: 36px;
+	}
+}
+.transition-timer-carousel .carousel-indicators {
+	bottom: 0px;
+	margin-bottom: 5px;
+}
+.transition-timer-carousel .carousel-control {
+	z-index: 11;
+}
+.transition-timer-carousel .transition-timer-carousel-progress-bar {
+    height: 5px;
+    background-color: #5cb85c;
+    width: 0%;
+    margin: -5px 0px 0px 0px;
+    border: none;
+    z-index: 11;
+    position: relative;
+}
+.transition-timer-carousel .transition-timer-carousel-progress-bar.animate{
+    /* We make the transition time shorter to avoid the slide transitioning
+    before the timer bar is "full" - change the 4.25s here to fit your
+    carousel's transition time */
+    -webkit-transition: width 4.25s linear;
+	-moz-transition: width 4.25s linear;
+	-o-transition: width 4.25s linear;
+	transition: width 4.25s linear;
 }
