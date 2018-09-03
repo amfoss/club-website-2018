@@ -1817,7 +1817,7 @@ textarea {
 #go_to_top {
     width: 40px;
     line-height: 40px;
-	border-radius: 50%;
+    border-radius: 50%;
     display: none;
     cursor: pointer;
     position: fixed;
