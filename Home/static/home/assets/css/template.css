@@ -1816,22 +1816,35 @@ blockquote cite{
 	margin:5px 15px;
 }
 
-.to-top-link{
-	position:absolute;
-	bottom:0;
-	left:50%;
-	width:40px;
-	height:40px;
-	background:#f5f5f5;
-	text-align:center;
-	line-height:40px;
-	margin-left:-20px;
+button#submit {
+	transition: 0.3s;
+}
+button#submit:hover {
+	background: #e7e7e7;
+	color: black;
+	transition: 0.3s;
+}
+textarea {
+	resize: none;
+}
+#go_to_top {
+    width: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 5%;
+    right: 1%;
+    background: #111;
+    color: #555;
+    text-align: center;
+}
+#go_to_top:hover {
+    background-color: #f5f5f5;
+    color: #000;
 }
 
-.to-top-link:hover{
-	background:#111;
-	color:#fff;
-}
 /*!------------------------------------------------------------------
 [Multi-columns-row]
 */
@@ -1891,6 +1904,7 @@ blockquote cite{
 	.multi-columns-row .col-lg-1:nth-child(12n + 13){ clear:left; }
 
 }
+
 /*------------------------------------------------------------------
  */
 #text{
@@ -1956,3 +1970,52 @@ display:none;
 	-o-transition: width 4.25s linear;
 	transition: width 4.25s linear;
 }
+=======
+
+/* for card animations */
+
+.card_display {
+  float: left;
+  margin: 10px;
+  -webkit-perspective: 600px;
+}
+
+.front, .back {
+  background: #FFF;
+  border-radius: 10px;
+  transition: -webkit-transform 1s;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  border: 1px solid #f5f5f5;
+}
+
+.front {
+  overflow: hidden;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.back {
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+  -webkit-transform: rotateY(-180deg);
+  overflow: hidden;
+}
+
+.card_display:hover .back {
+  -webkit-transform: rotateY(0);
+}
+
+.card_display:hover .front {
+  -webkit-transform: rotateY(180deg);
+}
+
+.card-image {
+  width: 100%;
+  height: 80%;
+}
+
