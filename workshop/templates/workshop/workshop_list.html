@@ -28,36 +28,34 @@
                 <div class="row">
                     {% for workshop in workshops %}
                         <div class="col-md-4">
-                            <div class="card" {% ifequal workshop.1 0 %}
-                                 style="background-color: #b4b4b4" {% endifequal %}>
-
+                            <div class="card_display">
+                              <div class="front">
                                 {% if workshop.0.poster %}
-                                    <img class="card-img-top img-fluid img-{{ workshop.0.id }}"
-                                         src="/static/media/{{ workshop.0.poster }}">
+                                    <img class="card-image img-fluid img-{{ workshop.0.id }}"
+                                         src="/static/media/{{ workshop.0.poster }}" onerror=this.src="{% static 'workshop/default.png' %}">
                                 {% else %}
-                                    <img class="card-img-top img-fluid"
+                                    <img class="card-image img-fluid"
                                          src="{% static 'workshop/default.png' %}">
                                 {% endif %}
                                 <div class="card-block">
+                                   <center><h3 style="padding: 4px;">{{ workshop.0.name }}</h3><center>
+                                </div>
+                              </div>
+                              <div class="back">
+                                <div class="card-block" style="padding:2%;">
                                     <h3 style="padding: 10px " class="card-title">{{ workshop.0.name }}</h3>
-                                    <p style="padding: 10px " class="card-text">{{ workshop.0.overview }}</p>
-                                    <p style="padding: 10px "class="card-text">
-                                        <small>Seats Available: {{ workshop.1 }}</small>
-                                    </p>
-
-                                    <p style="padding: 10px "class="card-text">
-                                        <small>{{ workshop.0.start_date_time }}</small>
-                                    </p>
+                                    <p style="padding: 10px " class="card-text">{{ workshop.0.overview | truncatechars:40 }}</p>
                                     <a href="{% url 'workshop_detail' workshop.0.id %}"
                                        class="btn btn-dark anim-scroll">More info
                                     </a>
                                     {% ifequal workshop.1 0 %}
-                                        <a class="btn btn-danger">Closed</a>
+                                        <a class="btn btn-danger">Closed registration</a>
                                     {% else %}
                                         <a class="btn btn-success">
-                                            Open</a>
+                                            Open to register</a>
                                     {% endifequal %}
                                 </div>
+                              </div>
                             </div>
                         </div>
                         {% ifequal workshop.1 0 %}

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
     'bootstrap3_datetime',
     'achievements',
     'clubManagement',
@@ -117,6 +118,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#social login with allauth
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_PROVIDERS = \
+{'github': {
+'SCOPE': ['user:email',],
+},
+'google': {
+'SCOPE': ['https://www.googleapis.com/auth/userinfo.profile',
+            'email'],
+  'AUTH_PARAMS': {'access_type': 'online'}
+ },
+}
+SOCIALACCOUNT_ADAPTER = "fosswebsite.SampleLogin.CustomLogin"
+SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_FORMS = {
+    'signup': 'registration.forms.SocialSignup'
+}
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 

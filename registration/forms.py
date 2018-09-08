@@ -3,11 +3,13 @@ from django import forms
 from django.contrib.auth.models import User
 from django.db.models.functions import datetime
 from django.utils.translation import ugettext_lazy as _
+from allauth.socialaccount.forms import SignupForm
 
 from registration.models import UserInfo
 
 
 class UserSignUpForm(forms.ModelForm):
+
     """
     A form that creates a user, with no privileges, from the given username and
     password.
@@ -160,3 +162,16 @@ class UserForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'email', 'profile_pic', 'small_intro', 'intro', 'interests', 'expertise',
                   'gitHub', 'blog', 'linkedIn', 'googlePlus', 'facebook', 'twitter', 'year', 'resume', 'typing_speed',
                   'system_number']
+
+class SocialSignup(SignupForm):
+
+    password1 = forms.CharField(label=_("Password"),
+                                widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Password confirmation"),
+                                widget=forms.PasswordInput,
+                                help_text=_("Enter the same password as above, for verification."))
+    year = forms.IntegerField(label=_("Year of admission"))
+
+    class Meta:
+        model = User
+        fields = ["first_name", "last_name", "email", "username"]

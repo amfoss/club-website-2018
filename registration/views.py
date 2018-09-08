@@ -7,7 +7,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, ListView, View
 import xlrd, datetime
-
+from allauth.socialaccount.models import SocialAccount
 from achievements.models import Contribution
 from clubManagement.models import Team
 from projects.models import Project
@@ -74,6 +74,8 @@ class UserUpdateView(UpdateView):
     def post(self, request, *args, **kwargs):
         if request.user != self.get_object().user:
             return redirect('permission_denied')
+        user = self.get_object().user
+        social_account = SocialAccount.objects.filter(user=user).delete()
         return super(UserUpdateView, self).post(request, *args, **kwargs)
 
 
