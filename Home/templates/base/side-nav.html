@@ -38,7 +38,7 @@
                         <li><a href="{% url 'achievements' %}">achievements</a></li>
                     </ul>
                 </li>
-                <li><a href="{% url 'workshop_list' %}">Events</a></li>
+                <li><a href="{% url 'workshop_list' %}">Workshops</a></li>
                 <li><a href="{% url 'project' %}">Projects</a></li>
                 {% if not request.user.is_authenticated %}
                   <li><a href="{% url 'join' %}">Join us</a></li>
@@ -54,7 +54,11 @@
                             {% else %} {% ifequal request.path '/accounts/login/' %}
                             <li><a href="{% url 'signup' %}">Sign Up</a></li>
                         {% else %}
-                            <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                            {% ifequal request.path '/accounts/logout/' %}
+                              <li><a href="{% url 'login' %}?next={{ "/" }}">Login</a></li>
+                            {% else %}
+                              <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                            {% endifequal %}
                         {% endifequal %}
                         </ul>
                     </li>

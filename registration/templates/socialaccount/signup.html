@@ -84,7 +84,6 @@
         <span class="logmod__close">Close</span>
         <div class="logmod__container">
             <ul class="logmod__tabs">
-                <li data-tabtar="lgm-2"><a href="#">Login</a></li>
                 <li data-tabtar="lgm-1"><a href="#">Sign Up</a></li>
             </ul>
             <div class="logmod__tab-wrapper">
@@ -150,81 +149,6 @@
                             </div>
                         </form>
                     </div>
-                    {#        <div class="logmod__alter">#}
-                    {#          <div class="logmod__alter-container">#}
-                    {#            <a href="#" class="connect facebook">#}
-                    {#              <div class="connect__icon">#}
-                    {#                <i class="fa fa-facebook"></i>#}
-                    {#              </div>#}
-                    {#              <div class="connect__context">#}
-                    {#                <span>Create an account with <strong>Facebook</strong></span>#}
-                    {#              </div>#}
-                    {#            </a>#}
-                    {#              #}
-                    {#            <a href="#" class="connect googleplus">#}
-                    {#              <div class="connect__icon">#}
-                    {#                <i class="fa fa-google-plus"></i>#}
-                    {#              </div>#}
-                    {#              <div class="connect__context">#}
-                    {#                <span>Create an account with <strong>Google+</strong></span>#}
-                    {#              </div>#}
-                    {#            </a>#}
-                    {#          </div>#}
-                    {#        </div>#}
-                </div>
-                <div class="logmod__tab lgm-2">
-                    <div class="logmod__heading">
-                        <span class="logmod__heading-subtitle">Enter your Username and password <strong>to sign in</strong></span>
-                    </div>
-                    <div class="logmod__form">
-                        <form accept-charset="utf-8" action="{% url 'login' %}" class="simform" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" value="{% if request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}/{% endif %}{% endif %}" name="next" />
-
-                            <div class="sminputs">
-                                <div class="input full">
-                                    <label class="string optional" for="user-name">Username*</label>
-                                    <input class="string optional" maxlength="255" name="username" id="user-email"
-                                           placeholder="Username" type="Username"
-                                           value="{{ form.username.value|default_if_none:"" }}" size="100"/>
-                                </div>
-                            </div>
-                            <div class="sminputs">
-                                <div class="input full">
-                                    <label class="string optional" for="user-pw">Password *</label>
-                                    <input class="string optional" maxlength="255" id="user-pw" name="password"
-                                           placeholder="Password" type="password" size="50"/>
-                                    <span class="hide-password">Show</span>
-                                </div>
-                            </div>
-                            <div class="simform__actions">
-                                <input class="sumbit" name="commit" type="submit" value="Log In"/>
-                                <span class="simform__actions-sidetext"><a class="special" role="link"
-                                                                           href="{% url 'password_reset' %}">Forgot your password?<br>Click here</a></span>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="logmod__alter">
-                        <div class="logmod__alter-container">
-                            <a href="{% provider_login_url "github" process="login" %}" class="connect facebook">
-                                <div class="connect__icon">
-                                    <i class="fa fa-github"></i>
-                                </div>
-                                <div class="connect__context">
-                                    <span>Sign in with <strong>GitHub</strong></span>
-                                </div>
-                            </a>
-                            <a href="{% provider_login_url "google" process="login" %}" class="connect googleplus">
-                                <div class="connect__icon">
-                                    <i class="fa fa-google-plus"></i>
-                                </div>
-                                <div class="connect__context">
-                                    <span>Sign in with <strong>Google+</strong></span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

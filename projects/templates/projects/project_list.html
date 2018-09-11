@@ -27,19 +27,27 @@
                     </div>
                     <div class="row">
                         {% for object in object_list %}
-                            <div class="col-md-6">
-                                <div class="card">
-                                    {% if object.image %}
-                                        <img class="card-img-top img-fluid" src="/static/media/{{ object.image }}">
-                                    {% else %}
-                                        <img class="card-img-top img-fluid"
-                                             src="{% static 'projects/images/default.png' %}">
-                                    {% endif %}
-                                    <div class="card-block">
-                                        <h3 class="card-title">{{ object.title }}</h3>
-                                        <h5 class="card-text">{{ object.description }}</h5>
-                                        <center><a href="{% url 'project_detail' object.id %}"
-                                                   class="btn btn-dark anim-scroll">More info</a></center>
+                            <div class="col-md-4">
+                                <div class="card_display">
+                                    <div class="front">
+                                      {% if object.image %}
+                                          <img class="card-image img-fluid" src="/static/media/{{ object.image }}"
+                                            onerror=this.src="{% static 'projects/images/default.png' %}">
+                                      {% else %}
+                                          <img class="card-image img-fluid"
+                                               src="{% static 'projects/images/default.png' %}">
+                                      {% endif %}
+                                      <div class="card-block">
+                                          <center> <h3 style="padding: 4px;">{{ object.title }}</h3></center>
+                                      </div>
+                                    </div>
+                                    <div class="back">
+                                      <div class="card-block" style="padding:2%;">
+                                          <h3 class="card-title">{{ object.title }}</h3>
+                                          <h5 class="card-text">{{ object.description | truncatechars:60 }}</h5>
+                                          <center><a href="{% url 'project_detail' object.id %}"
+                                                     class="btn btn-dark anim-scroll">More info</a></center>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
