@@ -349,7 +349,10 @@ class TeamDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(TeamDetailView, self).get_context_data(**kwargs)
-        context['responsibility_list'] = self.get_object().teammember_set.all()
+        responsiblity_list=[]
+        for resp in self.get_object().teammember_set.all():
+            a.append(UserInfo.objects.get(user=resp.user))
+        context['responsibility_list'] = responsiblity_list
         context['user_count'] = len(context['responsibility_list'])
         context['all_users'] = User.objects.all()
         if self.request.user.is_superuser or self.request.user == self.object.created_by:
