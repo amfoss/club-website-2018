@@ -53,18 +53,20 @@ iframe{
 }
 
 .sidebar .copyright{
-	position:relative;
+  position: relative;
 	width:100%;
 	bottom:0;
 	left:0;
-	padding:15px 30px;
+	padding:0px 10px;
 	font-size:11px;
-	margin-top: 50px;
+	margin-bottom: 0px;
 }
 
 .sidebar .social-icons a{
+	position: relative;
 	font-size:12px;
 	margin-right:10px;
+	margin-bottom: 0px;
 }
 
 .wrapper{
