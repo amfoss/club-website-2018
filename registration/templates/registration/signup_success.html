@@ -3,12 +3,12 @@
 {% block content %}
     <!-- HERO -->
     <section id="hero" class="module-hero bg-dark-30"
-             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
+             data-background= "{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg %}">
 
         <!-- HERO TEXT -->
         <div class="hero-caption">
             <div class="hero-text">
-                <h1 class="hero-title font-alt">Welcome</h1>
+                 <h1>  Welcome </h1>
                 <p class="hero-subtitle font-serif"></p>
             </div>
         </div>
@@ -20,20 +20,20 @@
     <section class="module">
         <div class="container">
             <div class="row">
-                <div style="margin-left: 250px">
+                <div style="margin-left: 300px">
                     <div class="container">
                         <div class="col-md-6 offset-md-3">
                             <div class="card">
                                 <div class="card-block">
-                                    <div style="margin-left: 70px">
+                                    <div style="margin-left: 50px">
                                         <h3 class="card-title col-md-12">Welcome to amFOSS!</h3>
                                         <hr>
                                         <br>
-                                        <p style="margin-left: 20px" class="card-text col-md-12">
+                                        <p style="margin-left: -15px" class="card-text col-md-12">
                                             Click the button below to login or use the navbar.
                                         </p>
                                     </div>
-                                    <p style="margin-left: 180px" class="col-md-12">
+                                    <p style="margin-left: 100px" class="col-md-12">
                                         <a class="btn btn-dark anim-scroll" href="{% url 'login' %}"
                                            role="button">Login</a>
                                     </p>
@@ -43,10 +43,13 @@
                             <hr>
                             <hr>
                             <hr>
-                            <div class="alert alert-danger" role="alert">
+                            <div style=" padding-right:150px;">
+                            <div class="alert alert-danger" role="alert" style="padding-bottom:32 px; margin-top:50px; align-left;">
+
                                 <strong>Note!</strong> Your account needs to be verified before you can log in.
                                 Please contact a senior member of the club to activate your account.
                             </div>
+                          </div>
                         </div>
                     </div>
                 </div>
