@@ -15,7 +15,7 @@
 
     <!-- Icon Fonts -->
     <link href="{% static 'registration/fonts/icomoon/style.css' %}" rel="stylesheet">
-
+    <!-- <link rel="stylesheet" href="https://i.icomoon.io/public/temp/c7ec5a2d4e/UntitledProject/style.css"> -->
     <!-- Styles -->
     <link href="{% static 'registration/css/plugins.min.css' %}" rel="stylesheet">
     <link href="{% static 'registration/css/style.min.css' %}" rel="stylesheet">
@@ -36,7 +36,6 @@
             a.src = g;
             m.parentNode.insertBefore(a, m)
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
         ga('create', 'UA-92973565-1', 'auto');
         ga('send', 'pageview');
     </script>
@@ -70,7 +69,7 @@
                             <p class="text-muted">{{ user_info.small_intro }}</p>
                             <ul class="crt-social clear-list">
                                 {% if user_info.gitHub %}
-                                    <li><a href="{{ user_info.gitHub }}"><span class="crt-icon crt-icon-github"></span></a>
+                                    <li><a href="{{ user_info.gitHub }}"><span class="fa -github"></span></a>
                                     </li>
                                 {% endif %}
                                 {% if user_info.blog %}
@@ -118,7 +117,7 @@
                                 </li>
                                 <li>
                                     <a href="{% url 'about' %}" data-tooltip="About Us"><span
-                                            class="crt-icon crt-icon-anchor"></span></a>
+                                            class="crt-icon crt-icon-about"></span></a>
                                 </li>
                                 {% if teams %}
                                     {% if projects %}
@@ -186,7 +185,7 @@
                                         {% endifequal %}
                                     </div>
                                     <div class="text-box">
-                                        <p><b>Helo, I’m {{ user_info.user.first_name }}!</b><br>
+                                        <p><b>Hello, I’m {{ user_info.user.first_name }} {{ user_info.user.last_name }}!</b><br>
                                             {{ user_info.intro }}</p>
                                     </div>
                                 </div>

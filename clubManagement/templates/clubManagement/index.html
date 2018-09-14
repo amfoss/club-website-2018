@@ -79,15 +79,15 @@
                         {% endif %}
 
 
-                        <hr class="col-md-11">
+                     <hr class="col-md-11">
                         <div class="dropdown col-md-8">
                             <input id="search" onkeyup="myFunction()" class="form-control"
                                    data-toggle="dropdown" placeholder="Search with students name.." autocomplete="off">
                             <input type="hidden" id="search-id" name="user_id">
-                            <div class="dropdown-menu" id="search-results">
+                            <div class="dropdown-menu" id="search-results" style="background-color:#ffffff; overflow-y:scroll; height:230px; width:620px; position:relative; right:5px;">
                                 {% for user in user_list %}
-                                    <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
-                                       class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>
+                                    <div onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
+                                       class="dropdown-item"><p>{{ user.first_name }} {{ user.last_name }}</p></div>
                                 {% endfor %}
                             </div>
                         </div>

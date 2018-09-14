@@ -1,9 +1,9 @@
 @font-face {
-  font-family: 'icomoon';
-  src:
-    url('fonts/icomoon.ttf?8dntj0') format('truetype'),
-    url('fonts/icomoon.woff?8dntj0') format('woff'),
-    url('fonts/icomoon.svg?8dntj0#icomoon') format('svg');
+  font-family: "icomoon";
+  src: url("fonts/icomoon.eot");
+  src: url("fonts/icomoon.eot") format("embedded-opentype"), url("fonts/icomoon.woff")
+      format("woff"), url("fonts/icomoon.ttf") format("truetype"), url("fonts/icomoon.svg#icomoon")
+      format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -22,7 +22,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .crt-icon-arrow-flat-left:before {
   content: "\e90d";
 }
@@ -2132,4 +2131,3 @@
 .crt-icon-meetup:before {
   content: "\f2e0";
 }
-
