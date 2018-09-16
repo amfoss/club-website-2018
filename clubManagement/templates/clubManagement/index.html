@@ -84,7 +84,7 @@
                             <input id="search" onkeyup="myFunction()" class="form-control"
                                    data-toggle="dropdown" placeholder="Search with students name.." autocomplete="off">
                             <input type="hidden" id="search-id" name="user_id">
-                            <div class="dropdown-menu" id="search-results" style="background-color:#ffffff; overflow-y:scroll; height:230px; width:620px; position:relative; right:5px;">
+                            <div class="dropdown-menu" id="search-results">
                                 {% for user in user_list %}
                                     <div onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
                                        class="dropdown-item"><p>{{ user.first_name }} {{ user.last_name }}</p></div>
