@@ -1940,7 +1940,7 @@ textarea {
   	height: 80%;
 }
 
-.dropdown-menu {
+div.dropdown-menu {
 	background-color:#ffffff;
 	overflow-y:scroll;
 	height:230px;
