@@ -32,4 +32,9 @@ urlpatterns = [
         TemplateView.as_view(template_name='registration/error.html'),
         name="error"
     ),
+    url(
+        r'^remember_me/$',
+        TemplateView.as_view(template_name='registration/login.html'),
+        name="remember_me"
+    ),
 ]
