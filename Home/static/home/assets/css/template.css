@@ -1938,3 +1938,7 @@ textarea {
   width: 100%;
   height: 80%;
 }
+
+.dropdown-item p:hover{
+	background-color: black;
+}

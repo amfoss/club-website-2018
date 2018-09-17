@@ -1,111 +1,115 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-    <!-- HERO -->
-    <section id="hero" class="module-hero bg-dark-30"
-             data-background="{% static 'BlogFeedAggregator/assets/images/mike-giles-wallpape.jpg' %}">
 
-        <!-- HERO TEXT -->
-        <div class="hero-caption">
-            <div class="hero-text">
-                <h1 class="hero-title font-alt">Team</h1>
-                <p class="hero-subtitle font-serif"></p>
-            </div>
-        </div>
-        <!-- /HERO TEXT -->
+    <section style="padding: 50px">
+    <div class="row">
+    <div class="container-fluid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
 
-    </section>
-    <!-- /HERO -->
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
 
-    <section class="module">
-        <div class="container-fluid container-custom">
-
-            <div class="row">
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-md-4">
-                                <h3>Team details</h3>
-                                <div class="card mb-3">
-                                    <img class="card-img-top img-fluid" src="/static/clubManagement/image/{{ object.image }}">
-                                    <div class="card-block">
-                                        <h4 class="card-title">{{ object.name }}</h4>
-                                        <p class="card-text">{{ object.description }}</p>
-                                        <p class="card-text">
-                                            <small class="text-muted">
-                                                Added by
-                                                : {{ object.created_by.first_name }} {{ object.created_by.last_name }}
-                                            </small>
-                                        </p>
-                                        {% if edit_permission %}
-                                            <a href="{% url 'team_update' object.id %}">
-                                                <button type="submit" class="btn btn-dark anim-scroll">Update</button>
-                                            </a>
-                                            <a href="{% url 'team_delete' object.id %}">
-                                                <button type="submit" class="btn btn-danger add-btn">Delete</button>
-                                            </a>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-
-                              <div class="row">
-                              <div class="col-md-5">
-                              <ul class="list-group">
-                                <div class="margin-20"></div>
-                                <li class="row list-group-item justify-content-between">
-                                    <h5 style="text-align: center">Team members</h5>
-                                    <span class="col-md-1 badge badge-default badge-pill">{{ user_count }}</span>
-                                </li>
-                                {% for resp in responsibility_list %}
-                                    <li class="row list-group-item justify-content-between">
-                                        <p class="col-md-10">
-                                            {{ resp.user.first_name }} {{ resp.user.last_name }}
-                                        </p>
-                                        <form class="col-md-2" method="post" action="{% url "team_member_delete" resp.id %}">
-                                            {% csrf_token %}
-                                            <button type="submit" class="close">×</button>
-                                        </form>
-                                    </li>
-                                {% endfor %}
-                                {% if edit_permission %}
-                                    <div onclick="showForm()" class="col-sm-offset-5">
-                                          <button class="btn btn-dark anim-scroll">
-                                            Add student
-                                        </button>
-                                    </div>
-                                {% endif %}
-                                <div class="card student-form" id="student-form" style="display: none">
-                                    <div class="card-block">
-                                        <form class="form-group col-md-10" action="" method="post">
-                                            {% csrf_token %}
-                                            <br>
-                                            <div class="dropdown">
-                                                <input id="search" onkeyup="myFunction()" class="form-control"
-                                                       data-toggle="dropdown" placeholder="Search for a student name.."
-                                                       autocomplete="off">
-                                                <input type="hidden" id="search-id" name="user_id">
-                                                <div class="dropdown-menu" id="search-results">
-                                                    {% for user in all_users %}
-                                                        <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
-                                                           class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-dark anim-scroll">Add</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </ul>
-                          </div>
-
+                        <div class="card mb-4" style="padding: 30px 25px 30px 25px">
+                            <img class="card-img-top img-fluid" style="border-radius: 8px;width: 500px; height:300px;" src="/static/clubManagement/image/{{ object.image }}">
                         </div>
                     </div>
 
-                </div>                        
-            <!-- .row -->
 
+                    <div class="row">
+                        <div class="card-block">
+                            <h3 style="font-size: xx-large;padding: 30px 0px 0px 15px">{{ object.name }}</h3>
+                            <p class="card-text" style="padding-right: 30%">{{ object.description }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    Added by
+                                    : {{ object.created_by.first_name }} {{ object.created_by.last_name }}
+                                </small>
+                            </p>
+                            {% if edit_permission %}
+                                <a href="{% url 'team_update' object.id %}">
+                                    <button type="submit" class="btn btn-dark anim-scroll">Update</button>
+                                </a>
+                                <a href="{% url 'team_delete' object.id %}">
+                                    <button type="submit" class="btn btn-danger add-btn">Delete</button>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
+    </div>
+
     </section>
+
+    <section style="padding-top: 20px">
+        <div class="container-fluid container-custom" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)">
+            <div>
+            <div >
+                <h3 style="font-size: xx-large;text-align: center;padding: 30px">Members</h3>
+            </div>
+                <div class="works-grid-wrapper" style="padding: 15px 10px">
+                    <div id="works-grid" class="works-grid works-grid-gutter">
+                    {% for resp in responsibility_list %}
+                        <article class="work-item fashion">
+                            <div class="work-wrapper">
+                                <div class="work-thumbnail">
+                                    {% if resp.profile_pic %}
+                                    <img style="border-radius: 50%" src="/static/media/{{ resp.profile_pic }}"
+                                     srcset="/static/media/{{ resp.profile_pic }} 2x" alt=".profilepic" onerror="this.src='{% static 'base/image/default-no-profile-pic.jpg' %}'">
+                                    {% else %}
+                                    <img style="border-radius: 50%" src="{% static 'base/image/default-no-profile-pic.jpg' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="work-caption" style="border-radius: 50%">
+                                    <h3 class="work-title font-alt"><a href="{% url 'profile' resp.user.username %}">{{ resp.user.first_name }} {{ resp.user.last_name }}</a></h3>
+                                    {% if edit_permission %}
+                                        <form class="col-md-7" method="post" action="{% url "team_member_delete" resp.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="close">×</button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        <div>
+            {% if edit_permission %}
+                <div onclick="showForm()" class="col-sm-offset-5">
+                    <button class="btn btn-dark anim-scroll">
+                        Add student
+                    </button>
+                </div>
+            {% endif %}
+            <div class="card student-form" id="student-form" style="display: none">
+                <div class="card-block">
+                    <form class="form-group col-md-10" action="" method="post">
+                        {% csrf_token %}
+                        <br>
+                        <div class="dropdown">
+                            <input id="search" onkeyup="myFunction()" class="form-control"
+                                   data-toggle="dropdown" placeholder="Search for a student name.."
+                                   autocomplete="off" >
+                            <input type="hidden" id="search-id" name="user_id">
+                            <div class="dropdown-menu" id="search-results" style="background-color: #DCDCDC;overflow: scroll;height: 240px;width:300px">
+                                {% for user in all_users %}
+                                    <div><p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
+                                            class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-dark anim-scroll">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
 {% endblock %}
