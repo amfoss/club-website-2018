@@ -24,9 +24,11 @@
 
             <div style ="padding :30px " class="card-block">
                 <h1 class="card-title">Workshops</h1>
-                <a href="{% url 'workshop_create' %}">
-                    <button class="btn btn-primary">Create</button>
-                </a>
+                {% if request.user.is_superuser %}
+                    <a href="{% url 'workshop_create' %}">
+                        <button class="btn btn-primary">Create</button>
+                    </a>
+                {% endif %}
                 <hr>
                 <div class="row">
                     {% for workshop in workshops %}
