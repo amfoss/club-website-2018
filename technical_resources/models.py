@@ -17,7 +17,7 @@ class Category(models.Model):
 
 
 class Link(models.Model):
-    category = models.ForeignKey(Category, null=True, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=300)
     link = models.URLField(blank=True)
 
