@@ -17,7 +17,7 @@ class Category(models.Model):
 
 
 class Link(models.Model):
-    category = models.ForeignKey(Category, null=True)
+    category = models.ForeignKey(Category, null=True, on_delete=models.DO_NOTHING)
     name = models.CharField(max_length=300)
     link = models.URLField(blank=True)
 
@@ -29,7 +29,7 @@ class Link(models.Model):
 
 
 class File(models.Model):
-    category = models.ForeignKey(Category, null=True)
+    category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE )
     name = models.CharField(max_length=300)
     file = models.FileField(upload_to='technical_resource/files/', blank=True)
 
