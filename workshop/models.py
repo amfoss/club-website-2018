@@ -4,7 +4,7 @@ from django.db import models
 
 class Workshop(models.Model):
     name = models.CharField(max_length=500)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
     overview = models.TextField()
     course_details = models.TextField(blank=True)
     project = models.TextField(blank=True)
@@ -23,7 +23,7 @@ class Workshop(models.Model):
 
 
 class WorkshopRegistration(models.Model):
-    workshop = models.ForeignKey(Workshop, null=True)
+    workshop = models.ForeignKey(Workshop, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     email = models.EmailField()
     roll_number = models.CharField(max_length=100)
@@ -41,7 +41,7 @@ class WorkshopRegistration(models.Model):
 
 
 class WorkshopGallery(models.Model):
-    workshop = models.ForeignKey(Workshop)
+    workshop = models.ForeignKey(Workshop, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='workshop/images/')
 
     def __str__(self):
@@ -49,7 +49,7 @@ class WorkshopGallery(models.Model):
 
 
 class WorkshopFeedback(models.Model):
-    workshop = models.ForeignKey(Workshop, null=True)
+    workshop = models.ForeignKey(Workshop, null=True, on_delete=models.DO_NOTHING)
     name = models.CharField(max_length=100, blank=True)
     comment = models.CharField(max_length=500)
 

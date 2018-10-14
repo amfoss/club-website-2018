@@ -22,7 +22,7 @@ class Contest(models.Model):
 
 
 class ContestComment(models.Model):
-    contest = models.ForeignKey(Contest)
+    contest = models.ForeignKey(Contest,on_delete=models.CASCADE)
     full_name = models.CharField(max_length=300)
     description = models.TextField()
 
@@ -30,7 +30,7 @@ class ContestComment(models.Model):
         return self.full_name + self.contest.name
 
 class ContestSubmission(models.Model):
-    contest = models.ForeignKey(Contest)
+    contest = models.ForeignKey(Contest,on_delete=models.CASCADE)
     full_name = models.CharField(max_length=300)
     roll_no = models.CharField(max_length=50)
     course = models.CharField(max_length=300)

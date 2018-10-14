@@ -8,7 +8,7 @@ from django.db import models
 
 
 class Notice(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=500, null=True)
     start_date = models.DateTimeField(auto_now=False, auto_now_add=False)
     end_date = models.DateTimeField(auto_now=False, auto_now_add=False)

@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 
 class Document(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     document = models.FileField(upload_to='files/')
     title = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
