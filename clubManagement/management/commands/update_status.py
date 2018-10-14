@@ -158,6 +158,8 @@ class Command(BaseCommand):
                     text=text_content,
                     parse_mode=telegram.ParseMode.HTML
                 )
+        else:
+            print("No status updates found, or google api key error.")
 
         if options.get('create-thread', False):
             # Send next status update reminder
