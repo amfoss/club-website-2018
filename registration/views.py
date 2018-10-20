@@ -9,7 +9,7 @@ from django.views.generic import CreateView, UpdateView, DetailView, ListView, V
 import xlrd, datetime
 from allauth.socialaccount.models import SocialAccount
 from achievements.models import Contribution
-from clubManagement.models import Team
+from clubManagement.models import Team, TeamMember
 from projects.models import Project
 from registration.forms import UserSignUpForm, UserForm
 from registration.models import UserInfo, WorkExperience
@@ -91,7 +91,7 @@ class ProfileDetailView(DetailView):
             context['user_info'] = UserInfo.objects.get(user=self.get_object())
         except User.DoesNotExist:
             context['error'] = 'No data found for this user!'
-        context['teams'] = Team.objects.filter(created_by=self.get_object())
+        context['teams'] = TeamMember.objects.filter(user=self.get_object())
         context['projects'] = Project.objects.filter(created_by=self.get_object())
         context['objects'] = WorkExperience.objects.order_by('-end_date')
         return context

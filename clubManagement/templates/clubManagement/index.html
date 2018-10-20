@@ -86,8 +86,8 @@
                             <input type="hidden" id="search-id" name="user_id">
                             <div class="dropdown-menu" id="search-results">
                                 {% for user in user_list %}
-                                    <p onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
-                                       class="dropdown-item">{{ user.first_name }} {{ user.last_name }}</p>
+                                    <div onclick="addText({{ user.id }}, '{{ user.first_name }} {{ user.last_name }}')"
+                                       class="dropdown-item"><p>{{ user.first_name }} {{ user.last_name }}</p></div>
                                 {% endfor %}
                             </div>
                         </div>
