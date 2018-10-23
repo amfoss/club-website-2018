@@ -335,7 +335,7 @@
                                                 <div class="ref-info">
                                                     {% for team in teams %}
                                                         <blockquote class="ref-cont clear-mrg">
-                                                            <a href="{% url 'team_detail' team.steam.id %}">
+                                                            <a href="{% url 'team_detail' team.team.id %}">
                                                                 <ul>
                                                                     <li><p>{{ team.team.name }}</p></li>
                                                                 </ul>
