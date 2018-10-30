@@ -14,25 +14,26 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.urls import include, path
 from django.conf.urls.static import static
 from django.contrib import admin
+
 from fosswebsite import settings
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^accounts/', include('registration.urls')),
-    url(r'^accounts/', include('allauth.urls')),
-    url(r'^club/', include('clubManagement.urls')),
-    url(r'^achievements/', include('achievements.urls')),
-    url(r'^project/', include('projects.urls')),
-    url(r'^timeline/', include('timeline.urls')),
-    url(r'^workshop/', include('workshop.urls')),
-    url(r'^home/', include('Home.urls')),
-    url(r'^$', include('Home.urls')),
-    url(r'^BlogFeedAggregator/', include('BlogFeedAggregator.urls')),
-    url(r'^admissions/', include('admissions.urls')),
+    path(r'admin/', admin.site.urls),
+    path(r'accounts/', include('django.contrib.auth.urls')),
+    path(r'accounts/', include('registration.urls')),
+    path(r'accounts/', include('allauth.urls')),
+    path(r'club/', include('clubManagement.urls')),
+    path(r'achievements/', include('achievements.urls')),
+    path(r'project/', include('projects.urls')),
+    path(r'timeline/', include('timeline.urls')),
+    path(r'workshop/', include('workshop.urls')),
+    path(r'home/', include('Home.urls')),
+    path('', include('Home.urls')),
+    path(r'BlogFeedAggregator/', include('BlogFeedAggregator.urls')),
+    path(r'admissions/', include('admissions.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
