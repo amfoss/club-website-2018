@@ -12,7 +12,7 @@ class Feed(models.Model):
         return (self.title).encode('ascii', errors='replace')
 
 class Article(models.Model):
-    feed = models.ForeignKey(Feed)
+    feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     author = models.CharField(null=True, max_length=200)
     url = models.URLField()
