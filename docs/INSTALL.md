@@ -1,58 +1,72 @@
-## Development Environment
-Its super easy to set up our development environment
+# Installation Instructions
 
-## Collect Pre-requisites
-Install `python-pip`, `python-dev` and `virtualenvwrapper`
+## 1. Install Pre-Requisites
+The project require the following packages to be installed in your system :- 
+* **`pip`** - popular python package manager used to install project dependencies. 
+* **`python-dev`** - for compiling python extention modules  
+* **`virtualenvwrapper`** - wrappers for creating and deleting virtual environments
+
 ```bash
 sudo apt-get install python-pip python-dev
 sudo -H pip install virtualenvwrapper
 ```
-## Get the files
-You can clone it directly from https://github.com/amfoss/website
+## 2. Get the Repository
+You may clone the project file for the amfoss website directly from https://github.com/amfoss/website. However, it is recommended that you fork the repository and work on it, so that you will be able to send pull requests.
+
+After cloning, you should move to the development branch (or create a branch derieved from development branch) to work on the development branch.
+
 ```bash
 git clone https://github.com/amfoss/fosswebsite.git
+cd ./fosswebsite
+git checkout development
 ```
-## Setup development environment
-First, some initialization steps. Most of this only needs to be done
-one time. You will want to add the command to source
-`/usr/local/bin/virtualenvwrapper.sh` to your shell startup file
-(`.bashrc` or `.zshrc`) changing the path to `virtualenvwrapper.sh`
-depending on where it was installed by `pip`.
+## 3. Setup Development Environment
+Set the work environment path, and use the `virtualenwrapper` to create an virtual environment for the project.
+
+### 3.1 Set the Work Environment Path
 ```bash
 export WORKON_HOME=~/Envs
 mkdir -p $WORKON_HOME
 source /usr/local/bin/virtualenvwrapper.sh
 ```
-Lets create a virtual environment for our project
+### 3.2 Create an Environment
 ```bash
 mkvirtualenv --python=`which python3` foss
+```
+### 3.3 Work on the Environment
+```bash
 workon foss
 ```
-## Install requirements
-All the requirements are mentioned in the file `requirements.txt`.
+## 4. Install Project Requirements
+For working on the project, we need to install some project dependencies. All the requirements are listed in the [`requirements.txt`](./requirements.txt) file inside the `docs` directory.
+
 ```bash
 pip install -r docs/requirements.txt
 ```
-## Create local_settings.py
+## 5. Create `local_settings.py`
+Create the file `local_settings.py` inside the fosswebsite subdirectory.
 ```bash
 touch fosswebsite/local_settings.py
 ```
-## Setup database
-In the development phase, we use sqlite3.db
-Setup tables in the DB
+## 6. Setup Database
+In the development branch, we run django using the default sqlite3 database. To setup django tables in the database, we perform migrations. 
+
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
-Collect all the static files for fast serving
+
+Collect all the static project files for fast serving
 ```bash
 python manage.py collectstatic
 ```
-## Create an admin account
+## 7. Create an Admin Account
+Create a superuser account for managing the django project admin interface.
 ```bash
 python manage.py createsuperuser
 ```
-## Run server
+## 8. Run Server
+Run your project locally and view changes.
 ```bash
 python manage.py runserver
 ```
