@@ -106,7 +106,7 @@
             </div><!-- #crt-side-box -->
         </div><!-- #crt-side-box-wrap -->
 
-        <div id="crt-nav-wrap" class="hidden-sm hidden-xs">
+        <div id="crt-nav-wrap">
             <div id="crt-nav-inner">
                 <div class="crt-nav-cont">
                     <div id="crt-nav-scroll">
@@ -335,9 +335,9 @@
                                                 <div class="ref-info">
                                                     {% for team in teams %}
                                                         <blockquote class="ref-cont clear-mrg">
-                                                            <a href="{% url 'team_detail' team.id %}">
+                                                            <a href="{% url 'team_detail' team.team.id %}">
                                                                 <ul>
-                                                                    <li><p>{{ team.name }}</p></li>
+                                                                    <li><p>{{ team.team.name }}</p></li>
                                                                 </ul>
                                                             </a>
                                                         </blockquote>
