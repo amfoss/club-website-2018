@@ -27,49 +27,141 @@ iframe{
 	border:0;
 }
 
-.sidebar{
+
+#toggle_button
+{
+	border: 1.2px solid #666;
+	color: #eee;
+	background: #000;
+	padding: 1rem;
+	font-size: 2rem;
+	top: 1.5rem;
+	left: 1.5rem;
+	z-index: 1000;
+	border-radius: 0.5rem;
+	position: fixed;
+}
+
+#sidebar{
 	position:fixed;
 	width:250px;
 	background-color:#111;
 	height:100%;
 	top:0;
 	left:0;
-	padding:60px 0 0px 20px;
 	z-index:999;
-	background-repeat:no-repeat;
-	background-position:center center;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	background-size:cover;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 1rem;
 }
 
-.sidebar a{
+#sidebar-logo
+{
+	 padding: 1rem;
+	 width: 100%;
+	 display: block;
+	 text-align: center;
+	 margin-top: 8vh;
+}
+
+#sidebar-logo img {
+	width: 10rem;
+	margin-left: -3rem;
+}
+
+#sidebar a{
 	color:rgba(255, 255, 255, .7);
 }
 
-.sidebar a:hover{
+#sidebar a:hover{
 	color:#fff;
 }
 
-.sidebar .copyright{
-	position:relative;
-	width:100%;
-	bottom:0;
-	left:0;
-	padding:15px 30px;
-	font-size:11px;
-	margin-top: 50px;
+#sidebar .nav
+{
+	padding: 2rem 1rem;
 }
 
-.sidebar .social-icons a{
-	font-size:12px;
-	margin-right:10px;
+#sidebar-bottom{
+	position: absolute;
+	width: 100%;
+	bottom:-20vh;
+	padding: 2rem;
+	font-size: 11px;
+}
+
+#sidebar-bottom .login_button
+{
+	 background-color: #ffc107;
+	 color: #000;
+}
+
+#sidebar-bottom .login_button:hover
+{
+	 color: black;
+	 font-weight: 600;
+}
+
+#sidebar-bottom .social_icons a{
+	font-size: 18px;
+	margin-right: 0.8rem;
+	margin-top: 2rem;
+	color: #666;
+}
+
+#sidebar-bottom .social_icons a:hover{
+	color: #fff;
 }
 
 .wrapper{
 	position:relative;
 	margin-left:250px;
+	transition: margin 1s;
+}
+
+
+.sidebar-dropdown > a
+{
+	 display: inline-block!important;
+}
+
+.sidebar-dropdown > span
+{
+	 margin-left: 5rem;
+	 transition: 1s;
+}
+
+.sidebar-dropdown > ul
+{
+	list-style: none;
+	margin: 0;
+	padding: 0 3rem;
+	transition: display 5s;
+}
+
+.sidebar-dropdown > ul > li
+{
+	 padding: 0.5rem;
+}
+
+/* width */
+#sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+#sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+#sidebar::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 @media (max-width: 991px){
@@ -1074,7 +1166,6 @@ blockquote cite{
 
 	.navbar-custom .navbar-header{
 		float:none;
-		margin:0 0 60px;
 	}
 
 	.navbar-custom .navbar-nav{
@@ -1778,17 +1869,11 @@ blockquote cite{
 [Footer]
 */
 
-.footer{
-	background-color:#fff;
-	padding:60px 0;
-	position:relative;
-	background-repeat:no-repeat;
-	background-position:center center;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	background-size:cover;
-	color:#BBB;
+footer
+{
+	background: #eee;
+	padding: 3vh 0;
+	color: #DDD;
 }
 
 .contact-info{
@@ -1814,22 +1899,30 @@ button#submit:hover {
 textarea {
 	resize: none;
 }
+
+#copyright
+{
+	  color: #666;
+}
+
 #go_to_top {
+		background: #111;
+		color: white!important;
+		text-align: center;
+		font-size: 2rem;
     width: 40px;
     line-height: 40px;
     border-radius: 50%;
     display: none;
     cursor: pointer;
     position: fixed;
-    bottom: 5%;
-    right: 1%;
-    background: #111;
-    color: #555;
-    text-align: center;
+    bottom: 1.5%;
+    right: 2%;
 }
+
 #go_to_top:hover {
     background-color: #f5f5f5;
-    color: #000;
+    color: black!important;
 }
 
 /*!------------------------------------------------------------------

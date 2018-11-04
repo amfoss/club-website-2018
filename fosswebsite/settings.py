@@ -60,6 +60,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -188,6 +189,7 @@ join_application_mail_list = ['chirath.02@gmail.com', 'vipin.p@gmail.com', 'anuv
 
 # mail id to sent task and reply to
 join_application_reply_to = ['chirath.02@gmail.com']
+
 
 # Additional info like email configurations, passwords and secrete keys kept in separate file during development
 from .local_settings import *
