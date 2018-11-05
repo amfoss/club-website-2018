@@ -1,232 +1,88 @@
-# **Project**
+# amFOSS Website
+The project repository managing the official [amFOSS website](https://amfoss.in).
 
-It’s been 10+ years now that amFOSS came into existence. We are a community of students who support and guide each other towards making open source contributions, which not only helps them to build their technical skills but also helps them to contribute back to the society. Being one of the most active student communities of the country, we have made our presence felt all over. We have been getting a lot of exposure & opportunities via different platforms such as conferences & social media to name a few.
+## About the Club
+AmFOSS (FOSS@Amrita) is a computer-science club based in [Amrita Vishwa Vidyapeetham](https://amrita.edu), Amritapuri Campus, aimed at the holistic development of a student. The club members work after the college hours until late night, in a dedicated lab, under ther solid training and mentorship of the senior members, and are introduced to the world of technologies and guided to contribute to FOSS. AmFOSS is a family upholding the values of sharing and caring, and it simulates a real life working environment with all its ups and downs, growing the student to a strong, confident and talented professional. The club members very actively participate in various contests, conferences, hackathons etc., and through the hardwork and passion of the members, we are globally ranked among the TOP 10 by the number of GSoC participants (in the period 2005-2016).
 
-**Idea / Goal of the club**: To be a better human being.
+![Team FOSS 2018](https://i.imgur.com/Pr2GHR6.png)
+
+## Website Features
+
+### FOR STUDENTS 
+* **Learn about Workshops & Events conducted by the club** - students can learn about various workshops and events conducted by the club, register for them and also opt-in to get notifications.
+* **Learn about Open Source Technologies** - students can view guides prepared by expert members in the club, and also participate in discussion with them.
+* **View Club Activities** - view blog posts, gallery, projects, and intresting stuff happening inside the club.
+
+### FOR PARTNERS
+* **View Student Profiles** - view validated profiles of students, with insightful data through their activity graph.
+* **Learn about Club Activities** - view blog posts, projects, and events taking place in the club.
+
+### FOR CLUB MEMBERS
+* **Profile Page** - Members get a dedicated white-labeled profile page, in which they can showcase their work experiances, achievements, skills, projects and also share essential information and resume.
+* **Blogging Platform** - Members would be able to publish blog posts, selected posts will be published in the amfoss blog.
+* **Project Pages** - Members can create and share updates about projects they are working on
+
+### FOR CLUB MANAGEMENT
+* **Status Updates** - members can post status updates, and senior members and mentors can keep track of members and view relevant status updates. 
+* **Attendence Module** - hours worked by members inside the lab are logged. Individual reports, leaderboards, and github-like activity graph is generated based on this data.
+* **Responsibility Allotment** - senior members of the club can allot, take-up and manage various responsibilities regarding the functioning of the club. 
+* **Team Management** - members are allowed to work under one or more specialised teams, and the team details are shared.
+* **Notifications** -  notifications are send by senior members and the system, regarding upcoming events, scheduling of meetings, deadlines etc. 
 
 
-## **How to Contribute?**
+## How to Contribute?
 
-### If you are a developer
+### For developers
 
 * Get the code
 * Familiarize yourself with the code base.
-* Get familiarised with Git
+* Get familiarised with Git and Django
 
-1. Bug fixing:
-  The first area where you can help is bug fixing. You can look up for the bugs in the ‘issues’. The bugs have been provided with tags to help you classify and work on based on their difficulty level.
+**1. Bug Reporting & Fixing:**
+* You can report the bugs in the website and put up an issue. You may also go through the bugs already reported as ‘issues’. 
+* The bugs (issues) have been tagged to help you classify and work on based on their type and difficulty level.
+* Fork the repository, fix the bugs and send us a pull request explaining the same.
 
-2. Feature Development:
-  Once you get familiar with the code base, you can start contributing to new features.
+**2. Feature Development:**
+* Once you get familiar with the code base, you can start contributing to new features.
 
-
-* If you are a designer or usability professional, help shape the UX
-
+### For Designers (UX/UI)
 You can contribute in many ways to the User Experience of the foss website. Be it reviewing current features as a user and giving feedback, designing new features, testing designs or features with users, we are open for suggestions and, we'd love to have your help in the UX group!
 
-* If you want to help with the foss website
+**1. Sharing Feedback**
+* You can share general feedback about the website, citing the areas to be improved and how they may be improved.
 
-  1. Providing Website feedback
-                 Do provide general feedback about the foss website, to help us improve on the user experience.
+**2. Helping in Designing Content**
+* We welcome participation in creating great content on foss website to help improve projects and the community.
 
-  2. Getting Involved In Website Content
-                  We welcome participation in creating great content on foss website to help improve projects    and the community.
+### For Testers
+Start by building the code, and testing all our new exciting features. If you come across some bugs report to us by raising an issue, and also share your feedbacks about the current website.
 
-* If you're a tester, get started right way!
-Start by building the code, and testing all our new exciting features!!
+*Doesn't fit you? If you're hoping to contribute in another way, let us know!*
 
-* If you're hoping to contribute in another way, let us know!
+## Installation 
 
+A [detailed guide](./docs/INSTALL.md) containing all the instructions explained to setup and run this project have been provided inside the docs directory.
 
-## **Getting started**
+### Quick Instruction
+1. Make sure you have pip, python-dev and virtualenvwrapper installed.
+2. Create a virtual environment for working on the project
+3. Install all the project requirements (as given in [requirements.txt](./docs/requirements.txt))
+4. Migrate changes, collect static and create a superuser account
+5. Run the project
 
-Getting started with contributing to this is really easy with just one step away from contributing to foss@amrita. So let’s get you started,
-Fork the repository
-[https://github.com/amfoss/website]
+## Technical Specifications
+* **Frontend** : Bootstrap 4, HTML5, CSS3, JavaScript, jQuery
+* **Backend** : Python 3, Django 2.12, Media Query CSS
+* **Database** : sqlite3 (Django default)
+* **Miscellaneous** : Google Crawler, Google Calendar / Google APIs
 
-Do a direct clone, so that you can get familiarised with the code base. Moreover a cloned copy on your local system will help you to reproduce bugs and see the changes you make real time.
+## Major Contributors
+* [Chirath R](https://github.com/chirathr)- Fullstack developer
+* [Rahul Krishnan](https://github.com/rahulk98) - Backend developer
+* [Navaneeth S](https://github.com/navisk13) - Backend developer
+* [Chiranjeeb M](https://github.com/Chiranjeeb2410) -  Backend developer
+* [Aniketh Gireesh](https://github.com/Aniketh01) - Frontend and UI/UX design
 
-git clone [https://github.com/amfoss/fosswebsite.git]
-
-
-## **Pre-requisites**
-1. Install requirements:
-  All the requirements are mentioned in the file
-   ```requirements.txt```
-
-    ```pip install -r docs/requirements.txt```
-
-2. Install ```python-pip```, ```python-dev``` and ```virtualenvwrapper```
-
-    ```bash
-       sudo apt-get install
-       python-pip python-dev
-       sudo -H pip install virtualenvwrapper
-    ```
-
-
-## **Installing**
-1. First, some initialization steps. Most of this only needs to be done one time.
-Add the command to source:
-           ```/usr/local/bin/virtualenvwrapper.sh``` to your shell startup file
-            (```.bashrc``` or ```.zshrc```)
-            changing the path to ```virtualenvwrapper.sh```, depending on where it was installed by ```pip```.
-
-      ```bash
-        export WORKON_HOME=~/Envs
-        mkdir -p $WORKON_HOME
-        source /usr/local/bin/virtualenvwrapper.sh
-      ```
-
-2. Lets create a virtual environment for our project
-
-      ```bash
-         mkvirtualenv --python=which python3 foss
-         workon foss
-      ```
-
-3. Now to set up the database
-   In the development phase, we use sqlite3.db
-
-    * Setup tables in the DB
-
-      ```python
-         python manage.py makemigrations
-         python manage.py migrate
-      ```
-
-    * Collect all the static files for fast serving
-
-      ```python
-         python manage.py collectstatic
-      ```
-
-    * For creating an admin account
-
-      ```python
-         python manage.py createsuperuser
-      ```
-4. Run server
-
-      ```python
-         python manage.py runserver
-      ```
-
-
-## **Built with:**
-
-**Frontend**: HTML5, CSS3, JavaScript, jQuery
-
-**Backend/Framework:**
-* Django 1.11
-* Media Query CSS for multi-device compatibility **(Mobile compatibility)**
-
-**Others:**
-* Google Crawler
-* Google Calendar / Google APIs
-
-**Database:** Django In-built db support (sqlite3)
-
-
-## **Features implemented:**
-
-**Achievements**
-* **Contributions**: A detailed account of the numerous contributions done by the club members in their respective Open Source organizations.
-* **Articles**: The various informative articles written by our Alumni and students for various Asian and other international magazines are contained in an organised manner
-* **GSoC**: A timeline enlisting the details of students selected for GSoC every year with including the  organizations they contribute to and the related projects.
-* **RGSoC**: A timeline enlisting the details of students selected for RGSoC every year.
-* **Talks**: Referencing to the talks and conferences given/attended by the students of the club.
-* **Internships**: Provides a brief outline of various internship programs enrolled in by the club members.
-* **Contests**: Gives out a detailed account of various contests participated and the rank obtained by the members of amFOSS.
-* **Club Management**
-There are various activities in-store to manage and keep up the work-environment. We list them below:
-* **Attendance management**: Reflects number of people present during lab working hours and their respective attendance percentage.
-* **Responsibility**: Describes the individual responsibilities assigned to the club members.
-* **Teams**: Lists out the teams working on various projects simultaneously.
-* **Status updates**: Involvement of a mailing list for sending weekly status updates to keep up with our work and stay updated with current club activities.
-
-**Registration**
-_Social Oauths integrated to do registration and login._
-Social Oauth is part of the Social API. It provides a common interface for creating modules related to user registration/login through social networks' accounts.
-
-The student can login and create profile  via a portal but has to be reviewed / verified by a superuser / admin from the admin dashboard.
-
-**Additional pages:**
-* User profile
-* Sign-Up
-* Login
-* Password Reset
-* Password Change.
-
-
-**Join Us**
-
-Currently, users(members of the club) can contribute to our website via giving their feedback by filling a review application stating their experience with the current system and suggesting the proposed changes, which will help us to improve. For those who are yet to join(first year’s) can fill the Membership Application which in will help us in shortlisting them for the interview round.
-* Membership Application
-* Review Application
-
-**Projects**
-* Consists of a detailed explanation of various ongoing projects under  a concerned mentor and the mentee(s) contributing to it. (Which includes all personal projects, GSoC projects, Final year projects by FOSS students and much more.)
-
-**Workshops**
-* Gives a brief account of the workshops conducted by the club for the benefit of all the students as a whole.
-* Students who are willing to participate in the workshops conducted could register through the portals being created.
-
-**Documents**
-* Managing important documents: Documents relating to important student information for restricted access by the student and their respective mentors will be catalogued carefully. These include: College specific documents: necessary for obtaining permission to attend conferences and to conduct workshops. Letter templates that would be useful for formal communications, Visa application letters etc.
-
-**Notice Board**
-This section specifically aims to bridge the procedural/communicational gap between students and administrators, by means of a two-way correspondence between site users and admins. This attribute also serve as a means of sending crucial updates through push notifications or necessary alerts for scheduling important meetings, deadlines (GSoC, Contests) etc.
-
-Basically, any immediate suggestion/improvement is conveyed easily by an admin/mentor to the other members/students through this feature.
-
-**Events**
-* Info about current and past events conducted by the club. All events can be handled in the same format, the data stored in a db and displayed on the webpage.
-
-  * Event types: Talks, Workshops, Video Screening (Linux con talks, TED talks etc)
-
-
-**Resources**
-
-It consists of all sorts of learning materials, links to different items, which could be accessed from one place.
-* Includes a question bank of helpful interview related questions and tasks & online tests for students.
-  * Company papers (Microsoft, Google, Amazon)
-  * Students sharing their personal interview experiences as blog posts.
-  * Including books such as
-    * How to crack a coding interview;
-    * How to move Mount Fuji
-* Important Course links from various online learning platforms regarding all domains to benefit students.
-* A table representation or Excel sheet db consisting a list of all the GSoC and RSoC proposals selected
-
-**Gallery:**
-1. Foss trip pictures
-2. Contest/Conference pics
-3. Achievement images
-
-**Timeline:**
-1. A short para with details on the work they did while they were in the club and a short note about them.
-2. An alumni enlisting: Current occupation, areas of expertise photos, resume, blog links.
-
-**Google Analytics**
-Simply put, by far the best way to know our audience, Google Analytics primarily tracks and reports website traffic. Through Analytics, we can monitor how long users stay on our website, what pages/sections they are visiting the most, which page/section is causing the users to leave most often and much more. This would help in substantially improving the performance of the site and improve scalability from the end-user’s perspective.
-
-**Social OAuth integration**
-
-**Chatbot**: Gives the users new ways to interact with our website by engaging in voice and text-based conversational interfaces powered by AI, which would furthermore help the users to ask their prefered doubts and questions regarding our community & work.
-
-**Tools**
-1. Artificial Intelligence.
-2. [api.ai]
-
-**An Alert Page:** alert for scheduled meetings, deadlines (GSoC, Contests) etc.
-**Blog Aggregator:** Service that aggregates data using RSS feeds of a blog and displays the latest posts ordered on the website.
-
-## **Contributors**
-* Chirath R- fullstack developer
-* Rahul Krishnan- backend developer
-* Navaneeth S- backend developer
-* Chiranjeeb M-  backend developer
-* Aniketh Gireesh- frontend and UI/UX design
-
-
-
+## License
+This project is licensed under the [MIT License](LICENSE)

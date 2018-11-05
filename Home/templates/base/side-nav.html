@@ -1,33 +1,21 @@
 {% load static %}
 
 <!-- SIDEBAR -->
-
-<div class="sidebar">
-
+<div id="toggle_button" class="fa fa-bars"></div>
+<div id="sidebar" class="animated">
     <nav class="navbar navbar-custom font-alt">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- YOU LOGO HERE -->
-            <a class="navbar-brand" href={% url 'home' %}>
-                <img class="light-logo" src="{% static 'home/assets/images/logo.jpg' %}" width="95" alt="">
+            <a id="sidebar-logo" href={% url 'home' %}>
+                <img src="{% static 'home/assets/images/branding/logo_light.png' %}" alt="">
             </a>
         </div>
 
-        <div class="collapse navbar-collapse" id="custom-collapse">
-
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <!-- Who are we -->
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inside FOSS</a>
-                    <ul class="dropdown-menu" role="menu">
+                <li id="open-inside-foss" class="sidebar-dropdown">
+                    <a href="#">Inside FOSS</a>
+                    <span class="fa fa-chevron-down"></span>
+                    <ul class="animated fadeOut" style="display:none;" role="menu">
                         <li><a href="/BlogFeedAggregator">blog posts</a></li>
                         <li><a href="{% url 'timeline_list' %}">Timeline</a></li>
                         {% if request.user.is_authenticated %}
@@ -51,40 +39,29 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{% url 'profile' request.user.username %}">Profile</a></li>
                             <li><a href="{% url 'logout' %}">Logout</a></li>
-                            {% else %} {% ifequal request.path '/accounts/login/' %}
-                            <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                        {% else %}
-                            {% ifequal request.path '/accounts/logout/' %}
-                              <li><a href="{% url 'login' %}?next={{ "/" }}">Login</a></li>
-                            {% else %}
-                              <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-                            {% endifequal %}
-                        {% endifequal %}
                         </ul>
                     </li>
                 {% endif %}
             </ul>
+            <div id="sidebar-bottom">
+                {% if not request.user.is_authenticated   %}
+                   {% ifnotequal request.path '/accounts/login/' %}
+                      <a class="login_button btn m-0 p-2" href="{% url 'login' %}?next={{ request.path }}">Login</a>
+                  {% endifnotequal %}
+                {% endif %}
+                <div class="social_icons">
+                    <a href="https://www.facebook.com/amfoss.in/?ref=br_rs" target="_blank" class="fa fa-facebook facebook"></a>
+                    <a href="https://twitter.com/amritafoss" target="_blank" class="fa fa-twitter twitter"></a>
+                    <a href="https://www.instagram.com/amfoss_/" target="_blank" class="fa fa-instagram instagram"></a>
+                    <a href="https://plus.google.com/107405104458420547482" target="_blank" class="fa fa-google-plus google-plus"></a>
+                    <a href="linkedin.com/amfoss" target="_blank" class="fa fa-linkedin linkedin"></a>
+                    <a href="https://github.com/amfoss" target="_blank" class="fa fa-github github"></a>
+                </div>
+            </div>
         </div>
-
     </nav>
 
-    <!-- SOCIAL LINKS -->
-    <div class="copyright" style="position: absolute">
-        <div class="social-icons m-b-20">
-            <a href="https://www.facebook.com/amfoss.in/?ref=br_rs" target="_blank" class="fa fa-facebook facebook"></a>
-            <a href="https://twitter.com/amritafoss" target="_blank" class="fa fa-twitter twitter"></a>
-            <a href="https://www.instagram.com/amfoss_/" target="_blank"
-               class="fa fa-instagram instagram"></a>
-            <a href="https://plus.google.com/107405104458420547482" target="_blank"
-               class="fa fa-google-plus google-plus"></a>
-            <a href="linkedin.com/amfoss" target="_blank" class="fa fa-linkedin linkedin"></a>
-            <a href="https://github.com/amfoss" target="_blank" class="fa fa-github github"></a>
 
-        </div>
-
-      <p>© <a href="https://amfoss.in/">amFOSS</a>'18</p>
-    </div>
-    <!-- /SOCIAL LINKS -->
 
 </div>
 <!-- /SIDEBAR -->

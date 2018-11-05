@@ -31,6 +31,7 @@
     <link href="{% static 'registration/fonts/icomoon/style.css' %}" rel="stylesheet">
 
     <!-- Plugins -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet">
     <link href="{% static 'home/assets/css/magnific-popup.css' %}" rel="stylesheet">
     <link href="{% static 'home/assets/css/owl.carousel.css' %}" rel="stylesheet">
     <link href="{% static 'home/assets/css/superslides.css' %}" rel="stylesheet">
@@ -62,21 +63,21 @@
 {% include 'home/../base/side-nav.html' %}
 
 <!-- WRAPPER -->
-<div class="wrapper">
+<div class="wrapper animated fadeIn">
     {% block content %}
     {% endblock %}
     <hr class="divider">
-{% block body %} {% endblock %}
-    <!-- Footer section -->
+    {% block body %} {% endblock %}
     {% include 'home/../base/footer.html' %}
-
 </div>
 <!-- /WRAPPER -->
+
+
 </body>
 <!-- JAVASCRIPT FILES -->
 <script src="{% static 'home/assets/js/jquery-2.1.4.min.js' %}"></script>
 <script src="{% static 'home/assets/bootstrap/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'home/assets/js/scrollup.js' %}"></script>
+<script src="{% static 'home/assets/js/theme.js' %}"></script>
 <script src="{% static 'home/assets/js/jquery.superslides.min.js' %}"></script>
 <script src="{% static 'home/assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
 <script src="{% static 'home/assets/js/imagesloaded.pkgd.js' %}"></script>
