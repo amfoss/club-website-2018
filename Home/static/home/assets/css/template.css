@@ -30,9 +30,8 @@ iframe{
 
 #toggle_button
 {
-	border: 1.2px solid #666;
 	color: #eee;
-	background: #000;
+	background: rgba(0,0,0,0.3);
 	padding: 1rem;
 	font-size: 2rem;
 	top: 1.5rem;
@@ -66,7 +65,6 @@ iframe{
 
 #sidebar-logo img {
 	width: 10rem;
-	margin-left: -3rem;
 }
 
 #sidebar a{
