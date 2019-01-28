@@ -66,7 +66,8 @@ class Command(BaseCommand):
                 print('Date given is wrong, format is dd-mm-yyyy')
                 sys.exit()
         else:
-            status_date = date.today() - timedelta(days=1)
+            status_date = date.today()
+            #status_date = date.today() - timedelta(days=1)
 
         email_list = get_status_update_emails(status_date)
         print(email_list)
