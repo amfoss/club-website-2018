@@ -46,6 +46,7 @@
     <!-- Template core CSS -->
     <link href="{% static 'home/assets/css/template.css' %}" rel="stylesheet">
     <link href="{% static 'home/css/login.css' %}" rel="stylesheet">
+    <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -56,24 +57,24 @@
 {#</div>#}
 {#<!-- /PRELOADER -->#}
 
-<!-- Incudes navigation bar.  -->
+<!-- Includes navigation bar.  -->
 {% include 'home/../../../Home/templates/base/side-nav.html' %}
 
-<div class="notifications" style="padding-left: 80%;">
+<div class="notifications" style="padding-left: 80%; padding-bottom: 25%">
     {% if form.errors %}
         {% for field in form %}
             {% for error in field.errors %}
-                <div class="alert alert-danger alert-dismissable">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                    {{ field.label }}: {{ error|escape }}
-                </div>
+            <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ field.label }}: {{ error|escape }}
+  </div>
             {% endfor %}
         {% endfor %}
         {% for error in form.non_field_errors %}
-            <div class="alert alert-danger alert-dismissable">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                {{ error|escape }}
-            </div>
+        <div class="alert alert-danger alert-dismissible">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ error|escape }}
+</div>
         {% endfor %}
     {% endif %}
 </div>
@@ -81,7 +82,6 @@
 
 <div class="logmod">
     <div class="logmod__wrapper">
-        <span class="logmod__close">Close</span>
         <div class="logmod__container">
             <ul class="logmod__tabs">
                 <li data-tabtar="lgm-2"><a href="#">Login</a></li>
@@ -197,6 +197,12 @@
                                     <span class="hide-password">Show</span>
                                 </div>
                             </div>
+                            <div class="form-check">
+                                    <label class="form-check-label" style=" padding-top: 11px; padding-left: 24px; padding-right: 24px; padding-bottom: 11px;" >
+                                      <input type="checkbox" value="True" class="form-check-input">
+                                        Remember me
+                                    </label>
+                                  </div>
                             <div class="simform__actions">
                                 <input class="sumbit" name="commit" type="submit" value="Log In"/>
                                 <span class="simform__actions-sidetext"><a class="special" role="link"

@@ -7,6 +7,7 @@ body {
     background: url('../../registration/../home/img/abstract-wallpapers.jpg') transparent fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    -ms-overflow-style:scrollbar;
 }
 
 *, *:before, *:after {
@@ -18,7 +19,8 @@ body {
     position: fixed;
     top: 0;
     right: 0;
-    padding-left: 50px;
+    overflow: auto;
+    padding-left: 200px;
     bottom: 0;
     left: 0;
     opacity: 1;
@@ -38,22 +40,7 @@ body {
     max-width: 550px;
     border-radius: 4px;
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
-    margin: 90px auto auto 500px;
-}
-
-.logmod__close {
-    display: block;
-    position: absolute;
-    right: 50%;
-    background: url("http://imgh.us/close_white.svg") no-repeat scroll 0% 0% transparent;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    cursor: pointer;
-    top: -72px;
-    margin-right: -24px;
-    width: 48px;
-    height: 48px;
+    margin: 90px auto auto auto;
 }
 
 .logmod__container {
@@ -74,7 +61,7 @@ body {
     height: 0;
     overflow: hidden;
     opacity: 0;
-    visibility: hidden;
+    visibility: auto;
 }
 
 .logmod__tab-wrapper {
